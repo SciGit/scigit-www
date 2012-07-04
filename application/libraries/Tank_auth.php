@@ -28,7 +28,7 @@ class Tank_auth
 
 		$this->ci->load->library('session');
 		$this->ci->load->database();
-		$this->ci->load->model('tank_auth/users');
+		$this->ci->load->model('tank_auth/user');
 
 		// Try to autologin
 		$this->autologin();
@@ -56,7 +56,7 @@ class Tank_auth
 				$get_user_func = 'get_user_by_email';
 			}
 
-			if (!is_null($user = $this->ci->users->$get_user_func($login))) {	// login ok
+			if (!is_null($user = $this->ci->user->$get_user_func($login))) {	// login ok
 
 				// Does password match hash in database?
 				$hasher = new PasswordHash(
@@ -84,7 +84,7 @@ class Tank_auth
 
 							$this->clear_login_attempts($login);
 
-							$this->ci->users->update_login_info(
+							$this->ci->user->update_login_info(
 									$user->id,
 									$this->ci->config->item('login_record_ip', 'tank_auth'),
 									$this->ci->config->item('login_record_time', 'tank_auth'));
@@ -161,10 +161,10 @@ class Tank_auth
 	 */
 	function create_user($username, $email, $password, $email_activation)
 	{
-		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
+		if ((strlen($username) > 0) AND !$this->ci->user->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
 
-		} elseif (!$this->ci->users->is_email_available($email)) {
+		} elseif (!$this->ci->user->is_email_available($email)) {
 			$this->error = array('email' => 'auth_email_in_use');
 
 		} else {
@@ -184,7 +184,7 @@ class Tank_auth
 			if ($email_activation) {
 				$data['new_email_key'] = md5(rand().microtime());
 			}
-			if (!is_null($res = $this->ci->users->create_user($data, !$email_activation))) {
+			if (!is_null($res = $this->ci->user->create_user($data, !$email_activation))) {
 				$data['user_id'] = $res['user_id'];
 				$data['password'] = $password;
 				unset($data['last_ip']);
@@ -203,7 +203,7 @@ class Tank_auth
 	 */
 	function is_username_available($username)
 	{
-		return ((strlen($username) > 0) AND $this->ci->users->is_username_available($username));
+		return ((strlen($username) > 0) AND $this->ci->user->is_username_available($username));
 	}
 
 	/**
@@ -215,7 +215,7 @@ class Tank_auth
 	 */
 	function is_email_available($email)
 	{
-		return ((strlen($email) > 0) AND $this->ci->users->is_email_available($email));
+		return ((strlen($email) > 0) AND $this->ci->user->is_email_available($email));
 	}
 
 	/**
@@ -230,7 +230,7 @@ class Tank_auth
 	{
 		$user_id = $this->ci->session->userdata('user_id');
 
-		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, FALSE))) {
+		if (!is_null($user = $this->ci->user->get_user_by_id($user_id, FALSE))) {
 
 			$data = array(
 				'user_id'	=> $user_id,
@@ -241,9 +241,9 @@ class Tank_auth
 				$data['new_email_key'] = $user->new_email_key;
 				return $data;
 
-			} elseif ($this->ci->users->is_email_available($email)) {
+			} elseif ($this->ci->user->is_email_available($email)) {
 				$data['new_email_key'] = md5(rand().microtime());
-				$this->ci->users->set_new_email($user_id, $email, $data['new_email_key'], FALSE);
+				$this->ci->user->set_new_email($user_id, $email, $data['new_email_key'], FALSE);
 				return $data;
 
 			} else {
@@ -263,10 +263,10 @@ class Tank_auth
 	 */
 	function activate_user($user_id, $activation_key, $activate_by_email = TRUE)
 	{
-		$this->ci->users->purge_na($this->ci->config->item('email_activation_expire', 'tank_auth'));
+		$this->ci->user->purge_na($this->ci->config->item('email_activation_expire', 'tank_auth'));
 
 		if ((strlen($user_id) > 0) AND (strlen($activation_key) > 0)) {
-			return $this->ci->users->activate_user($user_id, $activation_key, $activate_by_email);
+			return $this->ci->user->activate_user($user_id, $activation_key, $activate_by_email);
 		}
 		return FALSE;
 	}
@@ -282,7 +282,7 @@ class Tank_auth
 	function forgot_password($login)
 	{
 		if (strlen($login) > 0) {
-			if (!is_null($user = $this->ci->users->get_user_by_login($login))) {
+			if (!is_null($user = $this->ci->user->get_user_by_login($login))) {
 
 				$data = array(
 					'user_id'		=> $user->id,
@@ -291,7 +291,7 @@ class Tank_auth
 					'new_pass_key'	=> md5(rand().microtime()),
 				);
 
-				$this->ci->users->set_password_key($user->id, $data['new_pass_key']);
+				$this->ci->user->set_password_key($user->id, $data['new_pass_key']);
 				return $data;
 
 			} else {
@@ -311,7 +311,7 @@ class Tank_auth
 	function can_reset_password($user_id, $new_pass_key)
 	{
 		if ((strlen($user_id) > 0) AND (strlen($new_pass_key) > 0)) {
-			return $this->ci->users->can_reset_password(
+			return $this->ci->user->can_reset_password(
 				$user_id,
 				$new_pass_key,
 				$this->ci->config->item('forgot_password_expire', 'tank_auth'));
@@ -331,7 +331,7 @@ class Tank_auth
 	{
 		if ((strlen($user_id) > 0) AND (strlen($new_pass_key) > 0) AND (strlen($new_password) > 0)) {
 
-			if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
+			if (!is_null($user = $this->ci->user->get_user_by_id($user_id, TRUE))) {
 
 				// Hash password using phpass
 				$hasher = new PasswordHash(
@@ -339,7 +339,7 @@ class Tank_auth
 						$this->ci->config->item('phpass_hash_portable', 'tank_auth'));
 				$hashed_password = $hasher->HashPassword($new_password);
 
-				if ($this->ci->users->reset_password(
+				if ($this->ci->user->reset_password(
 						$user_id,
 						$hashed_password,
 						$new_pass_key,
@@ -372,7 +372,7 @@ class Tank_auth
 	{
 		$user_id = $this->ci->session->userdata('user_id');
 
-		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
+		if (!is_null($user = $this->ci->user->get_user_by_id($user_id, TRUE))) {
 
 			// Check if old password correct
 			$hasher = new PasswordHash(
@@ -384,7 +384,7 @@ class Tank_auth
 				$hashed_password = $hasher->HashPassword($new_pass);
 
 				// Replace old password with new one
-				$this->ci->users->change_password($user_id, $hashed_password);
+				$this->ci->user->change_password($user_id, $hashed_password);
 				return TRUE;
 
 			} else {															// fail
@@ -407,7 +407,7 @@ class Tank_auth
 	{
 		$user_id = $this->ci->session->userdata('user_id');
 
-		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
+		if (!is_null($user = $this->ci->user->get_user_by_id($user_id, TRUE))) {
 
 			// Check if password correct
 			$hasher = new PasswordHash(
@@ -428,9 +428,9 @@ class Tank_auth
 					$data['new_email_key'] = $user->new_email_key;
 					return $data;
 
-				} elseif ($this->ci->users->is_email_available($new_email)) {
+				} elseif ($this->ci->user->is_email_available($new_email)) {
 					$data['new_email_key'] = md5(rand().microtime());
-					$this->ci->users->set_new_email($user_id, $new_email, $data['new_email_key'], TRUE);
+					$this->ci->user->set_new_email($user_id, $new_email, $data['new_email_key'], TRUE);
 					return $data;
 
 				} else {
@@ -453,7 +453,7 @@ class Tank_auth
 	function activate_new_email($user_id, $new_email_key)
 	{
 		if ((strlen($user_id) > 0) AND (strlen($new_email_key) > 0)) {
-			return $this->ci->users->activate_new_email(
+			return $this->ci->user->activate_new_email(
 					$user_id,
 					$new_email_key);
 		}
@@ -470,7 +470,7 @@ class Tank_auth
 	{
 		$user_id = $this->ci->session->userdata('user_id');
 
-		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
+		if (!is_null($user = $this->ci->user->get_user_by_id($user_id, TRUE))) {
 
 			// Check if password correct
 			$hasher = new PasswordHash(
@@ -478,7 +478,7 @@ class Tank_auth
 					$this->ci->config->item('phpass_hash_portable', 'tank_auth'));
 			if ($hasher->CheckPassword($password, $user->password)) {			// success
 
-				$this->ci->users->delete_user($user_id);
+				$this->ci->user->delete_user($user_id);
 				$this->logout();
 				return TRUE;
 
@@ -577,7 +577,7 @@ class Tank_auth
 								'expire'	=> $this->ci->config->item('autologin_cookie_life', 'tank_auth'),
 						));
 
-						$this->ci->users->update_login_info(
+						$this->ci->user->update_login_info(
 								$user->id,
 								$this->ci->config->item('login_record_ip', 'tank_auth'),
 								$this->ci->config->item('login_record_time', 'tank_auth'));

@@ -10,7 +10,7 @@
  * @package	Tank_auth
  * @author	Ilya Konyukhov (http://konyukhov.com/soft/)
  */
-class Users extends CI_Model
+class User extends CI_Model
 {
 	private $table_name			= 'users';			// user accounts
 	private $profile_table_name	= 'user_profiles';	// user profiles
