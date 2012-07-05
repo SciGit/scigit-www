@@ -34,6 +34,20 @@ class Project extends CI_Model
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 
+	public function create($user_id, $name) {
+		$this->db->insert($this->proj_table, array(
+			'name' => $name,
+			'owner_id' => $user_id,
+		));
+		$this->db->insert($this->proj_perms_table, array(
+			'proj_id' => $this->db->insert_id(),
+			'user_id' => $user_id,
+			'can_write' => 1,
+			'can_admin' => 1,
+		));
+		return update_repos();
+	}
+
 	public function set_user_perms($user_id, $proj_id, $write, $admin) {
 		$data = array(
 			'user_id' => $user_id,

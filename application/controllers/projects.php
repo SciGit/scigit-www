@@ -17,6 +17,18 @@ class Projects extends CI_Controller
 		$this->twig->display('projects/index.twig', $data);
 	}
 
+	public function create() {
+		if ($this->input->post('create_project')) {
+			$this->form_validation->set_rules('name', 'Name', 'required');
+			if ($this->form_validation->run()) {
+				if ($this->project->create(get_user_id(), $this->input->post('name'))) {
+					redirect('projects');
+				}
+			}
+		}
+		$this->twig->display('projects/create.twig');
+	}
+
 	public function changes($proj_id) {
 		check_project_perms($proj_id);
 		$data = array(

@@ -1,0 +1,7 @@
+<h2>Create Project</h2>
+
+{{ form_open() | raw }}
+	{{ form_label('Name', 'name') | raw }}
+	{{ form_input('name', set_value('name')) | raw }} <br />
+	{{ form_submit('create_project', 'Submit') | raw }}
+{{ form_close() | raw }}
