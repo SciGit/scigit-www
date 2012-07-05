@@ -5,6 +5,7 @@ class Projects extends CI_Controller
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('project');
+		$this->load->model('change');
 		$this->load->library('form_validation');
 		if (!is_logged_in()) redirect('auth/login');
 	}
@@ -16,9 +17,17 @@ class Projects extends CI_Controller
 		$this->twig->display('projects/index.twig', $data);
 	}
 
-	public function admin($proj_id) {
-		$this->check_admin($proj_id);
+	public function changes($proj_id) {
+		check_project_perms($proj_id);
+		$data = array(
+			'project' => $this->project->get($proj_id),
+			'changes' => $this->change->get_by_project($proj_id),
+		);
+		$this->twig->display('projects/changes.twig', $data);
+	}
 
+	public function admin($proj_id) {
+		check_project_admin($proj_id);
 		$msg = '';
 		if ($this->input->post('add_user')) {
 			$this->form_validation->set_rules('username', 'Username',
@@ -54,15 +63,5 @@ class Projects extends CI_Controller
 			return false;
 		}
 		return true;
-	}
-
-	private function check_admin($proj_id) {
-		$perm = $this->project->get_user_perms(get_user_id(), $proj_id);
-		if ($perm == null) {
-			show_404();
-		}
-		if (!$perm->can_admin) {
-			show_error('Insufficient privileges.', 403);
-		}
 	}
 }

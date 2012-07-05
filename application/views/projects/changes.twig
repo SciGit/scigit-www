@@ -1,0 +1,12 @@
+<h2>Project Changes</h2>
+
+<ul>
+	{% for change in changes %}
+		<li>
+			{{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+			by {{ change.username }} on {{ change.commit_ts | date }}
+		</li>
+	{% else %}
+		<li>No changes yet.</li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,17 @@
+<h2>Change "{{ change.commit_msg }}"</h2>
+
+{% if listing %}
+	<h3>Directory listing: {{path}}</h3>
+	<ul>
+		{% for node in listing %} 
+			<li>
+				{{ anchor("/changes/view/#{change.id}/#{urlencode(node.path)}", node.name) | raw }}
+				({{ node.size }} bytes)
+			</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<h3>File: {{ path }}</h3>
+	<pre>{{ file }}
+	</pre>
+{% endif %}
