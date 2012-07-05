@@ -23,7 +23,7 @@ class Public_key extends CI_Model
 			'public_key' => $data['public_key'],
 			'comment' => $data['comment'],
 		));
-		return 1;
+		return update_repos();
 	}
 
 	public function parse_key($key) {

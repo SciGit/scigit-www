@@ -44,9 +44,10 @@ class Project extends CI_Model
 		if ($this->get_user_perms($user_id, $proj_id) !== null) {
 			$this->db->where('user_id', $user_id);
 			$this->db->where('proj_id', $proj_id);
-			return $this->db->update($this->proj_perms_table, $data);
+			$this->db->update($this->proj_perms_table, $data);
 		} else {
-			return $this->db->insert($this->proj_perms_table, $data);
+			$this->db->insert($this->proj_perms_table, $data);
 		}
+		return update_repos();
 	}
 }
