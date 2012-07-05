@@ -11,7 +11,7 @@ function get_user_id() {
 }
 
 function update_repos() {
-	exec('/var/scigit/update-repos.php >> /tmp/scigit-log', $out, $ret);
+	exec('/var/scigit/update-repos.php >> /tmp/scigit-log 2>&1', $out, $ret);
 	return $ret == 0;
 }
 
