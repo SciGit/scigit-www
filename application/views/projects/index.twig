@@ -1,0 +1,12 @@
+<h2>My Projects</h2>
+
+<ul>
+	{% for project in projects %}
+		<li>
+			{{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+			{% if project.can_admin %}
+				({{ anchor("/projects/admin/#{project.id}", 'Admin') | raw }})
+			{% endif %}
+		</li>
+	{% endfor %}
+</ul>

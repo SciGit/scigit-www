@@ -1,0 +1,30 @@
+<h2>User Profile</h2>
+
+Username: {{ user.username }}<br />
+Email: {{ user.email }}<br />
+
+<h3>Public Keys</h3>
+<ul>
+	{% for key in public_keys %}
+		<li>
+			{{ key.name }}: {{ ellipsize(key.public_key, 32, 0.5) | raw }}
+			{{ key.comment }}
+		</li>
+	{% else %}
+		<li>You have no public keys!</li>
+	{% endfor %}
+</ul>
+
+<h3>Add Public Key</h3>
+
+<p>{{ message }}</p>
+{{ validation_errors() | raw }}
+
+{{ form_open() | raw }}
+	{{ form_label('Name', 'name') | raw }}
+	{{ form_input('name', set_value('name')) | raw }}
+	<br />
+	{{ form_textarea('public_key', set_value('public_key')) | raw }}
+	<br />
+	{{ form_submit('add_public_key', 'Submit') | raw }}
+{{ form_close() | raw }}
