@@ -12,7 +12,7 @@ class Project extends CI_Model
 		return $r[0];
 	}
 
-	public function get_for_user($user_id) {
+	public function get_by_user($user_id) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
 		$this->db->join($this->proj_table, 'proj_id = projects.id');
@@ -35,18 +35,21 @@ class Project extends CI_Model
 	}
 
 	public function create($user_id, $name) {
-		$this->db->insert($this->proj_table, array(
+		$data = array(
 			'name' => $name,
 			'owner_id' => $user_id,
 			'created_ts' => time(),
-		));
+		);
+		if (!$this->db->insert($this->proj_table, $data)) return null;
+		$data['id'] = $this->db->insert_id();
 		$this->db->insert($this->proj_perms_table, array(
-			'proj_id' => $this->db->insert_id(),
+			'proj_id' => $data['id'],
 			'user_id' => $user_id,
 			'can_write' => 1,
 			'can_admin' => 1,
 		));
-		return update_repos();
+		update_repos();
+		return $data;
 	}
 
 	public function set_user_perms($user_id, $proj_id, $write, $admin) {

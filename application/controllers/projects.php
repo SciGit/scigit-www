@@ -12,7 +12,7 @@ class Projects extends CI_Controller
 
 	public function index() {
 		$data = array(
-			'projects' => $this->project->get_for_user(get_user_id()),
+			'projects' => $this->project->get_by_user(get_user_id()),
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}

@@ -11,15 +11,37 @@ class REST_Controller extends CI_Controller
 		$method = $_SERVER['REQUEST_METHOD'];
 		if ($method == 'PUT' || $method == 'DELETE') {
 			parse_str(file_get_contents('php://input'), $this->args);
+			$this->args = array_merge($this->args, $this->input->get());
 		} else if ($method == 'GET') {
 			$this->args = $this->input->get();
 		} else {
 			$this->args = $this->input->post();
+			$this->args = array_merge($this->args, $this->input->get());
 		}
 		$this->http_method = $method;
+
+		$this->load->model('auth_token');
 	}
 
-	public function _remap($method, $params = array()) {
+	public function authenticate() {
+		$username = $this->get_arg('username');
+		$auth_token = $this->get_arg('auth_token');
+		if (!$username || !$auth_token) {
+			$this->error(400);
+		}
+
+		$user = $this->user->get_user_by_login($username);
+		if (!$user) {
+			$this->error(400);
+		}
+
+		if (!$this->auth_token->authenticate($user->id, $auth_token)) {
+			$this->error(403);
+		}
+		return $user;
+	}
+
+	function _remap($method, $params = array()) {
 		$new_method = $method . '_' . strtolower($this->http_method);
 		if (method_exists($this, $new_method)) {
 			call_user_func_array(array($this, $new_method), $params);
@@ -28,25 +50,25 @@ class REST_Controller extends CI_Controller
 		}
 	}
 
-	public function get_arg($name) {
+	protected function get_arg($name) {
 		if (isset($this->args[$name])) {
 			return $this->args[$name];
 		}
 		return null;
 	}
 
-	public function set_status($code) {
+	protected function set_status($code) {
 		header('HTTP/1.1: ' . $code);
 		header('Status: ' . $code);
 	}
 
-	public function response($data = array(), $code = 200) {
+	protected function response($data = array(), $code = 200) {
 		$this->set_status($code);
 		header('Content-Type: application/json');
 		exit(json_encode($data));
 	}
 
-	public function error($code) {
+	protected function error($code) {
 		$this->set_status($code);
 		header('Content-Type: application/json');
 		exit();

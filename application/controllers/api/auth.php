@@ -2,11 +2,6 @@
 
 class Auth extends REST_Controller
 {
-	public function __construct() {
-		parent::__construct();
-		$this->load->model('auth_token');
-	}
-
 	public function login_post() {
 		$username = $this->get_arg('username');
 		$password = $this->get_arg('password');

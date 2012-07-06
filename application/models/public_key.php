@@ -15,15 +15,18 @@ class Public_key extends CI_Model
 	}
 
 	public function create($user_id, $name, $public_key) {
-		$data = $this->parse_key($public_key);
-		$this->db->insert($this->table, array(
+		$key = $this->parse_key($public_key);
+		$data = array(
 			'user_id' => $user_id,
 			'name' => $name,
-			'key_type' => $data['key_type'],
-			'public_key' => $data['public_key'],
-			'comment' => $data['comment'],
-		));
-		return update_repos();
+			'key_type' => $key['key_type'],
+			'public_key' => $key['public_key'],
+			'comment' => $key['comment'],
+		);
+		if (!$this->db->insert($this->table, $data)) return null;
+		$data['id'] = $this->db->insert_id();
+		update_repos();
+		return $data;
 	}
 
 	public function parse_key($key) {

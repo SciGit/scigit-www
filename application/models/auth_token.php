@@ -7,7 +7,7 @@ class Auth_token extends CI_Model
 
 	public function authenticate($user_id, $token) {
 		$this->db->where('user_id', $user_id);
-		$this->db->where('token' , $token);
+		$this->db->where('auth_token' , $token);
 		$r = $this->db->get($this->table)->result();
 		if (empty($r) || $r[0]->expiry_ts < time()) return false;
 		return true;
