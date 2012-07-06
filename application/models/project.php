@@ -38,6 +38,7 @@ class Project extends CI_Model
 		$this->db->insert($this->proj_table, array(
 			'name' => $name,
 			'owner_id' => $user_id,
+			'created_ts' => time(),
 		));
 		$this->db->insert($this->proj_perms_table, array(
 			'proj_id' => $this->db->insert_id(),
