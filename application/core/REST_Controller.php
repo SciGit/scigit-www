@@ -11,12 +11,16 @@ class REST_Controller extends CI_Controller
 		$method = $_SERVER['REQUEST_METHOD'];
 		if ($method == 'PUT' || $method == 'DELETE') {
 			parse_str(file_get_contents('php://input'), $this->args);
-			$this->args = array_merge($this->args, $this->input->get());
+			if ($this->input->get()) {
+				$this->args = array_merge($this->args, $this->input->get());
+			}
 		} else if ($method == 'GET') {
 			$this->args = $this->input->get();
 		} else {
 			$this->args = $this->input->post();
-			$this->args = array_merge($this->args, $this->input->get());
+			if ($this->input->get()) {
+				$this->args = array_merge($this->args, $this->input->get());
+			}
 		}
 		$this->http_method = $method;
 
