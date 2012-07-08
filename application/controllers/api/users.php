@@ -16,4 +16,24 @@ class Users extends REST_Controller
 			$this->error(404);
 		}
 	}
+
+	public function public_keys_put() {
+		$user = $this->authenticate();
+		$name = $this->get_arg('name');
+		$public_key = $this->get_arg('public_key');
+		$this->load->model('public_key');
+		if (!$name) $this->response(array('name' => 'required'), 400);
+
+		if ($d = $this->public_key->parse_key($public_key)) {
+			if ($this->public_key->get_by_key($d['public_key'])) {
+				$this->response(array('public_key' => 'duplicate_public_key'), 400);
+			}
+			if ($this->public_key->create($user->id, $name, $public_key)) {
+				$this->response($d);
+			} else {
+				$this->error(500);
+			}
+		}
+		$this->response(array('public_key' => 'invalid_public_key'), 400);
+	}
 }

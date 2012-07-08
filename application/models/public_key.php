@@ -16,6 +16,8 @@ class Public_key extends CI_Model
 
 	public function create($user_id, $name, $public_key) {
 		$key = $this->parse_key($public_key);
+		if (!$key) return null;
+
 		$data = array(
 			'user_id' => $user_id,
 			'name' => $name,
@@ -36,6 +38,8 @@ class Public_key extends CI_Model
 		if ($parts[0] != 'ssh-rsa' && $parts[0] != 'ssh-dsa') return null;
 
 		$bytes = base64_decode($parts[1]);
+		if ($bytes === false) return null;
+
 		$pos = 0;
 		$len = strlen($bytes);
 		$blocks = array();
