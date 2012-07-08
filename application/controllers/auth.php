@@ -5,6 +5,9 @@ class Auth extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		if (!is_ssl()) {
+			redirect($this->config->item('secure_base_url') . '/auth');
+		}
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');

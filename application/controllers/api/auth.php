@@ -2,6 +2,13 @@
 
 class Auth extends REST_Controller
 {
+	public function __construct() {
+		parent::__construct();
+		if (!is_ssl()) {
+			$this->error(400);
+		}
+	}
+
 	public function login_post() {
 		$username = $this->get_arg('username');
 		$password = $this->get_arg('password');

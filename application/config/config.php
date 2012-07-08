@@ -13,8 +13,13 @@
 | If this is not set then CodeIgniter will guess the protocol, domain and
 | path to your installation.
 |
-*/
+ */
+function is_ssl() {
+	return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off';
+}
+
 $config['base_url']	= '';
+$config['secure_base_url']	= 'https://scigit.sherk.me/';
 
 /*
 |--------------------------------------------------------------------------
