@@ -2,14 +2,19 @@
 
 require_once '/var/scigit/include/scigit.php';
 
-function is_logged_in() {
-	$CI = &get_instance();
-	return $CI->tank_auth->is_logged_in(true);
-}
-
 function get_user_id() {
 	$CI = &get_instance();
 	return $CI->tank_auth->get_user_id();
+}
+
+function check_login() {
+	$CI = &get_instance();
+	if (!$CI->tank_auth->is_logged_in(true)) {
+		$http = (is_ssl() ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+		$url = $http . '/' . $CI->uri->uri_string();
+		$CI->session->set_flashdata('referer', $url);
+		redirect($CI->config->item('secure_site_url') . '/auth/login');
+	}
 }
 
 function check_project_perms($proj_id) {

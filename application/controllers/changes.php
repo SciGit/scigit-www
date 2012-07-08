@@ -6,7 +6,7 @@ class Changes extends CI_Controller
 		parent::__construct();
 		$this->load->model('project');
 		$this->load->model('change');
-		if (!is_logged_in()) redirect('auth/login');
+		check_login();
 	}
 
 	public function view($id, $path = '') {

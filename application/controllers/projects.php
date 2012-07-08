@@ -7,7 +7,7 @@ class Projects extends CI_Controller
 		$this->load->model('project');
 		$this->load->model('change');
 		$this->load->library('form_validation');
-		if (!is_logged_in()) redirect('auth/login');
+		check_login();
 	}
 
 	public function index() {
