@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block title "Send Activation Email" %}
+
+{%
+set email = {
+	'name': 'email',
+	'id': 'email',
+	'value': set_value('email'),
+	'maxlength': 80,
+	'size': 30,
+}
+%}
+
+{% block content %}
+{{ form_open() | raw }}
+	{{ form_label('Email Address', email['id']) | raw }}
+	{{ form_input(email) | raw }}
+	{{ form_error(email['name']) | raw }}
+	{{ errors[email['name']] }}
+	<br />
+	{{ form_submit({class: 'btn', name: 'send'}, 'Send') | raw }}
+{{ form_close() | raw }}
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.twig" %}
+
+{% block title "Login" %}
+
+{%
+set login = {
+	name: 'login',
+	id: 'login',
+	value: set_value('login'),
+	maxlength: 80,
+	size: 30,
+}
+%}
+{%
+set password = {
+	name: 'password',
+	id: 'password',
+	size: 30,
+}
+%}
+{%
+set remember = {
+	name: 'remember',
+	id: 'remember',
+	value: 1,
+	checked: set_value('remember'),
+}
+%}
+{%
+set captcha = {
+	name: 'captcha',
+	id: 'captcha',
+	maxlength: 8,
+}
+%}
+
+{% block content %}
+{{ form_open() | raw }}
+	{{ form_label('Login or email', login['id']) | raw }}
+	{{ form_input(login) | raw }}
+	{{ form_error(login['name']) | raw }}
+	{{ errors[login['name']] }}
+	<br />
+
+	{{ form_label('Password', password['id']) | raw }}
+	{{ form_password(password) | raw }}
+	{{ form_error(password['name']) | raw }}
+	{{ errors[password['name']] }}
+	<br />
+
+	{% if show_captcha %}
+		{% if use_recaptcha %}
+			<div id="recaptcha_image"></div>
+			<a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a>
+			<div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">Get an audio CAPTCHA</a></div>
+			<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
+			<br />
+			<div class="recaptcha_only_if_image">Enter the words above</div>
+			<div class="recaptcha_only_if_audio">Enter the numbers you hear</div>
+		  <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+			{{ form_error('recaptcha_response_field') | raw }}
+			{{ recaptcha_html | raw }}
+		{% else %}
+			<p>Enter the code exactly as it appears:</p>
+			{{ captcha_html | raw }}
+			<br />
+			{{ form_label('Confirmation Code', captcha['id']) | raw }}
+			{{ form_input(captcha) | raw }}
+			{{ form_error(captcha['name']) | raw }}
+		{% endif %}
+	{% endif %}
+
+	<label class="checkbox">
+		{{ form_checkbox(remember) | raw }}
+		Remember me
+	</label>
+	<p>
+		{{ anchor('/auth/forgot_password/', 'Forgot password') | raw }}
+		{{ anchor('/auth/register/', 'Register') | raw }}
+	</p>
+	{{ form_submit({class: 'btn', name: 'submit'}, 'Let me in') | raw }}
+{{ form_close() | raw }}
+{% endblock %}

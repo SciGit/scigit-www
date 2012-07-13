@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block title "Delete Account" %}
+
+{%
+set password = {
+	'name': 'password',
+	'id': 'password',
+	'size': 30,
+}
+%}
+
+{% block content %}
+{{ form_open() | raw }}
+	{{ form_label('Password', password['id']) | raw }}
+	{{ form_password(password) | raw }}
+	{{ form_error(password['name']) | raw }}
+	{{ errors[password['name']] }}
+	<br />
+	{{ form_submit({class: 'btn', name: 'cancel'}, 'Delete account') | raw }}
+{{ form_close() | raw }}
+{% endblock %}
