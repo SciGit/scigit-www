@@ -1,5 +1,8 @@
-<h2>User Profile</h2>
+{% extends "base.twig" %}
 
+{% block title "User Profile" %}
+
+{% block content %}
 Username: {{ user.username }}<br />
 Email: {{ user.email }}<br />
 
@@ -28,3 +31,4 @@ Email: {{ user.email }}<br />
 	<br />
 	{{ form_submit('add_public_key', 'Submit') | raw }}
 {{ form_close() | raw }}
+{% endblock %}

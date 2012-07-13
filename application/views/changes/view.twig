@@ -1,5 +1,8 @@
-<h2>Change "{{ change.commit_msg }}"</h2>
+{% extends "base.twig" %}
 
+{% block title "Change \"#{change.commit_msg}\"" %}
+
+{% block content %}
 {% if listing %}
 	<h3>Directory listing: {{path}}</h3>
 	<ul>
@@ -15,3 +18,4 @@
 	<pre>{{ file }}
 	</pre>
 {% endif %}
+{% endblock %}
