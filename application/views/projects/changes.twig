@@ -1,5 +1,8 @@
-<h2>Project Changes</h2>
+{% extends "base.twig" %}
 
+{% block title "Project Changes" %}
+
+{% block content %}
 <ul>
 	{% for change in changes %}
 		<li>
@@ -10,3 +13,4 @@
 		<li>No changes yet.</li>
 	{% endfor %}
 </ul>
+{% endblock %}

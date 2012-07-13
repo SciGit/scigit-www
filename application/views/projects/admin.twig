@@ -1,4 +1,8 @@
-<h2>Project Admin</h2>
+{% extends "base.twig" %}
+
+{% block title "Project Admin" %}
+
+{% block content %}
 
 <h3>User Permissions</h3>
 <ul>
@@ -11,18 +15,22 @@
 </ul>
 
 <h3>Add User</h3>
-
 <p>{{ message }}</p>
 {{ validation_errors() | raw }}
-
 {{ form_open() | raw }}
 	{{ form_label('Username', 'username') | raw }}
 	{{ form_input('username', set_value('username')) | raw }}
 	<br />
-	{{ form_label('Write', 'write') | raw }}
-	{{ form_checkbox('write', '1', set_checkbox('write', '1')) | raw }}
-	{{ form_label('Admin', 'admin') | raw }}
-	{{ form_checkbox('admin', '1', set_checkbox('admin', '1')) | raw }}
+	<label class="checkbox">
+		{{ form_checkbox('write', '1', set_checkbox('write', '1')) | raw }}
+		Write
+	</label>
+	<label class="checkbox">
+		{{ form_checkbox('admin', '1', set_checkbox('admin', '1')) | raw }}
+		Admin
+	</label>
 	<br />
-	{{ form_submit('add_user', 'Submit') | raw }}
+	{{ form_submit({class: 'btn', name: 'add_user'}, 'Submit') | raw }}
 {{ form_close() | raw }}
+
+{% endblock %}

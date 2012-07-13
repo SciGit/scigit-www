@@ -1,7 +1,11 @@
-<h2>Create Project</h2>
+{% extends "base.twig" %}
 
+{% block title "Create Project" %}
+
+{% block content %}
 {{ form_open() | raw }}
 	{{ form_label('Name', 'name') | raw }}
 	{{ form_input('name', set_value('name')) | raw }} <br />
-	{{ form_submit('create_project', 'Submit') | raw }}
+	{{ form_submit({class: 'btn', name: 'create_project'}, 'Submit') | raw }}
 {{ form_close() | raw }}
+{% endblock %}
