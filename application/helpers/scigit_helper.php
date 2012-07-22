@@ -39,11 +39,6 @@ function check_project_admin($proj_id) {
 	}
 }
 
-function update_repos() {
-	exec('/var/scigit/update-repos.php >> /tmp/scigit-log 2>&1', $out, $ret);
-	return $ret == 0;
-}
-
 function show_403() {
 	show_error('Not authorized.', 403);
 }

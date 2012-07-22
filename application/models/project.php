@@ -35,6 +35,7 @@ class Project extends CI_Model
 	}
 
 	public function create($user_id, $name) {
+		$this->load->library('scigit_thrift');
 		$data = array(
 			'name' => $name,
 			'owner_id' => $user_id,
@@ -48,7 +49,7 @@ class Project extends CI_Model
 			'can_write' => 1,
 			'can_admin' => 1,
 		));
-		update_repos();
+		Scigit_thrift::createRepository($data['id']);
 		return $data;
 	}
 
@@ -66,6 +67,5 @@ class Project extends CI_Model
 		} else {
 			$this->db->insert($this->proj_perms_table, $data);
 		}
-		return update_repos();
 	}
 }

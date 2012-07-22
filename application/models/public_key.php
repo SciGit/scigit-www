@@ -15,6 +15,7 @@ class Public_key extends CI_Model
 	}
 
 	public function create($user_id, $name, $public_key) {
+		$this->load->library('scigit_thrift');
 		$key = $this->parse_key($public_key);
 		if (!$key) return null;
 
@@ -27,7 +28,7 @@ class Public_key extends CI_Model
 		);
 		if (!$this->db->insert($this->table, $data)) return null;
 		$data['id'] = $this->db->insert_id();
-		update_repos();
+		Scigit_thrift::addPublicKey($user_id, $public_key);
 		return $data;
 	}
 
