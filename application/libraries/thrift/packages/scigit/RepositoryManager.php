@@ -10,8 +10,8 @@ include_once $GLOBALS['THRIFT_ROOT'].'/Thrift.php';
 include_once $GLOBALS['THRIFT_ROOT'].'/packages/scigit/scigit_types.php';
 
 interface RepositoryManagerIf {
-  public function addPublicKey($userId, $publicKey);
-  public function deletePublicKey($userId, $publicKey);
+  public function addPublicKey($keyId, $userId, $publicKey);
+  public function deletePublicKey($keyId, $userId, $publicKey);
   public function createRepository($repositoryId);
   public function deleteRepository($repositoryId);
 }
@@ -27,15 +27,16 @@ class RepositoryManagerClient implements RepositoryManagerIf {
     $this->output_ = $output ? $output : $input;
   }
 
-  public function addPublicKey($userId, $publicKey)
+  public function addPublicKey($keyId, $userId, $publicKey)
   {
-    $this->send_addPublicKey($userId, $publicKey);
+    $this->send_addPublicKey($keyId, $userId, $publicKey);
     $this->recv_addPublicKey();
   }
 
-  public function send_addPublicKey($userId, $publicKey)
+  public function send_addPublicKey($keyId, $userId, $publicKey)
   {
     $args = new RepositoryManager_addPublicKey_args();
+    $args->keyId = $keyId;
     $args->userId = $userId;
     $args->publicKey = $publicKey;
     $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
@@ -76,15 +77,16 @@ class RepositoryManagerClient implements RepositoryManagerIf {
     return;
   }
 
-  public function deletePublicKey($userId, $publicKey)
+  public function deletePublicKey($keyId, $userId, $publicKey)
   {
-    $this->send_deletePublicKey($userId, $publicKey);
+    $this->send_deletePublicKey($keyId, $userId, $publicKey);
     $this->recv_deletePublicKey();
   }
 
-  public function send_deletePublicKey($userId, $publicKey)
+  public function send_deletePublicKey($keyId, $userId, $publicKey)
   {
     $args = new RepositoryManager_deletePublicKey_args();
+    $args->keyId = $keyId;
     $args->userId = $userId;
     $args->publicKey = $publicKey;
     $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
@@ -228,6 +230,7 @@ class RepositoryManagerClient implements RepositoryManagerIf {
 class RepositoryManager_addPublicKey_args {
   static $_TSPEC;
 
+  public $keyId = null;
   public $userId = null;
   public $publicKey = null;
 
@@ -235,16 +238,23 @@ class RepositoryManager_addPublicKey_args {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
         1 => array(
-          'var' => 'userId',
+          'var' => 'keyId',
           'type' => TType::I32,
           ),
         2 => array(
+          'var' => 'userId',
+          'type' => TType::I32,
+          ),
+        3 => array(
           'var' => 'publicKey',
           'type' => TType::STRING,
           ),
         );
     }
     if (is_array($vals)) {
+      if (isset($vals['keyId'])) {
+        $this->keyId = $vals['keyId'];
+      }
       if (isset($vals['userId'])) {
         $this->userId = $vals['userId'];
       }
@@ -275,12 +285,19 @@ class RepositoryManager_addPublicKey_args {
       {
         case 1:
           if ($ftype == TType::I32) {
-            $xfer += $input->readI32($this->userId);
+            $xfer += $input->readI32($this->keyId);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
         case 2:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->userId);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->publicKey);
           } else {
@@ -300,13 +317,18 @@ class RepositoryManager_addPublicKey_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('RepositoryManager_addPublicKey_args');
+    if ($this->keyId !== null) {
+      $xfer += $output->writeFieldBegin('keyId', TType::I32, 1);
+      $xfer += $output->writeI32($this->keyId);
+      $xfer += $output->writeFieldEnd();
+    }
     if ($this->userId !== null) {
-      $xfer += $output->writeFieldBegin('userId', TType::I32, 1);
+      $xfer += $output->writeFieldBegin('userId', TType::I32, 2);
       $xfer += $output->writeI32($this->userId);
       $xfer += $output->writeFieldEnd();
     }
     if ($this->publicKey !== null) {
-      $xfer += $output->writeFieldBegin('publicKey', TType::STRING, 2);
+      $xfer += $output->writeFieldBegin('publicKey', TType::STRING, 3);
       $xfer += $output->writeString($this->publicKey);
       $xfer += $output->writeFieldEnd();
     }
@@ -370,6 +392,7 @@ class RepositoryManager_addPublicKey_result {
 class RepositoryManager_deletePublicKey_args {
   static $_TSPEC;
 
+  public $keyId = null;
   public $userId = null;
   public $publicKey = null;
 
@@ -377,16 +400,23 @@ class RepositoryManager_deletePublicKey_args {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
         1 => array(
-          'var' => 'userId',
+          'var' => 'keyId',
           'type' => TType::I32,
           ),
         2 => array(
+          'var' => 'userId',
+          'type' => TType::I32,
+          ),
+        3 => array(
           'var' => 'publicKey',
           'type' => TType::STRING,
           ),
         );
     }
     if (is_array($vals)) {
+      if (isset($vals['keyId'])) {
+        $this->keyId = $vals['keyId'];
+      }
       if (isset($vals['userId'])) {
         $this->userId = $vals['userId'];
       }
@@ -417,12 +447,19 @@ class RepositoryManager_deletePublicKey_args {
       {
         case 1:
           if ($ftype == TType::I32) {
-            $xfer += $input->readI32($this->userId);
+            $xfer += $input->readI32($this->keyId);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
         case 2:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->userId);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->publicKey);
           } else {
@@ -442,13 +479,18 @@ class RepositoryManager_deletePublicKey_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('RepositoryManager_deletePublicKey_args');
+    if ($this->keyId !== null) {
+      $xfer += $output->writeFieldBegin('keyId', TType::I32, 1);
+      $xfer += $output->writeI32($this->keyId);
+      $xfer += $output->writeFieldEnd();
+    }
     if ($this->userId !== null) {
-      $xfer += $output->writeFieldBegin('userId', TType::I32, 1);
+      $xfer += $output->writeFieldBegin('userId', TType::I32, 2);
       $xfer += $output->writeI32($this->userId);
       $xfer += $output->writeFieldEnd();
     }
     if ($this->publicKey !== null) {
-      $xfer += $output->writeFieldBegin('publicKey', TType::STRING, 2);
+      $xfer += $output->writeFieldBegin('publicKey', TType::STRING, 3);
       $xfer += $output->writeString($this->publicKey);
       $xfer += $output->writeFieldEnd();
     }

@@ -28,12 +28,12 @@ class Scigit_thrift
 		self::$client->deleteRepository($repo_id);
 	}
 
-	public static function addPublicKey($user_id, $public_key) {
-		self::$client->addPublicKey($user_id, $public_key);
+	public static function addPublicKey($key_id, $user_id, $public_key) {
+		self::$client->addPublicKey($key_id, $user_id, $public_key);
 	}
 
-	public static function deletePublicKey($user_id, $public_key) {
-		self::$client->deletePublicKey($user_id, $public_key);
+	public static function deletePublicKey($key_id, $user_id, $public_key) {
+		self::$client->deletePublicKey($key_id, $user_id, $public_key);
 	}
 }
 

@@ -28,7 +28,7 @@ class Public_key extends CI_Model
 		);
 		if (!$this->db->insert($this->table, $data)) return null;
 		$data['id'] = $this->db->insert_id();
-		Scigit_thrift::addPublicKey($user_id, $public_key);
+		Scigit_thrift::addPublicKey($data['id'], $user_id, $public_key);
 		return $data;
 	}
 
