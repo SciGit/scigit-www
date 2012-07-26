@@ -17,7 +17,9 @@ class REST_Controller extends CI_Controller
 		} else if ($method == 'GET') {
 			$this->args = $this->input->get();
 		} else {
-			$this->args = $this->input->post();
+			if ($this->input->post()) {
+				$this->args = $this->input->post();
+			}
 			if ($this->input->get()) {
 				$this->args = array_merge($this->args, $this->input->get());
 			}
