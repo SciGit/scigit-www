@@ -19,7 +19,8 @@ class Projects extends CI_Controller
 
 	public function create() {
 		if ($this->input->post('create_project')) {
-			$this->form_validation->set_rules('name', 'Name', 'required');
+			$this->form_validation->set_rules('name', 'Name',
+					'required|alpha_dash|is_unique[projects.name]');
 			if ($this->form_validation->run()) {
 				if ($this->project->create(get_user_id(), $this->input->post('name'))) {
 					redirect('projects');

@@ -3,6 +3,7 @@
 {% block title "Create Project" %}
 
 {% block content %}
+{{ validation_errors() | raw }}
 {{ form_open() | raw }}
 	{{ form_label('Name', 'name') | raw }}
 	{{ form_input('name', set_value('name')) | raw }} <br />
