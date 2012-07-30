@@ -1,6 +1,8 @@
 <?
 
-require_once '/var/scigit/include/scigit.php';
+define('SCIGIT_DIR', '/var/scigit');
+define('SCIGIT_REPO_DIR', '/var/scigit/repos');
+define('SCIGIT_REPO_LIMIT', 16 * 1024 * 1024);
 
 function get_user_id() {
 	$CI = &get_instance();
