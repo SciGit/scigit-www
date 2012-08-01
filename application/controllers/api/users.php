@@ -26,7 +26,7 @@ class Users extends REST_Controller
 
 		if ($d = $this->public_key->parse_key($public_key)) {
 			if ($this->public_key->get_by_key($d['public_key'])) {
-				$this->response(array('public_key' => 'duplicate_public_key'), 400);
+				$this->response(array('public_key' => 'duplicate_public_key'), 409);
 			}
 			if ($this->public_key->create($user->id, $name, $public_key)) {
 				$this->response($d);
