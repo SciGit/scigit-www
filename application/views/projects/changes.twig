@@ -3,14 +3,33 @@
 {% block title "Project Changes" %}
 
 {% block content %}
-<ul>
-	{% for change in changes %}
-		<li>
-			{{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-			by {{ change.username }} on {{ change.commit_ts | date }}
-		</li>
-	{% else %}
-		<li>No changes yet.</li>
-	{% endfor %}
-</ul>
+<div class="page-header">
+	<h1>
+		Project Changes
+		<small>{{ project.name }}</small>
+	</h1>
+</div>
+
+{% for change in changes %}
+	<table class="table table-bordered table-condensed table-striped">
+		<thead>
+			<tr>
+				<td>
+					{{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+					by {{ change.username }} on {{ change.commit_ts | date }}
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					Files modified:
+				</td>
+			</tr>
+		</tbody>
+	</table>
+{% else %}
+	No changes yet.
+{% endfor %}
+
 {% endblock %}

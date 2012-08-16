@@ -19,12 +19,15 @@
 	<h3>Public Keys</h3>
 </p>
 <div class="row">
-	<table class="span6 table table-bordered">
-		<tr>
-			<th>Name</th>
-			<th>Key</th>
-			<th>Comment</th>
-		</tr>
+	<table class="span6 table table-condensed table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Key</th>
+				<th>Comment</th>
+			</tr>
+		</thead>
+		<tbody>
 		{% for key in public_keys %}
 			<tr>
 				<td>{{ key.name }}</td>
@@ -33,6 +36,7 @@
 				</td>
 			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
 </div>
 
