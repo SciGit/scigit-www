@@ -3,32 +3,55 @@
 {% block title "User Profile" %}
 
 {% block content %}
-Username: {{ user.username }}<br />
-Email: {{ user.email }}<br />
 
-<h3>Public Keys</h3>
-<ul>
-	{% for key in public_keys %}
-		<li>
-			{{ key.name }}: {{ ellipsize(key.public_key, 32, 0.5) | raw }}
-			{{ key.comment }}
-		</li>
-	{% else %}
-		<li>You have no public keys!</li>
-	{% endfor %}
-</ul>
+<div class="page-header">
+	<h1>User Profile</h1>
+</div>
+
+<dl class="dl-horizontal">
+	<dt>Username</dt>
+	<dd>{{ user.username }}</dd>
+	<dt>Email</dt>
+	<dd>{{ user.email }}</dd>
+</dl>
+
+<p>
+	<h3>Public Keys</h3>
+</p>
+<div class="row">
+	<table class="span6 table table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Key</th>
+			<th>Comment</th>
+		</tr>
+		{% for key in public_keys %}
+			<tr>
+				<td>{{ key.name }}</td>
+				<td>{{ ellipsize(key.public_key, 32, 0.5) | raw }}</td>
+				<td>{{ key.comment }}</td>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
 
 <h3>Add Public Key</h3>
 
 <p>{{ message }}</p>
 {{ validation_errors() | raw }}
 
-{{ form_open() | raw }}
-	{{ form_label('Name', 'name') | raw }}
-	{{ form_input('name', set_value('name')) | raw }}
-	<br />
-	{{ form_textarea('public_key', set_value('public_key')) | raw }}
-	<br />
-	{{ form_submit('add_public_key', 'Submit') | raw }}
-{{ form_close() | raw }}
+<div class="row">
+	<div class="span6">
+	{{ form_open('', {class: 'well'})| raw }}
+		{{ form_label('Name', 'name') | raw }}
+		{{ form_input('name', set_value('name')) | raw }}
+		<br />
+		{{ form_textarea('public_key', set_value('public_key')) | raw }}
+		<br />
+		{{ form_submit({class: 'btn btn-primary', name: 'add_public_key', value: 'Submit'}) | raw }}
+	{{ form_close() | raw }}
+	</div>
+</div>
+
 {% endblock %}

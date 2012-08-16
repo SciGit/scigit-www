@@ -34,11 +34,12 @@ class Project extends CI_Model
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 
-	public function create($user_id, $name) {
+	public function create($user_id, $name, $public) {
 		$this->load->library('scigit_thrift');
 		$data = array(
 			'name' => $name,
 			'owner_id' => $user_id,
+			'public' => $public,
 			'created_ts' => time(),
 		);
 		if (!$this->db->insert($this->proj_table, $data)) return null;
@@ -67,5 +68,6 @@ class Project extends CI_Model
 		} else {
 			$this->db->insert($this->proj_perms_table, $data);
 		}
+		return true;
 	}
 }

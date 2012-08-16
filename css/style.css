@@ -1,18 +1,9 @@
+body {
+	overflow-y: scroll;
+}
 
-
-/* ===== Primary Styles ========================================================
-   Author:
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
+.title-btn {
+	vertical-align: top;
+	margin-left: 1em;
+	font-weight: normal;
+}

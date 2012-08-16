@@ -3,89 +3,89 @@
 {% block title "Register" %}
 
 {%
-set username = {
-	'name': 'username',
-	'id': 'username',
-	'value': set_value('username'),
-	'maxlength': 20,
-	'size': 30,
-}
-%}
-{%
-set email = {
-	'name': 'email',
-	'id': 'email',
-	'value': set_value('email'),
-	'maxlength': 80,
-	'size': 30,
-}
-%}
-{%
-set password = {
-	'name': 'password',
-	'id': 'password',
-	'value': set_value('password'),
-	'maxlength': 20,
-	'size': 30,
-}
-%}
-{%
-set confirm_password = {
-	'name': 'confirm_password',
-	'id': 'confirm_password',
-	'value': set_value('confirm_password'),
-	'maxlength': 20,
-	'size': 30,
-}
-%}
-{%
-set captcha = {
-	'name': 'captcha',
-	'id': 'captcha',
-	'maxlength': 8,
-}
+set fields = [
+	{
+		'label': 'Username',
+		'name': 'username',
+		'id': 'username',
+		'value': set_value('username'),
+		'maxlength': 20,
+		'size': 30,
+	},
+	{
+		'label': 'Email',
+		'name': 'email',
+		'id': 'email',
+		'value': set_value('email'),
+		'maxlength': 80,
+		'size': 30,
+	},
+	{
+		'label': 'Password',
+		'name': 'password',
+		'id': 'password',
+		'value': set_value('password'),
+		'type': 'password',
+		'maxlength': 20,
+		'size': 30,
+	},
+	{
+		'label': 'Confirm Password',
+		'name': 'confirm_password',
+		'id': 'confirm_password',
+		'value': set_value('confirm_password'),
+		'type': 'password',
+		'maxlength': 20,
+		'size': 30,
+	},
+	{
+		'label': 'Confirmation Code',
+		'name': 'captcha',
+		'id': 'captcha',
+		'maxlength': 8,
+	}
+]
 %}
 
 {% block content %}
 
-{{ form_open() | raw }}
-{% if use_username %}
-	{{ form_label('Username', username['id']) | raw }}
-	{{ form_input(username) | raw }}
-	{{ form_error(username['name']) | raw }}
-	{{ errors[username['name']] }}
-{% endif %}
-{{ form_label('Email Address', email['id']) | raw }}
-{{ form_input(email) | raw }}
-{{ form_error(email['name']) | raw }}
-{{ errors[email['name']] }}
-{{ form_label('Password', password['id']) | raw }}
-{{ form_password(password) | raw }}
-{{ form_error(password['name']) | raw }}
-{{ form_label('Confirm Password', confirm_password['id']) | raw }}
-{{ form_password(confirm_password) | raw }}
-{{ form_error(confirm_password['name']) | raw }}
-{% if captcha_registration %}
-	{% if use_recaptcha %}
-			<div id="recaptcha_image"></div>
-			<a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a>
-			<div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">Get an audio CAPTCHA</a></div>
-			<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
-			<div class="recaptcha_only_if_image">Enter the words above</div>
-			<div class="recaptcha_only_if_audio">Enter the numbers you hear</div>
-			<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-		{{ form_error('recaptcha_response_field') | raw }}
-		{{ recaptcha_html | raw }}
-	{% else %}
-		<p>Enter the code exactly as it appears:</p>
-		{{ captcha_html | raw }}
-		{{ form_label('Confirmation Code', captcha['id']) | raw }}
-		{{ form_input(captcha) | raw }}
-		{{ form_error(captcha['name']) | raw }}
-	{% endif %}	
-{% endif %}
-<br />
-{{ form_submit({class: 'btn', name: 'register'}, 'Register') | raw }}
+<div class="page-header">
+<h1>Register</h1>
+</div>
+{{ form_open('', {class: 'form-horizontal'}) | raw }}
+{% for field in fields %}
+	<div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
+		<label class="control-label" for="{{ field['id'] }}">
+			{{ field['label'] }}
+		</label>
+		<div class="controls">
+			{{ form_input(field) | raw }}
+			<span class="help-inline">
+				{{ form_error(field['name']) | raw }}
+				{{ errors[field['name']] }}
+			</span>
+		</div>
+	</div>
+{% endfor %}
+<div class="control-group">
+	<div class="controls">
+		{% if use_recaptcha %}
+				<div id="recaptcha_image"></div>
+				<a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a>
+				<div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">Get an audio CAPTCHA</a></div>
+				<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
+				<div class="recaptcha_only_if_image">Enter the words above</div>
+				<div class="recaptcha_only_if_audio">Enter the numbers you hear</div>
+				<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+			{{ recaptcha_html | raw }}
+		{% else %}
+			{{ captcha_html | raw }}
+		{% endif %}	
+	</div>
+</div>
+<div class="form-actions">
+	{{ form_submit({class: 'btn btn-primary', name: 'register'}, 'Register') | raw }}
+</div>
 {{ form_close() | raw }}
 
 {% endblock %}
