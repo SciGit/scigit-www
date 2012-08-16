@@ -18,6 +18,7 @@ class Changes extends CI_Controller
 		$path = urldecode($path);
 
 		$data = array(
+			'project' => $this->project->get($change->proj_id),
 			'change' => $change,
 			'path' => $path,
 		);

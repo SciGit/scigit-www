@@ -3,19 +3,55 @@
 {% block title "Change \"#{change.commit_msg}\"" %}
 
 {% block content %}
+<div class="page-header">
+	<h1>
+		View Change
+		<small>{{ anchor("/projects/changes/#{project.id}", project.name) | raw }}</small>
+	</h1>
+</div>
+
+<ul class="breadcrumb">
+	Path: 
+	{% set cur_path = '' %}
+	{% for piece in explode('/', path != '' ? '/' ~ path : path) %}
+		<li class="{{ loop.last ? 'active' : ''}}">
+			{% set cur_path = cur_path ~ (piece == '' ? '' : '/' ~ piece) %}
+			{% if loop.last %}
+				{{ piece == '' ? 'root' : piece }}
+			{% else %}
+				{{ anchor("/changes/view/#{change.id}/#{cur_path}", piece == '' ? 'root' : piece) | raw }}
+				<span class="divider">/</span>
+			{% endif %}
+		</li>
+	{% endfor %}
+</ul>
+
 {% if listing %}
-	<h3>Directory listing: {{path}}</h3>
-	<ul>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>File Name</th>
+				<th>Size</th>
+			</tr>
+		</thead>
+
+		<tbody>
 		{% for node in listing %} 
-			<li>
-				{{ anchor("/changes/view/#{change.id}/#{urlencode(node.path)}", node.name) | raw }}
-				({{ node.size }} bytes)
-			</li>
+			<tr>
+				<td>
+					{{ anchor("/changes/view/#{change.id}/#{urlencode(node.path)}", node.name) | raw }}
+				</td>
+				<td>
+					{{ node.size }} bytes
+				</td>
+			</tr>
 		{% endfor %}
-	</ul>
+		</tbody>
+	</table>
 {% else %}
-	<h3>File: {{ path }}</h3>
-	<pre>{{ file }}
-	</pre>
+	<p>
+		File size: {{ strlen(file) }} bytes
+	</p>
+	<pre>{{ file }}</pre>
 {% endif %}
 {% endblock %}
