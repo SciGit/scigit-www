@@ -19,7 +19,7 @@ function is_ssl() {
 }
 
 $config['base_url']	= '';
-$config['secure_base_url']	= 'https://scigit.sherk.me/';
+$config['secure_base_url']	= 'https://' . $_SERVER['HTTP_HOST'];
 
 /*
 |--------------------------------------------------------------------------
