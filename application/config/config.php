@@ -14,8 +14,13 @@
 | path to your installation.
 |
  */
+
+// drs: FIXME This should be defined elsewhere. This fixes a problem with
+// redefinition of this function, for now.
+if (!defined(is_ssl)) {
 function is_ssl() {
 	return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off';
+}
 }
 
 $config['base_url']	= '';
