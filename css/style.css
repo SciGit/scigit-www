@@ -2,8 +2,43 @@ body {
 	overflow-y: scroll;
 }
 
+.navitem {
+  color: black !important;
+  line-height: 35px !important;
+  font-size: 125%;
+  text-shadow: 0px 1px 0px white !important;
+  margin: 0 !important;
+  padding: 10px 15px !important;
+}
+
+.navitem:hover {
+  color: white !important;
+  text-shadow: 0 1px 0 black !important;
+  background-color: rgba(1, 1, 1, 0.1) !important;
+}
+
+.scigit-brand {
+  /** drs: override bootstrap's 'brand' tag */
+  color: rgba(0, 0, 0, 0) !important;
+  padding: 0 !important;
+  margin: 2px 30px 2px 2px !important;
+
+  background-image: url('../img/site-logo.png');
+  width: 146px;
+  height: 51px;
+}
+
 .title-btn {
 	vertical-align: top;
 	margin-left: 1em;
 	font-weight: normal;
+}
+
+/* drs: FIXME/this needs to use chrome and IE */
+.custom-color {
+  background-color: rgb(222, 222, 222);
+  background-image: -moz-linear-gradient(center top , rgb(222, 222, 222), rgb(199, 199, 199));
+  background-repeat: repeat-x;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25), 0px -1px 0px rgba(0, 0, 0, 0.1) inset;
 }

@@ -29,14 +29,14 @@
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
     <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
+      <div class="custom-color navbar-inner">
         <div class="container">
-          <a class="brand" href="#">SciGit</a>
+          <a class="scigit-brand brand" href="#">SciGit</a>
           <div class="nav-fixed">
 						<ul class="nav">
 							{% block nav_items %}
-								<li><a href="/">Home</a></li>
-								<li><a href="/projects">Projects</a></li>
+                <li><a class="navitem" href="/">Home</a></li>
+								<li><a class="navitem" href="/projects">Projects</a></li>
 							{% endblock %}
 						</ul>
 						<ul class="nav pull-right">
