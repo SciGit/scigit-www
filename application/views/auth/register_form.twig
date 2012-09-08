@@ -37,12 +37,6 @@ set fields = [
 		'type': 'password',
 		'maxlength': 20,
 		'size': 30,
-	},
-	{
-		'label': 'Confirmation Code',
-		'name': 'captcha',
-		'id': 'captcha',
-		'maxlength': 8,
 	}
 ]
 %}
@@ -67,19 +61,22 @@ set fields = [
 		</div>
 	</div>
 {% endfor %}
-<div class="control-group">
+<div class="control-group {% if form_error('recaptcha_response_field') or form_error('captcha') %} error {% endif %}">
+	<label class="control-label" for="recaptcha_response_field">
+		Captcha
+	</label>
 	<div class="controls">
 		{% if use_recaptcha %}
-				<div id="recaptcha_image"></div>
-				<a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a>
-				<div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">Get an audio CAPTCHA</a></div>
-				<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
-				<div class="recaptcha_only_if_image">Enter the words above</div>
-				<div class="recaptcha_only_if_audio">Enter the numbers you hear</div>
-				<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
 			{{ recaptcha_html | raw }}
+			<span class="help-inline">
+				{{ form_error('recaptcha_response_field') | raw }}
+			</span>
 		{% else %}
-			{{ captcha_html | raw }}
+			<p>{{ captcha_html | raw }}</p>
+			{{ form_input('captcha', set_value('captcha')) | raw }}
+			<span class="help-inline">
+				{{ form_error('captcha') | raw }}
+			</span>
 		{% endif %}	
 	</div>
 </div>

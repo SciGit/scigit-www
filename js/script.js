@@ -5,8 +5,8 @@
 
 function equalizeColumns() {
   $('.hero-unit').css({
-      'height': $('.login-form').height() -
-                parseInt($('.hero-unit').css('padding-top')) -
-                parseInt($('.hero-unit').css('padding-bottom'))
+      'min-height': $('.login-form').height() -
+										parseInt($('.hero-unit').css('padding-top')) -
+										parseInt($('.hero-unit').css('padding-bottom'))
   });
 }

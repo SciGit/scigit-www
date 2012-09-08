@@ -67,7 +67,7 @@ $config['password_max_length'] = 20;
 | 'login_max_attempts' = Number of failed login attempts before CAPTCHA will be shown.
 | 'login_attempt_expire' = Time to live for every attempt to login. Default is 24 hours (60*60*24).
 |--------------------------------------------------------------------------
-*/
+ */
 $config['login_by_username'] = TRUE;
 $config['login_by_email'] = TRUE;
 $config['login_record_ip'] = TRUE;
@@ -126,9 +126,9 @@ $config['captcha_case_sensitive'] = TRUE;
 | You can get reCAPTCHA keys by registering at http://recaptcha.net
 |--------------------------------------------------------------------------
 */
-$config['use_recaptcha'] = FALSE;
-$config['recaptcha_public_key'] = '';
-$config['recaptcha_private_key'] = '';
+$config['use_recaptcha'] = TRUE;
+$config['recaptcha_public_key'] = '6LetPdYSAAAAAJNsB8YvY7A0f-XVwIQDJHIBjv6T';
+$config['recaptcha_private_key'] = '6LetPdYSAAAAAH17dqdNeecP49z36N4NoY__dI_D';
 
 /*
 |--------------------------------------------------------------------------

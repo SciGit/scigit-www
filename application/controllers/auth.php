@@ -66,9 +66,9 @@ class Auth extends CI_Controller
 			$data['use_recaptcha'] = $this->config->item('use_recaptcha', 'tank_auth');
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
 				if ($data['use_recaptcha'])
-					$this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
+					$this->form_validation->set_rules('recaptcha_response_field', 'Captcha', 'trim|xss_clean|required|callback__check_recaptcha');
 				else
-					$this->form_validation->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback__check_captcha');
+					$this->form_validation->set_rules('captcha', 'Captcha', 'trim|xss_clean|required|callback__check_captcha');
 			}
 			$data['errors'] = array();
 
@@ -147,9 +147,9 @@ class Auth extends CI_Controller
 			$use_recaptcha			= $this->config->item('use_recaptcha', 'tank_auth');
 			if ($captcha_registration) {
 				if ($use_recaptcha) {
-					$this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
+					$this->form_validation->set_rules('recaptcha_response_field', 'Captcha', 'trim|xss_clean|required|callback__check_recaptcha');
 				} else {
-					$this->form_validation->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback__check_captcha');
+					$this->form_validation->set_rules('captcha', 'Captcha', 'trim|xss_clean|required|callback__check_captcha');
 				}
 			}
 			$data['errors'] = array();
@@ -559,8 +559,7 @@ class Auth extends CI_Controller
 	{
 		$this->load->helper('recaptcha');
 
-		// Add custom theme so we can get only image
-		$options = "<script>var RecaptchaOptions = {theme: 'custom', custom_theme_widget: 'recaptcha_widget'};</script>\n";
+		$options = "<script>var RecaptchaOptions = {theme: 'white', custom_theme_widget: 'recaptcha_widget'};</script>\n";
 
 		// Get reCAPTCHA JS and non-JS HTML
 		$html = recaptcha_get_html($this->config->item('recaptcha_public_key', 'tank_auth'));
