@@ -2,8 +2,16 @@ body {
 	overflow-y: scroll;
 }
 
+[class*="span"] {
+  margin-left: 20px !important;
+}
+
 .content {
   margin-top: 20px;
+}
+
+.myaccount {
+  margin-top: 13px !important;
 }
 
 .navitem {
