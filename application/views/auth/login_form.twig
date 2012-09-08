@@ -36,12 +36,12 @@ set fields = [
 
 <script>
 $(document).ready(function() {
-  equalizeColumns()
+  $('.hero-unit').height($('.login-form').height());
 });
 </script>
 
-<div class="row">
-  <div class="span5 hero-unit">
+<div class="row-fluid">
+  <div class="span6 hero-unit">
     <h2>Collaboration made easy.</h2>
     <p>SciGit is a collaboration system for researchers to work on the same
     paper with version control easily.</p>
