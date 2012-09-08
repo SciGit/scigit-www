@@ -40,6 +40,12 @@ set fields = [
 
 {% block content %}
 
+<script>
+$(document).ready(function() {
+  equalizeColumns()
+});
+</script>
+
 <div class="row">
   <div class="span5 hero-unit">
     <h2>Collaboration made easy.</h2>
@@ -53,8 +59,8 @@ set fields = [
       </a>
     </p>
   </div>
-  <div class="span5 login-box">
-    {{ form_open('', {class: 'form-horizontal'}) | raw }}
+  <div class="span5">
+    {{ form_open('', {class: 'form-horizontal login-form'}) | raw }}
     {% for field in fields %}
       <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
         <label class="control-label" for="{{ field['id'] }}">

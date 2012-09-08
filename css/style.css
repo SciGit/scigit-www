@@ -6,10 +6,6 @@ body {
   margin-top: 20px;
 }
 
-.hero-unit, .login-box {
-  height: 231px !important;
-}
-
 .navitem {
   color: black !important;
   line-height: 35px !important;
