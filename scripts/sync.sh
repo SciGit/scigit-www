@@ -3,10 +3,12 @@
 # job.
 (
 platform=`uname`
-if [[ $platform == 'linux' ]]; then
+if [[ $platform == 'Linux' ]]; then
   cd /var/www/html_scigit
 elif [[ $platform == 'Darwin' ]]; then
   cd /Library/WebServer/Documents
+else
+  cd /var/www/html_scigit
 fi
 
 git pull
