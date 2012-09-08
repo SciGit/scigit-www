@@ -76,6 +76,13 @@ body {
   margin: auto;
 }
 
+.feature-secure {
+  background: url('../img/secure.png') no-repeat scroll 0% 0% transparent;
+  height: 140px;
+  width: 200px;
+  margin: auto;
+}
+
 .discover {
   background: whitesmoke;
   padding: 40px 0 80px 0;
