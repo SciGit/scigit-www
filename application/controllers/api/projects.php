@@ -5,11 +5,22 @@ class Projects extends REST_Controller
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('project');
+		$this->load->model('change');
 	}
 
 	public function index_get() {
 		$user = $this->authenticate();
-		$this->response($this->project->get_by_user($user->id));
+		$projects = $this->project->get_by_user($user->id);
+		// Get the last commit hash for each project.
+		foreach ($projects as &$proj) {
+			$change = $this->change->get_by_project($proj->id, 1);
+			if (empty($change)) {
+				$proj->last_commit_hash = '';
+			} else {
+				$proj->last_commit_hash = $change[0]->commit_hash;
+			}
+		}
+		$this->response($projects);
 	}
 
 	public function view_get() {

@@ -15,14 +15,6 @@
 |
  */
 
-// drs: FIXME This should be defined elsewhere. This fixes a problem with
-// redefinition of this function, for now.
-if (!function_exists("is_ssl")) {
-function is_ssl() {
-  return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off';
-}
-}
-
 $config['base_url']	= '';
 $base = '';
 if (isset($_SERVER['HTTPS_HOST'])) {

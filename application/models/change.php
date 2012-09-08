@@ -11,11 +11,15 @@ class Change extends CI_Model
 		return $r[0];
 	}
 
-	public function get_by_project($proj_id) {
+	public function get_by_project($proj_id, $limit = 0) {
 		$this->db->select("*, $this->table.id AS id");
 		$this->db->where('proj_id', $proj_id);
 		$this->db->join('users', 'users.id = user_id');
 		$this->db->order_by("$this->table.id DESC");
+		if ($limit) {
+			$this->db->limit($limit);
+		}
+
 		return $this->db->get($this->table)->result();
 	}
 
