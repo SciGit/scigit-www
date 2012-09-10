@@ -1,5 +1,6 @@
 body {
 	overflow-y: scroll;
+  padding-bottom: 0 !important;
 }
 
 .content {
@@ -108,5 +109,13 @@ body {
 }
 
 footer {
+  padding: 20px;
   background: none repeat scroll 0% 0% rgb(32, 32, 32);
+  color: #ccc;
+}
+
+}
+
+footer h4 {
+  color: white;
 }
