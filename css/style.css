@@ -74,16 +74,10 @@ body {
 
 .features .editors {
   background: url('../img/editors.png') no-repeat scroll 0% 0% transparent;
-  height: 140px;
-  width: 200px;
-  margin: auto;
 }
 
 .features .secure {
   background: url('../img/secure.png') no-repeat scroll 0% 0% transparent;
-  height: 140px;
-  width: 200px;
-  margin: auto;
 }
 
 .discover {
