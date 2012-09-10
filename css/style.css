@@ -61,22 +61,25 @@ body {
   color: rgb(85, 85, 85);
 }
 
-/** drs: FIXME/factor this out */
-.feature-collaborate {
-  background: url('../img/collaborate.png') no-repeat scroll 0% 0% transparent;
+.features .feature {
   height: 140px;
   width: 200px;
   margin: auto;
 }
 
-.feature-editors {
+/** drs: FIXME/factor this out */
+.features .collaborate {
+  background: url('../img/collaborate.png') no-repeat scroll 0% 0% transparent;
+}
+
+.features .editors {
   background: url('../img/editors.png') no-repeat scroll 0% 0% transparent;
   height: 140px;
   width: 200px;
   margin: auto;
 }
 
-.feature-secure {
+.features .secure {
   background: url('../img/secure.png') no-repeat scroll 0% 0% transparent;
   height: 140px;
   width: 200px;
