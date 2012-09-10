@@ -44,9 +44,20 @@ body {
 
 /* drs: FIXME/this needs to use chrome and IE */
 .custom-color {
-  background-color: rgb(222, 222, 222);
-  background-image: -moz-linear-gradient(center top , rgb(222, 222, 222), rgb(199, 199, 199));
+  background-image: linear-gradient(bottom, rgb(199,199,199) 5%, rgb(222,222,222) 73%);
+  background-image: -o-linear-gradient(bottom, rgb(199,199,199) 5%, rgb(222,222,222) 73%);
+  background-image: -moz-linear-gradient(bottom, rgb(199,199,199) 5%, rgb(222,222,222) 73%);
+  background-image: -webkit-linear-gradient(bottom, rgb(199,199,199) 5%, rgb(222,222,222) 73%);
+  background-image: -ms-linear-gradient(bottom, rgb(199,199,199) 5%, rgb(222,222,222) 73%);
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.05, rgb(199,199,199)),
+    color-stop(0.73, rgb(222,222,222))
+  );
   background-repeat: repeat-x;
+
   border-radius: 4px 4px 4px 4px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25), 0px -1px 0px rgba(0, 0, 0, 0.1) inset;
 }
@@ -67,7 +78,6 @@ body {
   margin: auto;
 }
 
-/** drs: FIXME/factor this out */
 .features .collaborate {
   background: url('../img/collaborate.png') no-repeat scroll 0% 0% transparent;
 }
