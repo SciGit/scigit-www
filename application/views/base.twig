@@ -61,12 +61,21 @@
       <div class="content">
         {% block content "" %}
       </div>
-			<footer>
-				{% block footer %}
-          <hr class="soften"></hr>
-        {% endblock %}
-      </footer>
     </div> <!-- /container -->
+    {% block footer %}
+    <footer>
+      <div class="container">
+        <div class="row-fluid">
+          <div class="span2">
+            <h4>Product</h4>
+            <ul class="unstyled">
+              <li>wtf??</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    {% endblock %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 

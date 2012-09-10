@@ -3,7 +3,7 @@ body {
 }
 
 .content {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .myaccount {
@@ -32,7 +32,7 @@ body {
   margin: 7px 60px 7px 2px !important;
 
   background-image: url('../img/site-logo.png');
-  width: 145px;
+  width: 144px;
   height: 42px;
 }
 
@@ -105,4 +105,8 @@ body {
 
 .discover .social {
   padding: 20px;
+}
+
+footer {
+  background: none repeat scroll 0% 0% rgb(32, 32, 32);
 }
