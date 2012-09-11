@@ -144,3 +144,10 @@ footer {
 footer h4 {
   color: white;
 }
+
+footer .emboss {
+  width: 87px;
+  height: 100px;
+  margin: auto;
+  background: url('../img/splash.png') no-repeat scroll 0% 0% transparent;
+}
