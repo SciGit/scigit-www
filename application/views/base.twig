@@ -52,7 +52,9 @@
 								<li><a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects">Projects</a></li>
 							{% endblock %}
 						</ul>
-						<a class="btn btn-primary pull-right myaccount" href="/users/profile">My Account</a>
+            {% block my_account %}
+						  <a class="btn btn-primary pull-right myaccount" href="/users/profile">My Account</a>
+            {% endblock %}
           </div>
         </div>
       </div>
