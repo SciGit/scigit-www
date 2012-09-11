@@ -22,12 +22,16 @@ h3 {
 
 .input-large {
   font-size: 24px !important;
-  height: 32px !important;
+  height: 29px !important;
   width: 100% !important;
 }
 
 .register-form {
   margin: 0 !important;
+  line-height: 0 !important;
+}
+
+.newsletter-form {
   line-height: 0 !important;
 }
 

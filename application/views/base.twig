@@ -102,6 +102,24 @@
           </div>
           <div class="span4">
             <h4>Sign up for news</h4>
+            {%
+              set newsletter = {
+                'class': 'input-large',
+                'name': 'newsletter',
+                'id': 'newsletter',
+                'maxlength': 80,
+                'size': 30,
+              }
+            %}
+            {{ form_open('', {class: 'form-horizontal newsletter-form'}) | raw }}
+              <div class="row-fluid">
+                <div class="span8">
+                  {{ form_input(newsletter) | raw }}
+                </div>
+                <div class="span4">
+                  {{ form_submit({class: 'btn btn-success btn-large pull-right', name: 'register'}, 'Register') | raw }}
+                </div>
+            {{ form_close() | raw }}
           </div>
         </div>
       </div>
