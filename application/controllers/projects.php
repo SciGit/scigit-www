@@ -12,6 +12,7 @@ class Projects extends CI_Controller
 
 	public function index() {
 		$data = array(
+      'page' => get_class(),
 			'projects' => $this->project->get_by_user(get_user_id()),
 		);
 		$this->twig->display('projects/index.twig', $data);
@@ -30,12 +31,14 @@ class Projects extends CI_Controller
 				}
 			}
 		}
-		$this->twig->display('projects/create.twig');
+    $data['page'] = get_class();
+		$this->twig->display('projects/create.twig', $data);
 	}
 
 	public function changes($proj_id) {
 		check_project_perms($proj_id);
 		$data = array(
+      'page' => get_class(),
 			'project' => $this->project->get($proj_id),
 			'changes' => $this->change->get_by_project($proj_id),
 		);
@@ -65,6 +68,7 @@ class Projects extends CI_Controller
 		}
 
 		$data = array(
+      'page' => get_class(),
 			'project' => $this->project->get($proj_id),
 			'perms' => $this->project->get_perms($proj_id),
 			'message' => $msg,

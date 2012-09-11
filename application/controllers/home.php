@@ -12,8 +12,9 @@ class Home extends CI_Controller
 
 	function index()
 	{
+    $data['page'] = get_class();
 		if (!$this->tank_auth->is_logged_in()) {
-			$this->twig->display('index.twig');
+			$this->twig->display('index.twig', $data);
 		} else {
 			$data['user_id']	= $this->tank_auth->get_user_id();
 			$data['username']	= $this->tank_auth->get_username();

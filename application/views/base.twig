@@ -48,8 +48,8 @@
           <div class="nav-fixed">
 						<ul class="nav">
 							{% block nav_items %}
-                <li><a class="navitem" href="/">Home</a></li>
-								<li><a class="navitem" href="/projects">Projects</a></li>
+                <li><a class="navitem{% if page == 'Home' %} current{% endif %}" href="/">Home</a></li>
+								<li><a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects">Projects</a></li>
 							{% endblock %}
 						</ul>
 						<a class="btn btn-primary pull-right myaccount" href="/users/profile">My Account</a>
