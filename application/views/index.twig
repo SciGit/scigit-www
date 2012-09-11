@@ -33,22 +33,18 @@ $(document).ready(function() {
 </script>
 
 <div class="hero-unit">
+  {{ form_open('', {class: 'register-form'}) | raw }}
   <div class="row-fluid">
     <div class="span8">
       <h2>Collaboration made easy.</h2>
       <p>SciGit is a collaboration system for researchers to work on the same
       paper with version control easily.</p>
-      <p>Use the same text editor you have now. Have the convenience to work
-      offline.</p>
-      <p>
-        <a class="btn btn-primary btn-large" href="#">
-          Learn more
-        </a>
-      </p>
+      <p>Simply drag and drop your files into a SciGit folder and it'll do the
+      rest. No more dealing with the terminal or clunky version control
+      systems.</p>
     </div>
     <div class="span4">
       <p><h3>Register</h3></p>
-      {{ form_open('', {class: 'register-form'}) | raw }}
       {% for field in fields %}
         <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
           <div class="controls">
@@ -60,11 +56,20 @@ $(document).ready(function() {
           </div>
         </div>
       {% endfor %}
-      {{ form_submit({class: 'btn btn-success btn-large', name: 'register'}, 'Register') | raw }}
-      <a class="btn btn-large" href="/auth/login">I have an account</a>
-      {{ form_close() | raw }}
     </div>
   </div>
+  <div class="row-fluid">
+    <div class="span8">
+      <a class="btn btn-primary btn-large" href="#">
+        Learn more
+      </a>
+    </div>
+    <div class="span4">
+      {{ form_submit({class: 'btn btn-success btn-large', name: 'register'}, 'Register') | raw }}
+      <a class="btn btn-large" href="/auth/login">I have an account</a>
+    </div>
+  </div>
+  {{ form_close() | raw }}
 </div>
 <hr class="soften"></hr>
 <div class="row-fluid features">
