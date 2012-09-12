@@ -72,6 +72,16 @@ h3 {
 	font-weight: normal;
 }
 
+.go {
+  font-size: 24px;
+}
+
+.top-right {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+}
+
 /* drs: FIXME/this needs to use chrome and IE */
 .custom-color {
   background-image: linear-gradient(bottom, rgb(199,199,199) 5%, rgb(222,222,222) 73%);
@@ -154,4 +164,22 @@ footer .emboss {
   height: 100px;
   margin: auto;
   background: url('../img/splash.png') no-repeat scroll 0% 0% transparent;
+}
+
+.download {
+  /** drs: override hero-unit */
+  padding: 20px;
+  position: relative;
+}
+
+.download .left {
+  text-align: center;
+}
+
+.download .left .link {
+  margin: 20px;
+  font-size: 36px;
+  height: auto;
+  width: auto;
+  padding: 25px;
 }
