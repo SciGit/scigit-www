@@ -1,14 +1,29 @@
 {% extends "base.twig" %}
 
 {% block content %}
+
+<script>
+  $(document).ready(function() {
+    $('.close').click(function() {
+      $('.download').hide();
+    });
+  });
+</script>
+
 <div class="hero-unit download">
   <div class="row-fluid">
-    <!--<button class="close top-right">&times;</button>-->
     <div class="span4 left">
       <h2>Get the SciGit Client</h2>
-      <div class="btn btn-success link">
+    </div>
+    <div class="span8">
+      <button class="close top-right">&times;</button>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4 left">
+      <a href="/download"><div class="btn btn-primary link">
         Download
-      </div>
+      </div></a>
       <p>
         Supported platforms:
         <img src="img/windows.png" alt="Windows XP, Windows Vista, Windows 7" />
@@ -29,9 +44,13 @@
   </div>
 </div>
 <div class="row-fluid">
-  <div class="span4">
-    <h2>Following Activity</h2>
-    <p>blah blah blah</p>
+  <div class="span6">
+    <h2>Social Activity</h2>
+    <hr class="soften" />
+    <ul>
+      <li>faggot pushed bullshit to thing</li>
+      <li>wtf is this</li>
+    </ul>
   </div>
 </div>
 {% endblock %}
