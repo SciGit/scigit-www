@@ -9,7 +9,21 @@ class Users extends CI_Controller
 		check_login();
 	}
 
-	public function profile() {
+  public function profile($id = null) {
+    if ($id == null) {
+      $this->profile_me();
+    } else {
+      $user = $this->user->get_user_by_id($id, true);
+
+      $data = array(
+        'user' => $user
+      );
+
+      $this->twig->display('users/profile.twig', $data);
+    }
+  }
+
+	private function profile_me() {
 		$message = '';
 		if ($this->input->post('add_public_key')) {
 			$this->form_validation->set_rules('name', 'Name', 'required');
@@ -34,7 +48,7 @@ class Users extends CI_Controller
 			'public_keys' => $public_keys,
 			'message' => $message,
 		);
-		$this->twig->display('users/profile.twig', $data);
+		$this->twig->display('users/me.twig', $data);
 	}
 
 	public function check_public_key($key) {
