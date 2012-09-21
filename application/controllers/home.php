@@ -28,6 +28,7 @@ class Home extends CI_Controller
           $this->change->get_by_project($project->id),
           $activities);
       }
+      var_dump($activities);
       $data['activities'] = $activities;
 			$this->twig->display('home.twig', $data);
 		}

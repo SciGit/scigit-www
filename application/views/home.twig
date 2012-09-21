@@ -49,7 +49,7 @@
     <hr class="soften" />
     <ul>
     {% for activity in activities %}
-      <li>{{ activity.commit_msg }}</li>
+      <li><h3>By {{ activity.username }}</h3> "{{ activity.commit_msg }}" to FIXME</li>
     {% endfor %}
     </ul>
   </div>
