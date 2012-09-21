@@ -10,13 +10,17 @@ class Projects extends CI_Controller
 		check_login();
 	}
 
-	public function index() {
+	public function me() {
 		$data = array(
       'page' => get_class(),
 			'projects' => $this->project->get_by_user(get_user_id()),
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}
+
+  public function discover() {
+    // drs: FIXME do something with this.
+  }
 
 	public function create() {
 		if ($this->input->post('create_project')) {

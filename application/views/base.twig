@@ -49,7 +49,8 @@
 						<ul class="nav">
 							{% block nav_items %}
                 <li><a class="navitem{% if page == 'Home' %} current{% endif %}" href="/">Home</a></li>
-								<li><a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects">Projects</a></li>
+								<li><a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a></li>
+								<li><a class="navitem{% if page == 'Discover' %} current{% endif %}" href="/projects/discover">Discover</a></li>
 							{% endblock %}
 						</ul>
             {% block my_account %}
