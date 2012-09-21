@@ -48,8 +48,9 @@
     <h2>Social Activity</h2>
     <hr class="soften" />
     <ul>
-      <li>faggot pushed bullshit to thing</li>
-      <li>wtf is this</li>
+    {% for activity in activities %}
+      <li>{{ activity.commit_msg }}</li>
+    {% endfor %}
     </ul>
   </div>
 </div>
