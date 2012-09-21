@@ -3,6 +3,11 @@ body {
   padding-bottom: 0 !important;
 }
 
+p {
+  font-size: 14px;
+  font-weight: 200;
+}
+
 h2 {
   font-weight: normal;
   font-size: 250%;
@@ -112,6 +117,9 @@ h3 {
 .features p {
   padding: 10px 5px;
   color: rgb(85, 85, 85);
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 27px;
 }
 
 .features .feature {
@@ -151,19 +159,18 @@ h3 {
 
 footer {
   padding: 20px;
-  background: none repeat scroll 0% 0% rgb(32, 32, 32);
-  color: #ccc;
+  background: none repeat scroll 0% 0% rgb(225, 225, 225);
+  text-align: center;
+  color: #333;
 }
 
 footer h4 {
   color: white;
 }
 
-footer .emboss {
-  width: 87px;
-  height: 100px;
+footer .info {
   margin: auto;
-  background: url('../img/splash.png') no-repeat scroll 0% 0% transparent;
+  width: 40%;
 }
 
 .download {
@@ -178,8 +185,11 @@ footer .emboss {
 
 .download .left .link {
   margin: 20px;
-  font-size: 36px;
+}
+
+.btn-xlarge {
+  font-size: 30px;
   height: auto;
   width: auto;
-  padding: 25px;
+  padding: 18px;
 }

@@ -70,60 +70,25 @@
     {% block footer %}
     <footer>
       <div class="container">
-        <div class="row-fluid">
-          <div class="span2">
-            <div class="emboss"></div>
+        <p>
+          <div class="row-fluid info">
+            <div class="span3">
+              <a href="/">Home</a>
+            </div>
+            <div class="span3">
+              <a href="/download">Download</a>
+            </div>
+            <div class="span3">
+              <a href="/legal/about">About</a>
+            </div>
+            <div class="span3">
+              <a href="/legal/terms">Terms</a>
+            </div>
           </div>
-          <div class="span2">
-            <h4>Product</h4>
-            <ul class="unstyled">
-              <li><a href="/">Home</a></li>
-              <li><a href="/">About</a></li>
-              <li><a href="/">Testimonials</a></li>
-              <li><a href="/">Pricing</a></li>
-              <li><a href="/">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="span2">
-            <h4>Company</h4>
-            <ul class="unstyled">
-              <li><a href="/">About</a></li>
-              <li><a href="/">Contact Us</a></li>
-              <li><a href="/">Careers</a></li>
-              <li><a href="/">Partners</a></li>
-            </ul>
-          </div>
-          <div class="span2">
-            <h4>Social</h4>
-            <ul class="unstyled">
-              <li><a href="/">Facebook</a></li>
-              <li><a href="/">Twitter</a></li>
-              <li><a href="/">Google+</a></li>
-              <li><a href="/">RSS</a></li>
-            </ul>
-          </div>
-          <div class="span4">
-            <h4>Sign up for news</h4>
-            {%
-              set newsletter = {
-                'class': 'input-large',
-                'name': 'newsletter',
-                'id': 'newsletter',
-                'maxlength': 80,
-                'size': 30,
-              }
-            %}
-            {{ form_open('', {class: 'form-horizontal newsletter-form'}) | raw }}
-              <div class="row-fluid">
-                <div class="span8">
-                  {{ form_input(newsletter) | raw }}
-                </div>
-                <div class="span4">
-                  {{ form_submit({class: 'btn btn-success btn-large pull-right', name: 'register'}, 'Register') | raw }}
-                </div>
-            {{ form_close() | raw }}
-          </div>
-        </div>
+        </p>
+        <p>
+          Copyright (c) 2012, SciGit Inc.
+        </p>
       </div>
     </footer>
     {% endblock %}
