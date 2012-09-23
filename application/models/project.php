@@ -12,6 +12,13 @@ class Project extends CI_Model
 		return $r[0];
 	}
 
+	public function get_by_name($name) {
+		$this->db->like('name', $name);
+		$r = $this->db->get($this->proj_table)->result();
+		if (empty($r)) return null;
+		return $r[0];
+	}
+
 	public function get_by_user($user_id) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);

@@ -25,13 +25,13 @@ class Projects extends CI_Controller
 	public function create() {
 		if ($this->input->post('create_project')) {
 			$this->form_validation->set_rules('name', 'name',
-					'required|alpha_dash|is_unique[projects.name]');
+					'required|callback_check_projname');
 			$this->form_validation->set_rules('public', 'public', '');
 			if ($this->form_validation->run()) {
 				$name = $this->input->post('name');
 				$public = $this->input->post('public');
 				if ($this->project->create(get_user_id(), $name, $public)) {
-					redirect('projects');
+					redirect('projects/me');
 				}
 			}
 		}
@@ -87,5 +87,20 @@ class Projects extends CI_Controller
 			return false;
 		}
 		return true;
+	}
+
+	public function check_projname($str) {
+		if (!preg_match('/^[a-zA-Z0-9 \-_]+$/', $str)) {
+			$this->form_validation->set_message('check_projname',
+				'Invalid project name. Only alphanumeric characters, '.
+				'spaces, dashes, and underscores are permitted.');
+			return false;
+		}
+		if ($this->project->get_by_name($str) !== null) {
+			$this->form_validation->set_message('check_projname',
+				'This project name is already taken.');
+			return false;
+		}
+		return trim($str);
 	}
 }
