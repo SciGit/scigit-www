@@ -90,6 +90,7 @@ class Projects extends CI_Controller
 	}
 
 	public function check_projname($str) {
+		$str = trim($str);
 		if (!preg_match('/^[a-zA-Z0-9 \-_]+$/', $str)) {
 			$this->form_validation->set_message('check_projname',
 				'Invalid project name. Only alphanumeric characters, '.
@@ -101,6 +102,6 @@ class Projects extends CI_Controller
 				'This project name is already taken.');
 			return false;
 		}
-		return trim($str);
+		return $str;
 	}
 }
