@@ -22,7 +22,7 @@ h3 {
 }
 
 .navbutton {
-  margin-top: 13px !important;
+
 }
 
 .input-large {
@@ -42,7 +42,6 @@ h3 {
 
 .navitem {
   color: black !important;
-  line-height: 35px !important;
   font-size: 125%;
   text-shadow: 0px 1px 0px white !important;
   margin: 0 !important;
@@ -67,8 +66,8 @@ h3 {
   margin: 7px 60px 7px 2px !important;
 
   background-image: url('../img/site-logo.png');
-  width: 144px;
-  height: 42px;
+  width: 82px;
+  height: 24px;
 }
 
 .title-btn {
