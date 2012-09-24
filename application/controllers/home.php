@@ -21,14 +21,14 @@ class Home extends CI_Controller
       $user_id = $this->tank_auth->get_user_id();
 			$data['user_id']	= $user_id;
 			$data['username']	= $this->tank_auth->get_username();
-      $projects = $this->project->get_by_user($user_id);
+      $projects = $this->project->get_user_membership($user_id);
       $activities = array();
       foreach ($projects as $project) {
         $activities = array_merge(
           $this->change->get_by_project($project->id),
           $activities);
       }
-      var_dump($activities);
+      // var_dump($activities);
       $data['activities'] = $activities;
 			$this->twig->display('home.twig', $data);
 		}

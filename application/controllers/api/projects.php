@@ -10,7 +10,7 @@ class Projects extends REST_Controller
 
 	public function index_get() {
 		$user = $this->authenticate();
-		$projects = $this->project->get_by_user($user->id);
+		$projects = $this->project->get_user_membership($user->id);
 		// Get the last commit hash for each project.
 		foreach ($projects as &$proj) {
 			$change = $this->change->get_by_project($proj->id, 1);

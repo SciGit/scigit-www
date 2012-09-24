@@ -11,9 +11,10 @@ class Projects extends CI_Controller
 	}
 
 	public function me() {
+		$projects = $this->project->get_user_accessible(get_user_id());
 		$data = array(
       'page' => get_class(),
-			'projects' => $this->project->get_by_user(get_user_id()),
+			'projects' => $projects,
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}

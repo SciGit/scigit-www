@@ -4,6 +4,7 @@ class Project extends CI_Model
 {
 	public $proj_table = 'projects';
 	public $proj_perms_table = 'proj_permissions';
+	public $proj_member_table = 'proj_membership';
 
 	public function get($proj_id) {
 		$this->db->where('id', $proj_id);
@@ -19,11 +20,18 @@ class Project extends CI_Model
 		return $r[0];
 	}
 
-	public function get_by_user($user_id) {
+	public function get_user_accessible($user_id) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
 		$this->db->join($this->proj_table, 'proj_id = projects.id');
 		return $this->db->get($this->proj_perms_table)->result();
+	}
+
+	public function get_user_membership($user_id) {
+		$this->db->select('*, projects.id as id');
+		$this->db->where('user_id', $user_id);
+		$this->db->join($this->proj_table, 'proj_id = projects.id');
+		return $this->db->get($this->proj_member_table)->result();
 	}
 
 	public function get_user_perms($user_id, $proj_id) {
