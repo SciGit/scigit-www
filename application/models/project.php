@@ -50,7 +50,6 @@ class Project extends CI_Model
 	}
 
 	public function create($user_id, $name, $public) {
-		$this->load->library('scigit_thrift');
 		$data = array(
 			'name' => $name,
 			'owner_id' => $user_id,
@@ -59,13 +58,24 @@ class Project extends CI_Model
 		);
 		if (!$this->db->insert($this->proj_table, $data)) return null;
 		$data['id'] = $this->db->insert_id();
-		$this->db->insert($this->proj_perms_table, array(
-			'proj_id' => $data['id'],
-			'user_id' => $user_id,
-			'can_write' => 1,
-			'can_admin' => 1,
-		));
-		Scigit_thrift::createRepository($data['id']);
+		try {
+			$this->load->library('scigit_thrift');
+			Scigit_thrift::createRepository($data['id']);
+			$this->db->insert($this->proj_perms_table, array(
+				'proj_id' => $data['id'],
+				'user_id' => $user_id,
+				'can_write' => 1,
+				'can_admin' => 1,
+			));
+			$this->db->insert($this->proj_member_table, array(
+				'proj_id' => $data['id'],
+				'user_id' => $user_id,
+			));
+		} catch (Exception $e) {
+			$this->db->where('id', $data['id']);
+			$this->db->delete($this->proj_table);
+			return null;
+		}
 		return $data;
 	}
 

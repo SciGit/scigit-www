@@ -24,6 +24,7 @@ class Projects extends CI_Controller
   }
 
 	public function create() {
+		$data = array('message' => '');
 		if ($this->input->post('create_project')) {
 			$this->form_validation->set_rules('name', 'name',
 					'required|callback_check_projname');
@@ -33,6 +34,8 @@ class Projects extends CI_Controller
 				$public = $this->input->post('public');
 				if ($this->project->create(get_user_id(), $name, $public)) {
 					redirect('projects/me');
+				} else {
+					$data['message'] = 'Database error.';
 				}
 			}
 		}

@@ -12,6 +12,7 @@
 	<div class="span6">
 	{{ form_open('', {class: 'well'}) | raw }}
 		{{ validation_errors() | raw }}
+		<p>{{ message }}</p>
 		{{ form_label('Name', 'name') | raw }}
 		{{ form_input('name', set_value('name')) | raw }} <br />
 		{{ form_submit({class: 'btn btn-primary', name: 'create_project'}, 'Create') | raw }}
