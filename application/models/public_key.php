@@ -33,6 +33,7 @@ class Public_key extends CI_Model
 		} catch (Exception $e) {
 			$this->db->where('id', $data['id']);
 			$this->db->delete($this->table);
+			log_message('error', 'public_key: ' . $e->getMessage());
 			return null;
 		}
 		return $data;

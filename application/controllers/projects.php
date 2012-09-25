@@ -10,11 +10,20 @@ class Projects extends CI_Controller
 		check_login();
 	}
 
+	public function index() {
+		redirect('projects/me');
+	}
+
 	public function me() {
 		$projects = $this->project->get_user_accessible(get_user_id());
+		$subscribed = array();
+		foreach ($this->project->get_user_membership(get_user_id()) as $proj) {
+			$subscribed[$proj->id] = true;
+		}
 		$data = array(
       'page' => get_class(),
 			'projects' => $projects,
+			'subscribed' => $subscribed,
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}
@@ -73,6 +82,9 @@ class Projects extends CI_Controller
 					$msg = 'Database error';
 				}
 			}
+		} else if ($this->input->post('delete')) {
+			$this->project->delete($proj_id);
+			redirect('projects/me');
 		}
 
 		$data = array(
