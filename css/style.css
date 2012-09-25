@@ -66,6 +66,11 @@ h3 {
   text-decoration: none;
 }
 
+.date {
+  margin-right: 10px;
+  font-style: italic;
+}
+
 .nav .current {
   text-shadow: 0px 1px 0px rgb(135, 160, 255) !important;
   color: rgb(66, 94, 146) !important;
@@ -90,6 +95,10 @@ h3 {
 
 .go {
   font-size: 24px;
+}
+
+.snap-top {
+  line-height: 0px;
 }
 
 .top-right {

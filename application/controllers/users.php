@@ -4,6 +4,7 @@ class Users extends CI_Controller
 {
 	public function __construct() {
 		parent::__construct();
+    $this->load->model('project');
 		$this->load->model('public_key');
 		$this->load->library('form_validation');
 		check_login();
@@ -14,9 +15,11 @@ class Users extends CI_Controller
       $this->profile_me();
     } else {
       $user = $this->user->get_user_by_id($id, true);
+      $projects = $this->project->get_user_membership($id);
 
       $data = array(
-        'user' => $user
+        'user' => $user,
+        'projects' => $projects
       );
 
       $this->twig->display('users/profile.twig', $data);
