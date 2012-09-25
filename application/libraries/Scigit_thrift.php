@@ -14,6 +14,8 @@ class Scigit_thrift
 
 	public static function init() {
 		self::$socket = new TSocket('localhost', 9090);
+		self::$socket->setSendTimeout(5000);
+		self::$socket->setRecvTimeout(5000);
 		self::$transport = new TBufferedTransport(self::$socket);
 		self::$protocol = new TBinaryProtocol(self::$transport);
 		self::$client = new RepositoryManagerClient(self::$protocol);
