@@ -7,6 +7,19 @@
 	<h1>
 		Project Changes
 		<small>{{ project.name }}</small>
+		<span class="pull-right">
+			{% if admin %}
+				<a class="btn title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
+					<i class="icon-wrench"></i>
+					Admin
+				</a>
+			{% else %}
+				{{ form_open("/projects/subscribe/#{project.id}") | raw }}
+					{{ form_submit({class: 'btn btn-primary', name: 'subscribe'},
+							subscribed ? 'Unsubscribe' : 'Subscribe') | raw }}
+				{{ form_close() | raw }}
+			{% endif %}
+		</span>
 	</h1>
 </div>
 
