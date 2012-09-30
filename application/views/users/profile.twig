@@ -9,27 +9,27 @@
   <h4 class="pull-right snap-top">Joined {{ user.created | date("d/m/Y") }}.</h4>
 </div>
 
-<div class="row-fluid">
-  <div class="span1">
+<div class="row-fluid profile-entry">
+  <div class="span1 profile-field">
     <p>Title</p>
   </div>
-  <div class="span11">
+  <div class="span11 profile-value">
     {{ user.title }}
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span1">
+<div class="row-fluid profile-entry">
+  <div class="span1 profile-field">
     <p>Location</p>
   </div>
-  <div class="span11">
+  <div class="span11 profile-value">
     {{ user.location }}
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span1">
+<div class="row-fluid profile-entry">
+  <div class="span1 profile-field">
     <p>About</p>
   </div>
-  <div class="span11">
+  <div class="span11 profile-value">
     {{ user.about }}
   </div>
 </div>
@@ -40,10 +40,10 @@
     <hr class="soften" />
     <ul>
       {% for project in projects %}
-        <li>
+        <li class="project-entry">
           {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
           <p class="date pull-right">{{ project.latest_change | date("d/m/Y") }}</p>
-          <p>{{ project.description }}</p>
+          <div class="project-description">{{ project.description }}</div>
         </li>
       {% endfor %}
     </ul>

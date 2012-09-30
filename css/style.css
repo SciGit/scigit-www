@@ -210,3 +210,22 @@ footer .info {
   width: auto;
   padding: 18px;
 }
+
+.profile-entry {
+  margin: 15px 5px;
+}
+
+.profile-entry .profile-field {
+  margin-right: 0px;
+  text-align: right;
+}
+
+.profile-entry .profile-value {
+}
+
+.project-entry {
+  margin: 15px 5px;
+}
+
+.project-description {
+}
