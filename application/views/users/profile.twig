@@ -17,7 +17,7 @@
       {% for project in projects %}
         <li>
           {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-          <p class="date pull-right">{{ project.created_ts | date("d/m/Y") }}</p>
+          <p class="date pull-right">{{ project.latest_change | date("d/m/Y") }}</p>
           <p>Description</p>
         </li>
       {% endfor %}
