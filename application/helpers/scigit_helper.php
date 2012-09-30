@@ -38,11 +38,7 @@ function check_project_perms($proj_id) {
 
 function check_project_admin($proj_id) {
   $CI = &get_instance();
-  $perm = $CI->project->get_user_perms(get_user_id(), $proj_id);
-  if ($perm == null) {
-    show_404();
-  }
-  if (!$perm->can_admin) {
+ 	if (!$CI->project->is_admin(get_user_id(), $proj_id)) {
     show_403();
   }
 }

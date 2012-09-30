@@ -21,12 +21,20 @@ My Projects
 		<tr>
 			<td valign="middle">
 				{{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+				<div class="pull-right">
+				{% if subscribed[project.id] %}
+					<span class="btn-mini">
+						<i class="icon-star"></i>
+						Subscribed
+					</span>
+				{% endif %}
 				{% if project.can_admin %}
-					<a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini" style="float: right">
+					<a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
 						<i class="icon-wrench"></i>
 						Admin
 					</a>
 				{% endif %}
+				</div>
 			</td>
 		</tr>
 	{% endfor %}

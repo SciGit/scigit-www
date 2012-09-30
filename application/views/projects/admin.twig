@@ -63,4 +63,10 @@
 	</div>
 </div>
 
+{{ form_open() | raw }}
+<p>
+	{{ form_submit({class: 'btn btn-danger', name: 'delete'}, 'Delete Project') | raw }}
+</p>
+{{ form_close() | raw }}
+
 {% endblock %}

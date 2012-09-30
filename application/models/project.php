@@ -49,6 +49,35 @@ class Project extends CI_Model
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 
+	public function is_admin($user_id, $proj_id) {
+		$this->db->where('user_id', $user_id);
+		$this->db->where('proj_id', $proj_id);
+		$r = $this->db->get($this->proj_perms_table)->result();
+		if (empty($r)) return false;
+		return $r[0]->can_admin;
+	}
+
+	public function is_member($user_id, $proj_id) {
+		$this->db->where('user_id', $user_id);
+		$this->db->where('proj_id', $proj_id);
+		$r = $this->db->get($this->proj_member_table)->result();
+		if (empty($r)) return false;
+		return true;
+	}
+
+	public function add_member($user_id, $proj_id) {
+		$this->db->insert($this->proj_member_table, array(
+			'user_id' => $user_id,
+			'proj_id' => $proj_id,
+		));
+	}
+
+	public function delete_member($user_id, $proj_id) {
+		$this->db->where('user_id', $user_id);
+		$this->db->where('proj_id', $proj_id);
+		$this->db->delete($this->proj_member_table);
+	}
+
 	public function create($user_id, $name, $public) {
 		$data = array(
 			'name' => $name,
@@ -74,6 +103,7 @@ class Project extends CI_Model
 		} catch (Exception $e) {
 			$this->db->where('id', $data['id']);
 			$this->db->delete($this->proj_table);
+			log_message('error', 'project: ' . $e->getMessage());
 			return null;
 		}
 		return $data;
@@ -94,5 +124,23 @@ class Project extends CI_Model
 			$this->db->insert($this->proj_perms_table, $data);
 		}
 		return true;
+	}
+
+	public function delete($proj_id) {
+		$this->db->where('id', $proj_id);
+		$this->db->delete($this->proj_table);
+
+		$this->db->where('proj_id', $proj_id);
+		$this->db->delete($this->proj_perms_table);
+
+		$this->db->where('proj_id', $proj_id);
+		$this->db->delete($this->proj_member_table);
+
+		try {
+			$this->load->library('scigit_thrift');
+			Scigit_thrift::deleteRepository($proj_id);
+		} catch (Exception $e) {
+			log_message('error', 'project: ' . $e->getMessage());
+		}
 	}
 }

@@ -10,11 +10,20 @@ class Projects extends CI_Controller
 		check_login();
 	}
 
+	public function index() {
+		redirect('projects/me');
+	}
+
 	public function me() {
 		$projects = $this->project->get_user_accessible(get_user_id());
+		$subscribed = array();
+		foreach ($this->project->get_user_membership(get_user_id()) as $proj) {
+			$subscribed[$proj->id] = true;
+		}
 		$data = array(
       'page' => get_class(),
 			'projects' => $projects,
+			'subscribed' => $subscribed,
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}
@@ -49,6 +58,8 @@ class Projects extends CI_Controller
       'page' => get_class(),
 			'project' => $this->project->get($proj_id),
 			'changes' => $this->change->get_by_project($proj_id),
+			'admin' => $this->project->is_admin(get_user_id(), $proj_id),
+			'subscribed' => $this->project->is_member(get_user_id(), $proj_id),
 		);
 		$this->twig->display('projects/changes.twig', $data);
 	}
@@ -73,6 +84,9 @@ class Projects extends CI_Controller
 					$msg = 'Database error';
 				}
 			}
+		} else if ($this->input->post('delete')) {
+			$this->project->delete($proj_id);
+			redirect('projects/me');
 		}
 
 		$data = array(
@@ -82,6 +96,23 @@ class Projects extends CI_Controller
 			'message' => $msg,
 		);
 		$this->twig->display('projects/admin.twig', $data);
+	}
+
+	public function subscribe($proj_id) {
+		check_project_perms($proj_id);
+		$user_id = get_user_id();
+		$project = $this->project->get($proj_id);
+		if ($project->owner_id == $user_id) {
+			show_error('Invalid request.');
+		}
+		if ($this->input->post('subscribe')) {
+			if ($this->project->is_member($user_id, $proj_id)) {
+				$this->project->delete_member($user_id, $proj_id);
+			} else {
+				$this->project->add_member($user_id, $proj_id);
+			}
+			redirect('/projects/changes/' . $proj_id);
+		}
 	}
 
 	public function check_username($str) {
