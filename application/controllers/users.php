@@ -27,10 +27,12 @@ class Users extends CI_Controller
           $project->latest_change = $project->created_ts;
         }
       }
+      $changes = $this->change->get_by_user($id, 10);
 
       $data = array(
         'user' => $user,
-        'projects' => $projects
+        'projects' => $projects,
+        'changes' => $changes,
       );
 
       $this->twig->display('users/profile.twig', $data);

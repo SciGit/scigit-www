@@ -50,6 +50,16 @@
   </div>
   <div class="span6">
     <h3>Recent Activity</h3>
+    <hr class="soften" />
+    <ul>
+      {% for change in changes %}
+        <li class="change-entry">
+          To {{ anchor("/projects/view/#{change.proj_id}", change.name) | raw}}
+          <p class="date pull-right">{{ change.commit_ts | date("d/m/Y") }}</p>
+          <div class="change-description">{{ change.commit_msg }}</div>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 
