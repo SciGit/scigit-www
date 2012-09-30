@@ -10,9 +10,11 @@ class Migration_Add_description_fields extends CI_Migration
     $this->dbforge->add_column('projects', $projects_add_columns);
 
     $user_add_columns = array(
+      'fullname' => array('type' => 'VARCHAR', 'constraint' => 80, 'null' => true),
       'title' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => true),
-      'location' => array('type' => 'VARCHAR', 'constraint' => 40, 'null' => true),
-      'about' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => true),
+      'organization' => array('type' => 'VARCHAR', 'constraint' => 80, 'null' => true),
+      'location' => array('type' => 'VARCHAR', 'constraint' => 80, 'null' => true),
+      'about' => array('type' => 'VARCHAR', 'constraint' => 1024, 'null' => true),
       'private' => array('type' => 'TINYINT', 'constraint' => 1, 'null' => true),
       'disable_email' => array('type' => 'TINYINT', 'constraint' => 1, 'null' => true),
     );
@@ -29,11 +31,13 @@ class Migration_Add_description_fields extends CI_Migration
     }
 
     $users_drop_columns = array(
+      'fullname',
       'title',
+      'organization',
       'location',
       'about',
       'private',
-      'disable_email'
+      'disable_email',
     );
     foreach ($users_drop_columns as $users_drop_column) {
       $this->dbforge->drop_column('users', $users_drop_column);
