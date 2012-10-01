@@ -14,10 +14,10 @@ class Projects extends REST_Controller
 		// Get the last commit hash for each project.
 		foreach ($projects as &$proj) {
 			$change = $this->change->get_by_project_latest($proj->id);
-			if (empty($change)) {
+			if ($change === null) {
 				$proj->last_commit_hash = '';
 			} else {
-				$proj->last_commit_hash = $change[0]->commit_hash;
+				$proj->last_commit_hash = $change->commit_hash;
 			}
 		}
 		$this->response($projects);
