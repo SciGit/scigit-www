@@ -211,6 +211,12 @@ footer .info {
   padding: 18px;
 }
 
+.fulltitle {
+  margin: 25px 20px;
+  font-size: 16px;
+  font-weight: 150;
+}
+
 .profile-entry {
   margin: 15px 5px;
 }
