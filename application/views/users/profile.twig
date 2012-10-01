@@ -9,14 +9,9 @@
   <h4 class="pull-right snap-top">Joined {{ user.created | date("d/m/Y") }}.</h4>
 </div>
 
-<div class="row-fluid profile-entry">
-  <div class="span1 profile-field">
-    <p>Title</p>
-  </div>
-  <div class="span11 profile-value">
-    {{ user.title }}
-  </div>
-</div>
+{% if fulltitle %}
+  {{ fulltitle }}
+{% endif %}
 <div class="row-fluid profile-entry">
   <div class="span1 profile-field">
     <p>Location</p>

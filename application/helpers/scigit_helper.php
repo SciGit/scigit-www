@@ -47,6 +47,26 @@ function show_403() {
   show_error('Not authorized.', 403);
 }
 
+function format_user_fulltitle($user) {
+  $fulltitle = "";
+  if ($user->fullname) {
+    $fulltitle .= $user->fullname;
+    if ($user->title || $user->organization) {
+      $fulltitle .= ", ";
+    }
+  }
+  if ($user->title) {
+    $fulltitle .= $user->title;
+    if ($user->organization) {
+      $fulltitle .= " at ";
+    }
+  }
+  if ($user->organization) {
+    $fulltitle .= $user->organization;
+  }
+  return $fulltitle;
+}
+
 class Node {
   public $path;
   public $name;

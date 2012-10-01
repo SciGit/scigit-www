@@ -28,11 +28,13 @@ class Users extends CI_Controller
         }
       }
       $changes = $this->change->get_by_user($id, 10);
+      $fulltitle = format_user_fulltitle($user);
 
       $data = array(
         'user' => $user,
         'projects' => $projects,
         'changes' => $changes,
+        'fulltitle' => $fulltitle,
       );
 
       $this->twig->display('users/profile.twig', $data);
