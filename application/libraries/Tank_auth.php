@@ -32,12 +32,6 @@ class Tank_auth
 
 		// Try to autologin
 		$this->autologin();
-
-		// Load any migrations
-		$this->ci->load->library('migration');
-    if (!$this->ci->migration->current()) {
-			show_error($this->ci->migration->error_string());
-		}
 	}
 
 	/**
