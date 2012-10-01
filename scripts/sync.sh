@@ -3,6 +3,7 @@
 # job.
 (
 platform=`uname`
+echo 'Updating' $platform 'server'
 if [[ $platform == 'Linux' ]]; then
   cd /var/www/html_scigit
 elif [[ $platform == 'Darwin' ]]; then
@@ -12,4 +13,7 @@ else
 fi
 
 git pull
+
+echo 'Migrating to newest DB'
+php index.php migrate
 )
