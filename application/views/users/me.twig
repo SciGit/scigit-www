@@ -83,28 +83,39 @@ set fields = [
 ]
 %}
 
-{{ form_open('', {class: 'well'}) | raw }}
-  {% for field in fields %}
-    <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
-      <label class="control-label" for="{{ field['id'] }}">
-        {{ field['label'] }}
-      </label>
-      <div class="controls">
-        {% if field['type'] == 'input' %}
-          {{ form_input(field) | raw }}
-        {% elseif field['type'] == 'textarea' %}
-          {{ form_textarea(field) | raw }}
-        {% elseif field['type'] == 'static' %}
-          <span class="date">{{ field['value'] }}</span>
-        {% endif %}
-        <span class="help-inline">
-          {{ form_error(field['name']) | raw }}
-          {{ errors[field['name']] }}
-        </span>
-      </div>
-    </div>
-  {% endfor %}
-  {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Submit'}) | raw }}
-{{ form_close() | raw }}
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+</ul>
+
+<div id="my-tab-content" class="tab-content">
+  <div class="tab-pane fade in active" id="settings">
+  </div>
+  <div class="tab-pane fade in" id="profile">
+    {{ form_open('', {class: 'well'}) | raw }}
+      {% for field in fields %}
+        <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
+          <label class="control-label" for="{{ field['id'] }}">
+            {{ field['label'] }}
+          </label>
+          <div class="controls">
+            {% if field['type'] == 'input' %}
+              {{ form_input(field) | raw }}
+            {% elseif field['type'] == 'textarea' %}
+              {{ form_textarea(field) | raw }}
+            {% elseif field['type'] == 'static' %}
+              <span class="date">{{ field['value'] }}</span>
+            {% endif %}
+            <span class="help-inline">
+              {{ form_error(field['name']) | raw }}
+              {{ errors[field['name']] }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+      {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Submit'}) | raw }}
+    {{ form_close() | raw }}
+  </div>
+</div>
 
 {% endblock %}
