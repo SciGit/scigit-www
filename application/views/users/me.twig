@@ -58,4 +58,73 @@
 	</div>
 </div>
 
+{%
+set fields = [
+	{
+    'label' : 'Username',
+		'name': 'username',
+		'id': 'username',
+		'value': set_value('username', user.username),
+		'maxlength': 40,
+		'size': 40,
+    'class' : 'full-width-input',
+    'type' : 'static',
+	},
+	{
+    'label' : 'Email',
+		'name': 'email',
+		'id': 'email',
+		'value': set_value('email', user.email),
+		'maxlength': 40,
+		'size': 40,
+    'class' : 'full-width-input',
+    'type' : 'input',
+	},
+	{
+    'label' : 'Name',
+		'name': 'name',
+		'id': 'name',
+		'value': set_value('name', user.fullname),
+		'maxlength': 40,
+		'size': 40,
+    'class' : 'full-width-input',
+    'type' : 'input',
+	},
+	{
+    'label' : 'About',
+		'name': 'about',
+		'id': 'about',
+		'value': set_value('about', user.about),
+		'maxlength': 1024,
+		'size': 1024,
+    'class' : 'full-width-input',
+    'type' : 'textarea',
+	},
+]
+%}
+
+{{ form_open('', {class: 'well'}) | raw }}
+  {% for field in fields %}
+    <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
+      <label class="control-label" for="{{ field['id'] }}">
+        {{ field['label'] }}
+      </label>
+      <div class="controls">
+        {% if field['type'] == 'input' %}
+          {{ form_input(field) | raw }}
+        {% elseif field['type'] == 'textarea' %}
+          {{ form_textarea(field) | raw }}
+        {% elseif field['type'] == 'static' %}
+          <span class="date">{{ field['value'] }}</span>
+        {% endif %}
+        <span class="help-inline">
+          {{ form_error(field['name']) | raw }}
+          {{ errors[field['name']] }}
+        </span>
+      </div>
+    </div>
+  {% endfor %}
+  {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Submit'}) | raw }}
+{{ form_close() | raw }}
+
 {% endblock %}

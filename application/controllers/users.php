@@ -56,6 +56,13 @@ class Users extends CI_Controller
 					$message = 'Database error';				
 				}
 			}
+    } else if ($this->input->post('change')) {
+      $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+      $this->form_validation->set_rules('name', 'Name', 'max_length[80]');
+      $this->form_validation->set_rules('about', 'About', 'max_length[1024]');
+			if ($this->form_validation->run()) {
+        $message = "worked?";
+			}
 		}
 
 		$user = $this->user->get_user_by_id(get_user_id(), true);
