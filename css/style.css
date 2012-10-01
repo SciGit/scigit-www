@@ -222,8 +222,10 @@ footer .info {
 }
 
 .profile-entry .profile-field {
-  margin-right: 0px;
   text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  color: gray;
 }
 
 .profile-entry .profile-value {
@@ -234,4 +236,8 @@ footer .info {
 }
 
 .project-description {
+}
+
+.separator {
+  height: 20px;
 }

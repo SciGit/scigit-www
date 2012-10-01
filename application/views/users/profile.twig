@@ -6,7 +6,7 @@
 
 <div class="page-header">
   <h1>{{ user.username }}'s Profile</h1>
-  <h4 class="pull-right snap-top">Joined {{ user.created | date("d/m/Y") }}.</h4>
+  <div class="pull-right snap-top">Joined <span class="date">{{ user.created | date("d/m/Y") }}</span></div>
 </div>
 
 {% if fulltitle %}
@@ -14,7 +14,7 @@
 {% endif %}
 <div class="row-fluid profile-entry">
   <div class="span1 profile-field">
-    <p>Location</p>
+    Location
   </div>
   <div class="span11 profile-value">
     {{ user.location }}
@@ -22,13 +22,14 @@
 </div>
 <div class="row-fluid profile-entry">
   <div class="span1 profile-field">
-    <p>About</p>
+    About
   </div>
   <div class="span11 profile-value">
     {{ user.about }}
   </div>
 </div>
 
+<div class="separator"></div>
 <div class="row-fluid">
   <div class="span6">
     <h3>Projects</h3>
