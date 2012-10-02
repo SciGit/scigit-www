@@ -109,10 +109,12 @@ set profile_fields = [
 
 <div id="my-tab-content" class="tab-content">
   <div class="tab-pane fade in active" id="settings">
-    {% include 'forms/generic.twig' with {'fields': settings_fields, 'form': {class: 'well'}} %}
+    {% include 'forms/generic.twig' with
+      {'fields': settings_fields, 'form' : {class: 'well'}, 'columns': [2, 8, 2]} %}
   </div>
   <div class="tab-pane fade in" id="profile">
-    {% include 'forms/generic.twig' with {'fields': profile_fields, 'form': {class: 'well'}} %}
+    {% include 'forms/generic.twig' with
+      {'fields': profile_fields, 'form': {class: 'well'}, 'columns': [1, 8, 3]} %}
   </div>
 </div>
 

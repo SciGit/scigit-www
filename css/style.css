@@ -241,3 +241,7 @@ footer .info {
 .separator {
   height: 20px;
 }
+
+.full-width-input {
+  width: 100%;
+}
