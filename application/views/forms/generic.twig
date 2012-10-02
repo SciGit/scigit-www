@@ -4,7 +4,7 @@
       <div class="row-fluid">
         <div class="span{{ columns[0] }}">
           <label class="control-label" for="{{ field['id'] }}">
-            {{ field['label'] }}
+            <p>{{ field['label'] }}</p>
           </label>
         </div>
         <div class="span{{ columns[1] }}">
@@ -29,5 +29,5 @@
       </div>
     </div>
   {% endfor %}
-  {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Submit'}) | raw }}
+  {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Save'}) | raw }}
 {{ form_close() | raw }}
