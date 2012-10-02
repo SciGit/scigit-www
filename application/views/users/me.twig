@@ -9,7 +9,26 @@
 </div>
 
 {%
-set fields = [
+set settings_fields = [
+  {
+    'label' : 'Receive email updates',
+    'name' : 'email_updates',
+    'id' : 'email_updates',
+    'value' : set_value('email_updates', user.disable_email),
+    'type' : 'checkbox',
+  },
+  {
+    'label' : 'Make profile private',
+    'name' : 'private',
+    'id' : 'private',
+    'value' : set_value('private', user.private),
+    'type' : 'checkbox',
+  },
+]
+%}
+
+{%
+set profile_fields = [
 	{
     'label' : 'Username',
 		'name': 'username',
@@ -90,31 +109,10 @@ set fields = [
 
 <div id="my-tab-content" class="tab-content">
   <div class="tab-pane fade in active" id="settings">
+    {% include 'forms/generic.twig' with {'fields': settings_fields, 'form': {class: 'well'}} %}
   </div>
   <div class="tab-pane fade in" id="profile">
-    {{ form_open('', {class: 'well'}) | raw }}
-      {% for field in fields %}
-        <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
-          <label class="control-label" for="{{ field['id'] }}">
-            {{ field['label'] }}
-          </label>
-          <div class="controls">
-            {% if field['type'] == 'input' %}
-              {{ form_input(field) | raw }}
-            {% elseif field['type'] == 'textarea' %}
-              {{ form_textarea(field) | raw }}
-            {% elseif field['type'] == 'static' %}
-              <span class="date">{{ field['value'] }}</span>
-            {% endif %}
-            <span class="help-inline">
-              {{ form_error(field['name']) | raw }}
-              {{ errors[field['name']] }}
-            </span>
-          </div>
-        </div>
-      {% endfor %}
-      {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Submit'}) | raw }}
-    {{ form_close() | raw }}
+    {% include 'forms/generic.twig' with {'fields': profile_fields, 'form': {class: 'well'}} %}
   </div>
 </div>
 

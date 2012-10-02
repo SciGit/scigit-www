@@ -1,0 +1,25 @@
+{{ form_open('', form) | raw }}
+  {% for field in fields %}
+    <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
+      <label class="control-label" for="{{ field['id'] }}">
+        {{ field['label'] }}
+      </label>
+      <div class="controls">
+        {% if field['type'] == 'input' %}
+          {{ form_input(field) | raw }}
+        {% elseif field['type'] == 'textarea' %}
+          {{ form_textarea(field) | raw }}
+        {% elseif field['type'] == 'static' %}
+          <span class="date">{{ field['value'] }}</span>
+        {% elseif field['type'] == 'checkbox' %}
+          {{ form_checkbox(field) | raw }}
+        {% endif %}
+        <span class="help-inline">
+          {{ form_error(field['name']) | raw }}
+          {{ errors[field['name']] }}
+        </span>
+      </div>
+    </div>
+  {% endfor %}
+  {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Submit'}) | raw }}
+{{ form_close() | raw }}
