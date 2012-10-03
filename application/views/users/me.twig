@@ -105,8 +105,17 @@ set profile_fields = [
 ]
 %}
 
+{# Hidden password input to get rid of a bug on some browsers where the first
+   password field is filled with some garbage data. #}
 {%
 set password_fields = [
+  {
+    'label': '',
+    'name': 'hidden',
+    'id': 'hidden',
+    'type': 'password',
+    'hidden': 'true',
+  },
   {
     'label' : 'Current Password',
 		'name': 'current_password',

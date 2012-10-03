@@ -1,6 +1,8 @@
 {{ form_open('', form) | raw }}
   {% for field in fields %}
-    <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
+    <div class="control-group
+      {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}
+      {% if field['hidden'] %} hidden {% endif %} ">
       <div class="row-fluid">
         <div class="span{{ columns[0] }}">
           <label class="control-label {% if field['required'] %}required{% endif %}" for="{{ field['id'] }}">
