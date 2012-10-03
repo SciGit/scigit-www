@@ -44,18 +44,46 @@ class Users extends CI_Controller
 	private function profile_me() {
 		$message = '';
     $form_name = 'settings';
+    $id = get_user_id();
+
     if ($this->input->post('profile')) {
       $form_name = 'profile';
-      $user = $this->user->get_user_by_id(get_user_id(), true);
+      $user = $this->user->get_user_by_id($id, true);
       if ($this->input->post('email') !== $user->email) {
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
       }
-      $this->form_validation->set_rules('name', 'Name', 'max_length[80]');
-      $this->form_validation->set_rules('about', 'About', 'max_length[1024]');
+      $this->form_validation->set_rules('name', 'Name', 'max_length[80]|xss_clean');
+      $this->form_validation->set_rules('title', 'title', 'max_length[80]|xss_clean');
+      $this->form_validation->set_rules('organization', 'organization', 'max_length[80]|xss_clean');
+      $this->form_validation->set_rules('location', 'location', 'max_length[80]|xss_clean');
+      $this->form_validation->set_rules('about', 'About', 'max_length[1024]|xss_clean');
 			if ($this->form_validation->run()) {
-
+        $this->user->set_user_profile_field(
+          $id, 'fullname', $this->input->post('name'));
+        $this->user->set_user_profile_field(
+          $id, 'title', $this->input->post('title'));
+        $this->user->set_user_profile_field(
+          $id, 'organization', $this->input->post('organization'));
+        $this->user->set_user_profile_field(
+          $id, 'location', $this->input->post('location'));
+        $this->user->set_user_profile_field(
+          $id, 'email', $this->input->post('email'));
+        $this->user->set_user_profile_field(
+          $id, 'about', $this->input->post('about'));
 			}
-		}
+		} else if ($this->input->post('settings')) {
+      $form_name = 'settings';
+      $user = $this->user->get_user_by_id($id, true);
+      // Form validation requires some rules to be set. We don't have any here,
+      // so skip validation.
+      //if ($this->form_validation->run())
+      {
+        $this->user->set_user_profile_field(
+          $id, 'private', intval(!!$this->input->post('private')));
+        $this->user->set_user_profile_field(
+          $id, 'disable_email', intval(!$this->input->post('email_updates')));
+      }
+    }
 
 		$user = $this->user->get_user_by_id(get_user_id(), true);
 

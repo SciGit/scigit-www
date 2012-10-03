@@ -369,6 +369,13 @@ class User extends CI_Model
 		));
 	}
 
+  function set_user_profile_field($user_id, $field, $value) {
+    $this->db->where('id', $user_id);
+    $this->db->update($this->table_name, array(
+      $field => $value,
+    ));
+  }
+
 	/**
 	 * Create an empty profile for a new user
 	 *
