@@ -109,6 +109,13 @@ set profile_fields = [
   <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
 </ul>
 
+{% if message %}
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {{ message }}
+  </div>
+{% endif %}
+
 <div id="my-tab-content" class="tab-content">
   <div class="tab-pane fade in {% if form_name == 'settings' %}active{% endif %}" id="settings">
     {% include 'forms/generic.twig'

@@ -70,6 +70,7 @@ class Users extends CI_Controller
           $id, 'email', $this->input->post('email'));
         $this->user->set_user_profile_field(
           $id, 'about', $this->input->post('about'));
+        $message = "Profile saved";
 			}
 		} else if ($this->input->post('settings')) {
       $form_name = 'settings';
@@ -82,6 +83,7 @@ class Users extends CI_Controller
           $id, 'private', intval(!!$this->input->post('private')));
         $this->user->set_user_profile_field(
           $id, 'disable_email', intval(!$this->input->post('email_updates')));
+        $message = "Settings saved";
       }
     }
 
