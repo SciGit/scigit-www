@@ -245,3 +245,10 @@ footer .info {
 .full-width-input {
   width: 100%;
 }
+
+form .required .inner-label:after {
+  color: #e32;
+  font-weight: bold;
+  content: '*';
+  display: inline-block;
+}

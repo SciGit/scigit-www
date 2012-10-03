@@ -3,8 +3,8 @@
     <div class="control-group {% if errors[field['name']] or form_error(field['name']) %} error {% endif %}">
       <div class="row-fluid">
         <div class="span{{ columns[0] }}">
-          <label class="control-label" for="{{ field['id'] }}">
-            <p>{{ field['label'] }}</p>
+          <label class="control-label {% if field['required'] %}required{% endif %}" for="{{ field['id'] }}">
+            <p class="inner-label">{{ field['label'] }}</p>
           </label>
         </div>
         <div class="span{{ columns[1] }}">
@@ -17,6 +17,8 @@
               <span class="date">{{ field['value'] }}</span>
             {% elseif field['type'] == 'checkbox' %}
               {{ form_checkbox(field) | raw }}
+            {% elseif field['type'] == 'password' %}
+              {{ form_password(field) | raw }}
             {% endif %}
           </div>
         </div>

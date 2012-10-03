@@ -50,6 +50,7 @@ set profile_fields = [
 		'size': 40,
     'class' : 'full-width-input',
     'type' : 'input',
+    'required' : 'true',
 	},
 	{
     'label' : 'Title',
@@ -104,9 +105,48 @@ set profile_fields = [
 ]
 %}
 
+{%
+set password_fields = [
+  {
+    'label' : 'Current Password',
+		'name': 'current_password',
+		'id': 'current_password',
+		'value': set_value('current_password'),
+		'maxlength': 40,
+		'size': 40,
+    'class' : 'full-width-input',
+    'type' : 'password',
+    'required': 'true',
+  },
+  {
+    'label' : 'New Password',
+		'name': 'new_password',
+		'id': 'new_password',
+		'value': set_value('new_password'),
+		'maxlength': 40,
+		'size': 40,
+    'class' : 'full-width-input',
+    'type' : 'password',
+    'required': 'true',
+  },
+  {
+    'label' : 'Confirm New Password',
+		'name': 'confirm_new_password',
+		'id': 'confirm_new_password',
+		'value': set_value('confirm_new_password'),
+		'maxlength': 40,
+		'size': 40,
+    'class' : 'full-width-input',
+    'type' : 'password',
+    'required': 'true',
+  },
+]
+%}
+
 <ul class="nav nav-tabs">
   <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
   <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li{% if form_name == 'password' %} class="active"{% endif %}><a href="#password" data-toggle="tab">Password</a></li>
 </ul>
 
 {% if message %}
@@ -130,6 +170,13 @@ set profile_fields = [
             'form': {class: 'well'},
             'columns': [1, 8, 3],
             'form_name': 'profile'} %}
+  </div>
+  <div class="tab-pane fade in {% if form_name == 'password' %}active{% endif %}" id="password">
+    {% include 'forms/generic.twig'
+      with {'fields': password_fields,
+            'form': {class: 'well'},
+            'columns': [2, 8, 2],
+            'form_name': 'password'} %}
   </div>
 </div>
 
