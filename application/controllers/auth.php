@@ -6,7 +6,8 @@ class Auth extends CI_Controller
 	{
 		parent::__construct();
 		if (!is_ssl()) {
-			redirect($this->config->item('secure_base_url') . '/auth');
+			redirect($this->config->item('secure_base_url') . '/' .
+							 $this->uri->uri_string());
 		}
 
 		$this->referer = $this->session->flashdata('referer');
