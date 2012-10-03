@@ -103,18 +103,24 @@ set profile_fields = [
 %}
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
+  <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
 </ul>
 
 <div id="my-tab-content" class="tab-content">
-  <div class="tab-pane fade in active" id="settings">
-    {% include 'forms/generic.twig' with
-      {'fields': settings_fields, 'form' : {class: 'well'}, 'columns': [2, 8, 2]} %}
+  <div class="tab-pane fade in {% if form_name == 'settings' %}active{% endif %}" id="settings">
+    {% include 'forms/generic.twig'
+        with {'fields': settings_fields,
+              'form' : {class: 'well'},
+              'columns': [2, 8, 2],
+              'form_name': 'settings'} %}
   </div>
-  <div class="tab-pane fade in" id="profile">
-    {% include 'forms/generic.twig' with
-      {'fields': profile_fields, 'form': {class: 'well'}, 'columns': [1, 8, 3]} %}
+  <div class="tab-pane fade in {% if form_name == 'profile' %}active{% endif %}" id="profile">
+    {% include 'forms/generic.twig'
+      with {'fields': profile_fields,
+            'form': {class: 'well'},
+            'columns': [1, 8, 3],
+            'form_name': 'profile'} %}
   </div>
 </div>
 

@@ -29,5 +29,5 @@
       </div>
     </div>
   {% endfor %}
-  {{ form_submit({class: 'btn btn-primary', name: 'change', value: 'Save'}) | raw }}
+  {{ form_submit({class: 'btn btn-primary', name: form_name, value: 'Save'}) | raw }}
 {{ form_close() | raw }}
