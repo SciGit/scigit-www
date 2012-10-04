@@ -243,6 +243,17 @@ footer .info {
 }
 
 .project-description {
+  margin: 5px;
+  color: gray;
+}
+
+.change-entry {
+  margin: 10px 5px;
+}
+
+.change-description {
+  margin: 5px;
+  color: gray;
 }
 
 .activity-entry {
