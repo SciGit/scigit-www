@@ -33,7 +33,6 @@ class Home extends CI_Controller
         }
         $activities = array_merge($changes, $activities);
       }
-      var_dump($activities);
       $data['activities'] = $activities;
 			$this->twig->display('home.twig', $data);
 		}
