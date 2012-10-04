@@ -38,7 +38,6 @@ class Home extends CI_Controller
         $num_changes = count($projects) > 1 ? 5 : 10;
         $project->my_changes =
           $this->change->get_by_project_latest($project->id, $user_id, $num_changes);
-        var_dump($project);
       }
       $data = array(
         'activities' => $activities,
