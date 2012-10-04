@@ -85,6 +85,16 @@ class Users extends CI_Controller
           $id, 'disable_email', intval(!$this->input->post('email_updates')));
         $message = "Settings saved";
       }
+    } else if ($this->input->post('password')) {
+      $form_name = 'password';
+			$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+			$this->form_validation->set_rules('confirm_new_password', 'Confirm Password', 'trim|required|xss_clean|matches[new_password]');
+			$this->form_validation->set_rules('current_password', 'Current Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash|callback_current_password');
+      if ($this->form_validation->run()) {
+        $this->tank_auth->change_password(
+          $this->input->post('current_password'), $this->input->post('new_password'));
+        $message = "Password saved";
+      }
     }
 
 		$user = $this->user->get_user_by_id(get_user_id(), true);
@@ -96,6 +106,19 @@ class Users extends CI_Controller
 		);
 		$this->twig->display('users/me.twig', $data);
 	}
+
+  public function current_password($current_password) {
+    // Change password to itself because we can't change it properly yet. This
+    // will error if the current password was wrong, which is what we want.
+    $this->tank_auth->change_password($current_password, $current_password);
+
+    if ($this->tank_auth->get_error_message()) {
+      $this->form_validation->set_message('current_password', 'Password does not match records.');
+      return FALSE;
+    }
+
+    return TRUE;
+  }
 
 	public function check_public_key($key) {
 		$data = $this->public_key->parse_key($key);
