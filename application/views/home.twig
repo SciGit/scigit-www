@@ -71,9 +71,9 @@
     <hr class="soften" />
     <ul>
       {% for project in projects %}
-        <li class="activity-entry">
-          {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
-          {% if project.my_changes %}
+        {% if project.my_changes %}
+          <li class="activity-entry">
+            {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
             <ul class="unstyled">
               {% for change in project.my_changes %}
                 <li>
@@ -86,13 +86,11 @@
                 </li>
               {% endfor %}
             </ul>
-          {% else %}
-            <div class="activity-msg">No recent changes.</div>
-          {% endif %}
-          {% if not loop.last %}
-            <hr class="soften" />
-          {% endif %}
-        </li>
+            {% if not loop.last %}
+              <hr class="soften" />
+            {% endif %}
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>

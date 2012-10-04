@@ -33,14 +33,15 @@ class Users extends CI_Controller
             // date instead.
             $project->latest_change = $project->created_ts;
           }
+          $num_changes = count($projects) > 1 ? 5 : 10;
+          $project->my_changes =
+            $this->change->get_by_project_latest($project->id, $user->id, $num_changes);
         }
-        $changes = $this->change->get_by_user($id, 10);
         $fulltitle = format_user_fulltitle($user);
 
         $data = array(
           'user' => $user,
           'projects' => $projects,
-          'changes' => $changes,
           'fulltitle' => $fulltitle,
         );
 

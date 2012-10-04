@@ -54,12 +54,27 @@
     <h3>Recent Activity</h3>
     <hr class="soften" />
     <ul>
-      {% for change in changes %}
-        <li class="change-entry">
-          To {{ anchor("/projects/view/#{change.proj_id}", change.name) | raw}}
-          <p class="date pull-right">{{ change.commit_ts | date("d/m/Y") }}</p>
-          <div class="change-description">{{ change.commit_msg }}</div>
-        </li>
+      {% for project in projects %}
+        {% if project.my_changes %}
+          <li class="activity-entry">
+            {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+            <ul class="unstyled">
+              {% for change in project.my_changes %}
+                <li>
+                  <div class="pull-right date p">
+                    {{ change.commit_ts | date("d/m/Y") }}
+                  </div>
+                  <div class="activity-msg">
+                    {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+            {% if not loop.last %}
+              <hr class="soften" />
+            {% endif %}
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>
