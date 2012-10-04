@@ -24,11 +24,16 @@ class Home extends CI_Controller
       $projects = $this->project->get_user_membership($user_id);
       $activities = array();
       foreach ($projects as $project) {
-        $activities = array_merge(
-          $this->change->get_by_project($project->id),
-          $activities);
+        // XXX: Merge these into one because we have no struct that can be sent
+        // to a view in this format. We should add a new struct that handles 
+        // this data format.
+        $changes = $this->change->get_by_project($project->id);
+        foreach ($changes as $change) {
+          $change->proj_name = $project->name;
+        }
+        $activities = array_merge($changes, $activities);
       }
-      // var_dump($activities);
+      var_dump($activities);
       $data['activities'] = $activities;
 			$this->twig->display('home.twig', $data);
 		}

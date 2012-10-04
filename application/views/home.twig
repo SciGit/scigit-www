@@ -49,7 +49,15 @@
     <hr class="soften" />
     <ul>
     {% for activity in activities %}
-      <li><h3>By <a href="/users/profile/{{ activity.user_id }}">{{ activity.username }}</a></h3> "{{ activity.commit_msg }}" to FIXME</li>
+      <li class="activity-entry">
+        {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
+        to
+        {{ anchor("/projects/changes/#{activity.proj_id}", activity.proj_name) | raw }}
+        <p class="date pull-right">{{ activity.commit_ts | date("d/m/Y") }}</p>
+        <div>
+          {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
+        </div>
+      </li>
     {% endfor %}
     </ul>
   </div>
