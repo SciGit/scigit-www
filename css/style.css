@@ -238,6 +238,18 @@ footer .info {
 .project-description {
 }
 
+.activity-entry {
+  margin: 20px 5px;
+}
+
+.activity-entry .activity-msg {
+  margin: 5px;
+}
+
+.activity-entry .activity-msg a {
+  color: gray;
+}
+
 .separator {
   height: 20px;
 }
@@ -251,4 +263,8 @@ form .required .inner-label:after {
   font-weight: bold;
   content: '*';
   display: inline-block;
+}
+
+.no-decoration a {
+  text-decoration: none;
 }
