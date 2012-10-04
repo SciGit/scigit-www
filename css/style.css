@@ -250,6 +250,10 @@ footer .info {
   color: gray;
 }
 
+.activity-entry .activity-msg {
+  color: gray;
+}
+
 .separator {
   height: 20px;
 }

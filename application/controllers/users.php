@@ -25,9 +25,9 @@ class Users extends CI_Controller
       } else {
         $projects = $this->project->get_user_membership($id);
         foreach ($projects as $project) {
-          $latest_change = $this->change->get_by_project_latest($project->id);
-          if ($latest_change) {
-            $project->latest_change = $latest_change->commit_ts;
+          $latest_change = $this->change->get_by_project_latest($project->id, 0, 1);
+          if ($latest_change && $latest_change[0]) {
+            $project->latest_change = $latest_change[0]->commit_ts;
           } else {
             // The project was just created and has no changes. Mark its creation
             // date instead.

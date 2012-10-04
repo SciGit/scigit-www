@@ -68,15 +68,23 @@
     <h2>Your Activity</h2>
     <hr class="soften" />
     <ul>
-      {% for push in pushes %}
+      {% for project in projects %}
         <li class="activity-entry">
-          {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
-          pushed to
-          {{ anchor("/projects/changes/#{activity.proj_id}", activity.proj_name) | raw }}
-          <p class="date pull-right">{{ activity.commit_ts | date("d/m/Y") }}</p>
-          <div class="activity-msg">
-            {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
-          </div>
+          {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+          {% if project.my_changes %}
+            <ul class="unstyled">
+              {% for change in project.my_changes %}
+                <li>
+                  <p class="date pull-right">{{ change.commit_ts | date("d/m/Y") }}</p>
+                  <div class="activity-msg">
+                    {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <div class="activity-msg">No recent changes.</div>
+          {% endif %}
           <hr class="soften" />
         </li>
       {% endfor %}

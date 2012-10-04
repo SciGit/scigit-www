@@ -32,8 +32,18 @@ class Home extends CI_Controller
           $change->proj_name = $project->name;
         }
         $activities = array_merge($changes, $activities);
+
+        // Merge this object with its most recent changes done by this user.
+        // Show more of them if this is the only project the user has.
+        $num_changes = count($projects) > 1 ? 10 : 5;
+        $project->my_changes =
+          $this->change->get_by_project_latest($project->id, $user_id, $num_changes);
+        var_dump($project);
       }
-      $data['activities'] = $activities;
+      $data = array(
+        'activities' => $activities,
+        'projects' => $projects,
+      );
 			$this->twig->display('home.twig', $data);
 		}
 	}

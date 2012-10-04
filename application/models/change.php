@@ -27,12 +27,18 @@ class Change extends CI_Model
   // hash.
   //
   // XXX: This may become a problem later if we allow branching.
-  public function get_by_project_latest($proj_id) {
+  public function get_by_project_latest($proj_id, $user_id = 0, $limit = 0) {
+    $this->db->select("*, $this->table.id AS id");
     $this->db->where('proj_id', $proj_id);
+    if ($user_id) {
+      $this->db->where('user_id', $user_id);
+    }
     $this->db->order_by("commit_ts DESC");
-    $r = $this->db->get($this->table)->result();
-    if (empty($r)) return null;
-    return $r[0];
+    if ($limit) {
+      $this->db->limit($limit);
+    }
+
+    return $this->db->get($this->table)->result();
   }
 
   // Gets the latest changes made by a user. Sorted by commit_ts, not commit
