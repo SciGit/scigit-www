@@ -16,28 +16,36 @@ class Users extends CI_Controller
       $this->profile_me();
     } else {
       $user = $this->user->get_user_by_id($id, true);
-      $projects = $this->project->get_user_membership($id);
-      foreach ($projects as $project) {
-        $latest_change = $this->change->get_by_project_latest($project->id);
-        if ($latest_change) {
-          $project->latest_change = $latest_change->commit_ts;
-        } else {
-          // The project was just created and has no changes. Mark its creation
-          // date instead.
-          $project->latest_change = $project->created_ts;
+
+      if ($user->private) {
+        $data = array(
+          'user' => $user,
+        );
+        $this->twig->display('users/private.twig', $data);
+      } else {
+        $projects = $this->project->get_user_membership($id);
+        foreach ($projects as $project) {
+          $latest_change = $this->change->get_by_project_latest($project->id);
+          if ($latest_change) {
+            $project->latest_change = $latest_change->commit_ts;
+          } else {
+            // The project was just created and has no changes. Mark its creation
+            // date instead.
+            $project->latest_change = $project->created_ts;
+          }
         }
+        $changes = $this->change->get_by_user($id, 10);
+        $fulltitle = format_user_fulltitle($user);
+
+        $data = array(
+          'user' => $user,
+          'projects' => $projects,
+          'changes' => $changes,
+          'fulltitle' => $fulltitle,
+        );
+
+        $this->twig->display('users/profile.twig', $data);
       }
-      $changes = $this->change->get_by_user($id, 10);
-      $fulltitle = format_user_fulltitle($user);
-
-      $data = array(
-        'user' => $user,
-        'projects' => $projects,
-        'changes' => $changes,
-        'fulltitle' => $fulltitle,
-      );
-
-      $this->twig->display('users/profile.twig', $data);
     }
   }
 
