@@ -70,7 +70,7 @@
                 </li>
               {% endfor %}
             </ul>
-            {% if not loop.last %}
+            {% if not loop.last and loop.next.my_changes %}
               <hr class="soften" />
             {% endif %}
           </li>
