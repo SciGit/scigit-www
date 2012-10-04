@@ -3,7 +3,7 @@ body {
   padding-bottom: 0 !important;
 }
 
-p {
+p, .p {
   font-size: 14px;
   font-weight: 200;
 }

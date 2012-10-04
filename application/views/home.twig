@@ -75,7 +75,9 @@
             <ul class="unstyled">
               {% for change in project.my_changes %}
                 <li>
-                  <p class="date pull-right">{{ change.commit_ts | date("d/m/Y") }}</p>
+                  <div class="pull-right date p">
+                    {{ change.commit_ts | date("d/m/Y") }}
+                  </div>
                   <div class="activity-msg">
                     {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
                   </div>
