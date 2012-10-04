@@ -17,11 +17,18 @@ h3 {
   font-size: 150%;
 }
 
-.light-well {
-  background-color: rgb(250, 250, 250);
+.light-well, .blue-well {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+.light-well {
+  background-color: rgb(250, 250, 250);
+}
+
+.blue-well {
+  background-color: rgba(0, 0, 255, 0.035);
 }
 
 .lbl-search {
