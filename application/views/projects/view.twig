@@ -64,7 +64,10 @@
           <strong>
             {{ anchor("/users/profile/#{change.user_id}", change.username) | raw}} changed
           </strong>
-          <p class="date pull-right">{{ change.commit_ts | date("d/m/Y") }}</p>
+          <p class="pull-right">
+            {{ change.commit_ts | date("H:i") }},&nbsp;
+            <span class="date">{{ change.commit_ts | date("d/m/Y") }}</span>
+          </p>
           <div class="activity-msg">
             {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
           </div>
