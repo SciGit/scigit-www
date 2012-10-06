@@ -15,7 +15,7 @@ class Projects extends CI_Controller
 	}
 
 	public function me() {
-		$projects = $this->project->get_user_accessible(get_user_id());
+		$projects = $this->project->get_user_membership(get_user_id());
 		$subscribed = array();
 		foreach ($this->project->get_user_membership(get_user_id()) as $proj) {
 			$subscribed[$proj->id] = true;
