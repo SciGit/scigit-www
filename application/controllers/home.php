@@ -39,6 +39,7 @@ class Home extends CI_Controller
         $project->my_changes =
           $this->change->get_by_project_latest($project->id, $user_id, $num_changes);
       }
+      $activities = array_slice($activities, 0, 10);
 			$data['activities'] = $activities;
 			$data['projects'] = $projects;
 			$this->twig->display('home.twig', $data);
