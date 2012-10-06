@@ -32,9 +32,13 @@ class Projects extends CI_Controller
 		check_project_perms($proj_id);
     $data = array(
       'project' => $this->project->get($proj_id),
+      'changes' => $this->change->get_by_project_latest($proj_id, 0, 15),
       'perms' => $this->project->get_perms($proj_id),
+      'subscribers' => 0,
+      'changes_num' => 0,
+      'contributors' => 0,
+      'administrators' => 0,
     );
-    var_dump($this->project->get_perms($proj_id));
     $this->twig->display('projects/view.twig', $data);
   }
 

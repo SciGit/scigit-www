@@ -18,21 +18,24 @@
       <table width="100%">
         <tr>
           <td>
-            <p><i class="icon-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>1923</strong> Subscribers</p>
+            <p><i class="icon-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{ subscribers }}</strong> Subscribers</p>
           </td>
           <td>
-            <p><i class="icon-circle-arrow-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>1230</strong> Changes</p>
+            <p><i
+            class="icon-circle-arrow-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{ changes_num }}</strong> Changes</p>
           </td>
         </tr>
         <tr>
           <td>
-            <p><i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>19</strong> Contributors</p>
+            <p><i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{ contributors }}</strong> Contributors</p>
           </td>
           <td>
-            <p><i class="icon-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>3</strong> Administrators</p>
+            <p><i class="icon-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{ administrators }}</strong> Administrators</p>
           </td>
         </tr>
       </table>
+      <p></p>
+      <p>Created <span class="date">{{ project.created_ts | date("d/m/Y") }}</span></p>
     </div>
     <div class="well blue-well">
       <h3>Description</h3>
@@ -55,6 +58,22 @@
   <div class="span8 well light-well">
     <h3>Recent Changes</h3>
     <hr class="soften" />
+    <ul>
+      {% for change in changes %}
+        <li class="activity-entry">
+          <strong>
+            {{ anchor("/users/profile/#{change.user_id}", change.username) | raw}} changed
+          </strong>
+          <p class="date pull-right">{{ change.commit_ts | date("d/m/Y") }}</p>
+          <div class="activity-msg">
+            {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+          </div>
+          {% if not loop.last %}
+            <hr class="soften" />
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 

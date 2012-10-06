@@ -30,6 +30,7 @@ class Change extends CI_Model
   public function get_by_project_latest($proj_id, $user_id = 0, $limit = 0) {
     $this->db->select("*, $this->table.id AS id");
     $this->db->where('proj_id', $proj_id);
+    $this->db->join('users', 'users.id = user_id');
     if ($user_id) {
       $this->db->where('user_id', $user_id);
     }
