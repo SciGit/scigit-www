@@ -1,0 +1,61 @@
+{% extends "base.twig" %}
+
+{% block title "Project Admin" %}
+
+{% block content %}
+
+<div class="page-header">
+	<h2>
+		{{ project.name }}
+	</h2>
+</div>
+
+<div class="row-fluid">
+  <div class="span4">
+    <div class="well">
+      <h3>Stats</h3>
+      <hr class="soften">
+      <table width="100%">
+        <tr>
+          <td>
+            <p><i class="icon-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>1923</strong> Subscribers</p>
+          </td>
+          <td>
+            <p><i class="icon-circle-arrow-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>1230</strong> Changes</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p><i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>19</strong> Contributors</p>
+          </td>
+          <td>
+            <p><i class="icon-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>3</strong> Administrators</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="well blue-well">
+      <h3>Description</h3>
+      <hr class="soften" />
+      {{ word_wrap(project.description, 30) }}
+    </div>
+    <div class="well">
+      <h3>Contributors</h3>
+      <hr class="soften" />
+      {% for perm in perms %}
+        {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
+        {% if perm.can_admin %}
+          <i class="icon-wrench"></i>
+        {% else %}
+          <i class="icon-edit"></i>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="span8 well light-well">
+    <h3>Recent Changes</h3>
+    <hr class="soften" />
+  </div>
+</div>
+
+{% endblock %}

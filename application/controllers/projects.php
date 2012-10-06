@@ -28,6 +28,16 @@ class Projects extends CI_Controller
 		$this->twig->display('projects/index.twig', $data);
 	}
 
+  public function view($proj_id) {
+		check_project_perms($proj_id);
+    $data = array(
+      'project' => $this->project->get($proj_id),
+      'perms' => $this->project->get_perms($proj_id),
+    );
+    var_dump($this->project->get_perms($proj_id));
+    $this->twig->display('projects/view.twig', $data);
+  }
+
   public function discover() {
     // drs: FIXME do something with this.
   }
