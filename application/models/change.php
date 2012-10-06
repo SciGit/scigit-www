@@ -23,6 +23,15 @@ class Change extends CI_Model
     return $this->db->get($this->table)->result();
   }
 
+	public function get_last_commit_hash($proj_id) {
+		$this->db->select('commit_hash');
+		$this->db->where('proj_id', $proj_id);
+		$this->db->order_by('id DESC');
+		$r = $this->db->get($this->table)->result();
+		if (empty($r)) return null;
+		return $r[0]->commit_hash;
+	}
+
   // Gets the latest change from a project. Sorted by commit_ts, not commit
   // hash.
   //
