@@ -22,7 +22,7 @@ My Projects
 	{% for project in projects %}
 		<tr>
 			<td valign="middle">
-				{{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+				{{ anchor("/projects/view/#{project.id}", project.name) | raw }}
 				<div class="pull-right">
 				{% if subscribed[project.id] %}
 					<span class="btn-mini">

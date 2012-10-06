@@ -74,7 +74,17 @@
     </div>
   </div>
   <div class="span8 well light-well">
-    <h3>Recent Changes</h3>
+    <div class="row-fluid">
+      <div class="span3">
+        <h3>Recent Changes</h3>
+      </div>
+      <div class="span9">
+        <a class="btn title-btn" href="{{ site_url("/projects/changes/#{project.id}") | raw }}">
+          <i class="icon-circle-arrow-up"></i>
+          View all
+        </a>
+      </div>
+    </div>
     <hr class="soften" />
     <ul>
       {% for change in changes %}
