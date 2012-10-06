@@ -34,6 +34,8 @@ class Projects extends CI_Controller
       'project' => $this->project->get($proj_id),
       'changes' => $this->change->get_by_project_latest($proj_id, 0, 15),
       'perms' => $this->project->get_perms($proj_id),
+			'admin' => $this->project->is_admin(get_user_id(), $proj_id),
+			'subscribed' => $this->project->is_member(get_user_id(), $proj_id),
       'subscribers' => 0,
       'changes_num' => 0,
       'contributors' => 0,
@@ -125,7 +127,7 @@ class Projects extends CI_Controller
 			} else {
 				$this->project->add_member($user_id, $proj_id);
 			}
-			redirect('/projects/changes/' . $proj_id);
+			redirect('/projects/' . $this->input->post('return_to') . '/' . $proj_id);
 		}
 	}
 
