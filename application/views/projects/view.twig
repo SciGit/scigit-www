@@ -7,8 +7,8 @@
 <div class="page-header">
   <div class="pull-right">
     {% if admin %}
-      <a class="btn btn-large title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
-        <i class="icon-wrench"></i>
+      <a class="btn btn-large btn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
+        <i class="icon-wrench icon-white"></i>
         Admin
       </a>
     {% else %}
@@ -59,14 +59,18 @@
     <div class="well">
       <h3>Contributors</h3>
       <hr class="soften" />
-      {% for perm in perms %}
-        {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
-        {% if perm.can_admin %}
-          <i class="icon-wrench"></i>
-        {% else %}
-          <i class="icon-edit"></i>
-        {% endif %}
-      {% endfor %}
+      <ul>
+        {% for perm in perms %}
+          <li>
+            {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
+            {% if perm.can_admin %}
+              <i class="icon-wrench"></i>
+            {% else %}
+              <i class="icon-edit"></i>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
   <div class="span8 well light-well">
