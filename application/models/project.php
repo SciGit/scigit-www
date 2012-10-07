@@ -20,17 +20,23 @@ class Project extends CI_Model
 		return $r[0];
 	}
 
-	public function get_user_accessible($user_id) {
+	public function get_user_accessible($user_id, $count_only = false) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
 		$this->db->join($this->proj_table, 'proj_id = projects.id');
+    if ($count_only) {
+      return $this->db->count_all_results($this->proj_perms_table);
+    }
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 
-	public function get_user_membership($user_id) {
+	public function get_user_membership($user_id, $count_only = false) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
 		$this->db->join($this->proj_table, 'proj_id = projects.id');
+    if ($count_only) {
+      return $this->db->count_all_results($this->proj_member_table);
+    }
 		return $this->db->get($this->proj_member_table)->result();
 	}
 
@@ -42,10 +48,13 @@ class Project extends CI_Model
 		return $r[0];
 	}
 
-	public function get_perms($proj_id) {
+	public function get_perms($proj_id, $count_only = false) {
 		$this->db->select("*, $this->proj_perms_table.id as id");
 		$this->db->where('proj_id', $proj_id);
 		$this->db->join('users', 'users.id = user_id');
+    if ($count_only) {
+      return $this->db->count_all_results($this->proj_perms_table);
+    }
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 

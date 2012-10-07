@@ -11,13 +11,16 @@ class Change extends CI_Model
     return $r[0];
   }
 
-  public function get_by_project($proj_id, $limit = 0) {
+  public function get_by_project($proj_id, $limit = 0, $count_only = false) {
     $this->db->select("*, $this->table.id AS id");
     $this->db->where('proj_id', $proj_id);
     $this->db->join('users', 'users.id = user_id');
     $this->db->order_by("$this->table.id DESC");
     if ($limit) {
       $this->db->limit($limit);
+    }
+    if ($count_only) {
+      return $this->db->count_all_results($this->table);
     }
 
     return $this->db->get($this->table)->result();
@@ -36,7 +39,7 @@ class Change extends CI_Model
   // hash.
   //
   // XXX: This may become a problem later if we allow branching.
-  public function get_by_project_latest($proj_id, $user_id = 0, $limit = 0) {
+  public function get_by_project_latest($proj_id, $user_id = 0, $limit = 0, $count_only = false) {
     $this->db->select("*, $this->table.id AS id");
     $this->db->where('proj_id', $proj_id);
     $this->db->join('users', 'users.id = user_id');
@@ -47,6 +50,9 @@ class Change extends CI_Model
     if ($limit) {
       $this->db->limit($limit);
     }
+    if ($count_only) {
+      return $this->db->count_all_results($this->table);
+    }
 
     return $this->db->get($this->table)->result();
   }
@@ -55,12 +61,15 @@ class Change extends CI_Model
   // hash.
   //
   // XXX: This may become a problem later if we allow branching.
-  public function get_by_user($user_id, $limit = 0) {
+  public function get_by_user($user_id, $limit = 0, $count_only = false) {
     $this->db->where('user_id', $user_id);
     $this->db->join('projects', 'projects.id = proj_id');
     $this->db->order_by("commit_ts DESC");
     if ($limit) {
       $this->db->limit($limit);
+    }
+    if ($count_only) {
+      return $this->db->count_all_results($this->table);
     }
 
     return $this->db->get($this->table)->result();
