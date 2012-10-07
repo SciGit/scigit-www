@@ -41,8 +41,26 @@ class Projects extends CI_Controller
     $this->twig->display('projects/view.twig', $data);
   }
 
-  public function discover() {
-    // drs: FIXME do something with this.
+  public function explore($page = 0) {
+    $projects_per_page = 25;
+    $projects = $this->project->get_by_popularity($projects_per_page, $page);
+
+    foreach ($projects as $project) {
+      $latest_change = $this->change->get_by_project_latest($project->id, 0, 1);
+      if ($latest_change && $latest_change[0]) {
+        $project->latest_change = $latest_change[0]->commit_ts;
+      } else {
+        // The project was just created and has no changes. Mark its creation
+        // date instead.
+        $project->latest_change = $project->created_ts;
+      }
+    }
+
+    $data = array(
+      'projects' => $projects,
+    );
+
+    $this->twig->display('projects/explore.twig', $data);
   }
 
 	public function create() {

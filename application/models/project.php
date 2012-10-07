@@ -40,6 +40,23 @@ class Project extends CI_Model
 		return $this->db->get($this->proj_member_table)->result();
 	}
 
+  public function get_by_popularity($per_page, $page) {
+    // XXX: Yuck. Just use subscribers total as a metric.
+    //$query =
+    //  "SELECT a.weighting FROM
+    //  (SELECT (1/(NOW() - proj_changes.commit_ts)) as weighting, proj_id FROM proj_changes) a
+    //  ORDER BY a.weighting DESC";
+    $query =
+      "SELECT *,
+       (SELECT COUNT(*)
+       FROM $this->proj_member_table
+       WHERE $this->proj_table.id = $this->proj_member_table.proj_id) AS member_count
+       FROM $this->proj_table
+       WHERE public = 1
+       ORDER BY member_count DESC";
+    return $this->db->query($query)->result();
+  }
+
 	public function get_user_perms($user_id, $proj_id) {
 		$this->db->where('user_id', $user_id);
 		$this->db->where('proj_id', $proj_id);
