@@ -81,7 +81,8 @@ h3 {
 }
 
 .date {
-  margin-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 7px;
   font-style: italic;
 }
 
@@ -269,13 +270,11 @@ footer .info {
 
 .activity-entry .activity-msg {
   margin: 5px;
+  color: gray;
+  min-height: 20px;
 }
 
 .activity-entry .activity-msg a {
-  color: gray;
-}
-
-.activity-entry .activity-msg {
   color: gray;
 }
 
