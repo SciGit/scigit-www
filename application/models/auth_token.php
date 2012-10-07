@@ -13,6 +13,13 @@ class Auth_token extends CI_Model
 		return true;
 	}
 
+	public function renew($user_id, $auth_token) {
+		$this->db->where('user_id', $user_id);
+		$this->db->where('auth_token' , $auth_token);
+		$expiry_ts = time() + $this->expiry_time;
+		$this->db->update($this->table, array('expiry_ts' => $expiry_ts));
+	}
+
 	public function delete($user_id, $auth_token) {
 		$this->db->where('user_id' , $user_id);
 		$this->db->where('auth_token', $auth_token);
@@ -32,10 +39,7 @@ class Auth_token extends CI_Model
 		$r = $this->db->get($this->table)->result();
 		if (count($r)) {
 			$t = $r[0];
-			$this->db->where('id', $t->id);
-			$this->db->update($this->table, array(
-				'expiry_ts' => $expiry_ts
-			));
+			$this->renew($user_id, $t->auth_token);
 			return array('auth_token' => $t->auth_token, 
 			 						 'expiry_ts' => $expiry_ts);
 		}

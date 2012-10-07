@@ -44,6 +44,8 @@ class REST_Controller extends CI_Controller
 		if (!$this->auth_token->authenticate($user->id, $auth_token)) {
 			$this->error(403);
 		}
+		$this->auth_token->renew($user->id, $auth_token);
+
 		return $user;
 	}
 
