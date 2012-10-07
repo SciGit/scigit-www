@@ -19,8 +19,6 @@ class Home extends CI_Controller
 			$this->twig->display('index.twig', $data);
 		} else {
       $user_id = $this->tank_auth->get_user_id();
-			$data['user_id']	= $user_id;
-			$data['username']	= $this->tank_auth->get_username();
       $projects = $this->project->get_user_membership($user_id);
       $activities = array();
       $projects_has_at_least_one_change = false;
@@ -58,6 +56,8 @@ class Home extends CI_Controller
         'activities' => $activities,
         'projects' => $projects,
         'has_projects' => $has_projects,
+        'username' => $this->tank_auth->get_username(),
+        'user_id' => $user_id,
       );
 			$this->twig->display('home.twig', $data);
 		}
