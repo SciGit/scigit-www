@@ -15,15 +15,11 @@ class Projects extends CI_Controller
 	}
 
 	public function me() {
-		$projects = $this->project->get_user_membership(get_user_id());
-		$subscribed = array();
-		foreach ($this->project->get_user_membership(get_user_id()) as $proj) {
-			$subscribed[$proj->id] = true;
-		}
+    $user_id = get_user_id();
 		$data = array(
       'page' => get_class(),
-			'projects' => $projects,
-			'subscribed' => $subscribed,
+			'projects' => $this->project->get_user_accessible($user_id),
+			'subscriptions' => $this->project->get_user_membership($user_id),
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}

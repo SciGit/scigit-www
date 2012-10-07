@@ -96,10 +96,6 @@ class Project extends CI_Model
 				'can_write' => 1,
 				'can_admin' => 1,
 			));
-			$this->db->insert($this->proj_member_table, array(
-				'proj_id' => $data['id'],
-				'user_id' => $user_id,
-			));
 		} catch (Exception $e) {
 			$this->db->where('id', $data['id']);
 			$this->db->delete($this->proj_table);

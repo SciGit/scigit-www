@@ -18,28 +18,48 @@ My Projects
 	</h1>
 </div>
 
-<table class="table table-bordered">
-	{% for project in projects %}
-		<tr>
-			<td valign="middle">
-				{{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-				<div class="pull-right">
-				{% if subscribed[project.id] %}
-					<span class="btn-mini">
-						<i class="icon-star"></i>
-						Subscribed
-					</span>
-				{% endif %}
-				{% if project.can_admin %}
-					<a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
-						<i class="icon-wrench"></i>
-						Admin
-					</a>
-				{% endif %}
-				</div>
-			</td>
-		</tr>
-	{% endfor %}
-</table>
+{% if projects %}
+  <table class="table table-bordered">
+    {% for project in projects %}
+      <tr>
+        <td valign="middle">
+          {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+          <div class="pull-right">
+          {% if project.can_admin %}
+            <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
+              <i class="icon-wrench"></i>
+              Admin
+            </a>
+          {% endif %}
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+<p>You don't have access to any projects. {{ anchor("/projects/create", "Create") | raw }} one or join a project.
+{% endif %}
+
+<h1>Subscriptions</h1>
+<hr class="soften" />
+{% if subscriptions %}
+  <table class="table table-bordered">
+    {% for subscription in subscriptions %}
+      <tr>
+        <td valign="middle">
+          {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
+          <div class="pull-right">
+            <i class="icon-star"></i>
+            Subscribed
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+<p>You have no subscriptions. Visit the {{ anchor("/projects/explore", "Explore") | raw }} section for some suggestions!
+{% endif %}
+
+<div class="separator"></div>
 
 {% endblock %}
