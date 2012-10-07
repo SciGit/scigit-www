@@ -79,9 +79,11 @@ class Projects extends CI_Controller
 
 	public function admin($proj_id) {
 		check_project_admin($proj_id);
-		$msg = '';
+    $msg = '';
+    $success = false;
     $form_name = 'users';
 		if ($this->input->post('add_user')) {
+      $form_name = 'users';
 			$this->form_validation->set_rules('username', 'Username',
 				'required|callback_check_username');
 			$this->form_validation->set_rules('write', 'Write', 'trim');
@@ -93,17 +95,32 @@ class Projects extends CI_Controller
 				$admin = $this->input->post('admin') == '1';
 				if ($this->project->set_user_perms(
 							$user->id, $proj_id, $write, $admin)) {
-					$msg = 'Success!';
+					$msg = 'User added.';
+          $success = true;
 				} else {
 					$msg = 'Database error';
 				}
       } else {
         $msg = 'Must provide a valid username.';
       }
+    } else if ($this->input->post('settings')) {
+      $form_name = 'settings';
+      $this->form_validation->set_rules('description', 'Description',
+        'max_length[1024]|xss_clean');
+      if ($this->form_validation->run()) {
+        $this->project->set_public(
+          $proj_id, !$this->input->post('private'));
+        $this->project->set_description(
+          $proj_id, $this->input->post('description'));
+        $msg = 'Settings saved.';
+        $success = true;
+      } else {
+        $msg = 'Description is invalid.';
+      }
 		} else if ($this->input->post('delete')) {
 			$this->project->delete($proj_id);
 			redirect('projects/me');
-		}
+    }
 
 		$data = array(
       'page' => get_class(),
@@ -111,6 +128,7 @@ class Projects extends CI_Controller
 			'perms' => $this->project->get_perms($proj_id),
 			'message' => $msg,
       'form_name' => $form_name,
+      'success' => $success,
 		);
 		$this->twig->display('projects/admin.twig', $data);
 	}

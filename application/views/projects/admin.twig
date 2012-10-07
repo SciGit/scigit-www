@@ -73,7 +73,7 @@ set add_user_fields = [
 </ul>
 
 {% if message %}
-  <div class="alert alert-success">
+  <div class="alert {{ success ? 'alert-success' : 'alert-error' }}">
     <button type="button" class="close" data-dismiss="alert">×</button>
     {{ message }}
   </div>
