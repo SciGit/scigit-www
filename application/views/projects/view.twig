@@ -49,7 +49,7 @@
         </tr>
       </table>
       <p></p>
-      <p>Created <span class="date">{{ project.created_ts | date("d/m/Y") }}</span></p>
+      <p>Created <span class="date">{{ time_ago(project.created_ts) }}</span></p>
     </div>
     <div class="well blue-well">
       <h3>Description</h3>
@@ -93,8 +93,7 @@
             {{ anchor("/users/profile/#{change.user_id}", change.username) | raw}} changed
           </strong>
           <p class="pull-right">
-            {{ change.commit_ts | date("H:i") }},&nbsp;
-            <span class="date">{{ change.commit_ts | date("d/m/Y") }}</span>
+            <span class="date">{{ time_ago(change.commit_ts) }}</span>
           </p>
           <div class="activity-msg">
             {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}

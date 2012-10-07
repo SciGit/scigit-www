@@ -141,7 +141,12 @@ function time_ago($timestamp){
             return $difference." weeks ago";
           } else {
             $difference = round($difference / 4);
-            return $difference." months ago";
+            if ($difference < 12) {
+              return $difference." months ago";
+            } else {
+              $difference = round($difference / 12);
+              return $difference." years ago";
+            }
           }
         }
       }

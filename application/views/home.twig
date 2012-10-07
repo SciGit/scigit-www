@@ -56,7 +56,7 @@
               pushed to
               {{ anchor("/projects/changes/#{activity.proj_id}", activity.proj_name) | raw }}
             </strong>
-            <p class="date pull-right">{{ activity.commit_ts | date("d/m/Y") }}</p>
+            <p class="date pull-right">{{ time_ago(activity.commit_ts) }}</p>
             <div class="activity-msg">
               {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
             </div>
@@ -83,7 +83,7 @@
                 {% for change in project.my_changes %}
                   <li>
                     <div class="pull-right date p">
-                      {{ change.commit_ts | date("d/m/Y") }}
+                      {{ time_ago(change.commit_ts) }}
                     </div>
                     <div class="activity-msg">
                       {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
