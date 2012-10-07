@@ -117,3 +117,34 @@ function scigit_get_listing($proj_id, $commit_hash, $path) {
   }
   return $ret;
 }
+
+function time_ago($timestamp){
+  $difference = time() - $timestamp;
+
+  if($difference < 60)
+    return $difference." seconds ago";
+  else{
+    $difference = round($difference / 60);
+    if($difference < 60)
+      return $difference." minutes ago";
+    else{
+      $difference = round($difference / 60);
+      if($difference < 24)
+        return $difference." hours ago";
+      else{
+        $difference = round($difference / 24);
+        if($difference < 7)
+          return $difference." days ago";
+        else {
+          $difference = round($difference / 7);
+          if ($difference < 4) {
+            return $difference." weeks ago";
+          } else {
+            $difference = round($difference / 4);
+            return $difference." months ago";
+          }
+        }
+      }
+    }
+  }
+}
