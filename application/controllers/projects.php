@@ -54,6 +54,11 @@ class Projects extends CI_Controller
         // date instead.
         $project->latest_change = $project->created_ts;
       }
+
+      $max_len = 256;
+      if ($project->description && strlen($project->description) > $max_len) {
+        $project->description = substr($project->description, 0, $max_len) . " ...";
+      }
     }
 
     $data = array(

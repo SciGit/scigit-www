@@ -20,7 +20,7 @@
           <p>{{ project.member_count }} Subscribers</p>
           {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
           <p class="date pull-right">{{ time_ago(project.latest_change) }}</p>
-          <div class="project-description">{{ project.description }}</div>
+          <div class="project-description">{{ wordwrap(project.description, 50) }}</div>
           {% if not loop.last %}
             <hr class="soften" />
           {% endif %}

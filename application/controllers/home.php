@@ -14,8 +14,8 @@ class Home extends CI_Controller
 
 	function index()
 	{
-    $data['page'] = get_class();
 		if (!$this->tank_auth->is_logged_in()) {
+      $data['page'] = get_class();
 			$this->twig->display('index.twig', $data);
 		} else {
       $user_id = $this->tank_auth->get_user_id();
@@ -53,6 +53,7 @@ class Home extends CI_Controller
         $projects = array();
       }
       $data = array(
+        'page' => get_class(),
         'activities' => $activities,
         'projects' => $projects,
         'has_projects' => $has_projects,
