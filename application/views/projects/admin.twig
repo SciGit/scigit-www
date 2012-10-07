@@ -11,62 +11,83 @@
 	</h1>
 </div>
 
-<p>
-	<h3>User Permissions</h3>
-</p>
-<div class="row">
-<div class="span6">
-<table class="table table-bordered table-condensed">
-	<thead>
-		<tr>
-			<th>User</th>
-			<th width="1%"><i class="icon-edit"></i></th>
-			<th width="1%"><i class="icon-wrench"></i></th>
-		</tr>
-	<thead>
-	<tbody>
-		{% for perm in perms %}
-			<tr>
-				<td>{{ perm.username }}</td>
-				<td><i class="{{ perm.can_write ? 'icon-ok' : 'icon-remove' }}"></i></td>
-				<td><i class="{{ perm.can_admin ? 'icon-ok' : 'icon-remove' }}"></i></td>
-			</tr>
-		{% endfor %}
-	</tbody>
-</table>
-</div>
-</div>
+<ul class="nav nav-tabs">
+  <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
+  <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li{% if form_name == 'password' %} class="active"{% endif %}><a href="#password" data-toggle="tab">Password</a></li>
+</ul>
 
-<p>
-<h3>Add User</h3>
-</p>
+{% if message %}
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {{ message }}
+  </div>
+{% endif %}
 
-<div class="row">
-	<div class="span6">
-		<p>{{ message }}</p>
-		{{ form_open('', {class: 'well'}) | raw }}
-			{{ validation_errors() | raw }}
-			{{ form_label('Username', 'username') | raw }}
-			{{ form_input('username', set_value('username')) | raw }}
-			<br />
-			<label class="checkbox">
-				{{ form_checkbox('write', '1', set_checkbox('write', '1')) | raw }}
-				Write
-			</label>
-			<label class="checkbox">
-				{{ form_checkbox('admin', '1', set_checkbox('admin', '1')) | raw }}
-				Admin
-			</label>
-			<br />
-			{{ form_submit({class: 'btn btn-primary', name: 'add_user'}, 'Submit') | raw }}
-		{{ form_close() | raw }}
-	</div>
+<div id="my-tab-content" class="tab-content">
+  <div class="tab-pane fade in {% if form_name == 'settings' %}active{% endif %}" id="settings">
+    <p>
+      <h3>User Permissions</h3>
+    </p>
+    <div class="row">
+      <div class="span6">
+        <table class="table table-bordered table-condensed">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th width="20%"><i class="icon-edit"></i> Can edit</th>
+              <th width="20%"><i class="icon-wrench"></i> Can admin</th>
+            </tr>
+          <thead>
+          <tbody>
+            {% for perm in perms %}
+              <tr>
+                <td>{{ perm.username }}</td>
+                <td><i class="{{ perm.can_write ? 'icon-ok' : 'icon-remove' }}"></i></td>
+                <td><i class="{{ perm.can_admin ? 'icon-ok' : 'icon-remove' }}"></i></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade in {% if form_name == 'profile' %}active{% endif %}" id="profile">
+    <p>
+    <h3>Add User</h3>
+    </p>
+
+    <div class="row">
+      <div class="span6">
+        <p>{{ message }}</p>
+        {{ form_open('', {class: 'well'}) | raw }}
+          {{ validation_errors() | raw }}
+          {{ form_label('Username', 'username') | raw }}
+          {{ form_input('username', set_value('username')) | raw }}
+          <br />
+          <label class="checkbox">
+            {{ form_checkbox('write', '1', set_checkbox('write', '1')) | raw }}
+            Write
+          </label>
+          <label class="checkbox">
+            {{ form_checkbox('admin', '1', set_checkbox('admin', '1')) | raw }}
+            Admin
+          </label>
+          <br />
+          {{ form_submit({class: 'btn btn-primary', name: 'add_user'}, 'Submit') | raw }}
+        {{ form_close() | raw }}
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade in {% if form_name == 'password' %}active{% endif %}" id="password">
+    {{ form_open() | raw }}
+    <p>
+      {{ form_submit({class: 'btn btn-danger', name: 'delete'}, 'Delete Project') | raw }}
+    </p>
+    {{ form_close() | raw }}
+  </div>
 </div>
-
-{{ form_open() | raw }}
-<p>
-	{{ form_submit({class: 'btn btn-danger', name: 'delete'}, 'Delete Project') | raw }}
-</p>
-{{ form_close() | raw }}
 
 {% endblock %}
