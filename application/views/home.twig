@@ -98,8 +98,10 @@
           {% endif %}
         {% endfor %}
       </ul>
-    {% else %}
+    {% elseif has_projects %}
       <p>You have made no changes to any projects recently.</p>
+    {% else %}
+      <p>You have no projects. {{ anchor("/projects/create", "Create a Project") | raw }} to get started!</p>
     {% endif %}
   </div>
 </div>
