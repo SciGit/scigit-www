@@ -23,9 +23,10 @@ class Home extends CI_Controller
 			$data['username']	= $this->tank_auth->get_username();
       $projects = $this->project->get_user_membership($user_id);
       $activities = array();
+      $projects_has_at_least_one_change = false;
       foreach ($projects as $project) {
         // XXX: Merge these into one because we have no struct that can be sent
-        // to a view in this format. We should add a new struct that handles 
+        // to a view in this format. We should add a new struct that handles
         // this data format.
         $changes = $this->change->get_by_project($project->id);
         foreach ($changes as $change) {
@@ -38,9 +39,21 @@ class Home extends CI_Controller
         $num_changes = count($projects) > 1 ? 5 : 10;
         $project->my_changes =
           $this->change->get_by_project_latest($project->id, $user_id, $num_changes);
+
+        // XXX: This is really bad and should not be done in a controller.
+        // We check if there are any changes because we need to display your
+        // recent activity and, if there is none, show them a message inviting
+        // them to contribute. If we have social activity, we will be fooled
+        // into thinking that there are active projects and not show this message.
+        if (!!count($project->my_changes)) {
+          $projects_has_at_least_one_change = true;
+        }
       }
       $activities = array_slice($activities, 0, 10);
       $has_projects = !!count($this->project->get_user_accessible($user_id));
+      if (!$has_projects || !$projects_has_at_least_one_change) {
+        $projects = array();
+      }
       $data = array(
         'activities' => $activities,
         'projects' => $projects,
