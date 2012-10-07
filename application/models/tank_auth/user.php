@@ -87,6 +87,37 @@ class User extends CI_Model
 		return NULL;
 	}
 
+  function get_by_project_membership($proj_id, $count_only = false)
+  {
+		$this->db->select('*, proj_membership.*');
+    $this->db->where('proj_membership.proj_id', $proj_id);
+    $this->db->join('proj_membership', $this->table_name . '.id = proj_membership.user_id');
+    if ($count_only) {
+      // Can't optimize this, CI isn't smart enough.
+      $query = $this->db->get($this->table_name);
+      return $query->num_rows();
+    }
+    return $this->db->get($this->table_name)->result();
+  }
+
+  function get_by_project_accessible($proj_id, $admin_flag = false, $count_only = false)
+  {
+		$this->db->select('*, proj_permissions.*');
+    $this->db->where('proj_permissions.proj_id', $proj_id);
+    if ($admin_flag) {
+      $this->db->where('can_admin', 1);
+    } else {
+      $this->db->where('can_admin', 0);
+    }
+    $this->db->join('proj_permissions', $this->table_name . '.id = proj_permissions.user_id');
+    if ($count_only) {
+      // Can't optimize this, CI isn't smart enough.
+      $query = $this->db->get($this->table_name);
+      return $query->num_rows();
+    }
+    return $this->db->get($this->table_name)->result();
+  }
+
 	/**
 	 * Check if username available for registering
 	 *

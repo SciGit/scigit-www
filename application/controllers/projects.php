@@ -4,6 +4,7 @@ class Projects extends CI_Controller
 {
 	public function __construct() {
 		parent::__construct();
+    $this->load->model('tank_auth/user');
 		$this->load->model('project');
 		$this->load->model('change');
 		$this->load->library('form_validation');
@@ -32,10 +33,10 @@ class Projects extends CI_Controller
       'perms' => $this->project->get_perms($proj_id),
 			'admin' => $this->project->is_admin(get_user_id(), $proj_id),
 			'subscribed' => $this->project->is_member(get_user_id(), $proj_id),
-      'subscribers' => 0,
-      'changes_num' => 0,
-      'contributors' => 0,
-      'administrators' => 0,
+      'subscribers' => $this->user->get_by_project_membership($proj_id, true),
+      'changes_num' => $this->change->get_by_project($proj_id, 0, true),
+      'contributors' => $this->user->get_by_project_accessible($proj_id, false, true),
+      'administrators' => $this->user->get_by_project_accessible($proj_id, true, true),
     );
     $this->twig->display('projects/view.twig', $data);
   }
