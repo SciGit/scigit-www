@@ -80,6 +80,7 @@ class Projects extends CI_Controller
 	public function admin($proj_id) {
 		check_project_admin($proj_id);
 		$msg = '';
+    $form_name = 'users';
 		if ($this->input->post('add_user')) {
 			$this->form_validation->set_rules('username', 'Username',
 				'required|callback_check_username');
@@ -96,7 +97,9 @@ class Projects extends CI_Controller
 				} else {
 					$msg = 'Database error';
 				}
-			}
+      } else {
+        $msg = 'Must provide a valid username.';
+      }
 		} else if ($this->input->post('delete')) {
 			$this->project->delete($proj_id);
 			redirect('projects/me');
@@ -107,6 +110,7 @@ class Projects extends CI_Controller
 			'project' => $this->project->get($proj_id),
 			'perms' => $this->project->get_perms($proj_id),
 			'message' => $msg,
+      'form_name' => $form_name,
 		);
 		$this->twig->display('projects/admin.twig', $data);
 	}

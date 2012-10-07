@@ -4,6 +4,60 @@
 
 {% block content %}
 
+{%
+set settings_fields = [
+  {
+    'label' : 'Make project private',
+    'name' : 'private',
+    'id' : 'private',
+    'checked' : set_value('private', not project.public),
+    'value' : '1',
+    'type' : 'checkbox',
+  },
+	{
+    'label' : 'Description',
+		'name' : 'description',
+		'id' : 'description',
+		'value' : set_value('description', project.description),
+		'maxlength' : 1024,
+		'size' : 1024,
+    'class' : 'full-width-input',
+    'type' : 'textarea',
+	},
+]
+%}
+
+{%
+set add_user_fields = [
+  {
+    'label' : 'Username',
+    'name' : 'username',
+    'id' : 'username',
+    'value' : set_value('username'),
+    'maxlength' : '40',
+    'size' : '40',
+    'class' : 'full-width-input',
+    'type' : 'input',
+  },
+  {
+    'label' : 'Can edit',
+    'name' : 'write',
+    'id' : 'write',
+    'checked' : set_value('write'),
+    'value' : '1',
+    'type' : 'checkbox',
+  },
+  {
+    'label' : 'Can admin',
+    'name' : 'admin',
+    'id' : 'admin',
+    'checked' : set_value('admin'),
+    'value' : '1',
+    'type' : 'checkbox',
+  },
+]
+%}
+
 <div class="page-header">
 	<h1>
 		Project Admin
@@ -12,9 +66,10 @@
 </div>
 
 <ul class="nav nav-tabs">
+  <li{% if form_name == 'users' %} class="active"{% endif %}><a href="#users"
+  data-toggle="tab">Users</a></li>
   <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
-  <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
-  <li{% if form_name == 'password' %} class="active"{% endif %}><a href="#password" data-toggle="tab">Password</a></li>
+  <li{% if form_name == 'delete' %} class="active"{% endif %}><a href="#delete" data-toggle="tab">Delete</a></li>
 </ul>
 
 {% if message %}
@@ -25,12 +80,12 @@
 {% endif %}
 
 <div id="my-tab-content" class="tab-content">
-  <div class="tab-pane fade in {% if form_name == 'settings' %}active{% endif %}" id="settings">
+  <div class="tab-pane fade in {% if form_name == 'users' %}active{% endif %}" id="users">
     <p>
       <h3>User Permissions</h3>
     </p>
     <div class="row">
-      <div class="span6">
+      <div class="span8">
         <table class="table table-bordered table-condensed">
           <thead>
             <tr>
@@ -51,37 +106,34 @@
         </table>
       </div>
     </div>
-  </div>
 
-  <div class="tab-pane fade in {% if form_name == 'profile' %}active{% endif %}" id="profile">
     <p>
-    <h3>Add User</h3>
+      <h3>Add User</h3>
     </p>
 
     <div class="row">
-      <div class="span6">
-        <p>{{ message }}</p>
-        {{ form_open('', {class: 'well'}) | raw }}
-          {{ validation_errors() | raw }}
-          {{ form_label('Username', 'username') | raw }}
-          {{ form_input('username', set_value('username')) | raw }}
-          <br />
-          <label class="checkbox">
-            {{ form_checkbox('write', '1', set_checkbox('write', '1')) | raw }}
-            Write
-          </label>
-          <label class="checkbox">
-            {{ form_checkbox('admin', '1', set_checkbox('admin', '1')) | raw }}
-            Admin
-          </label>
-          <br />
-          {{ form_submit({class: 'btn btn-primary', name: 'add_user'}, 'Submit') | raw }}
-        {{ form_close() | raw }}
+      <div class="span8">
+        {% include 'forms/generic.twig'
+            with {'fields': add_user_fields,
+                  'form' : {class: 'well'},
+                  'columns': [2, 8, 2],
+                  'form_name': 'add_user'} %}
       </div>
     </div>
   </div>
 
-  <div class="tab-pane fade in {% if form_name == 'password' %}active{% endif %}" id="password">
+  <div class="tab-pane fade in {% if form_name == 'settings' %}active{% endif %}" id="settings">
+    {% include 'forms/generic.twig'
+        with {'fields': settings_fields,
+              'form' : {class: 'well'},
+              'columns': [2, 8, 2],
+              'form_name': 'settings'} %}
+  </div>
+
+  <div class="tab-pane fade in {% if form_name == 'delete' %}active{% endif %}" id="delete">
+    <p><h4>Delete this project. This cannot be undone.</h4></p>
+    <p>Be careful when doing this. All files, users and public records of
+    this project existing will be destroyed.</p>
     {{ form_open() | raw }}
     <p>
       {{ form_submit({class: 'btn btn-danger', name: 'delete'}, 'Delete Project') | raw }}

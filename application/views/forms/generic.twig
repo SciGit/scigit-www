@@ -16,7 +16,7 @@
             {% elseif field['type'] == 'textarea' %}
               {{ form_textarea(field) | raw }}
             {% elseif field['type'] == 'static' %}
-              <span class="date">{{ field['value'] }}</span>
+              <em>{{ field['value'] }}</em>
             {% elseif field['type'] == 'checkbox' %}
               {{ form_checkbox(field) | raw }}
             {% elseif field['type'] == 'password' %}
