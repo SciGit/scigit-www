@@ -43,6 +43,9 @@ class Projects extends CI_Controller
 
   public function explore($page = 0) {
     $projects_per_page = 25;
+    // XXX: SO BAD! In the future, we should stick these in a DB table so we
+    // don't have to code push every time they change.
+    $featured_project_ids = array(1, 2, 3, 4, 5);
     $projects = $this->project->get_by_popularity($projects_per_page, $page);
 
     foreach ($projects as $project) {
@@ -61,8 +64,14 @@ class Projects extends CI_Controller
       }
     }
 
+    $featured_projects = array();
+    foreach ($featured_project_ids as $featured_project_id) {
+      array_push($featured_projects, $this->project->get($featured_project_id));
+    }
+
     $data = array(
       'projects' => $projects,
+      'featured_projects' => $featured_projects,
     );
 
     $this->twig->display('projects/explore.twig', $data);
