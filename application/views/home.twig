@@ -47,52 +47,60 @@
   <div class="span6 well light-well">
     <h2>Social Activity</h2>
     <hr class="soften" />
-    <ul>
-      {% for activity in activities %}
-        <li class="activity-entry">
-          <strong>
-            {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
-            pushed to
-            {{ anchor("/projects/changes/#{activity.proj_id}", activity.proj_name) | raw }}
-          </strong>
-          <p class="date pull-right">{{ activity.commit_ts | date("d/m/Y") }}</p>
-          <div class="activity-msg">
-            {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
-          </div>
-          {% if not loop.last %}
-            <hr class="soften" />
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
+    {% if activities %}
+      <ul>
+        {% for activity in activities %}
+          <li class="activity-entry">
+            <strong>
+              {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
+              pushed to
+              {{ anchor("/projects/changes/#{activity.proj_id}", activity.proj_name) | raw }}
+            </strong>
+            <p class="date pull-right">{{ activity.commit_ts | date("d/m/Y") }}</p>
+            <div class="activity-msg">
+              {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
+            </div>
+            {% if not loop.last %}
+              <hr class="soften" />
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You have no recent activity in your social circle.</p>
+    {% endif %}
   </div>
   <div class="span6 well light-well">
     <h2>Your Activity</h2>
     <hr class="soften" />
-    <ul>
-      {% for project in projects %}
-        {% if project.my_changes %}
-          <li class="activity-entry">
-            {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
-            <ul class="unstyled">
-              {% for change in project.my_changes %}
-                <li>
-                  <div class="pull-right date p">
-                    {{ change.commit_ts | date("d/m/Y") }}
-                  </div>
-                  <div class="activity-msg">
-                    {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
-            {% if not loop.last and loop.next.my_changes %}
-              <hr class="soften" />
-            {% endif %}
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
+    {% if projects %}
+      <ul>
+        {% for project in projects %}
+          {% if project.my_changes %}
+            <li class="activity-entry">
+              {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+              <ul class="unstyled">
+                {% for change in project.my_changes %}
+                  <li>
+                    <div class="pull-right date p">
+                      {{ change.commit_ts | date("d/m/Y") }}
+                    </div>
+                    <div class="activity-msg">
+                      {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+              {% if not loop.last and loop.next.my_changes %}
+                <hr class="soften" />
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You have made no changes to any projects recently.</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
