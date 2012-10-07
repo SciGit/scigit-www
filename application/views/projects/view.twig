@@ -49,7 +49,7 @@
         </tr>
       </table>
       <p></p>
-      <p>Created <span class="date">{{ time_ago(project.created_ts) }}</span></p>
+      <p>Created <span class="date">{{ project.created_ts | date("F j, Y") }}</span></p>
     </div>
     <div class="well blue-well">
       <h3>Description</h3>
