@@ -54,7 +54,7 @@
             <strong>
               {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
               pushed to
-              {{ anchor("/projects/changes/#{activity.proj_id}", activity.proj_name) | raw }}
+              {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
             </strong>
             <p class="date pull-right">{{ time_ago(activity.commit_ts) }}</p>
             <div class="activity-msg">
@@ -78,7 +78,7 @@
         {% for project in projects %}
           {% if project.my_changes %}
             <li class="activity-entry">
-              {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
               <ul class="unstyled">
                 {% for change in project.my_changes %}
                   <li>
