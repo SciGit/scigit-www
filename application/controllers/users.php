@@ -51,8 +51,9 @@ class Users extends CI_Controller
   }
 
 	private function profile_me() {
-		$message = '';
+		$msg = '';
     $form_name = 'settings';
+    $success = false;
     $id = get_user_id();
 
     if ($this->input->post('profile')) {
@@ -79,8 +80,11 @@ class Users extends CI_Controller
           $id, 'email', $this->input->post('email'));
         $this->user->set_user_profile_field(
           $id, 'about', $this->input->post('about'));
-        $message = "Profile saved";
-			}
+        $msg = "Profile saved.";
+        $success = true;
+      } else {
+        $msg = "There were problems with your profile data.";
+      }
 		} else if ($this->input->post('settings')) {
       $form_name = 'settings';
       $user = $this->user->get_user_by_id($id, true);
@@ -92,7 +96,8 @@ class Users extends CI_Controller
           $id, 'private', intval(!!$this->input->post('private')));
         $this->user->set_user_profile_field(
           $id, 'disable_email', intval(!$this->input->post('email_updates')));
-        $message = "Settings saved";
+        $msg = "Settings saved.";
+        $success = true;
       }
     } else if ($this->input->post('password')) {
       $form_name = 'password';
@@ -102,7 +107,10 @@ class Users extends CI_Controller
       if ($this->form_validation->run()) {
         $this->tank_auth->change_password(
           $this->input->post('current_password'), $this->input->post('new_password'));
-        $message = "Password saved";
+        $msg = "Password saved.";
+        $success = true;
+      } else {
+        $msg = "There were problems with your passwords.";
       }
     }
 
@@ -110,8 +118,9 @@ class Users extends CI_Controller
 
 		$data = array(
 			'user' => $user,
-      'message' => $message,
+      'message' => $msg,
       'form_name' => $form_name,
+      'success' => $success,
 		);
 		$this->twig->display('users/me.twig', $data);
 	}
