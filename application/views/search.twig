@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+
+{% block title "Search" %}
+
+{% block content %}
+
+{% for result in results %}
+  {{ result.name }}
+{% endfor %}
+
+{% endblock %}

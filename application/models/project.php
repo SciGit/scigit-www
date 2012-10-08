@@ -57,6 +57,17 @@ class Project extends CI_Model
     return $this->db->query($query)->result();
   }
 
+  public function search_by_name_and_desc($search) {
+    $search = mysql_real_escape_string($search);
+    $query = "SELECT * FROM $this->proj_table
+              WHERE `name` LIKE '%$search%'
+              OR description LIKE '%$search%'
+              AND public = 1
+              ORDER BY
+              CASE WHEN instr(name, '$search') = 1 THEN 1 ELSE 0 END DESC";
+    return $this->db->query($query)->result();
+  }
+
 	public function get_user_perms($user_id, $proj_id) {
 		$this->db->where('user_id', $user_id);
 		$this->db->where('proj_id', $proj_id);
