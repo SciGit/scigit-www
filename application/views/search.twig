@@ -15,7 +15,7 @@
     <div class="well light-well">
       {{ anchor("/projects/view/#{result.id}", result.name) | raw }}
       <div class="pull-right date p">
-        Updated {{ time_ago(result.creation_ts) }}
+        Updated {{ time_ago(result.latest_change) }}
       </div>
       <hr class="soften" />
       <div class="activity-msg">
