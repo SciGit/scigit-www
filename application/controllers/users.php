@@ -8,7 +8,6 @@ class Users extends CI_Controller
     $this->load->model('change');
 		$this->load->model('public_key');
 		$this->load->library('form_validation');
-		check_login();
 	}
 
   public function profile($id = null) {
@@ -17,7 +16,7 @@ class Users extends CI_Controller
     } else {
       $user = $this->user->get_user_by_id($id, true);
 
-      if ($user->private) {
+      if ($user->private && $id != get_user_id()) {
         $data = array(
           'user' => $user,
         );
@@ -51,6 +50,7 @@ class Users extends CI_Controller
   }
 
 	private function profile_me() {
+		check_login();
 		$msg = '';
     $form_name = 'settings';
     $success = false;

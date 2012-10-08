@@ -8,7 +8,6 @@ class Projects extends CI_Controller
 		$this->load->model('project');
 		$this->load->model('change');
 		$this->load->library('form_validation');
-		check_login();
 	}
 
 	public function index() {
@@ -16,6 +15,7 @@ class Projects extends CI_Controller
 	}
 
 	public function me() {
+		check_login();
     $user_id = get_user_id();
 		$data = array(
       'page' => get_class(),
@@ -78,6 +78,7 @@ class Projects extends CI_Controller
   }
 
 	public function create() {
+		check_login();
 		$data = array('message' => '');
 		if ($this->input->post('create_project')) {
 			$this->form_validation->set_rules('name', 'name',
@@ -110,6 +111,7 @@ class Projects extends CI_Controller
 	}
 
 	public function admin($proj_id) {
+		check_login();
 		check_project_admin($proj_id);
     $msg = '';
     $success = false;
@@ -166,6 +168,7 @@ class Projects extends CI_Controller
 	}
 
 	public function subscribe($proj_id) {
+		check_login();
 		check_project_perms($proj_id);
 		$user_id = get_user_id();
 		$project = $this->project->get($proj_id);
