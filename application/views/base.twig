@@ -80,10 +80,12 @@ set search = {
             </div>
             {% endblock %}
             <div class="span3">
-              {% block my_account %}
+              {% if is_logged_in() %}
                 <a class="btn btn-danger pull-right navbutton" href="/auth/logout">Logout</a>
                 <a class="btn btn-primary pull-right navbutton" href="/users/profile">My Account</a>
-              {% endblock %}
+              {% else %}
+                <a class="btn btn-primary pull-right navbutton" href="/users/profile">Login</a>
+              {% endif %}
             </div>
           </div>
         </div>

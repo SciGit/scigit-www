@@ -23,6 +23,11 @@ function check_login() {
   }
 }
 
+function is_logged_in() {
+  $CI = &get_instance();
+  return $CI->tank_auth->is_logged_in(true);
+}
+
 function check_project_perms($proj_id) {
   $CI = &get_instance();
   $proj = $CI->project->get($proj_id);
