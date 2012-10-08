@@ -20,9 +20,12 @@ class Project extends CI_Model
 		return $r[0];
 	}
 
-	public function get_user_accessible($user_id, $count_only = false) {
+	public function get_user_accessible($user_id, $public_only = false, $count_only = false) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
+    if ($public_only) {
+      $this->db->where('public', 1);
+    }
 		$this->db->join($this->proj_table, 'proj_id = projects.id');
     if ($count_only) {
       return $this->db->count_all_results($this->proj_perms_table);
@@ -30,9 +33,12 @@ class Project extends CI_Model
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 
-	public function get_user_membership($user_id, $count_only = false) {
+	public function get_user_membership($user_id, $public_only = false, $count_only = false) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
+    if ($public_only) {
+      $this->db->where('public', 1);
+    }
 		$this->db->join($this->proj_table, 'proj_id = projects.id');
     if ($count_only) {
       return $this->db->count_all_results($this->proj_member_table);

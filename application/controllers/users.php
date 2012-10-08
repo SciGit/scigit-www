@@ -22,7 +22,7 @@ class Users extends CI_Controller
         );
         $this->twig->display('users/private.twig', $data);
       } else {
-        $projects = $this->project->get_user_membership($id);
+        $projects = $this->project->get_user_accessible($id, true);
         foreach ($projects as $project) {
           $latest_change = $this->change->get_by_project_latest($project->id, 0, 1);
           if ($latest_change && $latest_change[0]) {
