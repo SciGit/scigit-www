@@ -66,7 +66,8 @@
         {% endfor %}
       </ul>
     {% else %}
-      <p>You have no recent activity in your social circle.</p>
+      <p>You have no recent activity in your social circle. Visit the
+        {{ anchor("/projects/explore", "Explore") | raw }} section.</p>
     {% endif %}
   </div>
   <div class="span6 well light-well">
