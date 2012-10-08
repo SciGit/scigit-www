@@ -70,8 +70,8 @@ class Project extends CI_Model
               FROM $this->proj_member_table
               WHERE $this->proj_table.id = $this->proj_member_table.proj_id) AS member_count
               FROM $this->proj_table
-              WHERE `name` LIKE '%$search%'
-              OR description LIKE '%$search%'
+              WHERE (`name` LIKE '%$search%'
+              OR description LIKE '%$search%')
               AND public = 1
               ORDER BY
               CASE WHEN instr(name, '$search') = 1 THEN 1 ELSE 0 END,
