@@ -4,9 +4,11 @@ set search = {
   'label' : 'Search',
   'name' : 'search',
   'id' : 'search',
+  'class' : 'search-query',
   'value' : set_value('search'),
   'maxlength' : 80,
   'size' : 30,
+  'placeholder' : 'Search',
 }
 
 %}
@@ -62,8 +64,7 @@ set search = {
               <a class="scigit-brand brand" href="/">SciGit</a>
             </div>
             <div class="span4">
-              <h3 class="lbl-search pull-left">Search</h3>
-              {{ form_open('', {class: 'form-horizontal input-search'}) | raw }}
+              {{ form_open('', {class: 'navbar-search form-horizontal'}) | raw }}
                 {{ form_input(search) | raw }}
               {{ form_close() | raw }}
             </div>
