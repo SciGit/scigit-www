@@ -4,8 +4,27 @@
 
 {% block content %}
 
-{% for result in results %}
-  {{ result.name }}
-{% endfor %}
+<div class="page-header">
+	<h1>
+    Search Results
+	</h1>
+</div>
+
+{% if results %}
+  {% for result in results %}
+    <div class="well light-well">
+      {{ anchor("/projects/view/#{result.id}", result.name) | raw }}
+      <div class="pull-right date p">
+        Updated {{ time_ago(result.creation_ts) }}
+      </div>
+      <hr class="soften" />
+      <div class="activity-msg">
+        {{ result.description | raw }}
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No results. Try a different search query.</p>
+{% endif %}
 
 {% endblock %}
