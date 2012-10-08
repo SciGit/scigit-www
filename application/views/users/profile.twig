@@ -42,7 +42,7 @@
         <li class="project-entry">
           {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
           <p class="date pull-right">{{ time_ago(project.latest_change) }}</p>
-          <div class="project-description">{{ project.description }}</div>
+          <div class="project-description">{{ project.description | default("No description.") }}</div>
           {% if not loop.last %}
             <hr class="soften" />
           {% endif %}

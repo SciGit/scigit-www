@@ -38,6 +38,8 @@ class Users extends CI_Controller
         }
         $fulltitle = format_user_fulltitle($user);
 
+        usort($projects, "project_sort");
+
         $data = array(
           'user' => $user,
           'projects' => $projects,
@@ -152,4 +154,9 @@ class Users extends CI_Controller
 		}
 		return true;
 	}
+}
+
+function project_sort($a, $b)
+{
+  return $a->latest_change < $b->latest_change;
 }
