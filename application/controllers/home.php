@@ -52,6 +52,13 @@ class Home extends CI_Controller
       if (!$has_projects || !$projects_has_at_least_one_change) {
         $projects = array();
       }
+
+      // Sort everything by most recent timestamp. Because of the way we're
+      // smashing objects together without a clear structure to them, we have to
+      // sort them afterwards rather than using something that'll do this for us.
+      usort($activities, "activity_sort");
+      usort($projects, "project_sort");
+
       $data = array(
         'page' => get_class(),
         'activities' => $activities,
@@ -63,6 +70,18 @@ class Home extends CI_Controller
 			$this->twig->display('home.twig', $data);
 		}
 	}
+}
+
+function activity_sort($a, $b)
+{
+  return $a->commit_ts < $b->commit_ts;
+}
+
+function project_sort($a, $b)
+{
+  if (!$a->my_changes || !$a->my_changes[0]) return 1;
+  if (!$b->my_changes || !$b->my_changes[0]) return 0;
+  return $a->my_changes[0]->commit_ts < $b->my_changes[0]->commit_ts;
 }
 
 /* End of file welcome.php */
