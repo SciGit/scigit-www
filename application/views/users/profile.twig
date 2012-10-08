@@ -37,18 +37,22 @@
   <div class="span6 well light-well">
     <h3>Projects</h3>
     <hr class="soften" />
-    <ul>
-      {% for project in projects %}
-        <li class="project-entry">
-          {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-          <p class="date pull-right">{{ time_ago(project.latest_change) }}</p>
-          <div class="project-description">{{ project.description | default("No description.") }}</div>
-          {% if not loop.last %}
-            <hr class="soften" />
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
+    {% if projects %}
+      <ul>
+        {% for project in projects %}
+          <li class="project-entry">
+            {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+            <p class="date pull-right">{{ time_ago(project.latest_change) }}</p>
+            <div class="project-description">{{ project.description | default("No description.") }}</div>
+            {% if not loop.last %}
+              <hr class="soften" />
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No projects.</p>
+    {% endif %}
   </div>
   <div class="span6 well light-well">
     <h3>Recent Activity</h3>
@@ -56,6 +60,7 @@
     <ul>
       {% for project in projects %}
         {% if project.my_changes %}
+          {% set found_change = true %}
           <li class="activity-entry">
             {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
             <ul class="unstyled">
@@ -77,6 +82,9 @@
         {% endif %}
       {% endfor %}
     </ul>
+    {% if not found_change %}
+      <p>No recent activity.</p>
+    {% endif %}
   </div>
 </div>
 
