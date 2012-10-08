@@ -59,12 +59,17 @@ class Project extends CI_Model
 
   public function search_by_name_and_desc($search) {
     $search = mysql_real_escape_string($search);
-    $query = "SELECT * FROM $this->proj_table
+    $query = "SELECT *,
+              (SELECT COUNT(*)
+              FROM $this->proj_member_table
+              WHERE $this->proj_table.id = $this->proj_member_table.proj_id) AS member_count
+              FROM $this->proj_table
               WHERE `name` LIKE '%$search%'
               OR description LIKE '%$search%'
               AND public = 1
               ORDER BY
-              CASE WHEN instr(name, '$search') = 1 THEN 1 ELSE 0 END DESC";
+              CASE WHEN instr(name, '$search') = 1 THEN 1 ELSE 0 END,
+              member_count DESC";
     return $this->db->query($query)->result();
   }
 
