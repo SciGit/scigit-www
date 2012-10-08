@@ -19,7 +19,7 @@
       </div>
       <hr class="soften" />
       <div class="activity-msg">
-        {{ result.description | raw }}
+        {{ result.description | default("No description.") | raw }}
       </div>
     </div>
   {% endfor %}
