@@ -45,7 +45,7 @@ class Projects extends CI_Controller
     $projects_per_page = 25;
     // XXX: SO BAD! In the future, we should stick these in a DB table so we
     // don't have to code push every time they change.
-    $featured_project_ids = array(1, 2, 3, 4, 5);
+    $featured_project_ids = array();
     $projects = $this->project->get_by_popularity($projects_per_page, $page);
 
     foreach ($projects as $project) {
