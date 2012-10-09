@@ -33,17 +33,21 @@
     <h3>Featured Projects</h3>
     <hr class="soften" />
     <ul>
-      {# XXX: This should really be templated #}
-      {% for project in featured_projects %}
-        <li class="project-entry">
-          {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-          <p class="date pull-right">{{ time_ago(project.latest_change) }}</p>
-          <div class="project-description">{{ wordwrap(project.description, 50) }}</div>
-          {% if not loop.last %}
-            <hr class="soften" />
-          {% endif %}
-        </li>
-      {% endfor %}
+      {% if featured_projects %}
+        {# XXX: This should really be templated #}
+        {% for project in featured_projects %}
+          <li class="project-entry">
+            {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+            <p class="date pull-right">{{ time_ago(project.latest_change) }}</p>
+            <div class="project-description">{{ wordwrap(project.description, 50) }}</div>
+            {% if not loop.last %}
+              <hr class="soften" />
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% else %}
+        <p>There are currently no featured projects.</p>
+      {% endif %}
     </ul>
   </div>
 </div>
