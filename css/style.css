@@ -169,16 +169,8 @@ h3 {
 }
 
 .discover {
-  background: whitesmoke;
   text-align: center;
-  padding: 100px 0 80px 0;
-  background-image: -webkit-radial-gradient(center center, circle contain, rgba(255, 255, 255, 0.8) 100%, whitesmoke 100%);
-  background-color: white;
-  background-image: -moz-linear-gradient(#eeeeee, white);
-  background-image: -o-linear-gradient(#eeeeee, white);
-  background-image: -ms-linear-gradient(#eeeeee, white);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eeeeee), color-stop(1, white));
-  background-image: -webkit-linear-gradient(#eeeeee, white);
+  padding: 20px;
 }
 
 .discover .social {
@@ -221,6 +213,33 @@ footer .info {
   height: auto;
   width: auto;
   padding: 18px;
+}
+
+.price {
+  float: left;
+  position: relative;
+  top: -35px;
+  left: -35px;
+  background: rgb(0, 85, 204);
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 32px;
+  margin-right: -1000px;
+  color: white;
+}
+
+.free {
+  background: rgb(91, 183, 91);
+}
+
+.justify {
+  font-size: 14px;
+  font-weight: 200;
+  text-align: left;
+}
+
+.justify li {
+  margin: 10px 0;
 }
 
 .fulltitle {
