@@ -38,7 +38,19 @@ class Project extends CI_Model
 		return $this->db->get($this->proj_perms_table)->result();
 	}
 
-	public function get_user_membership($user_id, $public_only = false, $count_only = false) {
+	// Membership = union of subscribed and owned projects.
+	// It's assumed that nothing owned is in the membership table
+	public function get_user_membership($user_id) {
+		$projects = $this->get_user_subscriptions($user_id);
+		$this->db->where('owner_id', $user_id);
+		foreach ($this->db->get($this->proj_table)->result() as $proj) {
+			$projects[] = $proj;
+		}
+		return $projects;
+	}
+
+	// Subscribed = only in proj_membership table.
+	public function get_user_subscriptions($user_id, $public_only = false, $count_only = false) {
 		$this->db->select('*, projects.id as id');
 		$this->db->where('user_id', $user_id);
     if ($public_only) {

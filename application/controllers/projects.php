@@ -20,7 +20,7 @@ class Projects extends CI_Controller
 		$data = array(
       'page' => get_class(),
 			'projects' => $this->project->get_user_accessible($user_id),
-			'subscriptions' => $this->project->get_user_membership($user_id),
+			'subscriptions' => $this->project->get_user_subscriptions($user_id),
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}
