@@ -38,6 +38,7 @@ class Projects extends CI_Controller
       'contributors' => $this->user->get_by_project_accessible($proj_id, false, true),
       'administrators' => $this->user->get_by_project_accessible($proj_id, true, true),
     );
+    email_project_update($proj_id, 5, 17);
     $this->twig->display('projects/view.twig', $data);
   }
 
