@@ -16,4 +16,10 @@ git pull
 
 echo 'Migrating to newest DB'
 php index.php migrate
+
+if [ -d "../../scigit/" ]; then
+  echo 'Updating scripts'
+  cd ../../scigit/
+  git pull
+fi
 )
