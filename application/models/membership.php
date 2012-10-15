@@ -18,9 +18,8 @@ class Membership extends CI_Model
     if ($include_permissions) {
       $query = "(SELECT id, proj_id, user_id FROM proj_membership WHERE proj_id=$proj_id)
                 UNION
-                (SELECT id, proj_id, user_id FROM proj_permissions WHERE proj_id=$proj_id)
-                UNION
-                (SELECT 0 AS id, id AS proj_id, owner_id AS user_id FROM projects WHERE id=$proj_id)";
+                (SELECT id, proj_id, user_id FROM proj_permissions WHERE proj_id=$proj_id)";
+
       return $this->db->query($query)->result();
     }
 
