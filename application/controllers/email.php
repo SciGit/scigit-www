@@ -16,8 +16,12 @@ class Email extends CI_Controller
     foreach ($email_queue as $email) {
       $change = $this->change->get($email->change_id);
       $members = $this->membership->get_by_project($change->proj_id, true);
+      $sent = array();
       foreach ($members as $membership) {
         $user = $this->user->get_user_by_id($membership->user_id, true);
+        // XXX: won't need this once associations are done properly
+        if (isset($sent[$user->id])) continue;
+        $sent[$user->id] = true;
         if (!$user->disable_email) {
           email_project_update($change->id, $user);
         }
