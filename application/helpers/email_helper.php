@@ -1,13 +1,13 @@
 <?
 
-function email_project_update($proj_id, $user_id, $change_id) {
+function email_project_update($change_id, $to) {
   $CI = &get_instance();
-  $project = $CI->project->get($proj_id);
-  $user = $CI->user->get_user_by_id($user_id, true);
   $change = $CI->change->get($change_id);
+  $project = $CI->project->get($change->proj_id);
+  $user = $CI->user->get_user_by_id($change->user_id, true);
 
   $CI->postageapp->from('test@scigit.com');
-  $CI->postageapp->to('doug@sherk.me');
+  $CI->postageapp->to($to->email);
   $CI->postageapp->subject('Test!');
   $CI->postageapp->message('Test message');
 
