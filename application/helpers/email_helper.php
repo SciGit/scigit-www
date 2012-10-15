@@ -14,7 +14,7 @@ function email_project_update($change_id, $to) {
 
   $CI->postageapp->template('project_update');
   $CI->postageapp->variables(array(
-    'site' => 'http://scigit.com',
+    'site' => 'http://beta.scigit.com',
     'user_id' => $user->id,
     'user_name' => $user->username,
     'proj_id' => $project->id,
