@@ -66,6 +66,8 @@ $config['password_max_length'] = 20;
 | 'login_count_attempts' = Count failed login attempts.
 | 'login_max_attempts' = Number of failed login attempts before CAPTCHA will be shown.
 | 'login_attempt_expire' = Time to live for every attempt to login. Default is 24 hours (60*60*24).
+|
+| 'login_automatically_after_register' = Whether or not to log users in after they have registered
 |--------------------------------------------------------------------------
  */
 $config['login_by_username'] = TRUE;
@@ -75,6 +77,7 @@ $config['login_record_time'] = TRUE;
 $config['login_count_attempts'] = TRUE;
 $config['login_max_attempts'] = 5;
 $config['login_attempt_expire'] = 60*60; /* 1 hour */
+$config['login_automatically_after_register'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
