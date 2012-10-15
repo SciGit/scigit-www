@@ -20,7 +20,7 @@ class Email extends CI_Controller
       foreach ($members as $membership) {
         $user = $this->user->get_user_by_id($membership->user_id, true);
         if (!$user->disable_email) {
-          email_project_update($change->proj_id, $user);
+          email_project_update($change->id, $user);
         }
       }
     }
