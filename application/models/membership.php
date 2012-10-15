@@ -14,14 +14,17 @@ class Membership extends CI_Model
 
   // Synthetically includes users with permissions on this project if the
   // $include_permissions flag is set.
-  public function get_by_project($proj_id, $include_permissions = false, $count_only = false) {
-    $this->db->where("$this->member_table.proj_id", $proj_id);
+  public function get_by_project($proj_id, $include_permissions = false) {
     if ($include_permissions) {
-      $this->db->join($this->permissions_table, "$this->permissions_table.proj_id = $this->member_table.proj_id");
+      $query = "(SELECT id, proj_id, user_id FROM proj_membership WHERE proj_id=$proj_id)
+                UNION
+                (SELECT id, proj_id, user_id FROM proj_permissions WHERE proj_id=$proj_id)
+                UNION
+                (SELECT 0 AS id, id AS proj_id, owner_id AS user_id FROM projects WHERE id=$proj_id)";
+      return $this->db->query($query)->result();
     }
-    if ($count_only) {
-      return $this->db->count_all_results($this->member_table);
-    }
-    return $this->db->get($this->member_table)->result();
+
+    $this->db->where('proj_id', $proj_id);
+    return $this->db->get($member_table)->result();
   }
 }
