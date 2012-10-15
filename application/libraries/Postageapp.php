@@ -11,7 +11,7 @@ define('POSTAGEAPP_VERSION', '1.0.0');
  * @author Oleg Khabarov, The Working Group Inc.
  * @link http://postageapp.com
  */
-class PostageApp {
+class Postageapp {
   
   var $api_key            = '';
   var $secure             = TRUE;
@@ -26,7 +26,7 @@ class PostageApp {
    *
    * The constructor can be passed an array of config values
    */
-  function PostageApp($config = array()){
+  function Postageapp($config = array()){
     $this->initialize($config);
     log_message('debug', 'PostageApp Class Initialized');
   }
