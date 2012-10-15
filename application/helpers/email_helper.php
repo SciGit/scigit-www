@@ -23,4 +23,6 @@ function email_project_update($change_id, $to) {
     'commit_msg' => $change->commit_msg,
     'commit_ts' => date("H:i d/m/Y", $change->commit_ts)
   ));
+
+  $CI->postageapp->send();
 }
