@@ -23,6 +23,6 @@ class Email extends CI_Controller
         }
       }
     }
-    $this->email->clear();
+    $this->email_queue->clear();
   }
 }
