@@ -13,8 +13,13 @@ function email_project_update($proj_id, $user_id, $change_id) {
 
   $CI->postageapp->template('project_update');
   $CI->postageapp->variables(array(
-    'username' => $user->username,
-    'project' => $project->name,
+    //'site' => 'http://scigit.com',
+    'site' => 'http://localhost',
+    'user_id' => $user->id,
+    'user_name' => $user->username,
+    'proj_id' => $project->id,
+    'proj_name' => $project->name,
+    'commit_id' => $change->id,
     'commit_msg' => $change->commit_msg,
     'commit_ts' => date("H:i d/m/Y", $change->commit_ts)
   ));
