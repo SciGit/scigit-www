@@ -9,6 +9,6 @@ class Email_Queue extends CI_Model
   }
 
   public function clear() {
-    return $this->db->delete($email_table);
+    return $this->db->empty_table($this->email_table);
   }
 }
