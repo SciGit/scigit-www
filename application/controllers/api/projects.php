@@ -6,11 +6,12 @@ class Projects extends REST_Controller
 		parent::__construct();
 		$this->load->model('project');
 		$this->load->model('change');
+		$this->load->model('permission');
 	}
 
 	public function index_get() {
 		$user = $this->authenticate();
-		$projects = $this->project->get_user_membership($user->id);
+		$projects = $this->permission->get_user_membership($user->id);
 		foreach ($projects as &$proj) {
 			// Get the last commit hash for each project.
 			$hash = $this->change->get_last_commit_hash($proj->id);

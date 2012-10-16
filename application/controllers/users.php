@@ -7,6 +7,7 @@ class Users extends CI_Controller
     $this->load->model('project');
     $this->load->model('change');
 		$this->load->model('public_key');
+		$this->load->model('permission');
 		$this->load->library('form_validation');
 	}
 
@@ -22,7 +23,7 @@ class Users extends CI_Controller
         );
         $this->twig->display('users/private.twig', $data);
       } else {
-        $projects = $this->project->get_user_accessible($id, true);
+        $projects = $this->permission->get_user_accessible($id, true);
         foreach ($projects as $project) {
           $latest_change = $this->change->get_by_project_latest($project->id, 0, 1);
           if ($latest_change && $latest_change[0]) {

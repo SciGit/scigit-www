@@ -10,6 +10,7 @@ class Home extends CI_Controller
 		$this->load->library('tank_auth');
     $this->load->model('project');
     $this->load->model('change');
+    $this->load->model('permission');
 	}
 
 	function index()
@@ -19,7 +20,7 @@ class Home extends CI_Controller
 			$this->twig->display('index.twig', $data);
 		} else {
       $user_id = $this->tank_auth->get_user_id();
-      $projects = $this->project->get_user_membership($user_id);
+      $projects = $this->permission->get_user_membership($user_id);
       $activities = array();
       $projects_has_at_least_one_change = false;
       foreach ($projects as $project) {
@@ -48,7 +49,7 @@ class Home extends CI_Controller
         }
       }
       $activities = array_slice($activities, 0, 10);
-      $has_projects = !!count($this->project->get_user_accessible($user_id));
+      $has_projects = !!count($this->permission->get_user_accessible($user_id));
       if (!$has_projects || !$projects_has_at_least_one_change) {
         $projects = array();
       }

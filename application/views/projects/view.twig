@@ -67,7 +67,7 @@
         {% for perm in perms %}
           <li>
             {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
-            {% if perm.can_admin %}
+            {% if perm.permission b-and 8 %}
               <i class="icon-wrench"></i>
             {% else %}
               <i class="icon-edit"></i>

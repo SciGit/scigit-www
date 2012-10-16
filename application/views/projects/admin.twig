@@ -98,8 +98,8 @@ set add_user_fields = [
             {% for perm in perms %}
               <tr>
                 <td>{{ perm.username }}</td>
-                <td><i class="{{ perm.can_write ? 'icon-ok' : 'icon-remove' }}"></i></td>
-                <td><i class="{{ perm.can_admin ? 'icon-ok' : 'icon-remove' }}"></i></td>
+                <td><i class="{{ perm.permission b-and 4 ? 'icon-ok' : 'icon-remove' }}"></i></td>
+                <td><i class="{{ perm.permission b-and 8 ? 'icon-ok' : 'icon-remove' }}"></i></td>
               </tr>
             {% endfor %}
           </tbody>

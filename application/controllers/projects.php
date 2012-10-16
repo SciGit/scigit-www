@@ -7,6 +7,7 @@ class Projects extends CI_Controller
     $this->load->model('tank_auth/user');
 		$this->load->model('project');
 		$this->load->model('change');
+		$this->load->model('permission');
 		$this->load->library('form_validation');
 	}
 
@@ -19,8 +20,8 @@ class Projects extends CI_Controller
     $user_id = get_user_id();
 		$data = array(
       'page' => get_class(),
-			'projects' => $this->project->get_user_accessible($user_id),
-			'subscriptions' => $this->project->get_user_subscriptions($user_id),
+			'projects' => $this->permission->get_user_accessible($user_id),
+			'subscriptions' => $this->permission->get_user_subscriptions($user_id),
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}
@@ -30,9 +31,9 @@ class Projects extends CI_Controller
     $data = array(
       'project' => $this->project->get($proj_id),
       'changes' => $this->change->get_by_project_latest($proj_id, 0, 15),
-      'perms' => $this->project->get_perms($proj_id),
-			'admin' => $this->project->is_admin(get_user_id(), $proj_id),
-			'subscribed' => $this->project->is_member(get_user_id(), $proj_id),
+      'perms' => $this->user->get_by_project_accessible($proj_id, false),
+			'admin' => $this->permission->is_admin(get_user_id(), $proj_id),
+			'subscribed' => $this->permission->is_subscribed(get_user_id(), $proj_id),
       'subscribers' => $this->user->get_by_project_membership($proj_id, true),
       'changes_num' => $this->change->get_by_project($proj_id, 0, true),
       'contributors' => $this->user->get_by_project_accessible($proj_id, false, true),
@@ -104,8 +105,8 @@ class Projects extends CI_Controller
       'page' => get_class(),
 			'project' => $this->project->get($proj_id),
 			'changes' => $this->change->get_by_project($proj_id),
-			'admin' => $this->project->is_admin(get_user_id(), $proj_id),
-			'subscribed' => $this->project->is_member(get_user_id(), $proj_id),
+			'admin' => $this->permission->is_admin(get_user_id(), $proj_id),
+			'subscribed' => $this->permission->is_member(get_user_id(), $proj_id),
 		);
 		$this->twig->display('projects/changes.twig', $data);
 	}
@@ -159,7 +160,7 @@ class Projects extends CI_Controller
 		$data = array(
       'page' => get_class(),
 			'project' => $this->project->get($proj_id),
-			'perms' => $this->project->get_perms($proj_id),
+			'perms' => $this->user->get_by_project_accessible($proj_id, false),
 			'message' => $msg,
       'form_name' => $form_name,
       'success' => $success,
