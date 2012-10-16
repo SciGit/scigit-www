@@ -11,7 +11,7 @@
         <i class="icon-wrench icon-white"></i>
         Admin
       </a>
-    {% else %}
+    {% elseif not member %}
       {{ form_open("/projects/subscribe/#{project.id}") | raw }}
         {{ form_input({class: 'hidden', name: 'return_to', value: 'view'}) | raw }}
         {{ form_submit({class: subscribed ? 'btn btn-large btn-danger' : 'btn btn-large btn-success', name: 'subscribe'},

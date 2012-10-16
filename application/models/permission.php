@@ -106,7 +106,7 @@ class Permission extends CI_Model
   public function delete_permission($user_id, $proj_id) {
 		$this->db->where('user_id', $user_id);
 		$this->db->where('proj_id', $proj_id);
-		$this->db->delete($this->proj_member_table);
+		$this->db->delete($this->permission_table);
   }
 
 	public function set_user_perms($user_id, $proj_id, $permission) {
@@ -118,9 +118,9 @@ class Permission extends CI_Model
 		if ($this->get_by_user_on_project($user_id, $proj_id) !== null) {
 			$this->db->where('user_id', $user_id);
 			$this->db->where('proj_id', $proj_id);
-			$this->db->update($this->proj_perms_table, $data);
+			$this->db->update($this->permission_table, $data);
 		} else {
-			$this->db->insert($this->proj_perms_table, $data);
+			$this->db->insert($this->permission_table, $data);
 		}
 		return true;
 	}
