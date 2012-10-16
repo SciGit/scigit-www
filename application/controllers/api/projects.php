@@ -22,7 +22,7 @@ class Projects extends REST_Controller
 			}
 
 			// See if the user can write to it
-			$perm = $this->project->get_user_perms($user->id, $proj->id);
+			$perm = $this->permission->get_by_user_on_project($user->id, $proj->id);
 			$proj->can_write = ($perm !== null && $perm->can_write);
 		}
 		$this->response($projects);
@@ -34,7 +34,7 @@ class Projects extends REST_Controller
 		if (!$id) $this->error(400);
 
 		if ($project = $this->project->get($id)) {
-			if ($this->project->get_user_perms($user->id, $id)) {
+			if ($this->permission->get_by_user_on_project($user->id, $id)) {
 				$this->response($project);
 			} else {
 				$this->error(403);
