@@ -89,9 +89,9 @@ class User extends CI_Model
 
   function get_by_project_membership($proj_id, $count_only = false)
   {
-		$this->db->select('*, proj_membership.*');
-    $this->db->where('proj_membership.proj_id', $proj_id);
-    $this->db->join('proj_membership', $this->table_name . '.id = proj_membership.user_id');
+		$this->db->select('*, proj_permissions.*');
+    $this->db->where('proj_permissions.proj_id', $proj_id);
+    $this->db->join('proj_permissions', $this->table_name . '.id = proj_permissions.user_id');
     if ($count_only) {
       // Can't optimize this, CI isn't smart enough.
       $query = $this->db->get($this->table_name);
@@ -105,9 +105,9 @@ class User extends CI_Model
 		$this->db->select('*, proj_permissions.*');
     $this->db->where('proj_permissions.proj_id', $proj_id);
     if ($admin_flag) {
-      $this->db->where('can_admin', 1);
+      $this->db->where('permission &', 8 /* ADMIN only */);
     } else {
-      $this->db->where('can_admin', 0);
+      $this->db->where('permission &', 30 /* all but SUBSCRIBER */);
     }
     $this->db->join('proj_permissions', $this->table_name . '.id = proj_permissions.user_id');
     if ($count_only) {

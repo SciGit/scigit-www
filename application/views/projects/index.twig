@@ -25,7 +25,7 @@ My Projects
         <td valign="middle">
           {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
           <div class="pull-right">
-          {% if project.can_admin %}
+          {% if project.permission b-and 8 %}
             <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
               <i class="icon-wrench"></i>
               Admin

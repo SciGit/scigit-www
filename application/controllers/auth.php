@@ -23,6 +23,7 @@ class Auth extends CI_Controller
 		$this->load->library('security');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
+    $this->load->model('tank_auth/user');
 	}
 
 	function index()
@@ -166,6 +167,14 @@ class Auth extends CI_Controller
 
 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
+          if ($this->config->item('login_automatically_after_register', 'tank_auth')) {
+            $this->session->set_userdata(array(
+              'user_id'	=> $data['user_id'],
+              'username'	=> $data['username'],
+              'status'	=> ($email_activation) ? STATUS_NOT_ACTIVATED : STATUS_ACTIVATED,
+            ));
+          }
+
 					if ($email_activation) {									// send "activate" email
 						$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
@@ -173,7 +182,11 @@ class Auth extends CI_Controller
 
 						unset($data['password']); // Clear password (just for any case)
 
-						$this->_show_message($this->lang->line('auth_message_registration_completed_1'));
+            if ($this->config->item('login_automatically_after_register', 'tank_auth')) {
+              redirect();
+            } else {
+              $this->_show_message($this->lang->line('auth_message_registration_completed_1'));
+            }
 
 					} else {
 						if ($this->config->item('email_account_details', 'tank_auth')) {	// send "welcome" email
@@ -182,7 +195,11 @@ class Auth extends CI_Controller
 						}
 						unset($data['password']); // Clear password (just for any case)
 
-						$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
+            if ($this->config->item('login_automatically_after_register', 'tank_auth')) {
+              redirect();
+            } else {
+              $this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
+            }
 					}
 				} else {
 					$errors = $this->tank_auth->get_error_message();

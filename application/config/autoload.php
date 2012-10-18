@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('tank_auth', 'twig');
+$autoload['libraries'] = array('tank_auth', 'twig', 'postageapp');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('tank_auth', 'twig');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('scigit', 'url', 'form', 'text');
+$autoload['helper'] = array('scigit', 'url', 'form', 'text', 'email');
 
 
 /*
