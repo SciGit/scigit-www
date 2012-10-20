@@ -97,8 +97,12 @@ function scigit_get_type($proj_id, $commit_hash, $path) {
 function scigit_get_file($proj_id, $commit_hash, $path) {
   $dir = SCIGIT_REPO_DIR . '/r' . $proj_id;
   $escape_path = escapeshellarg($path);
-  exec("cd $dir; git show $commit_hash:$escape_path", $file);
-  return implode("\n", $file);
+	$handle = popen("cd $dir; git show $commit_hash:$escape_path", 'r');
+	$output = '';
+	while (!feof($handle)) {
+		$output .= fread($handle, 1024);
+	}
+	return $output;
 }
 
 function scigit_get_listing($proj_id, $commit_hash, $path) {

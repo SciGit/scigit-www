@@ -50,8 +50,15 @@
 	</table>
 {% else %}
 	<p>
-		File size: {{ strlen(file) }} bytes
+		File size: {{ strlen(file) }} bytes /
+		{{ anchor("/changes/raw/#{change.id}/#{urlencode(path)}", "View raw file") | raw }}
 	</p>
-	<pre>{{ file }}</pre>
+	{% if binary %}
+		<div class="well well-small">This is a binary file. Please
+		{{ anchor("/changes/raw/#{change.id}/#{urlencode(path)}/download", "download") | raw }}
+		the raw file.</div>
+	{% else %}
+		<pre>{{ file }}</pre>
+	{% endif %}
 {% endif %}
 {% endblock %}
