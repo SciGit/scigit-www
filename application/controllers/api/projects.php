@@ -11,8 +11,10 @@ class Projects extends REST_Controller
 
 	public function index_get() {
 		$user = $this->authenticate();
-		$projects = $this->permission->get_user_membership($user->id);
-		foreach ($projects as &$proj) {
+		$perms = $this->permission->get_user_membership($user->id);
+		$projects = array();
+		foreach ($perms as &$perm) {
+			$proj = $this->project->get($perm->proj_id);
 			// Get the last commit hash for each project.
 			$hash = $this->change->get_last_commit_hash($proj->id);
 			if ($hash === null) {
@@ -22,8 +24,9 @@ class Projects extends REST_Controller
 			}
 
 			// See if the user can write to it
-			$perm = $this->permission->get_by_user_on_project($user->id, $proj->id);
-			$proj->can_write = ($perm !== null && $perm->can_write);
+			$proj->can_write = !!($perm->permission &
+				(Permission::WRITE | Permission::ADMIN | Permission::OWNER));
+			$projects[] = $proj;
 		}
 		$this->response($projects);
 	}
