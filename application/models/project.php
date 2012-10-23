@@ -67,7 +67,7 @@ class Project extends CI_Model
 			$this->db->insert($this->proj_perms_table, array(
 				'proj_id' => $data['id'],
 				'user_id' => $user_id,
-        'permission' => 16,
+        'permission' => 30,
 			));
 		} catch (Exception $e) {
 			$this->db->where('id', $data['id']);
