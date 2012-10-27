@@ -66,20 +66,6 @@ set search = {
               <a class="scigit-brand brand" href="/">SciGit</a>
             </div>
             <div class="span10">
-              <div class='input-append'>
-                {{ form_open('/search', {class: 'navbar-search form-horizontal'}) | raw }}
-                  {{ form_input(search) | raw }}
-                  <button type="submit" class='btn add-on'>
-                      <i class="icon-search"></i>
-                  </button>
-                {{ form_close() | raw }}
-              </div>
-              {% block nav_items %}
-              <div class="navitems">
-                <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
-                <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
-              </div>
-              {% endblock %}
               <div class="dropdown">
                 <a id="drop1" class="dropdown-toggle" data-toggle="dropdown" href="#">
                   Eric Ho<b class="caret"></b>
@@ -89,6 +75,20 @@ set search = {
                   <li class="divider"></li>
                   <li><a tabindex="-1" href="#">Logout</a></li>
                 </ul>
+              </div>
+              {% block nav_items %}
+              <div class="navitems">
+                <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
+                <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
+              </div>
+              {% endblock %}
+              <div class='input-append'>
+                {{ form_open('/search', {class: 'navbar-search form-horizontal'}) | raw }}
+                  {{ form_input(search) | raw }}
+                  <button type="submit" class='btn add-on'>
+                      <i class="icon-search"></i>
+                  </button>
+                {{ form_close() | raw }}
               </div>
             </div>
           </div>
