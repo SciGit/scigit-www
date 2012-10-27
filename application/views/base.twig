@@ -88,13 +88,16 @@ set search = {
             </div>
             {% endblock %}
             <div class="span3">
-              {% if is_logged_in() %}
-                <a class="btn btn-danger pull-right navbutton" href="/auth/logout">Logout</a>
-                <a class="btn btn-primary pull-right navbutton" href="/users/profile">My Account</a>
-              {% else %}
-                <a class="btn btn-primary pull-right navbutton" href="/users/profile">Login</a>
-                <a class="btn btn-primary pull-right navbutton" href="/auth/register">Sign Up</a>
-              {% endif %}
+              <div class="dropdown">
+                <a id="drop1" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Eric Ho<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                  <li><a tabindex="-1" href="#">My Account</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="#">Logout</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
