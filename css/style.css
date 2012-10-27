@@ -61,6 +61,7 @@ h3 {
 
 .navitems {
   text-align: center;
+  float: left;
 }
 
 .navitems .navitem {
@@ -91,11 +92,11 @@ h3 {
   /** drs: override bootstrap's 'brand' tag */
   color: rgba(0, 0, 0, 0) !important;
   padding: 0 !important;
-  margin: 7px 60px 7px 2px !important;
+  margin: 8px 60px 7px 2px !important;
 
   background-image: url('../img/site-logo.png');
-  width: 85px;
-  height: 24px;
+  width: 113px;
+  height: 32px;
 }
 
 .title-btn {
@@ -316,6 +317,10 @@ form .required .inner-label:after {
   -webkit-border-radius: 14px;
      -moz-border-radius: 14px;
           border-radius: 14px;
+}
+
+.navbar-inner {
+  min-height: 50px;
 }
 
 .navbar-search {

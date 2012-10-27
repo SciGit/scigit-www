@@ -65,7 +65,7 @@ set search = {
             <div class="span2">
               <a class="scigit-brand brand" href="/">SciGit</a>
             </div>
-            <div class="span4">
+            <div class="span10">
               <div class='input-append'>
                 {{ form_open('/search', {class: 'navbar-search form-horizontal'}) | raw }}
                   {{ form_input(search) | raw }}
@@ -74,20 +74,12 @@ set search = {
                   </button>
                 {{ form_close() | raw }}
               </div>
-            </div>
-            {% block nav_items %}
-            <div class="span3">
-              <div class="row-fluid navitems">
-                <div class="span6">
-                  <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
-                </div>
-                <div class="span6">
-                  <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
-                </div>
+              {% block nav_items %}
+              <div class="navitems">
+                <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
+                <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
               </div>
-            </div>
-            {% endblock %}
-            <div class="span3">
+              {% endblock %}
               <div class="dropdown">
                 <a id="drop1" class="dropdown-toggle" data-toggle="dropdown" href="#">
                   Eric Ho<b class="caret"></b>
