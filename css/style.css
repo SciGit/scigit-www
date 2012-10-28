@@ -325,6 +325,11 @@ form .required .inner-label:after {
           border-radius: 14px;
 }
 
+.search-submit {
+  height: 37px;
+  width: 37px;
+}
+
 .navbar-inner {
   min-height: 50px;
 }

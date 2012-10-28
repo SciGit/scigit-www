@@ -14,6 +14,17 @@ set search = {
 
 %}
 
+{%
+
+set submit = {
+  'type' : 'image',
+  'src' : '../img/search.png',
+  'alt' : 'Search',
+  'class' : 'search-submit',
+}
+
+%}
+
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -85,9 +96,7 @@ set search = {
               <div class='input-append'>
                 {{ form_open('/search', {class: 'navbar-search form-horizontal'}) | raw }}
                   {{ form_input(search) | raw }}
-                  <button type="submit" class='btn add-on'>
-                      <i class="icon-search"></i>
-                  </button>
+                  {{ form_input(submit) | raw }}
                 {{ form_close() | raw }}
               </div>
             </div>
