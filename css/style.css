@@ -473,3 +473,9 @@ form .required .inner-label:after {
 .navbar-search .search::-webkit-input-placeholder {
   color: #cccccc;
 }
+
+.caret {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  border-top: 4px solid white;
+}
