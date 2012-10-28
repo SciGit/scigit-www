@@ -17,6 +17,10 @@ h3 {
   font-size: 150%;
 }
 
+.btn-primary {
+  background-color: rgb(64, 81, 118);
+}
+
 .light-well, .blue-well {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -64,7 +68,6 @@ h3 {
   width: 35px;
   margin: -4px 7px 0 0;
   border: 1px solid black;
-  background-image: url('../img/avatar.png');
 }
 
 .dropdown {
@@ -126,7 +129,7 @@ h3 {
   padding: 0 !important;
   margin: 8px 60px 7px 2px !important;
 
-  background-image: url('../img/site-logo.png');
+  background-image: url(/img/site-logo.png);
   width: 113px;
   height: 32px;
 }
@@ -182,15 +185,15 @@ h3 {
 }
 
 .features .collaborate {
-  background: url('../img/collaborate.png') no-repeat scroll 0% 0% transparent;
+  background: url('/img/collaborate.png') no-repeat scroll 0% 0% transparent;
 }
 
 .features .editors {
-  background: url('../img/editors.png') no-repeat scroll 0% 0% transparent;
+  background: url('/img/editors.png') no-repeat scroll 0% 0% transparent;
 }
 
 .features .secure {
-  background: url('../img/secure.png') no-repeat scroll 0% 0% transparent;
+  background: url('/img/secure.png') no-repeat scroll 0% 0% transparent;
 }
 
 .discover {
