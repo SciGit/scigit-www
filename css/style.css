@@ -255,18 +255,8 @@ h3 {
 
 footer {
   padding: 20px;
-  background: none repeat scroll 0% 0% rgb(240, 240, 240);
-  text-align: center;
+  text-align: right;
   color: #333;
-}
-
-footer h4 {
-  color: white;
-}
-
-footer .info {
-  margin: auto;
-  width: 40%;
 }
 
 .download {
@@ -386,6 +376,15 @@ footer .info {
 
 .breadcrumbs .divider {
   margin: 0 3px;
+}
+
+.company {
+  font-size: 16px;
+  color: rgb(160, 160, 160);
+}
+
+.company .divider {
+  margin: 0 20px;
 }
 
 form .required .inner-label:after {
