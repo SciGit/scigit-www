@@ -21,6 +21,10 @@ h3 {
   background-color: rgb(64, 81, 118);
 }
 
+.well-padding {
+  padding: 19px;
+}
+
 .light-well, .blue-well {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -328,6 +332,15 @@ footer .info {
 
 .full-width-input {
   width: 100%;
+}
+
+.breadcrumbs {
+  font-size: 16px;
+  color: rgb(160, 160, 160);
+}
+
+.breadcrumbs .divider {
+  margin: 0 3px;
 }
 
 form .required .inner-label:after {

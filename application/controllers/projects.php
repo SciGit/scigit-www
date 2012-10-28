@@ -190,6 +190,12 @@ class Projects extends CI_Controller
 		}
 	}
 
+  public function publish($proj_id) {
+    check_login();
+    check_project_perms($proj_id);
+    $this->twig->display('projects/publish.twig');
+  }
+
 	public function check_username($str) {
 		if ($this->user->get_user_by_login($str) === null) {
 			$this->form_validation->set_message('check_username',
