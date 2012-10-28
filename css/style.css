@@ -59,8 +59,32 @@ h3 {
   line-height: 0 !important;
 }
 
+.dropdown img.avatar {
+  height: 35px;
+  width: 35px;
+  margin: -4px 7px 0 0;
+  border: 1px solid black;
+  background-image: url('../img/avatar.png');
+}
+
 .dropdown {
+  margin: 10px 0 0 20px;
   float: right;
+  height: 100%;
+}
+
+.dropdown #label {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.dropdown #label .caret {
+  margin: 10px 0 0 5px;
+}
+
+.dropdown a.dropdown-toggle, a.dropdown-toggle:link, a.dropdown-toggle:visited, a.dropdown-toggle:active, a.dropdown-toggle:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .navitems {
