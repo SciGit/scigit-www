@@ -191,8 +191,8 @@ class Projects extends CI_Controller
 	}
 
   public function publish($proj_id) {
-    check_login();
-    check_project_perms($proj_id);
+    //check_login();
+    //check_project_perms($proj_id);
     $this->twig->display('projects/publish.twig');
   }
 
