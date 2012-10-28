@@ -17,6 +17,14 @@ h3 {
   font-size: 150%;
 }
 
+.center {
+  text-align: center;
+}
+
+.move-down {
+  margin-top: 15px;
+}
+
 .butn {
   display: inline-block;
   *display: inline;
