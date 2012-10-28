@@ -90,8 +90,11 @@ set submit = {
               </div>
               {% block nav_items %}
               <div class="navitems">
+                <span class="divider"></span>
                 <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
+                <span class="divider"></span>
                 <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
+                <span class="divider"></span>
               </div>
               {% endblock %}
               <div class='input-append'>
@@ -116,7 +119,7 @@ set submit = {
       <div class="container">
         <hr class="soften" />
         <p class="pull-left">
-          Copyright 2012, SciGit Inc.
+          Copyright © 2012, SciGit Inc.
         </p>
         <p class="company pull-right">
           <a href="#">Home</a> <span class="divider">|</span>

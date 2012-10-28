@@ -69,6 +69,10 @@ h3 {
   padding: 5px 19px 19px 19px;
 }
 
+.well-extra-padding {
+  padding: 40px;
+}
+
 .light-well, .blue-well {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -119,7 +123,7 @@ h3 {
 }
 
 .dropdown {
-  margin: 10px 0 0 20px;
+  margin: 10px 0 0 0;
   float: right;
   height: 100%;
 }
@@ -158,6 +162,12 @@ h3 {
 .navitems .navitem:hover {
   text-decoration: none;
   background-color: rgb(64, 81, 108);
+}
+
+.navitems .divider {
+  border-left: 1px solid rgb(92, 111, 146);
+  height: 50px;
+  width: 0;
 }
 
 .date {
