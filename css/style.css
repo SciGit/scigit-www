@@ -146,6 +146,7 @@ h3 {
   text-align: center;
   float: right;
   margin: 0 50px;
+  width: 250px;
 }
 
 .navitems .navitem {
@@ -165,9 +166,7 @@ h3 {
 }
 
 .navitems .divider {
-  border-left: 1px solid rgb(92, 111, 146);
-  height: 50px;
-  width: 0;
+  border-left: 2px solid rgb(92, 111, 146);
 }
 
 .date {
