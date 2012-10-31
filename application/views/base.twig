@@ -81,12 +81,12 @@ set submit = {
               <div class="dropdown">
                 <img src="/img/avatar.png" class="avatar" />
                 <a id="label" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Eric Ho<b class="caret"></b>
+                {{ get_user_username() }}<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="label">
-                  <li><a tabindex="-1" href="#">My Account</a></li>
+                  <li><a tabindex="-1" href="/users/profile">My Account</a></li>
                   <li class="divider"></li>
-                  <li><a tabindex="-1" href="#">Logout</a></li>
+                  <li><a tabindex="-1" href="/auth/logout">Logout</a></li>
                 </ul>
               </div>
               {% endif %}

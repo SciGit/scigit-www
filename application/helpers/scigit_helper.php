@@ -28,6 +28,20 @@ function is_logged_in() {
   return $CI->tank_auth->is_logged_in(true);
 }
 
+function get_user_username() {
+  $CI = &get_instance();
+  $user_id = $CI->tank_auth->get_user_id();
+  $user = $CI->user->get_user_by_id($user_id, true);
+  return $user->username;
+}
+
+function get_user_fullname() {
+  $CI = &get_instance();
+  $user_id = $CI->tank_auth->get_user_id();
+  $user = $CI->user->get_user_by_id($user_id, true);
+  return $user->fullname;
+}
+
 function check_project_perms($proj_id) {
   $CI = &get_instance();
   $proj = $CI->project->get($proj_id);
