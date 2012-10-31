@@ -77,6 +77,7 @@ set submit = {
               <a class="scigit-brand brand" href="/">SciGit</a>
             </div>
             <div class="span10">
+              {% if is_logged_in() %}
               <div class="dropdown">
                 <img src="/img/avatar.png" class="avatar" />
                 <a id="label" class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -88,13 +89,16 @@ set submit = {
                   <li><a tabindex="-1" href="#">Logout</a></li>
                 </ul>
               </div>
+              {% endif %}
               {% block nav_items %}
               <div class="navitems">
                 <span class="divider"></span>
                 <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
                 <span class="divider"></span>
                 <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
+                {% if is_logged_in() %}
                 <span class="divider"></span>
+                {% endif %}
               </div>
               {% endblock %}
               <div class='input-append'>
