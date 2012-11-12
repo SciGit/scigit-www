@@ -105,6 +105,35 @@ h3 {
   margin: 20px 0;
 }
 
+.slogan {
+  font-size: 55px;
+  line-height: 75px;
+  font-weight: 200;
+  text-align: center;
+  color: rgb(80, 80, 80);
+}
+
+.slogan .easy {
+  color: rgb(74, 91, 118);
+}
+
+.sub-slogan {
+  font-size: 27px;
+  line-height: 40px;
+  font-weight: 200;
+  text-align: center;
+  color: rgb(120, 120, 120);
+}
+
+.front {
+  width: 100%;
+  text-align: center;
+}
+
+.front img {
+  margin: 50px auto;
+}
+
 .navbutton {
 
 }
@@ -440,6 +469,7 @@ form .required .inner-label:after {
 }
 
 .search {
+  margin-top: 2px;
   padding-right: 14px;
   padding-right: 4px \9;
   padding-left: 14px;
