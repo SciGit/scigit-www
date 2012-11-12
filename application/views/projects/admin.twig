@@ -59,15 +59,17 @@ set add_user_fields = [
 %}
 
 <div class="page-header">
-	<h1>
-		Project Admin
-		<small>{{ project.name }}</small>
-	</h1>
+	<h2>
+    <p class="breadcrumbs">
+      {{ anchor("/projects", "Projects") | raw }} <span class="divider">&gt;</span>
+      <span class="current">{{ project.name }}</span> <span class="divider">&gt;</span>
+      <span class="current">Admin</span>
+    </p>
+	</h2>
 </div>
 
 <ul class="nav nav-tabs">
-  <li{% if form_name == 'users' %} class="active"{% endif %}><a href="#users"
-  data-toggle="tab">Users</a></li>
+  <li{% if form_name == 'users' %} class="active"{% endif %}><a href="#users" data-toggle="tab">Users</a></li>
   <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
   <li{% if form_name == 'delete' %} class="active"{% endif %}><a href="#delete" data-toggle="tab">Delete</a></li>
 </ul>

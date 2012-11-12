@@ -137,6 +137,10 @@ h3 {
   height: 100%;
 }
 
+.username {
+  line-height: 24px;
+}
+
 .dropdown #label {
   font-size: 20px;
   font-weight: 100;
@@ -404,10 +408,15 @@ footer {
   margin-top: 15px;
   font-size: 16px;
   color: rgb(160, 160, 160);
+  margin-bottom: 0;
 }
 
 .breadcrumbs .divider {
   margin: 0 3px;
+}
+
+.breadcrumbs .current {
+  color: black;
 }
 
 .company {
@@ -444,8 +453,8 @@ form .required .inner-label:after {
 }
 
 .search-submit {
-  height: 34px;
-  width: 34px;
+  height: 28px;
+  width: 28px;
   z-index: 9999;
 }
 

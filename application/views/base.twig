@@ -79,8 +79,7 @@ set submit = {
             <div class="span10">
               {% if is_logged_in() %}
               <div class="dropdown">
-                <img src="/img/avatar.png" class="avatar" />
-                <a id="label" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <a id="label" class="dropdown-toggle username" data-toggle="dropdown" href="#">
                 {{ get_user_username() }}<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="label">

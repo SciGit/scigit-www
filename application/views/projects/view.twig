@@ -6,7 +6,7 @@
 
 <div class="page-header">
   <div class="pull-right">
-    {% if admin or true %}
+    {% if admin %}
       <a class="butn butn-large butn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
         <i class="icon-wrench icon-white"></i>
         Admin
@@ -19,9 +19,13 @@
       {{ form_close() | raw }}
     {% endif %}
   </div>
-	<h1>
-		{{ project.name }}
-	</h1>
+	<h2>
+    <p class="breadcrumbs">
+      {{ anchor("/projects", "Projects") | raw }} <span class="divider">&gt;</span>
+      <span class="current">{{ project.name }}</span> <span class="divider">&gt;</span>
+      <span class="current">View</span>
+    </p>
+	</h2>
 </div>
 
 <div class="row-fluid">
