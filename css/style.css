@@ -101,6 +101,11 @@ h3 {
   margin-left: 0;
 }
 
+.features p.small {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
 .content {
   margin: 20px 0;
 }
