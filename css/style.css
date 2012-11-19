@@ -138,35 +138,27 @@ h3 {
   color: rgb(120, 120, 120);
 }
 
-.front {
-  width: 100%;
+.sign-up {
   text-align: center;
-}
-
-.front .sign-up {
   width: 400px;
   height: 65px;
   margin: 20px auto 25px auto;
-  background-color: rgb(74, 91, 118);
+  background-color: #f18500;
   color: white;
   font-size: 30px;
   line-height: 65px;
   text-align: center;
 }
 
-.front .sign-up a,
-.front .sign-up a:active,
-.front .sign-up a:hover {
+.sign-up a,
+.sign-up a:active,
+.sign-up a:hover {
   text-decoration: none;
   color: white;
   font-weight: 200;
   display: block;
   height: 100%;
   width: 100%;
-}
-
-.front img {
-  margin: 40px auto;
 }
 
 .navbutton {
