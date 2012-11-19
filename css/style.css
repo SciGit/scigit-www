@@ -115,7 +115,7 @@ h3 {
 }
 
 .content {
-  margin: 20px 0;
+  margin: 40px 0;
 }
 
 .slogan {
@@ -140,13 +140,13 @@ h3 {
 
 .sign-up {
   text-align: center;
-  width: 400px;
-  height: 65px;
+  width: 300px;
+  height: 60px;
   margin: 20px auto 25px auto;
-  background-color: #f18500;
+  background-color: #f7ad18;
   color: white;
   font-size: 30px;
-  line-height: 65px;
+  line-height: 60px;
   text-align: center;
 }
 
@@ -317,42 +317,38 @@ h3 {
   font-weight: 500;
 }
 
+.universities {
+  width: 100%;
+  text-align: center;
+  margin: 60px 0 60px 0;
+}
+
+.universities p {
+  font-size: 27px;
+  line-height: 40px;
+  margin-bottom: 20px;
+  font-weight: 200;
+  text-align: center;
+  color: rgb(120, 120, 120);
+}
+
+.universities img {
+  margin: auto;
+}
+
 .features {
 
 }
 
 .features i {
   float: left;
-  margin: 6px 12px 150px 0;
+  margin: 6px 12px 0 0;
   font-size: 30px;
 }
 
 .features p {
   font-size: 18px;
   line-height: 26px;
-}
-
-.last {
-  border-left: 1px solid rgb(200, 200, 200);
-  padding-left: 45px;
-}
-
-.features .testimonials {
-  font-size: 13px;
-}
-
-.features .testimonials li {
-  margin: 10px;
-}
-
-.features .testimonials li:nth-child(odd) {
-  color: rgb(80, 80, 80);
-  font-size: 15px;
-}
-
-.features .testimonials li:nth-child(even) {
-  text-align: right;
-  font-style: italic;
 }
 
 .discover {
@@ -371,7 +367,6 @@ footer {
 }
 
 .download {
-  /** drs: override hero-unit */
   padding: 20px;
   position: relative;
 }
