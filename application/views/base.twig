@@ -88,6 +88,10 @@ set submit = {
                   <li><a tabindex="-1" href="/auth/logout">Logout</a></li>
                 </ul>
               </div>
+              {% else %}
+              <div class="login">
+                <a href="/auth/login">Login</a>
+              </div>
               {% endif %}
               {% block nav_items %}
               <div class="navitems">
@@ -95,9 +99,7 @@ set submit = {
                 <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
                 <span class="divider"></span>
                 <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
-                {% if is_logged_in() %}
                 <span class="divider"></span>
-                {% endif %}
               </div>
               {% endblock %}
               <div class='input-append'>
