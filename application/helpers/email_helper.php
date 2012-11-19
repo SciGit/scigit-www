@@ -26,3 +26,7 @@ function email_project_update($change_id, $to) {
 
   $CI->postageapp->send();
 }
+
+function email_activate_account($user_id, $link) {
+
+}

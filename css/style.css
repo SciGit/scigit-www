@@ -168,6 +168,17 @@ h3 {
   width: 100%;
 }
 
+.sign-up-progress {
+  width: 500px;
+  margin: 40px auto;
+}
+
+.sign-up-progress p {
+  text-align: center;
+  font-size: 150%;
+  color: rgb(120, 120, 120);
+}
+
 .navbutton {
 
 }
