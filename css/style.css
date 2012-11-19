@@ -212,50 +212,41 @@ h3 {
   color: white;
 }
 
-.login {
-  text-align: center;
-  float: right;
-  margin-left: 10px;
-}
-
-.login a {
-  color: white;
-  height: 50px;
-  line-height: 45px;
-  font-size: 150%;
-  padding: 10px 15px !important;
-  text-decoration: none;
-  font-weight: 300;
-}
-
-.login a:hover {
-  text-decoration: none;
-  background-color: rgb(64, 81, 108);
+.navigation {
+  min-width: 800px;
 }
 
 .navitems {
   text-align: center;
   float: right;
-}
-
-.navitems .navitem {
-  color: white;
-  height: 50px;
-  line-height: 45px;
-  font-size: 150%;
-  margin: 0 10px;
-  padding: 10px 15px !important;
-  text-decoration: none;
-  font-weight: 200;
-}
-
-.navitems .navitem:hover {
-  text-decoration: none;
-  background-color: rgb(64, 81, 108);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navitems .divider {
   border-left: 2px solid rgb(92, 111, 146);
+}
+
+.navitems li {
+  display: table-cell;
+}
+
+.navitems li a {
+  display: block;
+  color: white;
+  height: 50px;
+  line-height: 47px;
+  font-size: 150%;
+  margin: 0 10px;
+  padding: 0 15px !important;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.navitems li a:hover {
+  text-decoration: none;
+  background-color: rgb(64, 81, 108);
 }
 
 .date {
