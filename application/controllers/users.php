@@ -16,6 +16,10 @@ class Users extends CI_Controller
       $this->profile_me();
     } else {
       $user = $this->user->get_user_by_id($id, true);
+      if (!$user) {
+        $this->twig->display('users/profile-null.twig', null);
+        return;
+      }
 
       if ($user->private && $id != get_user_id()) {
         $data = array(
