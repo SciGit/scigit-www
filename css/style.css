@@ -8,13 +8,19 @@ p, .p {
   font-weight: 200;
 }
 
+h1 {
+  color: rgb(74, 91, 118);
+  font-weight: 500;
+}
+
 h2 {
-  font-weight: normal;
-  font-size: 250%;
+  color: rgb(74, 91, 118);
+  font-weight: 500;
 }
 
 h3 {
   font-size: 150%;
+  color: rgb(74, 91, 118);
 }
 
 .center {
