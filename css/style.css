@@ -232,6 +232,7 @@ h3 {
 .navitems .divider .inner {
   display: inline-block;
   height: 25px;
+  margin-top: 7px;
   border-left: 2px solid rgb(92, 111, 146);
 }
 
@@ -242,7 +243,6 @@ h3 {
 .navitems li a {
   display: block;
   color: white;
-  height: 50px;
   line-height: 45px;
   font-size: 150%;
   margin: 0 10px;
