@@ -87,6 +87,15 @@ class Project extends CI_Model
     return true;
   }
 
+  public function set_public($proj_id, $public) {
+    $data = array(
+      'public' => $public,
+    );
+    $this->db->where('id', $proj_id);
+    $this->db->update($this->proj_table, $data);
+    return true;
+  }
+
 	public function delete($proj_id) {
 		$this->db->where('id', $proj_id);
 		$this->db->delete($this->proj_table);
