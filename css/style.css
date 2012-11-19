@@ -189,7 +189,7 @@ h3 {
 }
 
 .dropdown {
-  margin: 10px 0 0 0;
+  margin: 11px 0 0 22px;
   float: right;
   height: 100%;
 }
@@ -215,6 +215,7 @@ h3 {
 .login {
   text-align: center;
   float: right;
+  margin-left: 10px;
 }
 
 .login a {
@@ -235,7 +236,6 @@ h3 {
 .navitems {
   text-align: center;
   float: right;
-  width: 260px;
 }
 
 .navitems .navitem {
@@ -536,7 +536,7 @@ form .required .inner-label:after {
 
 .navbar-search {
   float: right;
-  margin: 7px 25px 0 0;
+  margin: 7px 35px 0 0;
 }
 
 .navbar-search .search {

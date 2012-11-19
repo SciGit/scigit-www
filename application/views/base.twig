@@ -97,8 +97,10 @@ set submit = {
                 <span class="divider"></span>
                 <a class="navitem{% if page == 'Explore' %} current{% endif %}" href="/projects/explore">Explore</a>
                 <span class="divider"></span>
+                {% if is_logged_in() %}
                 <a class="navitem{% if page == 'Projects' %} current{% endif %}" href="/projects/me">Projects</a>
                 <span class="divider"></span>
+                {% endif %}
               </div>
               {% endblock %}
               <div class='input-append'>
