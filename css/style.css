@@ -286,8 +286,11 @@ h3 {
 .date {
   padding-left: 20px;
   padding-bottom: 7px;
-  margin-top: 15px;
   font-style: italic;
+}
+
+.date-margin {
+  margin-top: 15px;
 }
 
 .nav .current {

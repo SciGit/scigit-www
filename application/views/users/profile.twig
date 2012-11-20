@@ -4,14 +4,13 @@
 
 {% block content %}
 
-<h2>
-  <p class="breadcrumbs">
-    {{ anchor("/users", "Profiles") | raw }} <span class="divider">&gt;</span>
-    <span class="current">{{ user.username }}</span> <span class="divider">&gt;</span>
-    <span class="current">View</span>
-  </p>
-</h2>
-<div class="separator"></div>
+<p class="breadcrumbs">
+  {{ anchor("/users", "Profiles") | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ user.username }}</span> <span class="divider">&gt;</span>
+  <span class="current">View</span>
+</p>
+
+<br />
 
 <div class="well blue-well">
 <div class="page-header">
@@ -39,8 +38,6 @@
   </div>
 </div>
 </div>
-
-<div class="separator"></div>
 
 <div class="row-fluid">
   <div class="span6 well light-well">
