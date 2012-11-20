@@ -170,14 +170,14 @@ set password_fields = [
     {% include 'forms/generic.twig'
         with {'fields': settings_fields,
               'form' : {class: 'well'},
-              'columns': [2, 10],
+              'columns': [3, 9],
               'form_name': 'settings'} %}
   </div>
   <div class="tab-pane fade in {% if form_name == 'profile' %}active{% endif %}" id="profile">
     {% include 'forms/generic.twig'
       with {'fields': profile_fields,
             'form': {class: 'well'},
-            'columns': [1, 8],
+            'columns': [2, 8],
             'form_name': 'profile'} %}
   </div>
   <div class="tab-pane fade in {% if form_name == 'password' %}active{% endif %}" id="password">
