@@ -123,7 +123,11 @@ class Auth extends CI_Controller
 
   function registered()
   {
-		$this->twig->display('auth/registered_form.twig', null);
+    if (is_windows()) {
+      $this->twig->display('auth/registered_form.twig', null);
+    } else {
+      $this->twig->display('auth/registered_not_supported_form.twig', null);
+    }
   }
 
 	/**
