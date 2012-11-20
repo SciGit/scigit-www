@@ -60,12 +60,14 @@ class Home extends CI_Controller
       usort($activities, "activity_sort");
       usort($projects, "project_sort");
 
+      $user = $this->user->get_user_by_id($user_id, true);
       $data = array(
         'page' => get_class(),
         'activities' => $activities,
         'projects' => $projects,
         'has_projects' => $has_projects,
-        'username' => $this->tank_auth->get_username(),
+        'activated' => $user->activated,
+        'username' => $user->username,
         'user_id' => $user_id,
       );
 			$this->twig->display('home.twig', $data);

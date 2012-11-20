@@ -12,6 +12,12 @@
   });
 </script>
 
+{% if not activated %}
+<div class="alert alert-error">
+  Your email has not been verified; certain features will not be available until you do so. Please check your email for a verification link, or <a href="/auth/send_again">get a new link</a>.
+</div>
+{% endif %}
+
 <div class="hero-unit download">
   <div class="row-fluid">
     <div class="span4 left">

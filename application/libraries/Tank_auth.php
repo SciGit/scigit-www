@@ -74,7 +74,8 @@ class Tank_auth
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
 						));
 
-						if ($user->activated == 0) {							// fail - not activated
+            // XXX: handle activation more elegantly
+						if (false) {//$user->activated == 0) {							// fail - not activated
 							$this->error = array('not_activated' => '');
 
 						} else {												// success
@@ -125,7 +126,10 @@ class Tank_auth
 	 * @return	bool
 	 */
 	function is_logged_in($activated = TRUE)
-	{
+  {
+    // XXX: handle activation more elegantly later
+    return $this->ci->session->userdata('status') === STATUS_ACTIVATED ||
+      $this->ci->session->userdata('status') === STATUS_NOT_ACTIVATED;
 		return $this->ci->session->userdata('status') === ($activated ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED);
 	}
 
