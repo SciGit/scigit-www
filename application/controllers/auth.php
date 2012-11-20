@@ -121,6 +121,11 @@ class Auth extends CI_Controller
 		$this->_show_message($this->lang->line('auth_message_logged_out'));
 	}
 
+  function registered()
+  {
+		$this->twig->display('auth/registered_form.twig', null);
+  }
+
 	/**
 	 * Register user on the site
 	 *
@@ -184,7 +189,7 @@ class Auth extends CI_Controller
 						unset($data['password']); // Clear password (just for any case)
 
             if ($this->config->item('login_automatically_after_register', 'tank_auth')) {
-              redirect();
+              redirect('/auth/registered');
             } else {
               $this->_show_message($this->lang->line('auth_message_registration_completed_1'));
             }
@@ -197,7 +202,7 @@ class Auth extends CI_Controller
 						unset($data['password']); // Clear password (just for any case)
 
             if ($this->config->item('login_automatically_after_register', 'tank_auth')) {
-              redirect();
+              redirect('/auth/registered');
             } else {
               $this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
             }

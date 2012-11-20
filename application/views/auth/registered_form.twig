@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+
+{% block title "Signed Up" %}
+
+{% block content %}
+
+<div class="download">
+  <h2>Downloading SciGit</h2>
+  <br />
+  <p>Your SciGit download should automatically start within seconds.</p>
+  <p>If it doesn't, {{ anchor('/download', 'restart the download') | raw }}.</p>
+</div>
+
+<hr class="soften" />
+
+<div class="discover">
+  <div class="row-fluid">
+    <div class="span4 well">
+      <div class="price">
+        1
+      </div>
+      <h2>Download</h2>
+      <hr class="soften" />
+      <p>From your browser's Downloads window, double click the .exe file that
+      just downloaded.</p>
+    </div>
+    <div class="span4 well">
+      <div class="price">
+        2
+      </div>
+      <h2>Install SciGit</h2>
+      <hr class="soften" />
+      <p>Follow along with the instructions provided by the installer.</p>
+    </div>
+    <div class="span4 well">
+      <div class="price">
+        3
+      </div>
+      <h2>Run SciGit</h2>
+      <hr class="soften" />
+      <p>Double-click the SciGit icon in your Start Menu to get all set, and
+      you're good to go.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -136,6 +136,15 @@ a.butn:hover {
   margin-left: 0;
 }
 
+.download {
+  width: 600px;
+  margin: auto;
+}
+
+.download p {
+  font-size: 18px;
+}
+
 .features p.small {
   font-size: 18px;
   margin-bottom: 20px;
@@ -420,6 +429,11 @@ a.butn:hover {
   padding: 20px;
 }
 
+.discover p {
+  text-align: left;
+  min-height: 55px;
+}
+
 .discover .social {
   padding: 20px;
 }
@@ -454,9 +468,9 @@ footer {
 .price {
   float: left;
   position: relative;
-  top: -35px;
-  left: -35px;
-  background: rgb(0, 85, 204);
+  top: -25px;
+  left: -25px;
+  background: rgb(74, 91, 118);
   padding: 15px;
   border-radius: 10px;
   font-size: 32px;
