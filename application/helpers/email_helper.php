@@ -9,8 +9,6 @@ function email_project_update($change_id, $to) {
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to->email);
   $CI->postageapp->subject("$project->name change");
-  $CI->postageapp->message(
-    "$user->username has made a change to $project->name. \"$change->commit_msg\"");
 
   $CI->postageapp->template('project_update');
   $CI->postageapp->variables(array(
@@ -27,6 +25,20 @@ function email_project_update($change_id, $to) {
   $CI->postageapp->send();
 }
 
-function email_activate_account($user_id, $link) {
+function email_register($user) {
+  $CI = &get_instance();
 
+  $CI->postageapp->from('no-reply@scigit.com');
+  $CI->postageapp->to($user->email);
+  $CI->postageapp->subject("Welcome to SciGit!");
+
+  $CI->postageapp->template('validate_email');
+  $CI->postageapp->variables(array(
+    'site' => 'http://beta.scigit.com',
+    'username' => $user->username,
+    'user_id' => $user->id,
+    'new_email_key' => $user->new_email_key,
+  ));
+
+  $CI->postageapp->send();
 }

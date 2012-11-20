@@ -8,25 +8,37 @@ class Email extends CI_Controller
     $this->load->model('email_queue');
     $this->load->model('project');
     $this->load->model('change');
-    $this->load->model('membership');
+    $this->load->model('permission');
   }
 
   public function index() {
+    $this->process_change_emails();
+    $this->process_register_emails();
+  }
+
+  private function process_change_emails() {
     $email_queue = $this->email_queue->get();
     foreach ($email_queue as $email) {
       $change = $this->change->get($email->change_id);
-      $members = $this->membership->get_by_project($change->proj_id, true);
-      $sent = array();
+      $members = $this->permission->get_by_project($change->proj_id);
       foreach ($members as $membership) {
         $user = $this->user->get_user_by_id($membership->user_id, true);
-        // XXX: won't need this once associations are done properly
-        if (isset($sent[$user->id])) continue;
-        $sent[$user->id] = true;
         if (!$user->disable_email) {
           email_project_update($change->id, $user);
         }
       }
     }
     $this->email_queue->clear();
+  }
+
+  private function process_register_emails() {
+    $emails = $this->email_queue->get_user_emails();
+    foreach ($emails as $email) {
+      $user = $this->user->get_user_by_id($email->user_id, false);
+      if ($user != NULL) {
+        email_register($user);
+      }
+    }
+    $this->email_queue->clear_user_emails();
   }
 }

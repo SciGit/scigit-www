@@ -13,6 +13,15 @@ set email = {
 %}
 
 {% block content %}
+
+<div class="page-header">
+  <h1>Resend activation email</h1>
+</div>
+
+<p>
+If you didn't get the activation email, or you changed your email, try resending it below.
+</p>
+
 {{ form_open() | raw }}
 	{{ form_label('Email Address', email['id']) | raw }}
 	{{ form_input(email) | raw }}

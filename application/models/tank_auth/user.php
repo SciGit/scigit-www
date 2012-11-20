@@ -33,8 +33,9 @@ class User extends CI_Model
 	 */
 	function get_user_by_id($user_id, $activated)
 	{
-		$this->db->where('id', $user_id);
-		$this->db->where('activated', $activated ? 1 : 0);
+    $this->db->where('id', $user_id);
+    // XXX: handle activation more elegantly later
+		// $this->db->where('activated', $activated ? 1 : 0);
 
 		$query = $this->db->get($this->table_name);
 		if ($query->num_rows() == 1) return $query->row();
