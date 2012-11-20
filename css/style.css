@@ -164,7 +164,7 @@ a.butn-primary:hover {
 }
 
 .content {
-  margin: 40px 0;
+  margin: 40px 0 20px 0;
 }
 
 .slogan {
@@ -387,6 +387,10 @@ a.butn-primary:hover {
 }
 
 .separator {
+  margin-bottom: 30px;
+}
+
+.separator-small {
   margin-bottom: 30px;
 }
 
