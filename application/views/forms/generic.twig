@@ -38,5 +38,11 @@
       {% endif %}
     </div>
   {% endfor %}
-  {{ form_submit({class: 'butn butn-primary', name: form_name, value: 'Save'}) | raw }}
+  {% for button in buttons %}
+    {% if field['type'] == 'link' %}
+      {{ anchor(button) | raw }}
+    {% else %}
+      {{ form_submit(button) | raw }}
+    {% endif %}
+  {% endfor %}
 {{ form_close() | raw }}
