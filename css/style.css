@@ -144,6 +144,10 @@ h3 {
   color: rgb(120, 120, 120);
 }
 
+.sign-up-form form {
+  margin: auto;
+}
+
 .sign-up {
   border-radius: 4px;
   text-align: center;
@@ -168,9 +172,14 @@ h3 {
   width: 100%;
 }
 
+.screenshot {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .sign-up-progress {
   width: 500px;
-  margin: 40px auto;
+  margin: 50px auto;
 }
 
 .sign-up-progress p {
@@ -487,7 +496,7 @@ footer {
 }
 
 .full-width-input {
-  width: 100%;
+  width: 98%;
 }
 
 .breadcrumbs {

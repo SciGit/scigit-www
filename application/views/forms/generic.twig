@@ -11,9 +11,7 @@
         </div>
         <div class="span{{ columns[1] }}">
           <div class="controls">
-            {% if field['type'] == 'input' %}
-              {{ form_input(field) | raw }}
-            {% elseif field['type'] == 'textarea' %}
+            {% if field['type'] == 'textarea' %}
               {{ form_textarea(field) | raw }}
             {% elseif field['type'] == 'static' %}
               <em>{{ field['value'] }}</em>
@@ -21,16 +19,23 @@
               {{ form_checkbox(field) | raw }}
             {% elseif field['type'] == 'password' %}
               {{ form_password(field) | raw }}
+            {% else %}
+              {{ form_input(field) | raw }}
             {% endif %}
           </div>
         </div>
-        <div class="span{{ columns[2] }}">
-          <span class="help-inline">
-            {{ form_error(field['name']) | raw }}
-            {{ errors[field['name']] }}
-          </span>
-        </div>
       </div>
+      {% if errors[field['name']] or form_error(field['name']) %}
+        <div class="row-fluid">
+          <div class="span{{ columns[0] }}"></div>
+          <div class="span{{ columns[1] }}">
+            <span class="help-inline">
+              {{ form_error(field['name']) | raw }}
+              {{ errors[field['name']] }}
+            </span>
+          </div>
+        </div>
+      {% endif %}
     </div>
   {% endfor %}
   {{ form_submit({class: 'butn butn-primary', name: form_name, value: 'Save'}) | raw }}

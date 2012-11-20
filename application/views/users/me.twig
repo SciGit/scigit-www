@@ -49,7 +49,7 @@ set profile_fields = [
 		'maxlength': 40,
 		'size': 40,
     'class' : 'full-width-input',
-    'type' : 'input',
+    'type' : 'email',
     'required' : 'true',
 	},
 	{
@@ -60,7 +60,7 @@ set profile_fields = [
 		'maxlength': 40,
 		'size': 40,
     'class' : 'full-width-input',
-    'type' : 'input',
+    'type' : 'text',
 	},
 	{
     'label' : 'Organization',
@@ -70,7 +70,7 @@ set profile_fields = [
 		'maxlength': 40,
 		'size': 40,
     'class' : 'full-width-input',
-    'type' : 'input',
+    'type' : 'text',
 	},
 	{
     'label' : 'Location',
@@ -80,7 +80,7 @@ set profile_fields = [
 		'maxlength': 40,
 		'size': 40,
     'class' : 'full-width-input',
-    'type' : 'input',
+    'type' : 'text',
 	},
 	{
     'label' : 'Name',
@@ -90,7 +90,7 @@ set profile_fields = [
 		'maxlength': 40,
 		'size': 40,
     'class' : 'full-width-input',
-    'type' : 'input',
+    'type' : 'text',
 	},
 	{
     'label' : 'About',
@@ -170,21 +170,21 @@ set password_fields = [
     {% include 'forms/generic.twig'
         with {'fields': settings_fields,
               'form' : {class: 'well'},
-              'columns': [2, 8, 2],
+              'columns': [2, 10],
               'form_name': 'settings'} %}
   </div>
   <div class="tab-pane fade in {% if form_name == 'profile' %}active{% endif %}" id="profile">
     {% include 'forms/generic.twig'
       with {'fields': profile_fields,
             'form': {class: 'well'},
-            'columns': [1, 8, 3],
+            'columns': [1, 8],
             'form_name': 'profile'} %}
   </div>
   <div class="tab-pane fade in {% if form_name == 'password' %}active{% endif %}" id="password">
     {% include 'forms/generic.twig'
       with {'fields': password_fields,
             'form': {class: 'well'},
-            'columns': [2, 8, 2],
+            'columns': [2, 8],
             'form_name': 'password'} %}
   </div>
 </div>
