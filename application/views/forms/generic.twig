@@ -38,11 +38,15 @@
       {% endif %}
     </div>
   {% endfor %}
-  {% for button in buttons %}
-    {% if field['type'] == 'link' %}
-      {{ anchor(button) | raw }}
-    {% else %}
-      {{ form_submit(button) | raw }}
-    {% endif %}
-  {% endfor %}
+  <ul class="buttons">
+    {% for button in buttons %}
+      <li>
+        {% if button['type'] == 'link' %}
+          <a href="{{ button.href }}" class="{{ button.class }}">{{ button.value }}</a>
+        {% else %}
+          {{ form_submit(button) | raw }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 {{ form_close() | raw }}
