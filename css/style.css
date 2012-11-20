@@ -109,6 +109,11 @@ a.butn:hover {
   color: black;
 }
 
+a.butn-primary:hover {
+  text-decoration: none;
+  color: white;
+}
+
 .well-padding {
   padding: 5px 19px 19px 19px;
 }
