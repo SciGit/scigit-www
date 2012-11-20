@@ -429,18 +429,26 @@ a.butn-primary:hover {
   line-height: 26px;
 }
 
-.discover {
+.download-info {
   text-align: center;
-  padding: 20px;
 }
 
-.discover p {
+.download-info p {
   text-align: left;
   min-height: 55px;
 }
 
-.discover .social {
-  padding: 20px;
+.download-info .number {
+  float: left;
+  position: relative;
+  top: -25px;
+  left: -25px;
+  background: rgb(74, 91, 118);
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 32px;
+  margin-right: -1000px;
+  color: white;
 }
 
 footer {
@@ -468,33 +476,6 @@ footer {
   height: auto;
   width: auto;
   padding: 18px;
-}
-
-.price {
-  float: left;
-  position: relative;
-  top: -25px;
-  left: -25px;
-  background: rgb(74, 91, 118);
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 32px;
-  margin-right: -1000px;
-  color: white;
-}
-
-.free {
-  background: rgb(91, 183, 91);
-}
-
-.justify {
-  font-size: 14px;
-  font-weight: 200;
-  text-align: left;
-}
-
-.justify li {
-  margin: 10px 0;
 }
 
 .fulltitle {
