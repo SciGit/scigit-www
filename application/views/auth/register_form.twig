@@ -49,17 +49,21 @@ set fields = [
 
 {% block content %}
 
+<br />
+
 <div class="row-fluid">
   <div class="span6 sign-up-form">
-    <h2>Sign Up</h2>
-    <hr class="soften" />
-    <div class="separator"></div>
-    {% include 'forms/generic.twig'
-        with {'fields': fields,
-              'form' : {class: ''},
-              'columns': [2, 10],
-              'form_name': 'settings'} %}
-    {{ form_close() | raw }}
+    <div class="sign-up-form-inner">
+      <h2>Sign Up</h2>
+      <hr class="soften" />
+      <div class="separator"></div>
+      {% include 'forms/generic.twig'
+          with {'fields': fields,
+                'form' : {class: ''},
+                'columns': [4, 8],
+                'form_name': 'settings'} %}
+      {{ form_close() | raw }}
+    </div>
   </div>
   <div class="span6">
     <div class="screenshot">

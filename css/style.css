@@ -144,7 +144,8 @@ h3 {
   color: rgb(120, 120, 120);
 }
 
-.sign-up-form form {
+.sign-up-form .sign-up-form-inner {
+  width: 400px;
   margin: auto;
 }
 
@@ -174,7 +175,7 @@ h3 {
 
 .screenshot {
   text-align: center;
-  margin-top: 30px;
+  margin-top: -20px;
 }
 
 .sign-up-progress {
