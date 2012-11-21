@@ -158,7 +158,7 @@ function get_os() {
     'Open BSD' => 'OpenBSD',
     'Sun OS' => 'SunOS',
     'Linux' => '(Linux)|(X11)',
-    'Safari' => '(Safari)',
+    'Mac OS' => '(Safari)',
     'Mac OS' => '(Mac_PowerPC)|(Macintosh)|(Darwin)',
     'QNX' => 'QNX',
     'BeOS' => 'BeOS',
