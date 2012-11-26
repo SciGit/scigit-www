@@ -185,36 +185,39 @@ function is_windows() {
 
 function time_ago($timestamp){
   $difference = time() - $timestamp;
-
+  $unit = '';
   if($difference < 60)
-    return $difference." seconds ago";
+    $unit = 'second';
   else{
     $difference = round($difference / 60);
     if($difference < 60)
-      return $difference." minutes ago";
+      $unit = 'minute';
     else{
       $difference = round($difference / 60);
       if($difference < 24)
-        return $difference." hours ago";
+        $unit = 'hour';
       else{
         $difference = round($difference / 24);
         if($difference < 7)
-          return $difference." days ago";
+          $unit = 'day';
         else {
           $difference = round($difference / 7);
           if ($difference < 4) {
-            return $difference." weeks ago";
+            $unit = 'week';
           } else {
             $difference = round($difference / 4);
             if ($difference < 12) {
-              return $difference." months ago";
+              $unit = 'month';
             } else {
               $difference = round($difference / 12);
-              return $difference." years ago";
+              $unit = 'year';
             }
           }
         }
       }
     }
   }
+
+  return "$difference $unit" .
+        ($difference == 1 ? '' : 's') . ' ago';
 }
