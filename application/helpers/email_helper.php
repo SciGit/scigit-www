@@ -48,16 +48,15 @@ function email_invite($from_user, $to_user, $project) {
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to_user->email);
-  $CI->postageapp->subject("Welcome to SciGit!");
+  $CI->postageapp->subject("Invitation to $project->name");
 
-  $CI->postageapp->template('validate_email');
+  $CI->postageapp->template('invite');
   $CI->postageapp->variables(array(
     'site' => 'http://beta.scigit.com',
     'user_name' => $from_user->username,
     'user_id' => $from_user->id,
     'proj_name' => $project->name,
     'proj_id' => $project->id,
-    'new_email_key' => $user->new_email_key,
   ));
 
   $CI->postageapp->send();
