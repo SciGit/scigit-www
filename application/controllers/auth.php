@@ -25,6 +25,7 @@ class Auth extends CI_Controller
 		$this->lang->load('tank_auth');
     $this->load->model('tank_auth/user');
     $this->load->model('email_queue');
+    $this->load->model('project');
 	}
 
 	function index()
@@ -184,6 +185,10 @@ class Auth extends CI_Controller
               'status'	=> ($email_activation) ? STATUS_NOT_ACTIVATED : STATUS_ACTIVATED,
             ));
           }
+
+          // Create a test project for the user.
+          $this->project->create($data['user_id'],
+            'Sample Project by ' . $data['username'], false);
 
 					if ($email_activation) {									// send "activate" email
 						$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
