@@ -28,7 +28,7 @@ class Email extends CI_Controller
       $members = $this->permission->get_by_project($change->proj_id);
       foreach ($members as $membership) {
         $user = $this->user->get_user_by_id($membership->user_id, true);
-        if (!$user->disable_email) {
+        if ($user != NULL && !$user->disable_email) {
           email_project_update($change->id, $user);
         }
       }
