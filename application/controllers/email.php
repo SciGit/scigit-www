@@ -53,7 +53,7 @@ class Email extends CI_Controller
       $from_user = $this->user->get_user_by_id($email->user_id, false);
       $to_user = $this->user->get_user_by_id($email->user_id2, false);
       $project = $this->project->get($email->proj_id);
-      if ($user != NULL) {
+      if ($from_user != NULL && $to_user != NULL) {
         email_invite($from_user, $to_user, $project);
       }
     }

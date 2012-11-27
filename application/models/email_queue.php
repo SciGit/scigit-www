@@ -26,7 +26,7 @@ class Email_Queue extends CI_Model
     return $this->db->empty_table($this->email_user_table);
   }
 
-  public function clear_invite_email() {
+  public function clear_invite_emails() {
     return $this->db->empty_table($this->email_invite_table);
   }
 
