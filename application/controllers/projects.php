@@ -132,6 +132,9 @@ class Projects extends CI_Controller
         $perms = Permission::READ;
         $perms |= $write ? Permission::WRITE : 0;
         $perms |= $admin ? Permission::ADMIN : 0;
+        if ($this->permission->get_by_user_on_project($user_id, $proj_id) === null) {
+          $this->email_queue->add_invite_email(get_user_id(), $user_id, $proj_id);
+        }
 				if ($this->permission->set_user_perms(
 							$user->id, $proj_id, $perms)) {
 					$msg = 'User added.';
