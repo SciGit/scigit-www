@@ -1,14 +1,13 @@
 <?
 
-function email_project_update($change_id, $to) {
+function email_project_update($change, $to) {
   $CI = &get_instance();
-  $change = $CI->change->get($change_id);
   $project = $CI->project->get($change->proj_id);
   $user = $CI->user->get_user_by_id($change->user_id, true);
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to->email);
-  $CI->postageapp->subject("$project->name change");
+  $CI->postageapp->subject("$project->name change: $change->commit_msg");
 
   $CI->postageapp->template('project_update');
   $CI->postageapp->variables(array(
