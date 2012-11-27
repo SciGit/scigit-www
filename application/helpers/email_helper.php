@@ -48,7 +48,7 @@ function email_invite($from_user, $to_user, $project) {
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to_user->email);
-  $CI->postageapp->subject("Invitation to $project->name");
+  $CI->postageapp->subject("Added to project $project->name");
 
   $CI->postageapp->template('invite');
   $CI->postageapp->variables(array(
