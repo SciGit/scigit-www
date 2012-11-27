@@ -58,6 +58,26 @@ set add_user_fields = [
 ]
 %}
 
+{%
+set buttons_add_user = [
+  {
+    'value' : 'Submit',
+    'class' : 'butn butn-primary',
+    'name' : 'add_user'
+  }
+]
+%}
+
+{%
+set buttons_settings = [
+  {
+    'value' : 'Submit',
+    'class' : 'butn butn-primary',
+    'name' : 'settings'
+  }
+]
+%}
+
 <div class="page-header">
 	<h2>
     <p class="breadcrumbs">
@@ -119,7 +139,7 @@ set add_user_fields = [
             with {'fields': add_user_fields,
                   'form' : {class: 'well'},
                   'columns': [2, 8, 2],
-                  'form_name': 'add_user'} %}
+                  'form_name': buttons_add_user} %}
       </div>
     </div>
   </div>
@@ -129,7 +149,7 @@ set add_user_fields = [
         with {'fields': settings_fields,
               'form' : {class: 'well'},
               'columns': [2, 8, 2],
-              'form_name': 'settings'} %}
+              'buttons': buttons_settings} %}
   </div>
 
   <div class="tab-pane fade in {% if form_name == 'delete' %}active{% endif %}" id="delete">
