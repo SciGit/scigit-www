@@ -30,6 +30,15 @@
 
 <div class="row-fluid">
   <div class="span4">
+    <div class="well blue-well">
+      <h3>Description</h3>
+      <hr class="soften" />
+      {% if project.description %}
+        {{ word_wrap(project.description, 30) }}
+      {% else %}
+        <p>This project has no description.</p>
+      {% endif %}
+    </div>
     <div class="well">
       <h3>Stats</h3>
       <hr class="soften">
@@ -54,15 +63,6 @@
       </table>
       <p></p>
       <p>Created <em>{{ project.created_ts | date("F j, Y") }}</em></p>
-    </div>
-    <div class="well blue-well">
-      <h3>Description</h3>
-      <hr class="soften" />
-      {% if project.description %}
-        {{ word_wrap(project.description, 30) }}
-      {% else %}
-        <p>This project has no description.</p>
-      {% endif %}
     </div>
     <div class="well">
       <h3>Contributors</h3>
