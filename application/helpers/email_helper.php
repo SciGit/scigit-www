@@ -1,14 +1,13 @@
 <?
 
-function email_project_update($change_id, $to) {
+function email_project_update($change, $to) {
   $CI = &get_instance();
-  $change = $CI->change->get($change_id);
   $project = $CI->project->get($change->proj_id);
   $user = $CI->user->get_user_by_id($change->user_id, true);
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to->email);
-  $CI->postageapp->subject("$project->name change");
+  $CI->postageapp->subject("$project->name change: $change->commit_msg");
 
   $CI->postageapp->template('project_update');
   $CI->postageapp->variables(array(
@@ -38,6 +37,25 @@ function email_register($user) {
     'username' => $user->username,
     'user_id' => $user->id,
     'new_email_key' => $user->new_email_key,
+  ));
+
+  $CI->postageapp->send();
+}
+
+function email_invite($from_user, $to_user, $project) {
+  $CI = &get_instance();
+
+  $CI->postageapp->from('no-reply@scigit.com');
+  $CI->postageapp->to($to_user->email);
+  $CI->postageapp->subject("Added to project $project->name");
+
+  $CI->postageapp->template('invite');
+  $CI->postageapp->variables(array(
+    'site' => 'http://beta.scigit.com',
+    'user_name' => $from_user->username,
+    'user_id' => $from_user->id,
+    'proj_name' => $project->name,
+    'proj_id' => $project->id,
   ));
 
   $CI->postageapp->send();
