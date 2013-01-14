@@ -20,10 +20,17 @@ function createProject(event) {
 
     success: function (json) {
       if (json.error == 0) {
+        $('#createProjectError').hide();
         $('#createProjectSuccess').html(json.message).show();
         setTimeout(function() {
+          var waitingReload = true;
           $('#createProject').modal('hide');
-        }, 2000);
+          $('#createProject').on('hidden', function() {
+            if (waitingReload) {
+              window.location.href = window.location.href;
+            }
+          });
+        }, 1500);
       } else {
         $('#createProjectError').html(json.message).show();
       }
