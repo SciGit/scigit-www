@@ -6,27 +6,7 @@ My Projects
 
 {% block content %}
 
-<div id="createProject" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Create New Project</h3>
-  </div>
-  {{ form_open('') | raw }}
-  <div class="modal-body">
-      {{ validation_errors() | raw }}
-      <p>{{ message }}</p>
-      {{ form_label('Name', 'name') | raw }}
-      {{ form_input('name', set_value('name')) | raw }} <br />
-      &nbsp; &nbsp; 
-      {{ form_checkbox('public', 1, set_value('public')) | raw }}
-      Public
-  </div>
-  <div class="modal-footer">
-    {{ form_submit({class: 'butn butn-primary', name: 'create_project'}, 'Create') | raw }}
-    <a class="butn" data-dismiss="modal">Cancel</a>
-  </div>
-  {{ form_close() | raw }}
-</div>
+{% include 'projects/create.twig' %}
 
 <div class="row-fluid">
   <div class="span6 well blue-well">

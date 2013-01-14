@@ -80,6 +80,33 @@ class Projects extends CI_Controller
     $this->twig->display('projects/explore.twig', $data);
   }
 
+  public function create_ajax() {
+    check_login();
+    $this->form_validation->set_rules('name', 'name', 'required|callback_check_projname');
+    $this->form_validation->set_rules('public', 'public', '');
+    if ($this->form_validation->run()) {
+      $name = $this->input->post('name');
+      $public = $this->input->post('public');
+      if ($this->project->create(get_user_id(), $name, $public)) {
+        echo json_encode(array(
+          'error' => '0',
+          'message' => 'Project created!'
+        ));
+      } else {
+        echo json_encode(array(
+          'error' => '1',
+          'message' => 'Database error, please try later.'
+        ));
+      }
+    } else {
+      echo json_encode(array(
+        'error' => '2',
+        'message' => 'Invalid username, please pick another.'
+      ));
+    }
+  }
+
+  // XXX: Unused; should probably remove this.
 	public function create() {
 		check_login();
 		$data = array('message' => '');

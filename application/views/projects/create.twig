@@ -1,25 +1,55 @@
-{% extends "base.twig" %}
+<script>
+$(document).ready(function(){
+  $('#createProject').submit(createProject);
+});
 
-{% block title "Create Project" %}
+function createProject(event) {
+  event.preventDefault();
 
-{% block content %}
+  var form_data = {
+    name : $("[name='name']").val(),
+    public : $("[name='public']").val(),
+  };
 
-<div class="page-header">
-	<h1>Create Project</h1>
+  $.ajax({
+    url: "create_ajax",
+    type: "POST",
+    data: form_data,
+    dataType: "json",
+    cache: false,
+
+    success: function (json) {
+      if (json.error == 0) {
+        $('#createProjectSuccess').html(json.message).show();
+        setTimeout(function() {
+          $('#createProject').modal('hide');
+        }, 2000);
+      } else {
+        $('#createProjectError').html(json.message).show();
+      }
+    }
+  });
+}
+</script>
+
+<div id="createProject" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Create New Project</h3>
+  </div>
+  {{ form_open('') | raw }}
+  <div class="modal-body">
+    <div id="createProjectError" class="alert alert-error hide"></div>
+    <div id="createProjectSuccess" class="alert alert-success hide"></div>
+    {{ form_label('Name', 'name') | raw }}
+    {{ form_input('name', set_value('name')) | raw }} <br />
+    &nbsp; &nbsp; 
+    {{ form_checkbox('public', 1, set_value('public')) | raw }}
+    Public
+  </div>
+  <div class="modal-footer">
+    {{ form_submit({class: 'butn butn-primary', name: 'create_project'}, 'Create') | raw }}
+    <a class="butn" data-dismiss="modal">Cancel</a>
+  </div>
+  {{ form_close() | raw }}
 </div>
-
-<div class="row">
-	<div class="span6">
-	{{ form_open('', {class: 'well'}) | raw }}
-		{{ validation_errors() | raw }}
-		<p>{{ message }}</p>
-		{{ form_label('Name', 'name') | raw }}
-		{{ form_input('name', set_value('name')) | raw }} <br />
-		{{ form_submit({class: 'btn btn-primary', name: 'create_project'}, 'Create') | raw }}
-		&nbsp; &nbsp; 
-		{{ form_checkbox('public', 1, set_value('public')) | raw }}
-		Public
-	{{ form_close() | raw }}
-	</div>
-</div>
-{% endblock %}
