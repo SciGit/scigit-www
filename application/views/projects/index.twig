@@ -7,11 +7,11 @@ My Projects
 {% block content %}
 
 <div class="row-fluid">
-  <div class="span6">
+  <div class="span6 well blue-well">
     <h1>
       My Projects
       <div class="pull-right">
-        <a href="{{ site_url('/projects/create') | raw }}">
+        <a href="{{ site_url('/projects/create') | raw }}" rel="tooltip" title="Create new project">
           <i class="icon-plus"></i>
         </a>
       </div>
@@ -40,7 +40,7 @@ My Projects
     {% endif %}
   </div>
 
-  <div class="span6">
+  <div class="span6 well">
     <h1>Subscriptions</h1>
     <hr class="soften" />
     {% if subscriptions %}
