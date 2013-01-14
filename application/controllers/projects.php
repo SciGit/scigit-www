@@ -101,7 +101,7 @@ class Projects extends CI_Controller
     } else {
       echo json_encode(array(
         'error' => '2',
-        'message' => 'Invalid username, please pick another.'
+        'message' => 'Invalid project name, please pick another.'
       ));
     }
   }
