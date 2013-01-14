@@ -10,7 +10,7 @@ My Projects
   <div class="span5">
     <h1>
       My Projects
-      <div class="pull-right" style="line-height: 60px;">
+      <div class="pull-right">
         <a href="{{ site_url('/projects/create') | raw }}">
           <i class="icon-plus"></i>
         </a>
@@ -28,7 +28,6 @@ My Projects
               {% if project.permission b-and 8 %}
                 <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
                   <i class="icon-wrench"></i>
-                  Admin
                 </a>
               {% endif %}
               </div>
