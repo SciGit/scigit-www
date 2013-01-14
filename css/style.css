@@ -114,7 +114,7 @@ a.butn-primary:hover {
   color: white;
 }
 
-a i, a i:hover, a i:link, a i:visited, a i:active {
+a.icon-rawlink, a.icon-rawlink:link, a.icon-rawlink:visited, a.icon-rawlink:hover, a.icon-rawlink:active {
   text-decoration: none;
   color: black;
 }
@@ -396,7 +396,11 @@ a i, a i:hover, a i:link, a i:visited, a i:active {
 }
 
 .separator-small {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+}
+
+.table-noheader tr:first-child, .table-noheader tr:first-child td {
+  border-top: none;
 }
 
 .subtitle {
@@ -529,13 +533,13 @@ footer {
   margin: 20px 5px;
 }
 
-.activity-entry .activity-msg {
+.activity-msg {
   margin: 15px 5px 5px 5px;
   color: gray;
   min-height: 20px;
 }
 
-.activity-entry .activity-msg a {
+.activity-msg a {
   color: gray;
 }
 
