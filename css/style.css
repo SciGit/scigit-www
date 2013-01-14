@@ -114,6 +114,11 @@ a.butn-primary:hover {
   color: white;
 }
 
+a i, a i:hover, a i:link, a i:visited, a i:active {
+  text-decoration: none;
+  color: black;
+}
+
 .well-padding {
   padding: 5px 19px 19px 19px;
 }
