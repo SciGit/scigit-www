@@ -533,13 +533,13 @@ footer {
   margin: 20px 5px;
 }
 
-.activity-msg {
+.activity-entry .activity-msg {
   margin: 15px 5px 5px 5px;
   color: gray;
   min-height: 20px;
 }
 
-.activity-msg a {
+.activity-entry .activity-msg a {
   color: gray;
 }
 

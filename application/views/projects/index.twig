@@ -21,24 +21,26 @@ My Projects
     <hr class="soften" />
 
     {% if projects %}
-      <table class="table table-hover table-noheader">
+      <table class="table table-hover table-noheader table-condensed">
         {% for project in projects %}
           <tr>
             <td valign="middle">
-              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-              <div class="pull-right">
-              {% if project.permission b-and 8 %}
-                <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink btn-mini">
-                  <i class="icon-cog icon-large"></i>
-                </a>
-              {% endif %}
-              </div>
-              <div class="activity-msg">
-                {% if project.description %}
-                  {{ project.description | slice(0, 120) }} ...
-                {% else %}
-                  No description.
+              <div class="activity-entry">
+                {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+                <div class="pull-right">
+                {% if project.permission b-and 8 %}
+                  <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink btn-mini">
+                    <i class="icon-cog icon-large"></i>
+                  </a>
                 {% endif %}
+                </div>
+                <div class="activity-msg">
+                  {% if project.description %}
+                    {{ project.description | slice(0, 120) }} ...
+                  {% else %}
+                    No description.
+                  {% endif %}
+                </div>
               </div>
             </td>
           </tr>
@@ -53,22 +55,24 @@ My Projects
     <h1>Subscriptions</h1>
     <hr class="soften" />
     {% if subscriptions %}
-      <table class="table table-hover table-noheader">
+      <table class="table table-hover table-noheader table-condensed">
         {% for subscription in subscriptions %}
           <tr>
             <td valign="middle">
-              {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
-              <div class="pull-right">
-                <a href="#" rel="tooltip" title="Cancel Subscription" class="icon-rawlink">
-                  <i class="icon-ban-circle icon-large"></i>
-                </a>
-              </div>
-              <div class="activity-msg">
-                {% if project.description %}
-                  {{ project.description | slice(0, 120) }} ...
-                {% else %}
-                  No description.
-                {% endif %}
+              <div class="activity-entry">
+                {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
+                <div class="pull-right">
+                  <a href="#" rel="tooltip" title="Cancel Subscription" class="icon-rawlink">
+                    <i class="icon-ban-circle icon-large"></i>
+                  </a>
+                </div>
+                <div class="activity-msg">
+                  {% if project.description %}
+                    {{ project.description | slice(0, 120) }} ...
+                  {% else %}
+                    No description.
+                  {% endif %}
+                </div>
               </div>
             </td>
           </tr>
