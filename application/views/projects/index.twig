@@ -6,61 +6,64 @@ My Projects
 
 {% block content %}
 
-<div class="page-header">
-	<h1>
-		My Projects
-    <div class="pull-right">
-      <a href="{{ site_url('/projects/create') | raw }}" class="butn butn-large butn-primary title-btn">
-        <i class="icon-plus icon-white"></i>
-        Create Project
-      </a>
-    </div>
-	</h1>
+<div class="row-fluid">
+  <div class="span6">
+    <h1>
+      My Projects
+      <div class="pull-right">
+        <a href="{{ site_url('/projects/create') | raw }}" class="butn butn-large butn-primary title-btn">
+          <i class="icon-plus icon-white"></i>
+          Create Project
+        </a>
+      </div>
+    </h1>
+    <hr class="soften" />
+
+    {% if projects %}
+      <table class="table table-bordered">
+        {% for project in projects %}
+          <tr>
+            <td valign="middle">
+              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+              <div class="pull-right">
+              {% if project.permission b-and 8 %}
+                <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
+                  <i class="icon-wrench"></i>
+                  Admin
+                </a>
+              {% endif %}
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>You don't have access to any projects. {{ anchor("/projects/create", "Create a Project") | raw }} or have someone add you to one.
+    {% endif %}
+  </div>
+
+  <div class="span6">
+    <h1>Subscriptions</h1>
+    <hr class="soften" />
+    {% if subscriptions %}
+      <table class="table table-bordered">
+        {% for subscription in subscriptions %}
+          <tr>
+            <td valign="middle">
+              {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
+              <div class="pull-right">
+                <i class="icon-star"></i>
+                Subscribed
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>You have no subscriptions. Visit the {{ anchor("/projects/explore", "Explore") | raw }} section for some suggestions!
+    {% endif %}
+  </div>
 </div>
-
-{% if projects %}
-  <table class="table table-bordered">
-    {% for project in projects %}
-      <tr>
-        <td valign="middle">
-          {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-          <div class="pull-right">
-          {% if project.permission b-and 8 %}
-            <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" class="btn-mini">
-              <i class="icon-wrench"></i>
-              Admin
-            </a>
-          {% endif %}
-          </div>
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
-{% else %}
-  <p>You don't have access to any projects. {{ anchor("/projects/create", "Create a Project") | raw }} or have someone add you to one.
-{% endif %}
-
-<div class="separator"></div>
-
-<h1>Subscriptions</h1>
-<hr class="soften" />
-{% if subscriptions %}
-  <table class="table table-bordered">
-    {% for subscription in subscriptions %}
-      <tr>
-        <td valign="middle">
-          {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
-          <div class="pull-right">
-            <i class="icon-star"></i>
-            Subscribed
-          </div>
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
-{% else %}
-  <p>You have no subscriptions. Visit the {{ anchor("/projects/explore", "Explore") | raw }} section for some suggestions!
-{% endif %}
 
 <div class="separator"></div>
 
