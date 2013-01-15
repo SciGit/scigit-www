@@ -1,10 +1,26 @@
 <script>
+var create_project_submitted = false;
+
 $(document).ready(function() {
   $('#createProject').submit(createProject);
+  $('.project-create').click(function(e) {
+    if (create_project_submitted) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  $('.project-cancel').click(function(e) {
+    if (create_project_submitted) {
+      e.preventDefault();
+      return false;
+    }
+  });
 });
 
 function createProject(event) {
   event.preventDefault();
+
+  create_project_submitted = true;
 
   var form_data = {
     name : $("[name='name']").val(),
@@ -44,6 +60,7 @@ function createProject(event) {
         $(".project-create").attr('class', 'butn butn-primary project-create');
         $(".project-cancel").attr('class', 'butn project-cancel');
       }
+      create_project_submitted = false;
     }, 1000);
     }
   });
