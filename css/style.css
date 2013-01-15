@@ -32,6 +32,12 @@ h3 {
   margin-bottom: 0;
 }
 
+body .modal {
+  width: 450px;
+  /* must be half of the width, minus scrollbar on the left (30px) */
+  margin: -195px 0 0 -225px;
+}
+
 .buttons {
   margin: 0;
   padding: 0;
