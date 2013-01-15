@@ -776,13 +776,18 @@ form .required .inner-label:after {
 }
 
 .create-project {
-  width: 350px;
+  width: 315px;
   height: 100%;
   margin: auto;
 }
 
 .create-project .public {
   float: left;
+  text-align: center;
+}
+
+.create-project label {
+  padding-bottom: 5px;
 }
 
 .create-project .grey-separator {
