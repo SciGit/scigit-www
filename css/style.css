@@ -777,17 +777,8 @@ form .required .inner-label:after {
 
 .create-project {
   width: 350px;
-  height: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -40px;
-  margin-left: -175px;
-}
-
-.height80px {
-  height: 80px;
-  float: left;
+  height: 100%;
+  margin: auto;
 }
 
 .create-project .public {
