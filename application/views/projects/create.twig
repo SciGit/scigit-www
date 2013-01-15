@@ -12,7 +12,7 @@ function createProject(event) {
   };
 
   $.ajax({
-    url: "create_ajax",
+    url: "/projects/create_ajax",
     type: "POST",
     data: form_data,
     dataType: "json",
