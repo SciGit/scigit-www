@@ -774,3 +774,33 @@ form .required .inner-label:after {
   bottom: 100%;
   margin-bottom: 1px;
 }
+
+.create-project {
+  width: 350px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -175px;
+}
+
+.height80px {
+  height: 80px;
+  float: left;
+}
+
+.create-project .public {
+  float: left;
+}
+
+.create-project .grey-separator {
+  border-right: 1px solid #f5f5f5;
+  margin: 0 5px 0 25px;
+  float: left;
+  height: 60px;
+}
+
+.create-project .name {
+  float: right;
+}
