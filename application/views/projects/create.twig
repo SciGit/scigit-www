@@ -15,6 +15,7 @@ $(document).ready(function() {
       return false;
     }
   });
+  $('#togglePublic').click(togglePublic);
 });
 
 function createProject(event) {
@@ -24,7 +25,7 @@ function createProject(event) {
 
   var form_data = {
     name : $("[name='name']").val(),
-    public : $("[name='public']").val(),
+    public : Number($("[name='public']").prop('checked')),
   };
 
   $(".project-create").val("Loading...");
@@ -62,6 +63,28 @@ function createProject(event) {
     }
   });
 }
+
+function togglePublic(event) {
+  event.preventDefault();
+
+  if ($("input[name='public']").attr('checked')) {
+    $("#togglePublicIcon").attr('class', 'icon-lock icon-2x');
+    $("#togglePublic").tooltip('hide')
+                      .attr('data-original-title', 'Make public')
+                      .tooltip('fixTitle')
+                      .tooltip('show');
+    $("label[for='public']").text("Private");
+    $("input[name='public']").prop('checked', false);
+  } else {
+    $("#togglePublicIcon").attr('class', 'icon-group icon-2x');
+    $("#togglePublic").tooltip('hide')
+                      .attr('data-original-title', 'Make private')
+                      .tooltip('fixTitle')
+                      .tooltip('show');
+    $("label[for='public']").text("Public");
+    $("input[name='public']").prop('checked', true);
+  }
+}
 </script>
 
 <div id="createProject" class="modal hide fade">
@@ -79,8 +102,8 @@ function createProject(event) {
           {{ form_checkbox('public', 1, set_value('public')) | raw }}
         </div>
         {{ form_label('Private', 'public') | raw }}
-        <a href="#togglePublic" class="icon-rawlink" rel="tooltip" title="Make public" data-placement="bottom">
-          <i class="icon-lock icon-2x"></i>
+        <a href="#" id="togglePublic" class="icon-rawlink" rel="tooltip" title="Make public" data-placement="bottom">
+          <i id="togglePublicIcon" class="icon-lock icon-2x"></i>
         </a>
       </div>
       <div class="grey-separator"></div>
