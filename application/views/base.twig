@@ -72,6 +72,8 @@ set submit = {
   });
 </script>
 
+{% include 'projects/create.twig' %}
+
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
     <div class="navbar navbar-fixed-top">
@@ -88,6 +90,9 @@ set submit = {
                 {{ get_user_username() }}<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="label">
+                  <li><a href="#createProject" data-toggle="modal" tabindex="-1" href="#">Create Project</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="/users/profile/{{ get_user_id() }}">View My Profile</a></li>
                   <li><a tabindex="-1" href="/users/profile">My Account</a></li>
                   <li class="divider"></li>
                   <li><a tabindex="-1" href="/auth/logout">Logout</a></li>
