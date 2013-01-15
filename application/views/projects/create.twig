@@ -27,7 +27,7 @@ function createProject(event) {
           $('#createProject').modal('hide');
           $('#createProject').on('hidden', function() {
             if (waitingReload) {
-              window.location.href = window.location.href;
+              window.location.href = '/projects/view/' + json.proj_id;
             }
           });
         }, 1500);

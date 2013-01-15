@@ -87,10 +87,11 @@ class Projects extends CI_Controller
     if ($this->form_validation->run()) {
       $name = $this->input->post('name');
       $public = $this->input->post('public');
-      if ($this->project->create(get_user_id(), $name, $public)) {
+      if (($project = $this->project->create(get_user_id(), $name, $public))) {
         echo json_encode(array(
           'error' => '0',
-          'message' => 'Project created!'
+          'message' => 'Project created!',
+          'proj_id' => $project['id'],
         ));
       } else {
         echo json_encode(array(
