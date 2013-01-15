@@ -203,6 +203,35 @@ class Projects extends CI_Controller
 		$this->twig->display('projects/admin.twig', $data);
 	}
 
+  public function subscribe_ajax() {
+		check_login();
+    $proj_id = $this->input->post('proj_id');
+    if ($proj_id && is_numeric($proj_id)) {
+      check_project_perms($proj_id);
+      $user_id = get_user_id();
+      $project = $this->project->get($proj_id);
+      if ($this->permission->is_member($user_id, $proj_id)) {
+        echo json_encode(array(
+          'error' => '1'
+        ));
+      }
+
+      if ($this->permission->is_subscribed($user_id, $proj_id)) {
+        $this->permission->delete_permission($user_id, $proj_id);
+      } else {
+        $this->permission->add_permission($user_id, $proj_id, Permission::SUBSCRIBER);
+      }
+
+      echo json_encode(array(
+        'error' => '0'
+      ));
+    } else {
+      echo json_encode(array(
+        'error' => '2'
+      ));
+    }
+  }
+
 	public function subscribe($proj_id) {
 		check_login();
 		check_project_perms($proj_id);

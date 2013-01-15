@@ -8,6 +8,32 @@ My Projects
 
 {% include 'projects/create.twig' %}
 
+<script>
+$(document).ready(function() {
+  $('.unsubscribe').click(function(e) { e.preventDefault() });
+});
+
+function unsubscribe(link) {
+  var form_data = {
+    proj_id : link.getAttribute('data-subid')
+  };
+
+  $.ajax({
+    url: "subscribe_ajax",
+    type: "POST",
+    data: form_data,
+    dataType: "json",
+    cache: false,
+
+    success: function(json) {
+      if (json.error == 0) {
+        window.location.href = window.location.href;
+      }
+    }
+  })
+}
+</script>
+
 <div class="row-fluid">
   <div class="span6 well blue-well">
     <h1>
@@ -62,7 +88,7 @@ My Projects
               <div class="activity-entry">
                 {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
                 <div class="pull-right">
-                  <a href="#" rel="tooltip" title="Cancel Subscription" class="icon-rawlink">
+                  <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
                     <i class="icon-ban-circle icon-large"></i>
                   </a>
                 </div>
