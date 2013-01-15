@@ -11,6 +11,10 @@ function createProject(event) {
     public : $("[name='public']").val(),
   };
 
+  $(".project-create").val("Loading...");
+  $(".project-create").attr('class', 'butn disabled project-create');
+  $(".project-cancel").attr('class', 'butn disabled project-cancel');
+
   $.ajax({
     url: "/projects/create_ajax",
     type: "POST",
@@ -19,11 +23,15 @@ function createProject(event) {
     cache: false,
 
     success: function (json) {
+    // TESTING ONLY
+      setInterval(function() {
+      $(".project-create").val("Create");
       if (json.error == 0) {
         $('#createProjectError').hide();
         $('#createProjectSuccess').html(json.message).show();
         setTimeout(function() {
           var waitingReload = true;
+
           $('#createProject').modal('hide');
           $('#createProject').on('hidden', function() {
             if (waitingReload) {
@@ -33,7 +41,10 @@ function createProject(event) {
         }, 1500);
       } else {
         $('#createProjectError').html(json.message).show();
+        $(".project-create").attr('class', 'butn butn-primary project-create');
+        $(".project-cancel").attr('class', 'butn project-cancel');
       }
+    }, 1000);
     }
   });
 }
@@ -62,8 +73,8 @@ function createProject(event) {
     </div>
   </div>
   <div class="modal-footer">
-    {{ form_submit({class: 'butn butn-primary', name: 'create_project'}, 'Create') | raw }}
-    <a class="butn" data-dismiss="modal">Cancel</a>
+    {{ form_submit({class: 'butn butn-primary project-create', name: 'create_project'}, 'Create') | raw }}
+    <a class="butn project-cancel" data-dismiss="modal">Cancel</a>
   </div>
   {{ form_close() | raw }}
 </div>
