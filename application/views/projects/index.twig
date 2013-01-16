@@ -98,7 +98,14 @@ function unsubscribe(link) {
     <table class="table">
       <tr>
         <th>
-          <h1>Subscriptions</h1>
+          <h1>
+            Subscriptions
+            <div class="pull-right">
+              <a href="/projects/explore" rel="tooltip" title="Explore projects" class="rawlink" data-toggle="modal">
+                <i class="icon-bookmark"></i>
+              </a>
+            </div>
+          </h1>
         </th>
       </tr>
       {% if subscriptions %}
