@@ -54,9 +54,17 @@ function unsubscribe(link) {
               {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
               <div class="buttons">
               {% if project.permission b-and 8 %}
-                <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink btn-mini">
-                  <i class="icon-cog icon-large"></i>
-                </a>
+                <div class="button">
+                  <a href="#" rel="tooltip" title="Subscribers" class="icon-rawlink">
+                    {{ project.subscribers }}
+                    <i class="icon-star"></i>
+                  </a>
+                </div>
+                <div class="button">
+                  <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink">
+                    <i class="icon-cog icon-large"></i>
+                  </a>
+                </div>
               {% endif %}
               </div>
               <div class="description">
@@ -92,9 +100,17 @@ function unsubscribe(link) {
             <td class="project" valign="middle" data-proj_id="{{ subscription.id }}">
               {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
               <div class="buttons">
-                <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
-                  <i class="icon-ban-circle icon-large"></i>
-                </a>
+                <div class="button">
+                  <a href="#" rel="tooltip" title="Subscribers" class="icon-rawlink">
+                    {{ subscription.subscribers }}
+                    <i class="icon-star"></i>
+                  </a>
+                </div>
+                <div class="button">
+                  <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
+                    <i class="icon-ban-circle icon-large"></i>
+                  </a>
+                </div>
               </div>
               <div class="description">
                 {% if project.description %}

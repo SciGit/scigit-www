@@ -573,7 +573,13 @@ footer {
   padding: 0 0 5px 5px;
 }
 
+.project .buttons .button {
+  margin-left: 10px;
+  float: left;
+}
+
 .project .description {
+  margin-top: 5px;
   color: gray;
 }
 

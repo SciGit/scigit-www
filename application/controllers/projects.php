@@ -19,10 +19,18 @@ class Projects extends CI_Controller
 	public function me() {
 		check_login();
     $user_id = get_user_id();
+    $projects = $this->permission->get_user_accessible($user_id);
+    $subscriptions = $this->permission->get_user_subscriptions($user_id);
+    foreach ($projects as $project) {
+      $project->subscribers = $this->user->get_by_project_membership($project->id, true);
+    }
+    foreach ($subscriptions as $subscription) {
+      $subscription->subscribers = $this->user->get_by_project_membership($subscription->id, true);
+    }
 		$data = array(
       'page' => get_class(),
-			'projects' => $this->permission->get_user_accessible($user_id),
-			'subscriptions' => $this->permission->get_user_subscriptions($user_id),
+			'projects' => $projects,
+			'subscriptions' => $subscriptions,
 		);
 		$this->twig->display('projects/index.twig', $data);
 	}
