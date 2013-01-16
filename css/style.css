@@ -149,7 +149,7 @@ a.icon-rawlink, a.icon-rawlink:link, a.icon-rawlink:visited, a.icon-rawlink:hove
   padding: 19px;
 }
 
-.well-list .nohover td:hover {
+.well-list .nohover td:hover, .blue-well-list .nohover td:hover {
   background-color: white;
 }
 
