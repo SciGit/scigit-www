@@ -563,6 +563,19 @@ footer {
   color: gray;
 }
 
+.project {
+
+}
+
+.project .buttons {
+  float: right;
+  padding: 0 0 5px 5px;
+}
+
+.project .description {
+  color: gray;
+}
+
 .change-entry {
   margin: 10px 5px;
 }

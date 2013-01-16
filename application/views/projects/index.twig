@@ -51,16 +51,16 @@ function unsubscribe(link) {
         {% for project in projects %}
           <tr>
             <td valign="middle">
-              <div class="activity-entry">
+              <div class="project">
                 {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-                <div class="pull-right">
+                <div class="buttons">
                 {% if project.permission b-and 8 %}
                   <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink btn-mini">
                     <i class="icon-cog icon-large"></i>
                   </a>
                 {% endif %}
                 </div>
-                <div class="activity-msg">
+                <div class="description">
                   {% if project.description %}
                     {{ project.description | slice(0, 120) }} ...
                   {% else %}
@@ -92,14 +92,14 @@ function unsubscribe(link) {
         {% for subscription in subscriptions %}
           <tr>
             <td valign="middle">
-              <div class="activity-entry">
+              <div class="project">
                 {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
-                <div class="pull-right">
+                <div class="buttons">
                   <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
                     <i class="icon-ban-circle icon-large"></i>
                   </a>
                 </div>
-                <div class="activity-msg">
+                <div class="description">
                   {% if project.description %}
                     {{ project.description | slice(0, 120) }} ...
                   {% else %}
