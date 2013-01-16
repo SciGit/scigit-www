@@ -112,7 +112,7 @@ set submit = {
                 <li {% if page == 'Explore' %}class="current"{% endif %}><a href="/projects/explore">Explore</a></li>
                 <li class="divider"><div class="inner"></div></li>
                 {% if is_logged_in() %}
-                <li {% if page == 'Projects' %}class="current"{% endif %}><a href="/projects/me">Projects</a></li>
+                <li {% if page == 'Projects' %}class="current"{% endif %}><a href="/projects/me">My Projects</a></li>
                 <li class="divider"><div class="inner"></div></li>
                 {% else %}
                 <li {% if page == 'Login' %}class="current"{% endif %}><a href="/auth/login">Login</a></li>
