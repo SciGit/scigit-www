@@ -9,6 +9,9 @@ My Projects
 <script>
 $(document).ready(function() {
   $('.unsubscribe').click(function(e) { e.preventDefault() });
+  $('.project').click(function(event) {
+    window.location.href = '/projects/view/' + this.getAttribute('data-proj_id');
+  });
 });
 
 function unsubscribe(link) {
@@ -50,23 +53,21 @@ function unsubscribe(link) {
       {% if projects %}
         {% for project in projects %}
           <tr>
-            <td valign="middle">
-              <div class="project">
-                {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-                <div class="buttons">
-                {% if project.permission b-and 8 %}
-                  <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink btn-mini">
-                    <i class="icon-cog icon-large"></i>
-                  </a>
+            <td class="project" valign="middle" data-proj_id="{{ project.id }}">
+              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+              <div class="buttons">
+              {% if project.permission b-and 8 %}
+                <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink btn-mini">
+                  <i class="icon-cog icon-large"></i>
+                </a>
+              {% endif %}
+              </div>
+              <div class="description">
+                {% if project.description %}
+                  {{ project.description | slice(0, 120) }} ...
+                {% else %}
+                  No description.
                 {% endif %}
-                </div>
-                <div class="description">
-                  {% if project.description %}
-                    {{ project.description | slice(0, 120) }} ...
-                  {% else %}
-                    No description.
-                  {% endif %}
-                </div>
               </div>
             </td>
           </tr>
@@ -91,21 +92,19 @@ function unsubscribe(link) {
       {% if subscriptions %}
         {% for subscription in subscriptions %}
           <tr>
-            <td valign="middle">
-              <div class="project">
-                {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
-                <div class="buttons">
-                  <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
-                    <i class="icon-ban-circle icon-large"></i>
-                  </a>
-                </div>
-                <div class="description">
-                  {% if project.description %}
-                    {{ project.description | slice(0, 120) }} ...
-                  {% else %}
-                    No description.
-                  {% endif %}
-                </div>
+            <td class="project" valign="middle" data-proj_id="{{ subscription.id }}">
+              {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
+              <div class="buttons">
+                <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
+                  <i class="icon-ban-circle icon-large"></i>
+                </a>
+              </div>
+              <div class="description">
+                {% if project.description %}
+                  {{ project.description | slice(0, 120) }} ...
+                {% else %}
+                  No description.
+                {% endif %}
               </div>
             </td>
           </tr>

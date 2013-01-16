@@ -563,8 +563,9 @@ footer {
   color: gray;
 }
 
-.project {
-
+.project:hover {
+  cursor: pointer;
+  cursor: hand;
 }
 
 .project .buttons {
