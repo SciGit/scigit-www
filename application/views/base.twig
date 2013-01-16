@@ -109,7 +109,7 @@ set submit = {
               {% block nav_items %}
               <ul class="navitems">
                 <li class="divider"><div class="inner"></div></li>
-                <li {% if page == 'Explore' %}class="current"{% endif %}><a href="/projects/explore">Explore</a></li>
+                <li {% if page == 'Explore' %}class="current"{% endif %}><a href="/projects/explore">Public</a></li>
                 <li class="divider"><div class="inner"></div></li>
                 {% if is_logged_in() %}
                 <li {% if page == 'Projects' %}class="current"{% endif %}><a href="/projects/me">My Projects</a></li>
