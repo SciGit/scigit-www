@@ -120,7 +120,7 @@ a.butn-primary:hover {
   color: white;
 }
 
-a.icon-rawlink, a.icon-rawlink:link, a.icon-rawlink:visited, a.icon-rawlink:hover, a.icon-rawlink:active {
+a.rawlink, a.rawlink:link, a.rawlink:visited, a.rawlink:hover, a.rawlink:active {
   text-decoration: none;
   color: black;
 }

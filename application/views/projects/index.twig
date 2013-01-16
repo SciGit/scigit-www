@@ -47,7 +47,7 @@ function unsubscribe(link) {
           <h1>
             My Projects
             <div class="pull-right">
-              <a href="#createProject" rel="tooltip" title="Create new project" class="icon-rawlink" data-toggle="modal">
+              <a href="#createProject" rel="tooltip" title="Create new project" class="rawlink" data-toggle="modal">
                 <i class="icon-plus"></i>
               </a>
             </div>
@@ -61,14 +61,14 @@ function unsubscribe(link) {
               {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
               <div class="buttons">
                 <div class="button">
-                  <a href="#" rel="tooltip" title="Subscribers" class="icon-rawlink">
+                  <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
                     {{ project.subscribers }}
                     <i class="icon-star"></i>
                   </a>
                 </div>
                 {% if project.permission b-and 8 %}
                   <div class="button">
-                    <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="icon-rawlink">
+                    <a href="{{ site_url("/projects/admin/#{project.id}", 'Admin') | raw }}" rel="tooltip" title="Administrate" class="rawlink">
                       <i class="icon-cog icon-large"></i>
                     </a>
                   </div>
@@ -108,13 +108,13 @@ function unsubscribe(link) {
               {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
               <div class="buttons">
                 <div class="button">
-                  <a href="#" rel="tooltip" title="Subscribers" class="icon-rawlink">
+                  <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
                     {{ subscription.subscribers }}
                     <i class="icon-star"></i>
                   </a>
                 </div>
                 <div class="button">
-                  <a href="#" onclick="unsubscribe(this)" class="unsubscribe icon-rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
+                  <a href="#" onclick="unsubscribe(this)" class="unsubscribe rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
                     <i class="icon-ban-circle icon-large"></i>
                   </a>
                 </div>
