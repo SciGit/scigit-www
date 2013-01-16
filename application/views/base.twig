@@ -71,6 +71,13 @@ set submit = {
     $("[rel='tooltip']").tooltip();
   });
 </script>
+<script>
+  $(document).ready(function() {
+    $('.project').click(function(event) {
+      window.location.href = '/projects/view/' + this.getAttribute('data-proj_id');
+    });
+  });
+</script>
 
 {% include 'projects/create.twig' %}
 

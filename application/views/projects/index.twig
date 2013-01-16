@@ -9,9 +9,6 @@ My Projects
 <script>
 $(document).ready(function() {
   $('.unsubscribe').click(function(e) { e.preventDefault() });
-  $('.project').click(function(event) {
-    window.location.href = '/projects/view/' + this.getAttribute('data-proj_id');
-  });
 });
 
 function unsubscribe(link) {
