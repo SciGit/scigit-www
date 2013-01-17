@@ -5,9 +5,8 @@
 {% block content %}
 
 <p class="breadcrumbs">
-  {{ anchor("/users", "Profiles") | raw }} <span class="divider">&gt;</span>
-  <span class="current">{{ user.username }}</span> <span class="divider">&gt;</span>
-  <span class="current">View</span>
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ anchor("/users/profile/#{user.id}", user.username ~ "'s Profile") | raw }} </span>
 </p>
 
 <br />
