@@ -11,66 +11,76 @@
 {% endif %}
 
 <div class="row-fluid">
-  <div class="span6 well light-well">
-    <h2>Collaboration Activity</h2>
-    <hr class="soften" />
-    {% if activities %}
-      <ul>
+  <div class="span6 well-list">
+    <table class="table tabled-condensed">
+      <tr>
+        <th>
+          <h2>Collaboration Activity</h2>
+        </th>
+      </tr>
+      {% if activities %}
         {% for activity in activities %}
-          <li class="activity-entry">
-            <strong>
+          <tr>
+            <td class="project" valign="middle" data-proj_id="{{ activity.proj_id }}">
               {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
               pushed to
               {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
-            </strong>
-            <p class="date date-margin pull-right">{{ time_ago(activity.commit_ts) }}</p>
-            <div class="activity-msg">
-              {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
-            </div>
-            {% if not loop.last %}
-              <hr class="soften" />
-            {% endif %}
-          </li>
+              <div class="date pull-right">{{ time_ago(activity.commit_ts) }}</div>
+              <div class="description">
+                {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
+              </div>
+            </td>
+          </tr>
         {% endfor %}
-      </ul>
-    {% else %}
-      <p>You have no recent activity in your social circle. Visit the
-        {{ anchor("/projects/explore", "Explore") | raw }} section.</p>
-    {% endif %}
+      {% else %}
+        <tr class="nohover">
+          <td>
+            <p>You have no recent activity in your social circle. Visit the
+              {{ anchor("/projects/explore", "Explore") | raw }} section.</p>
+          </td>
+        </tr>
+      {% endif %}
+    </table>
   </div>
-  <div class="span6 well light-well">
-    <h2>Your Activity</h2>
-    <hr class="soften" />
-    {% if projects %}
-      <ul>
+  <div class="span6 well-list">
+    <table class="table">
+      <tr>
+        <th>
+          <h2>Your Activity</h2>
+        </th>
+      </tr>
+      {% if projects %}
         {% for project in projects %}
           {% if project.my_changes %}
-            <li class="activity-entry">
-              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-              <ul class="unstyled">
-                {% for change in project.my_changes %}
-                  <li>
-                    <div class="pull-right date p">
-                      {{ time_ago(change.commit_ts) }}
-                    </div>
-                    <div class="activity-msg">
-                      {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-                    </div>
-                  </li>
-                {% endfor %}
-              </ul>
-              {% if not loop.last and loop.next.my_changes %}
-                <hr class="soften" />
-              {% endif %}
-            </li>
+            <tr>
+              <td class="project" valign="middle" data-proj_id="{{ project.id }}">
+                {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+                <ul class="unstyled">
+                  {% for change in project.my_changes %}
+                    <li>
+                      <div class="pull-right date p">
+                        {{ time_ago(change.commit_ts) }}
+                      </div>
+                      <div class="activity-msg">
+                        {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
           {% endif %}
         {% endfor %}
-      </ul>
-    {% elseif has_projects %}
-      <p>You have made no changes to any projects recently.</p>
-    {% else %}
-      <p>You have no projects. {{ anchor("/projects/create", "Create a Project") | raw }} to get started! You can also join someone else's project.</p>
-    {% endif %}
+      {% elseif has_projects %}
+        <tr class="nohover">
+          <td>
+            <p>You have made no changes to any projects recently.</p>
+          {% else %}
+            <p>You have no projects. {{ anchor("/projects/create", "Create a Project") | raw }} to get started! You can also join someone else's project.</p>
+          </td>
+        </tr>
+      {% endif %}
+    </table>
   </div>
 </div>
 {% endblock %}
