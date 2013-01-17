@@ -57,34 +57,28 @@
     <div class="well-list">
       <table class="table table-condensed">
         <tr>
-          <th>
+          <th colspan="2">
             <h2>Stats</h2>
           </th>
         </tr>
         <tr class="nohover">
           <td class="tabular" valign="middle">
-            <table width="100%">
-              <tr>
-                <td>
-                  <p><i class="icon-star"></i>&nbsp;<strong>{{ subscribers }}</strong> Subscribers</p>
-                </td>
-                <td>
-                  <p><i class="icon-circle-arrow-up"></i>&nbsp;<strong>{{ changes_num }}</strong> Changes</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p><i class="icon-edit"></i>&nbsp;<strong>{{ contributors }}</strong> Contributors</p>
-                </td>
-                <td>
-                  <p><i class="icon-wrench"></i>&nbsp;<strong>{{ administrators }}</strong> Administrators</p>
-                </td>
-              </tr>
-            </table>
+            <p><i class="icon-star"></i>&nbsp;&nbsp;<strong>{{ subscribers }}</strong> Subscribers</p>
+          </td>
+          <td class="tabular" valign="middle">
+            <p><i class="icon-circle-arrow-up"></i>&nbsp;&nbsp;<strong>{{ changes_num }}</strong> Changes</p>
+          </td>
+        </tr>
+        <tr class="nohover">
+          <td class="tabular" valign="middle">
+            <p><i class="icon-edit"></i>&nbsp;&nbsp;<strong>{{ contributors }}</strong> Contributors</p>
+          </td>
+          <td class="tabular" valign="middle">
+            <p><i class="icon-wrench"></i>&nbsp;&nbsp;<strong>{{ administrators }}</strong> Administrators</p>
           </td>
         </tr>
         <tr class="alwayshover">
-          <td>
+          <td colspan="2">
             Created <em>{{ project.created_ts | date("F j, Y") }}</em></p>
           </td>
         </tr>

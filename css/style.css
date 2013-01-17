@@ -159,8 +159,9 @@ a.rawlink, a.rawlink:link, a.rawlink:visited, a.rawlink:hover, a.rawlink:active 
   background-color: rgb(245, 245, 245);
 }
 
-.well-list .nohover td:hover, .blue-well-list .nohover td:hover {
-  background-color: white;
+.well-list tr.nohover td:hover, .well-list tr.nohover:hover td,
+.blue-well-list tr.nohover td:hover, .blue-well-list tr.nohover td {
+  background-color: inherit;
 }
 
 .blue-well-list .table th, .blue-well-list .table tr th:hover {
