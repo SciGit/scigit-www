@@ -138,28 +138,47 @@ a.rawlink, a.rawlink:link, a.rawlink:visited, a.rawlink:hover, a.rawlink:active 
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-.well-list table, .well-list table tr,
-.blue-well-list table, .blue-well-list table tr {
+.well-list .table, .well-list .table tr,
+.blue-well-list .table, .blue-well-list .table tr {
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
 
-.well-list table th {
+.well-list .table th {
   background-color: #f5f5f5;
   padding: 19px;
+}
+
+.well-list .table-condensed th {
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+
+.well-list .alwayshover td, .well-list .alwayshover td:hover,
+.blue-well-list .alwayshover td, .blue-well-list .alwayshover td:hover {
+  background-color: rgb(245, 245, 245);
 }
 
 .well-list .nohover td:hover, .blue-well-list .nohover td:hover {
   background-color: white;
 }
 
-.blue-well-list table th, .blue-well-list table tr th:hover {
+.blue-well-list .table th, .blue-well-list .table tr th:hover {
   background-color: rgba(0, 0, 255, 0.035);
   padding: 19px;
 }
 
-.well-list table tr td, .blue-well-list table tr td {
+.blue-well-list .table-condensed th, .blue-well-list .table-condensed tr th:hover {
+  background-color: rgba(0, 0, 255, 0.035);
+  padding: 10px;
+}
+
+.well-list .table tr td, .blue-well-list .table tr td {
   padding: 19px;
+}
+
+.well-list .table-condensed tr td, .blue-well-list .table-condensed tr td {
+  padding: 10px 10px 10px 10px;
 }
 
 .well-padding {
@@ -568,17 +587,17 @@ footer {
   cursor: hand;
 }
 
-.project .buttons {
+.project .buttons, .tabular .buttons {
   float: right;
   padding: 0 0 5px 5px;
 }
 
-.project .buttons .button {
+.project .buttons .button, .tabular .buttons .button {
   margin-left: 10px;
   float: left;
 }
 
-.project .description {
+.project .description, .tabular .description {
   margin-top: 5px;
   color: gray;
 }
