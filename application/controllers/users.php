@@ -40,6 +40,7 @@ class Users extends CI_Controller
           $num_changes = count($projects) > 1 ? 5 : 10;
           $project->my_changes =
             $this->change->get_by_project_latest($project->id, $user->id, $num_changes);
+          $project->subscribers = $this->user->get_by_project_membership($project->id, true);
         }
         $fulltitle = format_user_fulltitle($user);
 
