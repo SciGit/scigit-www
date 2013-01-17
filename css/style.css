@@ -582,22 +582,25 @@ footer {
   color: gray;
 }
 
-.project:hover {
+.project:hover, .change:hover {
   cursor: pointer;
   cursor: hand;
 }
 
-.project .buttons, .tabular .buttons {
+.project .buttons, .change .buttons, .tabular .buttons {
   float: right;
   padding: 0 0 5px 5px;
 }
 
-.project .buttons .button, .tabular .buttons .button {
+.project .buttons .button, .change .buttons .button, .tabular .buttons .button {
   margin-left: 10px;
   float: left;
 }
 
-.project .description, .tabular .description {
+.project .description, .change .description, .tabular .description,
+.project .description a, .change .description a, .tabular .description a,
+.project .description a:active, .change .description a:active, .tabular .description a:active
+.project .description a:visited, .change .description a:visited, .tabular .description a:visited {
   margin-top: 5px;
   color: gray;
 }
