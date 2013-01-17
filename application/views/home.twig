@@ -22,10 +22,12 @@
         {% for activity in activities %}
           <tr>
             <td class="project" valign="middle" data-proj_id="{{ activity.proj_id }}">
-              {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}}
-              pushed to
-              {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
+              <div class="pull-left">
+                {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}} pushed to<br />
+                {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
+              </div>
               <div class="date pull-right">{{ time_ago(activity.commit_ts) }}</div>
+              <div class="clearfix"></div>
               <div class="description">
                 {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
               </div>
