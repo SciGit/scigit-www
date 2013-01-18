@@ -341,12 +341,13 @@ a.rawlink, a.rawlink:link, a.rawlink:visited, a.rawlink:hover, a.rawlink:active 
   line-height: 24px;
 }
 
-.dropdown #label {
-  font-size: 20px;
-  font-weight: 100;
+/* FIXME: use selectors */
+.dropdown #label-username, .dropdown #label-projects {
+  font-size: 150%;
+  font-weight: 200;
 }
 
-.dropdown #label .caret {
+.dropdown #label-username .caret, .dropdown #label-projects .caret {
   margin: 10px 0 0 5px;
 }
 
@@ -377,6 +378,10 @@ a.rawlink, a.rawlink:link, a.rawlink:visited, a.rawlink:hover, a.rawlink:active 
   height: 25px;
   margin-top: 7px;
   border-left: 2px solid rgb(92, 111, 146);
+}
+
+ul.fake {
+  margin: 7px 0 0 20px;
 }
 
 .navitems li {

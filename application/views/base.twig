@@ -96,32 +96,41 @@ set submit = {
             <div class="span10">
               {% if is_logged_in() %}
               <div class="dropdown">
-                <a id="label" class="dropdown-toggle username" data-toggle="dropdown" href="#">
-                {{ get_user_username() }}<b class="caret"></b>
+                <a id="label-username" class="dropdown-toggle username" data-toggle="dropdown" href="#">
+                  {{ get_user_username() }}<b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="label">
-                  <li><a href="#createProject" data-toggle="modal" tabindex="-1" href="#">Create Project</a></li>
-                  <li class="divider"></li>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="label-username">
                   <li><a tabindex="-1" href="/users/profile/{{ get_user_id() }}">View My Profile</a></li>
                   <li><a tabindex="-1" href="/users/profile">Settings</a></li>
                   <li class="divider"></li>
                   <li><a tabindex="-1" href="/auth/logout">Logout</a></li>
                 </ul>
               </div>
-              {% endif %}
-              {% block nav_items %}
+              <ul class="navitems fake">
+                <li class="divider"><div class="inner"></div></li>
+              </ul>
+              <div class="dropdown">
+                <a id="label-projects" class="dropdown-toggle username" data-toggle="dropdown" href="#">
+                  My Projects<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
+                  <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create New Project</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="/projects/me">Manage Projects</a></li>
+                  <li><a tabindex="-1" href="/projects/me">Manage Subscriptions</a></li>
+                </ul>
+              </div>
+            {% endif %}
+            {% block nav_items %}
               <ul class="navitems">
                 <li class="divider"><div class="inner"></div></li>
                 <li {% if page == 'Explore' %}class="current"{% endif %}><a href="/projects/explore">Public</a></li>
                 <li class="divider"><div class="inner"></div></li>
-                {% if is_logged_in() %}
-                <li {% if page == 'Projects' %}class="current"{% endif %}><a href="/projects/me">My Projects</a></li>
-                <li class="divider"><div class="inner"></div></li>
-                {% else %}
+                {% if not is_logged_in() %}
                 <li {% if page == 'Login' %}class="current"{% endif %}><a href="/auth/login">Login</a></li>
                 {% endif %}
               </ul>
-              {% endblock %}
+            {% endblock %}
               <div class='input-append'>
                 {{ form_open('/search', {class: 'navbar-search form-horizontal'}) | raw }}
                   {{ form_input(search) | raw }}
