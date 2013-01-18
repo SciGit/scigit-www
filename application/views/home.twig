@@ -23,8 +23,8 @@
           <tr>
             <td class="project" valign="middle" data-proj_id="{{ activity.proj_id }}">
               <div class="pull-left">
-                {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}} pushed to<br />
-                {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
+                <strong>{{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}</strong><br />
+                {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}} made change:
               </div>
               <div class="date pull-right">{{ time_ago(activity.commit_ts) }}</div>
               <div class="clearfix"></div>
