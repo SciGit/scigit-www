@@ -69,7 +69,9 @@ class Home extends CI_Controller
         'activated' => $user->activated,
         'username' => $user->username,
         'user_id' => $user_id,
-        'just_started' => (empty($activities) && !$has_projects),
+        'just_started' => (empty($activities) && !$has_projects)
+                       // XXX: Very bad check, we should just drop the sample project.
+                       || (count($projects) == 1 && strpos($projects[0]->name, 'Sample Project by') !== FALSE),
       );
 			$this->twig->display('home.twig', $data);
 		}
