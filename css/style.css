@@ -667,7 +667,7 @@ footer {
 }
 
 .breadcrumbs .current {
-  color: black;
+  font-weight: 500;
 }
 
 .company {

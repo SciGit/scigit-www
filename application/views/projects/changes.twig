@@ -1,26 +1,20 @@
 {% extends "base.twig" %}
 
-{% block title "Project Changes: " ~ project.name %}
+{% block title project.name ~ " Changes" %}
 
 {% block content %}
 <div class="page-header">
-  <div class="pull-right">
-    {% if admin %}
-      <a class="btn btn-large btn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
-        <i class="icon-wrench icon-white"></i>
-        Admin
-      </a>
-    {% else %}
-      {{ form_open("/projects/subscribe/#{project.id}") | raw }}
-        {{ form_input({class: 'hidden', name: 'return_to', value: 'changes'}) | raw }}
-        {{ form_submit({class: subscribed ? 'btn btn-large btn-danger' : 'btn btn-large btn-success', name: 'subscribe'},
-            subscribed ? 'Unsubscribe' : 'Subscribe') | raw }}
-      {{ form_close() | raw }}
-    {% endif %}
-  </div>
-	<h1>
-    {{ project.name }}, Changes
-	</h1>
+	<h2>
+    <p class="breadcrumbs">
+      {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+      {% if member or admin %}
+        {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
+      {% else %}
+        {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
+      {% endif %}
+      {{ anchor("/projects/view/#{project.id}", project.name) | raw }} <span class="divider">&gt;</span>
+      <span class="current">{{ anchor("/projects/changes/#{project.id}", "Changes") | raw }}</span>
+    </p>
 </div>
 
 {% for change in changes %}
