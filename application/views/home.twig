@@ -92,7 +92,7 @@
             {% if has_projects %}
               <p>You have made no changes to any projects recently.</p>
             {% else %}
-              <p>You have no projects. {{ anchor("/projects/create", "Create a Project") | raw }} to get started! You can also join someone else's project.</p>
+              <p>You have no projects. <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create a Project</a> to get started! You can also join someone else's project.</p>
             {% endif %}
           </td>
         </tr>
