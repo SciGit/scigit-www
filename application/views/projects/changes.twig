@@ -4,39 +4,43 @@
 
 {% block content %}
 <div class="page-header">
-	<h2>
-    <p class="breadcrumbs">
-      {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
-      {% if member or admin %}
-        {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
-      {% else %}
-        {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
-      {% endif %}
-      {{ anchor("/projects/view/#{project.id}", project.name) | raw }} <span class="divider">&gt;</span>
-      <span class="current">{{ anchor("/projects/changes/#{project.id}", "Changes") | raw }}</span>
-    </p>
+  <p class="breadcrumbs">
+    {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+    {% if member or admin %}
+      {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
+    {% else %}
+      {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
+    {% endif %}
+    {{ anchor("/projects/view/#{project.id}", project.name) | raw }} <span class="divider">&gt;</span>
+    <span class="current">{{ anchor("/projects/changes/#{project.id}", "Changes") | raw }}</span>
+  </p>
 </div>
 
-{% for change in changes %}
-	<table class="table table-bordered table-condensed table-striped">
-		<thead>
-			<tr>
-				<td>
-					{{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-					by {{ change.username }} on {{ change.commit_ts | date }}
-				</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					Files modified:
-				</td>
-			</tr>
-		</tbody>
-	</table>
-{% else %}
-	No changes yet.
-{% endfor %}
+<div class="well-list">
+  <table class="table table-condensed">
+    <tr>
+      <th>
+        <h2>All Changes</h2>
+      </th>
+    </tr>
+    {% if changes %}
+      {% for change in changes %}
+        <tr>
+          <td>
+            Files modified:
+            {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+            by {{ change.username }} on {{ change.commit_ts | date }}
+          </td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr class="nohover">
+        <td class="tabular">
+          No changes yet.
+        </td>
+      </tr>
+    {% endif %}
+  </table>
+</div>
 
 {% endblock %}

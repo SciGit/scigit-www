@@ -19,17 +19,15 @@
       {{ form_close() | raw }}
     {% endif %}
   </div>
-	<h2>
-    <p class="breadcrumbs">
-      {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
-      {% if member or admin %}
-        {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
-      {% else %}
-        {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
-      {% endif %}
-      <span class="current">{{ anchor("/projects/view/#{project.id}", project.name) | raw }}</span>
-    </p>
-	</h2>
+  <p class="breadcrumbs">
+    {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+    {% if member or admin %}
+      {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
+    {% else %}
+      {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
+    {% endif %}
+    <span class="current">{{ anchor("/projects/view/#{project.id}", project.name) | raw }}</span>
+  </p>
 </div>
 
 <div class="row-fluid">
