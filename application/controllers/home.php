@@ -48,6 +48,11 @@ class Home extends CI_Controller
           $projects_has_at_least_one_change = true;
         }
       }
+
+      // XXX: Check if all the user has is their sample project.
+      $has_only_sample_project =
+        count($projects) == 1 && strpos($projects[0]->name, 'Sample Project by') !== FALSE;
+
       $activities = array_slice($activities, 0, 10);
       $has_projects = !!count($this->permission->get_user_accessible($user_id));
       if (!$has_projects || !$projects_has_at_least_one_change) {
@@ -70,8 +75,7 @@ class Home extends CI_Controller
         'username' => $user->username,
         'user_id' => $user_id,
         'just_started' => (empty($activities) && !$has_projects)
-                       // XXX: Very bad check, we should just drop the sample project.
-                       || (count($projects) == 1 && strpos($projects[0]->name, 'Sample Project by') !== FALSE),
+                       || $has_only_sample_project,
       );
 			$this->twig->display('home.twig', $data);
 		}

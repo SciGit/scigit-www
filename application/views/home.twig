@@ -51,7 +51,7 @@
         <tr class="nohover">
           <td>
             <p>You have no recent activity in your social circle. Visit the
-              {{ anchor("/projects/explore", "Explore") | raw }} section.</p>
+              {{ anchor("/projects/explore", "Public") | raw }} section.</p>
           </td>
         </tr>
       {% endif %}
@@ -89,8 +89,8 @@
       {% else %}
         <tr class="nohover">
           <td>
-            {% if has_projects %}
-              <p>You have made no changes to any projects recently.</p>
+            {% if (not just_started) and has_projects %}
+              <p>You have made no changes to any projects recently. Consider {{ anchor("/projects/explore", "finding a project") | raw }} to contribute to.</p>
             {% else %}
               <p>You have no projects. <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create a Project</a> to get started! You can also join someone else's project.</p>
             {% endif %}
