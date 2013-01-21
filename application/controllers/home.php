@@ -69,6 +69,7 @@ class Home extends CI_Controller
         'activated' => $user->activated,
         'username' => $user->username,
         'user_id' => $user_id,
+        'just_started' => (empty($activities) && !$has_projects),
       );
 			$this->twig->display('home.twig', $data);
 		}

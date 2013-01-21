@@ -8,9 +8,18 @@ p, .p {
   font-weight: 200;
 }
 
-h1 {
+h1, .hero-unit h1 {
   color: rgb(74, 91, 118);
   font-weight: 500;
+}
+
+.hero-unit h1 {
+  font-size: 300%;
+  margin-bottom: 7px;
+}
+
+.hero-unit .close {
+  margin: -45px -40px 0 0;
 }
 
 h2 {
@@ -123,6 +132,10 @@ a.butn-primary:hover {
 a.rawlink, a.rawlink:link, a.rawlink:visited, a.rawlink:hover, a.rawlink:active {
   text-decoration: none;
   color: black;
+}
+
+.blue-hero-unit {
+  background-color: rgba(0, 0, 255, 0.035);
 }
 
 .well-list, .blue-well-list {

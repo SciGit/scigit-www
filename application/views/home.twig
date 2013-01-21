@@ -4,10 +4,23 @@
 
 {% block content %}
 
-{% if not activated %}
-<div class="alert alert-error">
-  Your email has not been verified; certain features will not be available until you do so. Please check your email for a verification link, or <a href="/auth/send_again">get a new link</a>.
-</div>
+{% if just_started %}
+  <div class="hero-unit blue-hero-unit">
+    <button type="button" class="close pull-right" data-dismiss="alert">&times;</button>
+    <h1>
+      Let's get started!
+    </h1>
+    <p>
+      You can manage documents using projects. Let's create your first project.
+    </p>
+    <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">
+      <div class="butn butn-primary butn-xlarge">Create First Project</div>
+    </a>
+  </div>
+{% elseif not activated %}
+  <div class="alert alert-error">
+    Your email has not been verified; certain features will not be available until you do so. Please check your email for a verification link, or <a href="/auth/send_again">get a new link</a>.
+  </div>
 {% endif %}
 
 <div class="row-fluid">
@@ -73,12 +86,14 @@
             </tr>
           {% endif %}
         {% endfor %}
-      {% elseif has_projects %}
+      {% else %}
         <tr class="nohover">
           <td>
-            <p>You have made no changes to any projects recently.</p>
-          {% else %}
-            <p>You have no projects. {{ anchor("/projects/create", "Create a Project") | raw }} to get started! You can also join someone else's project.</p>
+            {% if has_projects %}
+              <p>You have made no changes to any projects recently.</p>
+            {% else %}
+              <p>You have no projects. {{ anchor("/projects/create", "Create a Project") | raw }} to get started! You can also join someone else's project.</p>
+            {% endif %}
           </td>
         </tr>
       {% endif %}
