@@ -32,13 +32,11 @@
               </div>
             </div>
             <div class="description">
-              <a href="/projects/view/{{ project.id }}">
-                {% if project.description %}
-                  {{ wordwrap(project.description, 50) }}
-                {% else %}
-                  No description.
-                {% endif %}
-              </a>
+              {% if project.description %}
+                {{ wordwrap(project.description, 50) }}
+              {% else %}
+                No description.
+              {% endif %}
             </div>
           </td>
         </tr>
@@ -67,11 +65,7 @@
                   </a>
                 </div>
               </div>
-              <div class="description">
-                <a href="/projects/view/{{ project.id }}">
-                  {{ wordwrap(project.description, 50) }}
-                </a>
-              </div>
+              <div class="description">{{ wordwrap(project.description, 50) }}</div>
             </td>
           </tr>
         {% endfor %}
