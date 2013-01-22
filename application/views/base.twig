@@ -74,10 +74,14 @@ set submit = {
 <script>
   $(document).ready(function() {
     $('.project').click(function(event) {
-      window.location.href = '/projects/view/' + this.getAttribute('data-proj_id');
+      if (event.target == this) {
+        window.location.href = '/projects/view/' + this.getAttribute('data-proj_id');
+      }
     });
     $('.change').click(function(event) {
-      window.location.href = '/changes/view/' + this.getAttribute('data-change_id');
+      if (event.target == this) {
+        window.location.href = '/changes/view/' + this.getAttribute('data-change_id');
+      }
     });
   });
 </script>
