@@ -74,12 +74,12 @@ set submit = {
 <script>
   $(document).ready(function() {
     $('.project').click(function(event) {
-      if (event.target == this) {
+      if (event.target == this || event.target.tagName.toLowerCase() == 'div') {
         window.location.href = '/projects/view/' + this.getAttribute('data-proj_id');
       }
     });
     $('.change').click(function(event) {
-      if (event.target == this) {
+      if (event.target == this || event.target.tagName.toLowerCase() == 'div') {
         window.location.href = '/changes/view/' + this.getAttribute('data-change_id');
       }
     });
