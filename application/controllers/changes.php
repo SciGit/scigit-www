@@ -79,8 +79,6 @@ class Changes extends CI_Controller
       $path = urldecode($path);
       $diff = $this->change->get_diff($id, $path);
 
-      $diff = "blah blah blah";
-
       echo json_encode(array(
         'error' => '0',
         'message' => $diff,
