@@ -11,6 +11,10 @@
     });
   });
 
+  function formatDiff(diff) {
+    return diff;
+  }
+
   function expandChanges(change) {
     var change_id = change.getAttribute('data-change_id');
     var td = $("[data-change_id='" + change_id + "']");
@@ -38,7 +42,8 @@
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
                                     .addClass('icon-minus-sign');
-            $(td).find('.diff-text').text(json.message);
+            var diff = formatDiff(json.message);
+            $(td).find('.diff-text').text(diff);
             $(td).find('.diff').show(500);
 
             icon.data('diffLoaded', 'true');
