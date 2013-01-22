@@ -26,10 +26,26 @@
     {% if changes %}
       {% for change in changes %}
         <tr>
-          <td>
-            Files modified:
-            {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-            by {{ change.username }} on {{ change.commit_ts | date }}
+          <td class="change" valign="middle" data-change_id="{{ change.id }}">
+            {{ anchor("/users/profile/#{change.user_id}", change.username) | raw }} made change:
+            <div class="buttons">
+              <div class="button">
+                <em>{{ change.commit_ts | date('H:m d/m/Y') }}</em>
+              </div>
+              <div class="button">
+                <a href="#" onclick="expandChanges(this)" class="rawlink" data-change_id="{{ change.id }}" rel="tooltip" title="Expand changed files">
+                  <i class="icon-plus-sign-alt icon-large"></i>
+                </a>
+              </div>
+              <div class="button">
+                <a href="/changes/files/{{ change.id }}" class="rawlink" rel="tooltip" title="View all files">
+                  <i class="icon-folder-close icon-large"></i>
+                </a>
+              </div>
+            </div>
+            <div class="description">
+              {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+            </div>
           </td>
         </tr>
       {% endfor %}

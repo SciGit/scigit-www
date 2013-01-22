@@ -50,6 +50,7 @@ body .modal {
 .buttons {
   margin: 0;
   padding: 0;
+  text-align: right;
 }
 
 .buttons li {
