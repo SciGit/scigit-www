@@ -3,6 +3,19 @@
 {% block title project.name ~ " Changes" %}
 
 {% block content %}
+
+<script>
+  function expandChanges(change) {
+    var change_id = change.getAttribute('data-change_id');
+    var td = $("[data-change_id='" + change_id + "']");
+
+    $(td).find('.icon-plus-sign-alt').removeClass('icon-plus-sign-alt')
+                                         .addClass('icon-spinner')
+                                         .addClass('icon-spin');
+    $(td).find('.diff').show();
+  }
+</script>
+
 <div class="page-header">
   <p class="breadcrumbs">
     {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
@@ -45,6 +58,9 @@
             </div>
             <div class="description">
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+            </div>
+            <div class="diff hide">
+              <hr class="soften" />
             </div>
           </td>
         </tr>
