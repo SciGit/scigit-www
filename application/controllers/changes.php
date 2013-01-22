@@ -79,6 +79,35 @@ class Changes extends CI_Controller
       $path = urldecode($path);
       $diff = $this->change->get_diff($id, $path);
 
+      $diff = <<<EOF
+diff --git a/application/views/projects/changes.twig b/application/views/projects/changes.twig
+index 995a4b6..0d53ef6 100755
+--- a/application/views/projects/changes.twig
++++ b/application/views/projects/changes.twig
+@@ -5,6 +5,12 @@
+ {% block content %}
+ 
+ <script>
++  $(document).ready(function() {
++    $('.changes').click(function(e) {
++      e.preventDefault();
++    });
++  });
++
+   function expandChanges(change) {
+     var change_id = change.getAttribute('data-change_id');
+     var td = $("[data-change_id='" + change_id + "']");
+@@ -87,7 +93,7 @@
+               </div>
+               <div class="button">
+                 <a href="#" onclick="expandChanges(this)" class="rawlink" data-change_id="{{ change.id }}" rel="tooltip" title="Expand differences">
+-                  <i class="icon-plus-sign-alt icon-large"></i>
++                  <i class="changes icon-plus-sign-alt icon-large"></i>
+                 </a>
+               </div>
+               <div class="button">
+EOF;
+
       echo json_encode(array(
         'error' => '0',
         'message' => $diff,
