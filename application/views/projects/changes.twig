@@ -9,10 +9,50 @@
     var change_id = change.getAttribute('data-change_id');
     var td = $("[data-change_id='" + change_id + "']");
 
-    $(td).find('.icon-plus-sign-alt').removeClass('icon-plus-sign-alt')
-                                         .addClass('icon-spinner')
-                                         .addClass('icon-spin');
-    $(td).find('.diff').show();
+    var icon = $(td).find('.icon-plus-sign-alt');
+
+    if (icon.length !== 0 && !icon.data('diffLoaded')) {
+      icon.removeClass('icon-plus-sign-alt')
+          .addClass('icon-spinner')
+          .addClass('icon-spin');
+
+      var form_data = {
+        id : change_id,
+      };
+
+      $.ajax({
+        url: "/changes/diff_ajax",
+        type: "POST",
+        data: form_data,
+        dataType: "json",
+        cache: false,
+
+        success: function(json) {
+          if (json.error == 0) {
+            $(td).find('.icon-spin').removeClass('icon-spin')
+                                    .removeClass('icon-spinner')
+                                    .addClass('icon-minus-sign');
+            $(td).find('.diff').show().text(json.message);
+
+            icon.data('diffLoaded', 'true');
+          } else {
+            $(td).find('.icon-spin').removeClass('icon-spin')
+                                    .removeClass('icon-spinner')
+                                    .addClass('icon-plus-sign-alt');
+          }
+        }
+      });
+    } else if (icon.length !== 0) {
+      $(td).find('.diff').show();
+      icon.removeClass('icon-plus-sign-alt')
+          .addClass('icon-minus-sign');
+    } else {
+      icon = $(td).find('.icon-minus-sign');
+      icon.removeClass('icon-minus-sign')
+          .addClass('icon-plus-sign-alt');
+
+      $(td).find('.diff').hide();
+    }
   }
 </script>
 

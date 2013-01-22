@@ -7,6 +7,7 @@ class Changes extends CI_Controller
 		$this->load->model('project');
 		$this->load->model('change');
 		$this->load->model('permission');
+		$this->load->library('form_validation');
 		check_login();
 	}
 
@@ -56,4 +57,39 @@ class Changes extends CI_Controller
 		}
 		echo $file;
 	}
+
+  public function diff_ajax() {
+    check_login();
+    $this->form_validation->set_rules('id', 'id', 'required');
+    $this->form_validation->set_rules('path', 'path', '');
+
+    if ($this->form_validation->run()) {
+      $id = $this->input->post('id');
+      $path = $this->input->post('path');
+
+      $change = $this->change->get($id);
+      if ($change == null) {
+        echo json_encode(array(
+          'error' => '1',
+          'message' => 'Database error, please try later.',
+        ));
+      }
+      check_project_perms($change->proj_id);
+
+      $path = urldecode($path);
+      $diff = $this->change->get_diff($id, $path);
+
+      $diff = "blah blah blah";
+
+      echo json_encode(array(
+        'error' => '0',
+        'message' => $diff,
+      ));
+    } else {
+      echo json_encode(array(
+        'error' => '2',
+        'message' => 'Invalid change id.',
+      ));
+    }
+  }
 }
