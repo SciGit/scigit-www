@@ -38,7 +38,8 @@
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
                                     .addClass('icon-minus-sign');
-            $(td).find('.diff').show().text(json.message);
+            $(td).find('.diff-text').text(json.message);
+            $(td).find('.diff').show(500);
 
             icon.data('diffLoaded', 'true');
           } else {
@@ -49,7 +50,7 @@
         }
       });
     } else if (icon.length !== 0) {
-      $(td).find('.diff').show();
+      $(td).find('.diff').show(500);
       icon.removeClass('icon-plus-sign-alt')
           .addClass('icon-minus-sign');
     } else {
@@ -107,6 +108,9 @@
             </div>
             <div class="diff hide">
               <hr class="soften" />
+              <div class="diff-text">
+
+              </div>
             </div>
           </td>
         </tr>
