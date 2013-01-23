@@ -28,12 +28,20 @@
 
   function formatDiff(diff) {
     var lines = diff.split('\n');
+    var lineOffset = 0;
     for (var line in lines) {
-      if (lines[line][0] == '@') {
+      if (lines[line].indexOf('diff --git') === 0 ||
+          lines[line].indexOf('index') === 0 ||
+          lines[line].indexOf('deleted') === 0 ||
+          lines[line].indexOf('--') === 0 ||
+          lines[line].indexOf('++') === 0) {
+        lineOffset--;
+      } else if (lines[line][0] == '@') {
         var lineInFile = lines[line].match(/\d+/);
         lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
                       'At line ' + lineInFile +
                       '</td></tr>';
+        lineOffset--;
       } else {
         var changeType = '';
         if (lines[line][0] == '+') {
@@ -45,8 +53,9 @@
         } else {
           lines[line] = lines[line].escapeHTML();
         }
+        var realLineNumber = parseInt(line) + parseInt(lineOffset);
         lines[line] = '<tr><td class="linenumber">' +
-                      (line-3) +
+                      realLineNumber +
                       '</td><td class="content ' + changeType + '">' +
                       lines[line] +
                       '</td></tr>';
@@ -54,9 +63,7 @@
     }
     diff = '';
     for (var line in lines) {
-      if (line > 3) {
-        diff = diff + lines[line] + '\n';
-      }
+      diff = diff + lines[line] + '\n';
     }
     return diff + '<tr><td></td><td></td></tr>';
   }
