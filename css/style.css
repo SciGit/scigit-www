@@ -8,6 +8,10 @@ p, .p {
   font-weight: 200;
 }
 
+body pre {
+  background-color: white;
+}
+
 h1, .hero-unit h1 {
   color: rgb(74, 91, 118);
   font-weight: 500;
@@ -605,6 +609,10 @@ footer {
 .project:hover, .change:hover, .clickable:hover {
   cursor: pointer;
   cursor: hand;
+}
+
+.clickable:hover pre.highlight {
+  background-color: rgb(245, 245, 245);
 }
 
 .project .buttons, .change .buttons, .tabular .buttons {
