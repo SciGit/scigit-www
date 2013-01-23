@@ -73,10 +73,20 @@ class Changes extends CI_Controller
           'error' => '1',
           'message' => 'Database error, please try later.',
         ));
+        return;
       }
       check_project_perms($change->proj_id);
 
       $path = urldecode($path);
+      $type = $this->change->get_type($id, $path);
+      if (false && $type != 'file') {
+        echo json_encode(array(
+          'error' => '2',
+          'message' => 'Invalid change id.',
+        ));
+        return;
+      }
+      $file = $this->change->get_file($id, $path);
       $diff = $this->change->get_diff($id, $path);
 
       $diff = <<<EOF
@@ -111,12 +121,14 @@ EOF;
       echo json_encode(array(
         'error' => '0',
         'message' => $diff,
+        'file' => $file,
       ));
     } else {
       echo json_encode(array(
         'error' => '2',
         'message' => 'Invalid change id.',
       ));
+      return;
     }
   }
 }

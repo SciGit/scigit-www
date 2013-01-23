@@ -87,6 +87,8 @@
             $(td).find('.diff').show(500);
 
             icon.data('diffLoaded', 'true');
+
+            $('.file').text('File edited: ' + json.file);
           } else {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
@@ -153,6 +155,7 @@
             </div>
             <div class="diff hide">
               <hr class="soften" />
+              <p class="file"></p>
               <pre class="highlight">
                 <table class="diff-text">
                 </table>
