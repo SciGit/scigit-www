@@ -48,6 +48,7 @@ set submit = {
 	</style>
 	<link rel="stylesheet" href="/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/prettify.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="shortcut icon" href="/favicon.ico">
 
@@ -183,6 +184,14 @@ set submit = {
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+</script>
+
+<script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint();
+    })
+  }(window.jQuery)
 </script>
 
 </body>

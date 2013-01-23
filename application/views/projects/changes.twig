@@ -5,6 +5,21 @@
 {% block content %}
 
 <script>
+  var __entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+
+  String.prototype.escapeHTML = function() {
+    return String(this).replace(/[&<>"'\/]/g, function (s) {
+      return __entityMap[s];
+    });
+  }
+
   $(document).ready(function() {
     $('.changes').click(function(e) {
       e.preventDefault();
@@ -12,6 +27,26 @@
   });
 
   function formatDiff(diff) {
+    var lines = diff.split('\n');
+    for (var line in lines) {
+      if (lines[line][0] == '+') {
+        lines[line] = '<span style="background-color: rgba(124, 252, 0, 0.4);">' +
+                      lines[line].slice(1, lines[line].length).escapeHTML() +
+                      '</span>';
+      } else if (lines[line][0] == '-') {
+        lines[line] = '<span style="background-color: rgba(255, 0, 0, 0.2);">' +
+                      lines[line].slice(1, lines[line].length).escapeHTML() +
+                      '</span>';
+      } else {
+        lines[line] = lines[line].escapeHTML();
+      }
+    }
+    diff = '';
+    for (var line in lines) {
+      if (line > 3) {
+        diff = diff + lines[line] + '\n';
+      }
+    }
     return diff;
   }
 
@@ -43,7 +78,7 @@
                                     .removeClass('icon-spinner')
                                     .addClass('icon-minus-sign');
             var diff = formatDiff(json.message);
-            $(td).find('.diff-text').text(diff);
+            $(td).find('.diff-text').html(diff);
             $(td).find('.diff').show(500);
 
             icon.data('diffLoaded', 'true');
@@ -113,9 +148,8 @@
             </div>
             <div class="diff hide">
               <hr class="soften" />
-              <div class="diff-text">
-
-              </div>
+              <pre class="diff-text highlight">
+              </pre>
             </div>
           </td>
         </tr>
