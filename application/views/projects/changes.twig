@@ -29,21 +29,28 @@
   function formatDiff(diff) {
     var lines = diff.split('\n');
     for (var line in lines) {
-      var changeType = '';
-      if (lines[line][0] == '+') {
-        changeType = 'change-addition';
-        lines[line] = lines[line].slice(1, lines[line].length).escapeHTML();
-      } else if (lines[line][0] == '-') {
-        changeType = 'change-deletion';
-        lines[line] = lines[line].slice(1, lines[line].length).escapeHTML();
+      if (lines[line][0] == '@') {
+        var lineInFile = lines[line].match(/\d+/);
+        lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
+                      'At line ' + lineInFile +
+                      '</td></tr>';
       } else {
-        lines[line] = lines[line].escapeHTML();
+        var changeType = '';
+        if (lines[line][0] == '+') {
+          changeType = 'change-addition';
+          lines[line] = lines[line].slice(1, lines[line].length).escapeHTML();
+        } else if (lines[line][0] == '-') {
+          changeType = 'change-deletion';
+          lines[line] = lines[line].slice(1, lines[line].length).escapeHTML();
+        } else {
+          lines[line] = lines[line].escapeHTML();
+        }
+        lines[line] = '<tr><td class="linenumber">' +
+                      (line-3) +
+                      '</td><td class="content ' + changeType + '">' +
+                      lines[line] +
+                      '</td></tr>';
       }
-      lines[line] = '<tr><td class="linenumber">' +
-                    (line-3) +
-                    '</td><td class="content ' + changeType + '">' +
-                    lines[line] +
-                    '</td></tr>';
     }
     diff = '';
     for (var line in lines) {
@@ -153,6 +160,7 @@
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
             </div>
             <div class="diff hide">
+              <hr />
               <p class="file"></p>
               <pre class="highlight">
                 <table class="diff-text">
