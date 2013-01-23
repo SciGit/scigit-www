@@ -615,13 +615,29 @@ footer {
   background-color: rgb(245, 245, 245);
 }
 
-.diff-text {
-  line-height: 12px;
+body .highlight {
+  padding: 0;
+  margin: 0;
 }
 
-.diff-text li {
-  margin: 0;
-  padding: 0;
+/* We have to abuse !important because "highlight" overrides non-important fields. */
+.diff-text {
+  margin: 0 !important;
+}
+
+.diff-text tr td, .diff-text td {
+  padding: 4px !important;
+  margin: 0 !important;
+}
+
+.diff-text .linenumber {
+  width: 20px;
+  text-align: right;
+}
+
+.diff-text .content {
+  padding-left: 10px !important;
+  border-left: 5px solid gray;
 }
 
 .project .buttons, .change .buttons, .tabular .buttons {

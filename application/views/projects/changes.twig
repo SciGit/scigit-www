@@ -40,7 +40,11 @@
       } else {
         lines[line] = lines[line].escapeHTML();
       }
-      lines[line] = '<li>' + lines[line] + '</li>';
+      lines[line] = '<tr><td class="linenumber">' +
+                    (line-3) +
+                    '</td><td class="content">' +
+                    lines[line] +
+                    '</td></tr>';
     }
     diff = '';
     for (var line in lines) {
@@ -150,9 +154,8 @@
             <div class="diff hide">
               <hr class="soften" />
               <pre class="highlight">
-                <ol class="diff-text">
-                  <li></li>
-                </ol>
+                <table class="diff-text">
+                </table>
               </pre>
             </div>
           </td>
