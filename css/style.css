@@ -618,7 +618,6 @@ footer {
 body .highlight {
   padding: 0;
   margin: 10px;
-  width: 100%;
 }
 
 /* We have to abuse !important because "highlight" overrides non-important fields. */
