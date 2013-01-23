@@ -98,7 +98,7 @@
       icon.removeClass('icon-minus-sign')
           .addClass('icon-plus-sign-alt');
 
-      $(td).find('.diff').hide();
+      $(td).find('.diff').hide(250);
     }
   }
 </script>
@@ -126,7 +126,7 @@
     {% if changes %}
       {% for change in changes %}
         <tr>
-          <td class="change" valign="middle" data-change_id="{{ change.id }}">
+          <td class="tabular clickable" valign="middle" onclick="expandChanges(this)" data-change_id="{{ change.id }}">
             {{ anchor("/users/profile/#{change.user_id}", change.username) | raw }} made change:
             <div class="buttons">
               <div class="button">

@@ -602,7 +602,7 @@ footer {
   color: gray;
 }
 
-.project:hover, .change:hover {
+.project:hover, .change:hover, .clickable:hover {
   cursor: pointer;
   cursor: hand;
 }
