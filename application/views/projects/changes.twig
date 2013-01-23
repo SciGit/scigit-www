@@ -28,7 +28,7 @@
 
   function formatDiff(diff) {
     var lines = diff.split('\n');
-    var lineOffset = 0;
+    var lineOffset = 1;
     for (var line in lines) {
       if (lines[line].indexOf('diff --git') === 0 ||
           lines[line].indexOf('index') === 0 ||
