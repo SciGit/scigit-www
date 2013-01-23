@@ -615,6 +615,15 @@ footer {
   background-color: rgb(245, 245, 245);
 }
 
+.diff-text {
+  line-height: 12px;
+}
+
+.diff-text li {
+  margin: 0;
+  padding: 0;
+}
+
 .project .buttons, .change .buttons, .tabular .buttons {
   float: right;
   padding: 0 0 5px 5px;
