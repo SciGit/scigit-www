@@ -617,7 +617,7 @@ footer {
 
 body .highlight {
   padding: 0;
-  margin: 0;
+  margin: 10px;
 }
 
 /* We have to abuse !important because "highlight" overrides non-important fields. */
@@ -638,6 +638,18 @@ body .highlight {
 .diff-text .content {
   padding-left: 10px !important;
   border-left: 5px solid gray;
+}
+
+.diff-text .change-addition, td:hover .diff-text .change-addition {
+  background-color: rgba(124, 252, 0, 0.4);
+}
+
+.diff-text .change-deletion, td:hover .diff-text .change-deletion {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.file {
+  margin-top: 15px;
 }
 
 .project .buttons, .change .buttons, .tabular .buttons {

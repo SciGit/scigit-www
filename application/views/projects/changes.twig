@@ -29,20 +29,19 @@
   function formatDiff(diff) {
     var lines = diff.split('\n');
     for (var line in lines) {
+      var changeType = '';
       if (lines[line][0] == '+') {
-        lines[line] = '<span style="background-color: rgba(124, 252, 0, 0.4);">' +
-                      lines[line].slice(1, lines[line].length).escapeHTML() +
-                      '</span>';
+        changeType = 'change-addition';
+        lines[line] = lines[line].slice(1, lines[line].length).escapeHTML();
       } else if (lines[line][0] == '-') {
-        lines[line] = '<span style="background-color: rgba(255, 0, 0, 0.2);">' +
-                      lines[line].slice(1, lines[line].length).escapeHTML() +
-                      '</span>';
+        changeType = 'change-deletion';
+        lines[line] = lines[line].slice(1, lines[line].length).escapeHTML();
       } else {
         lines[line] = lines[line].escapeHTML();
       }
       lines[line] = '<tr><td class="linenumber">' +
                     (line-3) +
-                    '</td><td class="content">' +
+                    '</td><td class="content ' + changeType + '">' +
                     lines[line] +
                     '</td></tr>';
     }
@@ -52,7 +51,7 @@
         diff = diff + lines[line] + '\n';
       }
     }
-    return diff;
+    return diff + '<tr><td></td><td></td></tr>';
   }
 
   function expandChanges(change) {
@@ -154,7 +153,6 @@
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
             </div>
             <div class="diff hide">
-              <hr class="soften" />
               <p class="file"></p>
               <pre class="highlight">
                 <table class="diff-text">
