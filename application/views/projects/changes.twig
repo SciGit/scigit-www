@@ -34,7 +34,7 @@
       if (lines[line].indexOf('diff --git') === 0) {
         var header = '';
         if (fileName != '') {
-          header = '<tr><td></td><td></td></tr></table></pre>';
+          header = '</table></pre>';
         } else {
           header = '<hr />';
         }
@@ -78,7 +78,7 @@
         diff = diff + lines[line] + '\n';
       }
     }
-    return diff + '<tr><td></td><td></td></tr></table></pre>';
+    return diff + '</table></pre>';
   }
 
   function expandChanges(change) {
