@@ -54,7 +54,7 @@
         deletedFiles.push(fileName);
         ignoreUntilNextFile = true;
 
-        for (var i = startOfFile; i < line; i++) {
+        for (var i = startOfFile; i <= line; i++) {
           lines[i] = null;
         }
       } else if (lines[line].indexOf('index') === 0 ||
@@ -148,6 +148,7 @@
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
                                     .addClass('icon-minus-sign');
+            alert(json.message);
             var diff = formatDiff(json.message);
             $(td).find('.diff').html(diff);
             $(td).find('.diff').show(500);
