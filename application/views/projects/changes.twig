@@ -28,20 +28,21 @@
 
   function formatDiff(diff) {
     var lines = diff.split('\n');
-    var lineOffset = 1;
+    var curLineNum = 1;
+    var fileName = '';
     for (var line in lines) {
-      if (lines[line].indexOf('diff --git') === 0 ||
-          lines[line].indexOf('index') === 0 ||
-          lines[line].indexOf('deleted') === 0 ||
-          lines[line].indexOf('--') === 0 ||
-          lines[line].indexOf('++') === 0) {
-        lineOffset--;
+      if (lines[line].indexOf('diff --git') === 0) {
+        fileName = lines[line].match(/diff --git a\/(.*) b\//);
+      } else if (lines[line].indexOf('index') === 0 ||
+                 lines[line].indexOf('deleted') === 0 ||
+                 lines[line].indexOf('--') === 0 ||
+                 lines[line].indexOf('++') === 0) {
+        // Do nothing.
       } else if (lines[line][0] == '@') {
         var lineInFile = lines[line].match(/\d+/);
         lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
                       'At line ' + lineInFile +
                       '</td></tr>';
-        lineOffset--;
       } else {
         var changeType = '';
         if (lines[line][0] == '+') {
@@ -53,9 +54,8 @@
         } else {
           lines[line] = lines[line].escapeHTML();
         }
-        var realLineNumber = parseInt(line) + parseInt(lineOffset);
         lines[line] = '<tr><td class="linenumber">' +
-                      realLineNumber +
+                      curLineNum++ +
                       '</td><td class="content ' + changeType + '">' +
                       lines[line] +
                       '</td></tr>';
@@ -100,8 +100,6 @@
             $(td).find('.diff').show(500);
 
             icon.data('diffLoaded', 'true');
-
-            $('.file').text('File edited: ' + json.file);
           } else {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
@@ -168,7 +166,6 @@
             </div>
             <div class="diff hide">
               <hr />
-              <p class="file"></p>
               <pre class="highlight">
                 <table class="diff-text">
                 </table>
