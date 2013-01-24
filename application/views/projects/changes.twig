@@ -47,13 +47,19 @@
       } else if (lines[line].indexOf('index') === 0 ||
                  lines[line].indexOf('deleted') === 0 ||
                  lines[line].indexOf('--') === 0 ||
-                 lines[line].indexOf('++') === 0) {
+                 lines[line].indexOf('++') === 0 ||
+                 lines[line].indexOf('file: ') === 0 ||
+                 lines[line].indexOf('new file mode') === 0) {
         lines[line] = null;
       } else if (lines[line][0] == '@') {
         var lineInFile = lines[line].match(/\d+/);
-        lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
-                      'At line ' + lineInFile +
-                      '</td></tr>';
+        if (lineInFile > 0) {
+          lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
+                        'At line ' + lineInFile +
+                        '</td></tr>';
+        } else {
+          lines[line] = null;
+        }
       } else {
         var changeType = '';
         if (lines[line][0] == '+') {
