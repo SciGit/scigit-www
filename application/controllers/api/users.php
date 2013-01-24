@@ -1,6 +1,6 @@
 <?
 
-class Users extends REST_Controller
+class Users extends SciGit_REST_Controller
 {
 	public function profile_get() {
 		$user = $this->authenticate();

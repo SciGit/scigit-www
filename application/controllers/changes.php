@@ -1,6 +1,6 @@
 <?
 
-class Changes extends CI_Controller
+class Changes extends SciGit_Controller
 {
 	public function __construct() {
 		parent::__construct();

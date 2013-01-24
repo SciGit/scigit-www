@@ -1,6 +1,6 @@
 <?
 
-class Download extends CI_Controller
+class Download extends SciGit_Controller
 {
   public function __construct() {
     parent::__construct();

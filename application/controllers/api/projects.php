@@ -1,6 +1,6 @@
 <?
 
-class Projects extends REST_Controller
+class Projects extends SciGit_REST_Controller
 {
 	public function __construct() {
 		parent::__construct();

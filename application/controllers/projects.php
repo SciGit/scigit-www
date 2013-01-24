@@ -1,6 +1,6 @@
 <?
 
-class Projects extends CI_Controller
+class Projects extends SciGit_Controller
 {
 	public function __construct() {
 		parent::__construct();

@@ -1,6 +1,6 @@
 <?
 
-class Auth extends REST_Controller
+class Auth extends SciGit_REST_Controller
 {
 	public function __construct() {
 		parent::__construct();
