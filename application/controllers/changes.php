@@ -143,6 +143,13 @@ index 995a4b6..0d53ef6 100755
                  </a>
                </div>
                <div class="button">
+diff --git a/file with spaces b/file with spaces
+deleted file mode 100644
+index 8d69e54..0000000
+--- a/file with spaces  
++++ /dev/null
+@@ -1 +0,0 @@
+-file: file with spaces
 EOF;
 
       echo json_encode(array(
