@@ -30,6 +30,9 @@
     var lines = diff.split('\n');
     var curLineNum = 1;
     var fileName = '';
+    var deletedFiles = new Array();
+    var ignoreUntilNextFile = true;
+    var startOfFile;
     for (var line in lines) {
       if (lines[line].indexOf('diff --git') === 0) {
         var header = '';
@@ -38,12 +41,22 @@
         } else {
           header = '<hr />';
         }
+
         fileName = lines[line].match(/diff --git a\/(.*) b\//);
         lines[line] = header +
                       '<pre class="highlight"><table class="diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
         curLineNum = 1;
+        startOfFile = line;
+        ignoreUntilNextFile = false;
+      } else if (lines[line].indexOf('deleted') === 0) {
+        deletedFiles.push(fileName);
+        ignoreUntilNextFile = true;
+
+        for (var i = startOfFile; i < line; i++) {
+          lines[i] = null;
+        }
       } else if (lines[line].indexOf('index') === 0 ||
                  lines[line].indexOf('deleted') === 0 ||
                  lines[line].indexOf('--') === 0 ||
@@ -52,6 +65,10 @@
                  lines[line].indexOf('new file mode') === 0) {
         lines[line] = null;
       } else if (lines[line][0] == '@') {
+        if (ignoreUntilNextFile) {
+          continue;
+        }
+
         var lineInFile = lines[line].match(/\d+/);
         if (lineInFile > 0) {
           lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
@@ -61,6 +78,10 @@
           lines[line] = null;
         }
       } else {
+        if (ignoreUntilNextFile) {
+          continue;
+        }
+
         var changeType = '';
         if (lines[line][0] == '+') {
           changeType = 'change-addition';
@@ -71,6 +92,7 @@
         } else {
           lines[line] = lines[line].escapeHTML();
         }
+
         lines[line] = '<tr><td class="linenumber">' +
                       curLineNum++ +
                       '</td><td class="content ' + changeType + '">' +
@@ -78,13 +100,25 @@
                       '</td></tr>';
       }
     }
+
     diff = '';
+    var foundLineWithActualContent;
     for (var line in lines) {
       if (lines[line] !== null) {
+        if (lines[line].length > 0) {
+          foundLineWithActualContent = true;
+        }
+
         diff = diff + lines[line] + '\n';
       }
     }
-    return diff + '</table></pre>';
+    diff += '</table></pre>';
+
+    if (foundLineWithActualContent) {
+      return diff;
+    }
+
+    return '<hr />No changes made. Oops!';
   }
 
   function expandChanges(change) {
@@ -114,7 +148,6 @@
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
                                     .addClass('icon-minus-sign');
-            alert(json.message);
             var diff = formatDiff(json.message);
             $(td).find('.diff').html(diff);
             $(td).find('.diff').show(500);
