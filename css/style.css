@@ -643,7 +643,7 @@ body .highlight {
 
 .diff-text .content {
   padding-left: 10px !important;
-  border-left: 5px solid gray;
+  border-left: 5px solid rgb(221, 221, 221);
 }
 
 .diff-text .change-addition, td:hover .diff-text .change-addition {
@@ -660,7 +660,7 @@ body .highlight {
 
 .diff-text th {
   background-color: rgba(255, 255, 225, 0.6) !important;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid rgb(221, 221, 221);
 }
 
 .project .buttons, .change .buttons, .tabular .buttons {

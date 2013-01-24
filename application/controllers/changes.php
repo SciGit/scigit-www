@@ -89,7 +89,8 @@ class Changes extends CI_Controller
       $file = $this->change->get_file($id, $path);
       $diff = $this->change->get_diff($id, $path);
 
-      $blah = <<<EOF
+      if ($diff == null || $diff == "" || $diff == " ")
+      $diff = <<<EOF
 diff --git a/application/views/projects/changes.twig b/application/views/projects/changes.twig
 index 995a4b6..0d53ef6 100755
 --- a/application/views/projects/changes.twig
