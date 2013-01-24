@@ -32,12 +32,23 @@
     var fileName = '';
     for (var line in lines) {
       if (lines[line].indexOf('diff --git') === 0) {
+        var header = '';
+        if (fileName != '') {
+          header = '<tr><td></td><td></td></tr></table></pre>';
+        } else {
+          header = '<hr />';
+        }
         fileName = lines[line].match(/diff --git a\/(.*) b\//);
+        lines[line] = header +
+                      '<pre class="highlight"><table class="diff-text"><tr><th></th><th>' +
+                      fileName[1] +
+                      '</th></tr>';
+        curLineNum = 1;
       } else if (lines[line].indexOf('index') === 0 ||
                  lines[line].indexOf('deleted') === 0 ||
                  lines[line].indexOf('--') === 0 ||
                  lines[line].indexOf('++') === 0) {
-        // Do nothing.
+        lines[line] = null;
       } else if (lines[line][0] == '@') {
         var lineInFile = lines[line].match(/\d+/);
         lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">' +
@@ -63,9 +74,11 @@
     }
     diff = '';
     for (var line in lines) {
-      diff = diff + lines[line] + '\n';
+      if (lines[line] !== null) {
+        diff = diff + lines[line] + '\n';
+      }
     }
-    return diff + '<tr><td></td><td></td></tr>';
+    return diff + '<tr><td></td><td></td></tr></table></pre>';
   }
 
   function expandChanges(change) {
@@ -96,7 +109,7 @@
                                     .removeClass('icon-spinner')
                                     .addClass('icon-minus-sign');
             var diff = formatDiff(json.message);
-            $(td).find('.diff-text').html(diff);
+            $(td).find('.diff').html(diff);
             $(td).find('.diff').show(500);
 
             icon.data('diffLoaded', 'true');
@@ -165,11 +178,6 @@
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
             </div>
             <div class="diff hide">
-              <hr />
-              <pre class="highlight">
-                <table class="diff-text">
-                </table>
-              </pre>
             </div>
           </td>
         </tr>

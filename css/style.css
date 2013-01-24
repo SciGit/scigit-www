@@ -615,9 +615,14 @@ footer {
   background-color: rgb(245, 245, 245);
 }
 
+.clickable:hover pre table tr, .clickable:hover pre table tr td {
+  background-color: white;
+}
+
 body .highlight {
   padding: 0;
-  margin: 10px;
+  margin: 25px 10px 10px 10px;
+  border: 2px solid gray;
 }
 
 /* We have to abuse !important because "highlight" overrides non-important fields. */
@@ -651,6 +656,10 @@ body .highlight {
 
 .diff-text .change-line, td:hover .diff-text .change-line {
   background-color: rgba(0, 0, 255, 0.2);
+}
+
+.diff-text th, .diff-text tr th {
+  background-color: rgba(255, 255, 225, 0.6) !important;
 }
 
 .project .buttons, .change .buttons, .tabular .buttons {
