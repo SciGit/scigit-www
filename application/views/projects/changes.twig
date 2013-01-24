@@ -61,8 +61,7 @@
                  lines[line].indexOf('deleted') === 0 ||
                  lines[line].indexOf('--') === 0 ||
                  lines[line].indexOf('++') === 0 ||
-                 // Dangerous
-                 lines[line].indexOf('-file: ') === 0 ||
+                 lines[line].indexOf('file: ') === 0 ||
                  lines[line].indexOf('new file mode') === 0) {
         lines[line] = null;
       } else if (lines[line][0] == '@') {
