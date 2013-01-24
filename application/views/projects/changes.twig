@@ -42,7 +42,7 @@
           header = '<hr />';
         }
 
-        fileName = lines[line].match(/diff --git a\/(.*) b\//);
+        fileName = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
         lines[line] = header +
                       '<pre class="highlight"><table class="diff-text"><tr><th></th><th>' +
                       fileName[1] +
