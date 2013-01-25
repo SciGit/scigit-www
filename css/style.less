@@ -1,9 +1,915 @@
-@color: #4D926F;
+@sg-blue: rgb(74, 91, 118);
+@sg-gray: #f5f5f5;
 
-#header {
-  color: @color;
+@diff-green: rgba(124, 252, 0, 0.4);
+@diff-red: rgba(255, 0, 0, 0.2);
+@diff-blue: rgba(0, 0, 255, 0.2);
+
+body {
+	overflow-y: scroll;
+  padding-bottom: 0 !important;
+
+  p, .p {
+    font-size: 14px;
+    font-weight: 200;
+  }
+
+  pre {
+    background-color: white;
+  }
+
+  h1 {
+    color: @sg-blue;
+    font-weight: 500;
+  }
+
+  h2 {
+    color: @sg-blue;
+    font-weight: 500;
+  }
+
+  h3 {
+    color: @sg-blue;
+    font-size: 150%;
+  }
+
+  footer {
+    padding: 20px;
+    text-align: right;
+    color #333;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .top-right {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+  }
+
+  .move-down {
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+
+  .date {
+    padding-left: 20px;
+    padding-bottom: 7px;
+    font-style: italic;
+  }
+
+  .scigit-brand {
+    /** drs: override bootstrap's 'brand' tag */
+    color: rgba(0, 0, 0, 0) !important;
+    padding: 0 !important;
+    margin: 8px 60px 7px 2px !important;
+
+    background-image: url(/img/site-logo.png);
+    width: 113px;
+    height: 32px;
+  }
+
+  .breadcrumbs {
+    margin-top: 15px;
+    font-size: 16px;
+    color: rgb(160, 160, 160);
+    margin-bottom: 0;
+
+    .divider {
+      margin: 0 3px;
+    }
+
+    .current {
+      font-weight: 500;
+    }
+  }
+
+  .hero-unit {
+    /* XXX */
+    h1 {
+      font-size: 300%;
+      margin-bottom: 7px;
+    }
+
+    .close {
+      margin: -45px -40px 0 0;
+    }
+  }
+
+  .company {
+    font-size: 16px;
+    color: rgb(160, 160, 160);
+
+    .divider {
+      margin: 0 20px;
+    }
+  }
+
+  /* drs: FIXME/this needs to use chrome and IE */
+  .custom-color {
+    background-color: rgb(74, 91, 118);
+    background-repeat: repeat-x;
+    background-image: none;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25), 0px -1px 0px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  .blue-hero-unit {
+    background-color: rgba(0, 0, 255, 0.035);
+  }
+
+  .well-list, .blue-well-list {
+    min-height: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
+       -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
+
+    .table {
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+
+      .background {
+        background-color: @sg-gray;
+      }
+
+      tr {
+        .table;
+
+        td {
+          padding: 19px;
+        }
+      }
+
+      th {
+        .background;
+        padding: 19px;
+      }
+    }
+
+    .blue-well-list {
+      .table, .table-condensed {
+        th, tr th:hover {
+          background-color: rgba(0, 0, 255, 0.035);
+        }
+      }
+    }
+
+    .table-condensed {
+      tr {
+        td {
+          padding: 10px;
+        }
+      }
+
+      th {
+        .table .background;
+        padding: 10px;
+      }
+    }
+
+    /** maybe wrong */
+    tr.alwayshover td {
+      background-color: @sg-gray;
+
+      &:hover {
+        background-color: @sg-gray;
+      }
+    }
+
+    tr.nohover, tr.nohover:hover {
+      td, td:hover {
+        background-color: inherit;
+      }
+    }
+  }
+
+  .well-padding {
+    padding: 5px 19px 19px 19px;
+  }
+
+  .well-extra-padding {
+    padding: 40px;
+  }
+
+  .separator {
+    margin-bottom: 30px;
+    height: 20px;
+  }
+
+  .separator-small {
+    margin-bottom: 25px;
+  }
+
+  .modal {
+    width: 450px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin: -195px 0 0 -225px;
+  }
+
+  .buttons {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline;
+      margin: 0 7px;
+
+      &:first-child {
+        margin: 0 7px 0 0;
+      }
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  .title-btn {
+    vertical-align: top;
+    margin-left: 1em;
+    font-weight: normal;
+  }
+
+  a.butn:hover {
+    text-decoration: none;
+    color: black;
+  }
+
+  a.butn-primary:hover {
+    text-decoration: none;
+    color: white;
+  }
+
+  a.rawlink {
+    text-decoration: none;
+    color: black;
+
+    &:link, &:visited, &:hover, &:active {
+      a.rawlink;
+    }
+  }
+
+  /** XXX */
+  .input-append button.add-on {
+    height: inherit !important;
+    margin-left: 0;
+  }
+
+  .download {
+    width: 600px;
+    margin: auto;
+
+    p {
+      font-size: 18px;
+
+      &.small {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .extra-padding {
+    padding: 15px 25px;
+  }
+
+  .extra-padding-top {
+    padding: 0 25px 15px 25px;
+  }
+
+  .content {
+    margin: 40px 0 20px 0;
+  }
+
+  .slogan {
+    font-size: 55px;
+    line-height: 75px;
+    font-weight: 200;
+    text-align: center;
+    color: rgb(80, 80, 80);
+
+    .easy {
+      color: @sg-blue;
+    }
+  }
+
+  .sub-slogan {
+    font-size: 27px;
+    line-height: 40px;
+    font-weight: 200;
+    text-align: center;
+    color: rgb(120, 120, 120);
+  }
+
+  .login-form, .sign-up-form .sign-up-form-inner {
+    width: 400px;
+    margin: auto;
+  }
+
+  .sign-up-form .sign-up-form-inner {
+    margin-top: 45px;
+  }
+
+  .sign-up {
+    border-radius: 4px;
+    text-align: center;
+    width: 300px;
+    height: 60px;
+    margin: 20px auto 25px auto;
+    background-color: #f7ad18;
+    color: white;
+    font-size: 30px;
+    line-height: 60px;
+    text-align: center;
+
+    a, a:active, a:hover {
+      text-decoration: none;
+      color: white;
+      font-weight: 200;
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .screenshot {
+    text-align: center;
+  }
+
+  .sign-up-progress {
+    width: 500px;
+    margin: 50px auto;
+
+    p {
+      text-align: center;
+      font-size: 150%;
+      color: rgb(120, 120, 120);
+    }
+  }
+
+  .input-large {
+    font-size: 24px !important;
+    height: 29px !important;
+    width: 100% !important;
+  }
+
+  .full-width-input {
+    width: 98%;
+  }
+
+  .register-form, .newsletter-form {
+    /** XXX */
+    line-height: 0 !important;
+  }
+
+  .register-form {
+    margin: 0 !important;
+  }
+
+  .dropdown {
+    margin: 11px 0 0 22px;
+    float: right;
+    height: 100%;
+
+    img.avatar {
+      height: 35px;
+      width: 35px;
+      margin: -4px 7px 0 0;
+      border: 1px solid black;
+    }
+
+    #label-username, #label-projects {
+      font-size: 150%;
+      font-weight: 200;
+
+      .caret {
+        margin: 10px 0 0 5px;
+      }
+    }
+
+    a.dropdown-toggle {
+      text-decoration: none;
+      color: white;
+
+      &:link, &:visited, &:active, &:hover {
+        a.dropdown-toggle;
+      }
+    }
+  }
+
+  .username {
+    line-height: 24px;
+  }
+
+  .nav .current {
+    text-shadow: 0px 1px 0px rgb(135, 160, 255) !important;
+    color: rgb(66, 94, 146) !important;
+  }
+
+  .navigation {
+    min-width: 800px;
+  }
+
+  .navitems {
+    text-align: center;
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: table-cell;
+
+      a {
+        display: block;
+        color: white;
+        line-height: 45px;
+        font-size: 150%;
+        margin: 0 10px;
+        padding: 0 15px !important;
+        text-decoration: none;
+        font-weight: 200;
+
+        &:hover {
+          text-decoration: none;
+          background-color: rgb(64, 81, 108);
+        }
+      }
+    }
+
+    .divider {
+      display: table-cell;
+      vertical-align: middle;
+
+      .inner {
+        display: inline-block;
+        height: 25px;
+        margin-top: 7px;
+        border-left: 2px solid rgb(92, 111, 146);
+      }
+    }
+  }
+
+  ul.fake {
+    margin: 5px 0 0 20px;
+  }
+
+  .go {
+    font-size: 24px;
+  }
+
+  .snap-top {
+    line-height: 0px;
+  }
+
+  .table-noheader tr {
+    &:first-child, &:first-child td {
+      border-top: none;
+    }
+  }
+
+  .subtitle {
+    color: @sg-blue;
+    font-weight: 500;
+  }
+
+  .universities {
+    width: 100%;
+    text-align: center;
+    margin: 60px 0 60px 0;
+
+    p {
+      font-size: 27px;
+      line-height: 40px;
+      margin-bottom: 20px;
+      font-weight: 200;
+      text-align: center;
+      color: rgb(120, 120, 120);
+    }
+
+    img {
+      margin: auto;
+    }
+  }
+
+  .features {
+    i {
+      float: left;
+      margin: 6px 12px 0 0;
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+  .download-info {
+    text-align: center;
+    min-height: 55px;
+
+    p {
+      text-align: left;
+      min-height: 55px;
+    }
+
+    .number {
+      float: left;
+      position: relative;
+      top: -25px;
+      left: -25px;
+      background: rgb(74, 91, 118);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 32px;
+      margin-right: -1000px;
+      color: white;
+    }
+  }
+
+  .download {
+    padding: 20px;
+    position: relative;
+
+    .left {
+      text-align: center;
+
+      .link {
+        margin: 20px;
+        font-size: 30px;
+      }
+    }
+  }
+
+  .fulltitle {
+    margin: 25px 20px;
+    font-size: 16px;
+    font-weight: 150;
+  }
+
+  .profile-entry {
+    margin: 15px 5px;
+
+    .profile-field {
+      text-align: right;
+      font-size: 14px;
+      font-weight: 400;
+      color: gray;
+    }
+
+    .profile-value {
+
+    }
+  }
+
+  .highlight {
+    padding: 0;
+    margin: 25px 10px 10px 10px;
+    border: 4px solid rgb(221, 221, 221);
+  }
+
+  .project, .change, .clickable {
+    &:hover {
+      cursor: pointer;
+      cursor: hand;
+    }
+  }
+
+  .project, .change, .tabular {
+    .buttons {
+      float: right;
+      padding: 0 0 5px 5px;
+
+      .button {
+        margin-left: 10px;
+        float: left;
+      }
+    }
+
+    .description {
+      margin-top: 5px;
+      color: gray;
+
+      a {
+        .description;
+
+        &:active, &:visited {
+          .description;
+        }
+      }
+    }
+  }
+
+  .clickable:hover {
+    /** XXX */
+    pre.highlight {
+      background-color: rgb(245, 245, 245);
+    }
+
+    pre table tr, pre table tr td {
+      background-color: white;
+    }
+  }
+
+  .diff-text {
+    margin: 0 !important;
+    width: 100%;
+
+    td, tr td {
+      padding: 4px !important;
+      margin: 0 !important;
+    }
+
+    th {
+      background-color: rgba(255, 255, 225, 0.6) !important;
+      border-bottom: 2px solid rgb(221, 221, 221);
+    }
+
+    .linenumber {
+      width: 20px;
+      text-align: right;
+    }
+
+    .content {
+      padding-left: 10px !important;
+      border-left: 5px solid rgb(221, 221, 221);
+    }
+
+    .change-addition {
+      background-color: @diff-green;
+    }
+
+    .change-deletion {
+      background-color: @diff-red;
+    }
+
+    .change-line {
+      background-color: @diff-blue;
+    }
+  }
+
+  /** Special cases that are hard to write out in a nice format */
+  td:hover .diff-text .change-addition {
+    background-color: @diff-green;
+  }
+
+  td:hover .diff-text .change-deletion {
+    background-color: @diff-red;
+  }
+
+  td:hover .diff-text .change-line {
+    background-color: @diff-blue;
+  }
+
+  .create-project {
+    width: 315px;
+    height: 100%;
+    margin: auto;
+
+    label {
+      padding-bottom: 5px;
+    }
+
+    .public {
+      float: left;
+      text-align: center;
+    }
+
+    .grey-separator {
+      border-right: 1px solid #f5f5f5;
+      margin: 0 5px 0 25px;
+      float: left;
+      height: 60px;
+    }
+
+    .name {
+      float: right;
+    }
+  }
 }
 
-h2 {
-  color: @color;
+/** Bullshit that we should never touch */
+.butn {
+  display: inline-block;
+  *display: inline;
+  padding: 4px 10px 4px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 13px;
+  line-height: 18px;
+  *line-height: 20px;
+  color: #333333;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+ *zoom: 1;
+}
+
+.butn-primary {
+  color: white;
+  background-color: rgb(74, 91, 118);
+  *background-color: rgb(74, 91, 118);
+  background-repeat: repeat-x;
+  border-color: #0055cc #0055cc #003580;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.butn-large {
+  padding: 9px 14px;
+  font-size: 15px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.butn-xlarge {
+  padding: 9px 25px;
+  font-size: 15px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+form .required .inner-label:after {
+  color: #e32;
+  font-weight: bold;
+  content: '*';
+  display: inline-block;
+}
+
+.no-decoration a {
+  text-decoration: none;
+}
+
+.search {
+  margin-top: 1px;
+  padding-right: 14px;
+  padding-right: 4px \9;
+  padding-left: 14px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 14px;
+     -moz-border-radius: 14px;
+          border-radius: 14px;
+}
+
+.search-submit {
+  height: 28px;
+  width: 28px;
+  z-index: 9999;
+}
+
+.navbar-inner {
+  min-height: 50px;
+}
+
+.navbar-search {
+  float: right;
+  margin: 7px 35px 0 0;
+}
+
+.navbar-search .search {
+  border-radius: 4px;
+  padding: 6px 9px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  margin-right: -38px;
+  border: 1px solid #aaaaaa;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  -webkit-transition: none;
+     -moz-transition: none;
+      -ms-transition: none;
+       -o-transition: none;
+          transition: none;
+}
+
+.navbar-search .search:-moz-placeholder {
+  color: #cccccc;
+}
+
+.navbar-search .search:-ms-input-placeholder {
+  color: #cccccc;
+}
+
+.navbar-search .search::-webkit-input-placeholder {
+  color: #cccccc;
+}
+
+.caret {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  border-top: 4px solid white;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 4px 0;
+  margin: 1px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+}
+
+.dropdown-menu.pull-right {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu .divider {
+  *width: 100%;
+  height: 1px;
+  margin: 8px 1px;
+  *margin: -5px 0 5px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 3px 15px;
+  clear: both;
+  font-weight: normal;
+  line-height: 18px;
+  color: #333333;
+  white-space: nowrap;
+}
+
+.dropdown-menu li > a:hover,
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: rgb(74, 91, 118);
+}
+
+.open {
+  *z-index: 1000;
+}
+
+.open > .dropdown-menu {
+  display: block;
+}
+
+.pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.dropup .caret,
+.navbar-fixed-bottom .dropdown .caret {
+  border-top: 0;
+  border-bottom: 4px solid #000000;
+  content: "\2191";
+}
+
+.dropup .dropdown-menu,
+.navbar-fixed-bottom .dropdown .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 1px;
 }
