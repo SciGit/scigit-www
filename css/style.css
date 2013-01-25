@@ -148,12 +148,12 @@ body .blue-well-list .blue-well-list .table-condensed tr th:hover {
 }
 body .well-list .table-condensed tr td,
 body .blue-well-list .table-condensed tr td {
-  padding: 10px;
+  padding: 10px !important;
 }
 body .well-list .table-condensed th,
 body .blue-well-list .table-condensed th {
   background-color: #f5f5f5;
-  padding: 10px;
+  padding: 10px !important;
 }
 body .well-list tr.alwayshover td,
 body .blue-well-list tr.alwayshover td {
