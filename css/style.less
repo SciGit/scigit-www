@@ -166,7 +166,7 @@ body {
       tr {
         td {
           // Override .table's padding.
-          padding: 10px !important;
+          padding: 10px;
         }
       }
 
@@ -237,16 +237,6 @@ body {
     vertical-align: top;
     margin-left: 1em;
     font-weight: normal;
-  }
-
-  a.butn:hover {
-    text-decoration: none;
-    color: black;
-  }
-
-  a.butn-primary:hover {
-    text-decoration: none;
-    color: white;
   }
 
   a.rawlink {
@@ -696,62 +686,40 @@ body {
       float: right;
     }
   }
+
+  .btn {
+    background-image: none;
+    filter: none;
+
+    &:hover {
+      background-color: darken(@sg-gray, 5%);
+      *background-color: darken(@sg-gray, 5%);
+    }
+  }
+
+  .btn-primary {
+    background-color: @sg-blue;
+    *background-color: @sg-blue;
+
+    &:hover {
+      background-color: darken(@sg-blue, 5%);
+      *background-color: darken(@sg-blue, 5%);
+    }
+  }
+
+  .btn-xlarge {
+    font-size: 15px;
+    line-height: normal;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    padding: 9px 25px;
+  }
 }
 
-/** Bullshit that we should never touch */
-.butn {
-  display: inline-block;
-  *display: inline;
-  padding: 4px 10px 4px;
-  margin-bottom: 0;
-  *margin-left: .3em;
-  font-size: 13px;
-  line-height: 18px;
-  *line-height: 20px;
-  color: #333333;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #f5f5f5;
-  *background-color: #e6e6e6;
-  background-repeat: repeat-x;
-  border: 1px solid #cccccc;
-  *border: 0;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-  border-bottom-color: #b3b3b3;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
- *zoom: 1;
-}
-
-.butn-primary {
-  color: white;
-  background-color: rgb(74, 91, 118);
-  *background-color: rgb(74, 91, 118);
-  background-repeat: repeat-x;
-  border-color: #0055cc #0055cc #003580;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-}
-
-.butn-large {
-  padding: 9px 14px;
-  font-size: 15px;
-  line-height: normal;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-}
-
-.butn-xlarge {
-  padding: 9px 25px;
-  font-size: 15px;
-  line-height: normal;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-}
+/**
+ * Bullshit classes that we should generally not touch.
+ */
 
 form .required .inner-label:after {
   color: #e32;

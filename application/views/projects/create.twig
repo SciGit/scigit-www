@@ -29,8 +29,8 @@ function createProject(event) {
   };
 
   $(".project-create").val("Loading...");
-  $(".project-create").attr('class', 'butn disabled project-create');
-  $(".project-cancel").attr('class', 'butn disabled project-cancel');
+  $(".project-create").attr('class', 'btn disabled project-create');
+  $(".project-cancel").attr('class', 'btn disabled project-cancel');
 
   $.ajax({
     url: "/projects/create_ajax",
@@ -56,8 +56,8 @@ function createProject(event) {
         }, 1500);
       } else {
         $('#createProjectError').html(json.message).show();
-        $(".project-create").attr('class', 'butn butn-primary project-create');
-        $(".project-cancel").attr('class', 'butn project-cancel');
+        $(".project-create").attr('class', 'btn btn-primary project-create');
+        $(".project-cancel").attr('class', 'btn project-cancel');
       }
       create_project_submitted = false;
     }
@@ -114,8 +114,8 @@ function togglePublic(event) {
     </div>
   </div>
   <div class="modal-footer">
-    {{ form_submit({class: 'butn butn-primary project-create', name: 'create_project'}, 'Create') | raw }}
-    <a class="butn project-cancel" data-dismiss="modal">Cancel</a>
+    {{ form_submit({class: 'btn btn-primary project-create', name: 'create_project'}, 'Create') | raw }}
+    <a class="btn project-cancel" data-dismiss="modal">Cancel</a>
   </div>
   {{ form_close() | raw }}
 </div>
