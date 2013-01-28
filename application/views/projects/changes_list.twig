@@ -234,7 +234,13 @@
             <div class="modal modal-large hide fade diff" data-change_id="{{ change.id }}">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3>{{ change.commit_msg | slice(1, 20) }} ...</h3>
+                <h3>
+                  {% if change.commit_msg | length > 30 %}
+                    {{ change.commit_msg | slice(0, 30) }} ...
+                  {% else %}
+                    {{ change.commit_msg }}
+                  {% endif %}
+                </h3>
               </div>
               <div class="modal-body">
               </div>
