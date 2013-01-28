@@ -222,10 +222,22 @@ body {
     margin-bottom: 25px;
   }
 
-  .modal {
-    width: 450px;
+  .modal-small {
+    @modal-small-length: 450px;
+    width: @modal-small-length;
     /* must be half of the width, minus scrollbar on the left (30px) */
-    margin: -195px 0 0 -225px;
+    margin: ((-1*@modal-small-length/2)+30) 0 0 -1*@modal-small-length/2;
+  }
+
+  .modal-large {
+    @modal-large-length: 900px;
+    width: @modal-large-length;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin: ((-1*@modal-large-length/2)+30) 0 0 -1*@modal-large-length/2;
+
+    .modal-body {
+      max-height: @modal-large-length * (2/3);
+    }
   }
 
   .buttons {

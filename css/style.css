@@ -192,9 +192,16 @@ body .separator {
 body .separator-small {
   margin-bottom: 25px;
 }
-body .modal {
+body .modal-small {
   width: 450px;
   margin: -195px 0 0 -225px;
+}
+body .modal-large {
+  width: 900px;
+  margin: -420px 0 0 -450px;
+}
+body .modal-large .modal-body {
+  max-height: 600px;
 }
 body .buttons {
   margin: 0;
