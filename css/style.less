@@ -662,14 +662,26 @@ body {
 
     .change-addition {
       background-color: @diff-green;
+
+      &:hover {
+        background-color: darken(@diff-green, 5%);
+      }
     }
 
     .change-deletion {
       background-color: @diff-red;
+
+      &:hover {
+        background-color: darken(@diff-red, 20%);
+      }
     }
 
     .change-line {
       background-color: @diff-blue;
+
+      &:hover {
+        background-color: darken(@diff-blue, 20%);
+      }
     }
   }
 

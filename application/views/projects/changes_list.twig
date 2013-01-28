@@ -40,7 +40,7 @@
 
         fileName = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
         lines[line] = header +
-                      '<pre class="highlight"><table class="diff-text"><tr><th></th><th>' +
+                      '<pre class="highlight"><table class="table diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
         curLineNum = 1;
