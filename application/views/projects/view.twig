@@ -108,47 +108,8 @@
       </table>
     </div>
   </div>
-  <div class="span8 well-list">
-    <table class="table table-condensed">
-      <tr>
-        <th>
-          <h2>
-            Recent Changes
-            {% if changes %}
-              <div class="pull-right">
-                <a class="btn title-btn" href="{{ site_url("/projects/changes/#{project.id}") | raw }}">
-                  <i class="icon-circle-arrow-up"></i>
-                  View all
-                </a>
-              </div>
-            {% endif %}
-          </h2>
-        </th>
-      </tr>
-      {% if changes %}
-        {% for change in changes %}
-          <tr>
-            <td class="change" valign="middle" data-change_id="{{ change.id }}">
-              {{ anchor("/users/profile/#{change.user_id}", change.username) | raw }} made change:
-              <div class="pull-right">
-                <span class="date">{{ time_ago(change.commit_ts) }}</span>
-              </div>
-              <div class="description">
-                {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-              </div>
-            </td>
-          </tr>
-        {% endfor %}
-      {% else %}
-        <tr class="nohover">
-          <td class="tabular" valign="middle">
-            <p></p>
-            <p>This project has no recent changes.</p>
-            <p></p>
-          </td>
-        </tr>
-      {% endif %}
-    </table>
+  <div class="span8">
+    {% include 'projects/changes_list.twig' %}
   </div>
 </div>
 

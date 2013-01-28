@@ -540,10 +540,11 @@ body .clickable:hover pre table tr td {
 body .diff-text {
   margin: 0 !important;
   width: 100%;
+  font-size: 10px;
 }
 body .diff-text td,
 body .diff-text tr td {
-  padding: 4px !important;
+  padding: 2px !important;
   margin: 0 !important;
 }
 body .diff-text th {
