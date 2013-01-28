@@ -197,11 +197,11 @@ body .modal-small {
   margin: -195px 0 0 -225px;
 }
 body .modal-large {
-  width: 900px;
-  margin: -420px 0 0 -450px;
+  width: 850px;
+  margin: -395px 0 0 -425px;
 }
 body .modal-large .modal-body {
-  max-height: 600px;
+  max-height: 566.66666666667px;
 }
 body .buttons {
   margin: 0;
