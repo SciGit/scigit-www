@@ -25,7 +25,9 @@
   });
 
   function formatDiff(diff) {
-    var lines = diff.split('\n');
+    var formatted = new Object();
+    formatted.diff = diff;
+    var lines = formatted.diff.split('\n');
     var curLineNum = 1;
     var fileName = '';
     var deletedFiles = new Array();
@@ -37,7 +39,7 @@
       if (!ignoreUntilNextFile) {
         var fileNameWithoutPath = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
-        alert(fileNameWithoutPath);
+        changedFiles.push(fileNameWithoutPath);
       }
     }
 
@@ -118,7 +120,8 @@
       addCurrentFileToChangedList();
     }
 
-    diff = '';
+    formatted.diff = '';
+    formatted.changedFiles = '';
     var foundLineWithActualContent;
     for (var line in lines) {
       if (lines[line] !== null) {
@@ -126,33 +129,46 @@
           foundLineWithActualContent = true;
         }
 
-        diff = diff + lines[line] + '\n';
+        formatted.diff = formatted.diff + lines[line] + '\n';
       }
     }
-    diff += '</table></pre>';
+    formatted.diff += '</table></pre>';
 
-    if (deletedFiles.length > 0) {
-      var deletedFilesString = '';
+    if (changedFiles.length > 0) {
+      var changedFilesString = '<li class="nav-header">Changed Files</li>';
 
       foundLineWithActualContent = true;
 
-      deletedFilesString += 'Deleted files: ';
-
-      for (var deletedFile in deletedFiles) {
-        deletedFilesString += deletedFiles[deletedFile];
-        if (deletedFile != deletedFiles.length - 1) {
-          deletedFilesString += ', ';
-        }
+      for (var changedFile in changedFiles) {
+        changedFilesString += '<li><a href="#' + changedFiles[changedFile] + '">' +
+                              changedFiles[changedFile] + '</a></li>';
       }
 
-      diff = deletedFilesString + diff;
+      changedFilesString += '<li class="nav-header"> </li>';
+
+      formatted.changedFiles += changedFilesString;
     }
 
-    if (foundLineWithActualContent) {
-      return diff;
+    if (deletedFiles.length > 0) {
+      var deletedFilesString = '<li class="nav-header">Deleted Files</li>';
+
+      foundLineWithActualContent = true;
+
+      for (var deletedFile in deletedFiles) {
+        deletedFilesString += '<li><a href="#' + deletedFiles[deletedFile] + '">' +
+                              deletedFiles[deletedFile] + '</a></li>';
+      }
+
+      deletedFilesString += '<li class="nav-header"> </li>';
+
+      formatted.changedFiles += deletedFilesString;
     }
 
-    return 'No changes made. Oops!';
+    if (!foundLineWithActualContent) {
+      formatted.diff = 'No changes made. Oops!';
+    }
+
+    return formatted;
   }
 
   function expandChanges(change) {
@@ -182,9 +198,10 @@
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
                                     .addClass('icon-plus-sign-alt');
-            var diff = formatDiff(json.message);
+            var formattedDiff = formatDiff(json.message);
             var diffElement = $("div[data-change_id='" + change_id + "']'");
-            diffElement.find('.modal-body').find('.text').html(diff);
+            diffElement.find('.modal-body').find('.text').html(formattedDiff.diff);
+            diffElement.find('.modal-body').find('.nav').html(formattedDiff.changedFiles);
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
