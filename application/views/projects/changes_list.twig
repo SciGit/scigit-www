@@ -29,6 +29,7 @@
     var curLineNum = 1;
     var fileName = '';
     var deletedFiles = new Array();
+    var changedFiles = new Array();
     var ignoreUntilNextFile = true;
     var startOfFile;
     for (var line in lines) {
@@ -165,7 +166,7 @@
                                     .addClass('icon-plus-sign-alt');
             var diff = formatDiff(json.message);
             var diffElement = $("div[data-change_id='" + change_id + "']'");
-            diffElement.find('.modal-body').html(diff);
+            diffElement.find('.modal-body').find('.text').html(diff);
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
@@ -243,7 +244,17 @@
                 </h3>
               </div>
               <div class="modal-body">
-                <div class=""
+                <div class="row-fluid">
+                  <div class="span2" data-change_id="{{ change.id }}">
+                    <ul class="nav nav-list">
+                      <li class="nav-header">Changed Files</li>
+                      <li class="active"><a href="#test">test</a></li>
+                      <li><a href="#spam">spam</a></li>
+                    </ul>
+                  </div>
+                  <div class="span10 text">
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
                 <a class="btn btn-primary" data-dismiss="modal">Close</a>

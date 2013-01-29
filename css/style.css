@@ -584,6 +584,9 @@ body .diff-text .change-line {
 body .diff-text .change-line:hover {
   background-color: rgba(0,0,153,0.2);
 }
+body .diff .nav {
+  position: fixed;
+}
 body td:hover .diff-text .change-addition {
   background-color: rgba(124,252,0,0.4);
 }
