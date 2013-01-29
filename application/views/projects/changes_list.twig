@@ -35,7 +35,15 @@
     for (var line in lines) {
       if (lines[line].indexOf('diff --git') === 0) {
         var header = '';
+        // We got a new file, and there was one we were processing before this
+        // one.
         if (fileName != '') {
+          // If we weren't skipping the last file because it was deleted or
+          // invalid, we should add it to the list of files changed.
+          if (!ignoreUntilNextFile) {
+            var fileNameWithoutPath = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
+            fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
+          }
           header = '</table></pre>';
         }
 
