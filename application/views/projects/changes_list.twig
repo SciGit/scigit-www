@@ -201,12 +201,17 @@
                                     .removeClass('icon-spinner')
                                     .addClass('icon-plus-sign-alt');
             var formattedDiff = formatDiff(json.message);
-            var diffElement = $("div[data-change_id='" + change_id + "']'");
+            var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
             diffElement.find('.modal-body').find('.text').html(formattedDiff.diff);
             diffElement.find('.modal-body').find('.nav').html(formattedDiff.changedFiles);
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
+
+            $('[data-spy="scroll"][data-change_id="' + change_id + '"]').each(function () {
+              alert('found one!');
+              var $spy = $(this).scrollspy('refresh');
+            });
           } else {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
@@ -283,13 +288,13 @@
               <div class="modal-body">
                 <div class="row-fluid">
                   <div class="span2">
-                    <ul class="nav nav-list">
+                    <ul class="nav nav-list" data-change_id="{{ change.id }}">
                       <li class="nav-header">Changed Files</li>
                       <li class="active"><a href="#test">test</a></li>
                       <li><a href="#spam">spam</a></li>
                     </ul>
                   </div>
-                  <div class="span10 text">
+                  <div class="span10 text" data-change_id="{{ change.id }}" data-spy="scroll" data-target=".nav[data-change_id=\"{{ change.id }}\"]">
                   </div>
                 </div>
               </div>
