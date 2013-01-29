@@ -56,7 +56,10 @@
         }
 
         fileName = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
+        var fileNameWithoutPath = fileName;
+        fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         lines[line] = header +
+                      '<a id="' + fileNameWithoutPath + '"></a>' +
                       '<pre class="highlight"><table class="table diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
@@ -150,13 +153,12 @@
     }
 
     if (deletedFiles.length > 0) {
-      var deletedFilesString = '<li class="nav-header">Deleted Files</li>';
+      var deletedFilesString = '<li class="nav-header deleted">Deleted Files</li>';
 
       foundLineWithActualContent = true;
 
       for (var deletedFile in deletedFiles) {
-        deletedFilesString += '<li><a href="#' + deletedFiles[deletedFile] + '">' +
-                              deletedFiles[deletedFile] + '</a></li>';
+        deletedFilesString += '<li><a></a>' + deletedFiles[deletedFile] + '</li>';
       }
 
       deletedFilesString += '<li class="nav-header"> </li>';
