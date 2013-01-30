@@ -37,7 +37,7 @@
 
     function addCurrentFileToChangedList() {
       if (!ignoreUntilNextFile) {
-        var fileNameWithoutPath = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
+        var fileNameWithoutPath = fileName;
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         changedFiles.push(fileNameWithoutPath);
       }
@@ -56,10 +56,11 @@
         }
 
         fileName = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
+
         var fileNameWithoutPath = fileName;
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         lines[line] = header +
-                      '<a id="' + fileNameWithoutPath + '"></a>' +
+                      '<a id="' + fileNameWithoutPath.replace('.', '\\.') + '"></a>' +
                       '<pre class="highlight"><table class="table diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
@@ -209,7 +210,6 @@
             icon.data('diffLoaded', 'true');
 
             $('[data-spy="scroll"][data-change_id="' + change_id + '"]').each(function () {
-              alert('found one!');
               var $spy = $(this).scrollspy('refresh');
             });
           } else {
@@ -220,7 +220,7 @@
         }
       });
     } else {
-      var diffElement = $("div[data-change_id='" + change_id + "']'");
+      var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
       diffElement.modal('show');
     }
   }
@@ -287,14 +287,11 @@
               </div>
               <div class="modal-body">
                 <div class="row-fluid">
-                  <div class="span2">
-                    <ul class="nav nav-list" data-change_id="{{ change.id }}">
-                      <li class="nav-header">Changed Files</li>
-                      <li class="active"><a href="#test">test</a></li>
-                      <li><a href="#spam">spam</a></li>
+                  <div class="span2 diffNav" data-change_id="{{ change.id }}">
+                    <ul class="nav nav-list">
                     </ul>
                   </div>
-                  <div class="span10 text" data-change_id="{{ change.id }}" data-spy="scroll" data-target="ul.nav[data-change_id=&quot;{{ change.id }}&quot;]">
+                  <div class="span10 text" data-change_id="{{ change.id }}" data-spy="scroll" data-target="div.diffNav[data-change_id=&quot;{{ change.id }}&quot;]">
                   </div>
                 </div>
               </div>
