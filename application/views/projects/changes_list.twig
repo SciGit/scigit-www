@@ -208,10 +208,6 @@
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
-
-            $('[data-spy="scroll"][data-change_id="' + change_id + '"]').each(function () {
-              var $spy = $(this).scrollspy('refresh');
-            });
           } else {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
@@ -291,7 +287,7 @@
                     <ul class="nav nav-list">
                     </ul>
                   </div>
-                  <div class="span10 text" data-change_id="{{ change.id }}" data-spy="scroll" data-target="div.diffNav[data-change_id=&quot;{{ change.id }}&quot;]">
+                  <div class="span10 text" data-change_id="{{ change.id }}">
                   </div>
                 </div>
               </div>
