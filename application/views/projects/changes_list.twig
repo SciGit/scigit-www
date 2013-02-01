@@ -207,27 +207,35 @@
             var formattedDiff = formatDiff(json.message);
             var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
             var textElement = diffElement.find('.modal-body').find('.text');
+            var modalBodyElement = diffElement.find('.modal-body');
             textElement.html(formattedDiff.diff);
-            diffElement.find('.modal-body').find('.nav').html(formattedDiff.changedFiles);
+            modalBodyElement.find('.nav').html(formattedDiff.changedFiles);
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
 
             diffElement.on('shown', function() {
-              textElement.find('pre').each(function(i) {
-                var position = $(this).position();
-                alert(JSON.stringify(position));
-                alert(JSON.stringify($(this).height()));
-                $(this).scrollspy({
-                  min: position.top,
-                  max: position.top + $(this).height(),
-                  onEnter: function(element, position) {
-                    alert('enter');
-                  },
-                  onLeave: function(element, position) {
-                    alert('exit');
-                  },
-                  container: $(window),
+              var elements = new Array();
+              modalBodyElement.find('pre').each(function() {
+                elements.push(this);
+              });
+
+              var currentlyScrolledElement = null;
+              modalBodyElement.on('scroll', function(e) {
+                var scrollTop = $(this).scrollTop();
+                var height = $(this).height();
+                modalBodyElement.find('pre').each(function() {
+                  if (currentlyScrolledElement != this &&
+                      scrollTop > $(this).position().top &&
+                      scrollTop + height > $(this).position().top + $(this).height()) {
+                    if (currentlyScrolledElement !== null) {
+                      var id = $(currentlyScrolledElement).attr('id');
+                      $('a[href="#' + id + '"]').parent().removeClass('active');
+                    }
+                    currentlyScrolledElement = this;
+                    var id = $(currentlyScrolledElement).attr('id');
+                    $('a[href="#' + id + '"]').parent().addClass('active');
+                  }
                 });
               });
             });
