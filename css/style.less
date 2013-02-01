@@ -4,6 +4,7 @@
 @diff-green: rgba(124, 252, 0, 0.4);
 @diff-red: rgba(255, 0, 0, 0.2);
 @diff-blue: rgba(0, 0, 255, 0.2);
+@diff-gray: rgb(235, 235, 235);
 
 /**
  * Custom SciGit classes.
@@ -646,8 +647,12 @@ body {
     }
 
     th {
-      background-color: rgba(255, 255, 225, 0.6) !important;
-      border-bottom: 2px solid rgb(221, 221, 221);
+      background-color: @diff-blue;
+      border-bottom: 2px solid @diff-gray;
+
+      &:hover {
+        th;
+      }
     }
 
     .linenumber {
@@ -657,7 +662,7 @@ body {
 
     .content {
       padding-left: 10px !important;
-      border-left: 5px solid rgb(221, 221, 221);
+      border-left: 5px solid @diff-gray;
     }
 
     .change-addition {
@@ -677,10 +682,10 @@ body {
     }
 
     .change-line {
-      background-color: @diff-blue;
+      background-color: @diff-gray;
 
       &:hover {
-        background-color: darken(@diff-blue, 20%);
+        background-color: darken(@diff-gray, 10%);
       }
     }
   }
@@ -707,6 +712,10 @@ body {
   }
 
   /** Special cases that are hard to write out in a nice format */
+  td:hover .diff-text th, tr:hover .diff-text th {
+    background-color: @diff-bue;
+  }
+
   td:hover .diff-text .change-addition {
     background-color: @diff-green;
   }

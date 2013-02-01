@@ -555,8 +555,12 @@ body .diff-text tr td {
   margin: 0 !important;
 }
 body .diff-text th {
-  background-color: rgba(255,255,225,0.6) !important;
-  border-bottom: 2px solid #dddddd;
+  background-color: rgba(0,0,255,0.2);
+  border-bottom: 2px solid #ebebeb;
+}
+body .diff-text th:hover {
+  background-color: rgba(0,0,255,0.2);
+  border-bottom: 2px solid #ebebeb;
 }
 body .diff-text .linenumber {
   width: 20px;
@@ -564,7 +568,7 @@ body .diff-text .linenumber {
 }
 body .diff-text .content {
   padding-left: 10px !important;
-  border-left: 5px solid #dddddd;
+  border-left: 5px solid #ebebeb;
 }
 body .diff-text .change-addition {
   background-color: rgba(124,252,0,0.4);
@@ -579,10 +583,10 @@ body .diff-text .change-deletion:hover {
   background-color: rgba(153,0,0,0.2);
 }
 body .diff-text .change-line {
-  background-color: rgba(0,0,255,0.2);
+  background-color: #ebebeb;
 }
 body .diff-text .change-line:hover {
-  background-color: rgba(0,0,153,0.2);
+  background-color: #d2d2d2;
 }
 body .diff .nav {
   position: fixed;
@@ -598,6 +602,10 @@ body .diff .nav .created {
 }
 body .diff .text {
   position: relative;
+}
+body td:hover .diff-text th,
+body tr:hover .diff-text th {
+  background-color: ;
 }
 body td:hover .diff-text .change-addition {
   background-color: rgba(124,252,0,0.4);
