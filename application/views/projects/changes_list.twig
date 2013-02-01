@@ -22,6 +22,10 @@
     $('.diff').each(function() {
       $('#diffs').append(this);
     });
+
+    $(window).on('scroll', function(e) {
+      //alert('window');
+    });
   });
 
   function formatDiff(diff) {
@@ -60,8 +64,7 @@
         var fileNameWithoutPath = fileName;
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         lines[line] = header +
-                      '<a id="' + fileNameWithoutPath.replace('.', '\\.') + '"></a>' +
-                      '<pre class="highlight"><table class="table diff-text"><tr><th></th><th>' +
+                      '<pre id="' + fileNameWithoutPath + '" class="highlight"><table class="table diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
         curLineNum = 1;
@@ -203,11 +206,31 @@
                                     .addClass('icon-plus-sign-alt');
             var formattedDiff = formatDiff(json.message);
             var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
-            diffElement.find('.modal-body').find('.text').html(formattedDiff.diff);
+            var textElement = diffElement.find('.modal-body').find('.text');
+            textElement.html(formattedDiff.diff);
             diffElement.find('.modal-body').find('.nav').html(formattedDiff.changedFiles);
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
+
+            diffElement.on('shown', function() {
+              textElement.find('pre').each(function(i) {
+                var position = $(this).position();
+                alert(JSON.stringify(position));
+                alert(JSON.stringify($(this).height()));
+                $(this).scrollspy({
+                  min: position.top,
+                  max: position.top + $(this).height(),
+                  onEnter: function(element, position) {
+                    alert('enter');
+                  },
+                  onLeave: function(element, position) {
+                    alert('exit');
+                  },
+                  container: $(window),
+                });
+              });
+            });
           } else {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')

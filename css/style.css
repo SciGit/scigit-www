@@ -591,6 +591,9 @@ body .diff .nav {
 body .diff .nav .deleted {
   background-color: rgba(255,0,0,0.2);
 }
+body .diff .text {
+  position: relative;
+}
 body td:hover .diff-text .change-addition {
   background-color: rgba(124,252,0,0.4);
 }
