@@ -689,9 +689,15 @@ body {
     .nav {
       position: fixed;
       border-right: 1px solid @sg-gray;
+      overflow: hidden;
+      width: 90px;
 
       .deleted {
         background-color: @diff-red;
+      }
+
+      .created {
+        background-color: @diff-green;
       }
     }
 

@@ -30,6 +30,7 @@
     var lines = formatted.diff.split('\n');
     var curLineNum = 1;
     var fileName = '';
+    var createdFiles = new Array();
     var deletedFiles = new Array();
     var changedFiles = new Array();
     var ignoreUntilNextFile = true;
@@ -73,6 +74,9 @@
         for (var i = startOfFile; i <= line; i++) {
           lines[i] = null;
         }
+      } else if (lines[line].indexOf('new file') === 0) {
+        createdFiles.push(fileName[1]);
+        ignoreUntilNextFile = true;
       } else if (lines[line].indexOf('index') === 0 ||
                  lines[line].indexOf('deleted') === 0 ||
                  lines[line].indexOf('--') === 0 ||
@@ -154,6 +158,20 @@
       formatted.changedFiles += changedFilesString;
     }
 
+    if (createdFiles.length > 0) {
+      var createdFilesString = '<li class="nav-header created">Created Files</li>';
+
+      foundLineWithActualContent = true;
+
+      for (var createdFile in createdFiles) {
+        createdFilesString += '<li><a></a>' + createdFiles[createdFile] + '</li>';
+      }
+
+      createdFilesString += '<li class="nav-header"> </li>';
+
+      formatted.changedFiles += createdFilesString;
+    }
+
     if (deletedFiles.length > 0) {
       var deletedFilesString = '<li class="nav-header deleted">Deleted Files</li>';
 
@@ -215,10 +233,10 @@
             diffElement.on('shown', function() {
               // XXX: Fix an issue where the nav bar sliding into view doesn't end
               // up in the right spot. This effectively forces reflow.
-              setTimeout(500, function() {
+              setTimeout(function() {
                 $('.nav').css('position', 'static');
                 $('.nav').css('position', 'fixed');
-              });
+              }, 100);
 
               // XXX: This is all generally ugly. We should clean it up eventually.
               var currentlyScrolledElement = null;
@@ -315,7 +333,7 @@
               </div>
               <div class="modal-body">
                 <div class="row-fluid">
-                  <div class="span2 diffNav" data-change_id="{{ change.id }}">
+                  <div class="span2" data-change_id="{{ change.id }}">
                     <ul class="nav nav-list">
                     </ul>
                   </div>
