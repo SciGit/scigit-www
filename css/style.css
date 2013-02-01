@@ -600,6 +600,11 @@ body .diff .nav .deleted {
 body .diff .nav .created {
   background-color: rgba(124,252,0,0.4);
 }
+body .diff .nav .active a {
+  background-color: rgba(0,0,255,0.2);
+  color: black;
+  text-shadow: none;
+}
 body .diff .text {
   position: relative;
 }
