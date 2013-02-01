@@ -149,6 +149,13 @@ index 8d69e54..0000000
 +++ /dev/null
 @@ -1 +0,0 @@
 -file: file with spaces
+diff --git a/application/controllers/testthing b/application/controllers/testthing
+new file mode 100644
+index 0000000..12892f5
+--- /dev/null
++++ b/application/controllers/testthing
+@@ -0,0 +1 @@
++oh
 EOF;
 
       echo json_encode(array(
