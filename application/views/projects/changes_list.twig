@@ -215,8 +215,10 @@
             diffElement.on('shown', function() {
               // XXX: Fix an issue where the nav bar sliding into view doesn't end
               // up in the right spot. This effectively forces reflow.
-              $('.nav').css('position', 'relative');
-              $('.nav').css('position', 'fixed');
+              setTimeout(500, function() {
+                $('.nav').css('position', 'static');
+                $('.nav').css('position', 'fixed');
+              });
 
               // XXX: This is all generally ugly. We should clean it up eventually.
               var currentlyScrolledElement = null;
