@@ -146,9 +146,11 @@
 
       foundLineWithActualContent = true;
 
+      var first = ' class="active"';
       for (var changedFile in changedFiles) {
-        changedFilesString += '<li><a href="#' + changedFiles[changedFile] + '">' +
+        changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '">' +
                               changedFiles[changedFile] + '</a></li>';
+        first = '';
       }
 
       changedFilesString += '<li class="nav-header"> </li>';
