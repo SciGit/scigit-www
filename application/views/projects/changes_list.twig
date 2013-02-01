@@ -217,11 +217,10 @@
             icon.data('diffLoaded', 'true');
 
             diffElement.on('shown', function() {
-              var elements = new Array();
-              modalBodyElement.find('pre').each(function() {
-                elements.push(this);
-              });
+              $('.nav').css('position', 'relative');
+              $('.nav').css('position', 'fixed');
 
+              // XXX: This is all generally ugly. We should clean it up eventually.
               var currentlyScrolledElement = null;
               modalBodyElement.on('scroll', function(e) {
                 var scrollTop = $(this).scrollTop();
