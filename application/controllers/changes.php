@@ -59,7 +59,6 @@ class Changes extends SciGit_Controller
 	}
 
   public function diff_ajax() {
-    check_login();
     $this->form_validation->set_rules('id', 'id', 'required');
     $this->form_validation->set_rules('path', 'path', '');
 
