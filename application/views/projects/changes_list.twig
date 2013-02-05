@@ -76,7 +76,7 @@
         }
       } else if (lines[line].indexOf('new file') === 0) {
         createdFiles.push(fileName[1]);
-        ignoreUntilNextFile = true;
+        lines[line] = null;
       } else if (lines[line].indexOf('index') === 0 ||
                  lines[line].indexOf('deleted') === 0 ||
                  lines[line].indexOf('--') === 0 ||
