@@ -253,21 +253,35 @@
               // XXX: This is all generally ugly. We should clean it up eventually.
               var currentlyScrolledElement = null;
               modalBodyElement.on('scroll', function(e) {
-                var scrollTop = $(this).scrollTop();
-                var height = $(this).height();
+                var outerScrollTop = $(this).scrollTop();
+                var outerHeight = $(this).height();
+                var highestPercentageInView = 0;
+                var highestPercentageInViewIndex = null;
                 modalBodyElement.find('pre').each(function() {
-                  if (currentlyScrolledElement != this &&
-                      scrollTop > $(this).position().top &&
-                      scrollTop + height > $(this).position().top + $(this).height()) {
-                    if (currentlyScrolledElement !== null) {
-                      var id = $(currentlyScrolledElement).attr('id');
-                      $('a[href="#' + id + '"]').parent().removeClass('active');
-                    }
-                    currentlyScrolledElement = this;
-                    var id = $(currentlyScrolledElement).attr('id');
-                    $('a[href="#' + id + '"]').parent().addClass('active');
+                  var innerScrollTop = $(this).position().top;
+                  var innerHeight = $(this).height();
+
+                  var percentageInView = (Math.min(innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
+                                          Math.max(innerScrollTop, outerScrollTop)) /
+                                         innerHeight;
+
+                  if (percentageInView > highestPercentageInView) {
+                    highestPercentageInView = percentageInView;
+                    highestPercentageInViewIndex = this;
                   }
                 });
+
+                if (highestPercentageInViewIndex !== null &&
+                    highestPercentageInViewIndex !== currentlyScrolledElement) {
+                  if (currentlyScrolledElement !== null) {
+                    var id = $(currentlyScrolledElement).attr('id');
+                    $('a[href="#' + id + '"]').parent().removeClass('active');
+                  }
+
+                  currentlyScrolledElement = highestPercentageInViewIndex;
+                  var id = $(currentlyScrolledElement).attr('id');
+                  $('a[href="#' + id + '"]').parent().addClass('active');
+                }
               });
             });
           } else {
