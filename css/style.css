@@ -192,6 +192,9 @@ body .separator {
 body .separator-small {
   margin-bottom: 25px;
 }
+body.modal-open {
+  overflow: hidden;
+}
 body .modal-small {
   width: 450px;
   margin: -195px 0 0 -225px;
