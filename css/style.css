@@ -46,6 +46,9 @@ body .date {
 body .no-decoration a {
   text-decoration: none;
 }
+body .no-margin {
+  margin: 0;
+}
 body a.disabled {
   color: gray;
   text-decoration: none;
