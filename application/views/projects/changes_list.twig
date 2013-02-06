@@ -277,8 +277,9 @@
                   if (percentageInView > highestPercentageInView ||
                       // If there are multiple files on the page that are entirely in view,
                       // pick the one that is lowest.
-                      (Math.abs(percentageInView - highestPercentageInView) < 0.01 &&
-                       innerScrollTop > highestPercentageInViewIndex.position().top)) {
+                      (highestPercentageInViewIndex !== null &&
+                       Math.abs(percentageInView - highestPercentageInView) < 0.01 &&
+                       innerScrollTop > highestPercentageInViewIndex.scrollTop())) {
                     highestPercentageInView = percentageInView;
                     highestPercentageInViewIndex = this;
                   }
