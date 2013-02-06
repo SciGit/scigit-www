@@ -164,7 +164,11 @@ set submit = {
           Copyright © 2012, SciGit Inc.
         </p>
         <p class="company pull-right">
-          <a href="/">Home</a> <span class="divider">|</span>
+          {% if is_logged_in %}
+            {{ anchor("/", "Home") | raw }} <span class="divider">|</span>
+          {% else %}
+            {{ anchor("/auth/login", "Home") | raw }} <span class="divider">|</span>
+          {% endif %}
           {% if is_logged_in() and not is_os_supported() %}
             <a href="#disabled" class="disabled" rel="tooltip"
                title="{{ get_os() }} is not supported, we'll email you when it is! Thanks for being patient.">Download Desktop Client</a>
