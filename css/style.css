@@ -10,6 +10,12 @@ body .p {
 body pre {
   background-color: white;
 }
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: none;
+}
 body h1 {
   color: #4a5b76;
   font-weight: 500;
@@ -437,10 +443,23 @@ body .subtitle {
   color: #4a5b76;
   font-weight: 500;
 }
+body .explore {
+  color: #787878;
+  font-size: 21px;
+  line-height: 42px;
+  font-weight: 200;
+  margin: 50px auto;
+  text-align: center;
+  width: 550px;
+}
+body .explore i {
+  margin: 0 10px 0 0;
+  color: #b4b4b4;
+}
 body .universities {
   width: 100%;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 85px;
 }
 body .universities p {
   font-size: 27px;
