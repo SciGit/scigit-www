@@ -4,15 +4,21 @@
 
 {% block content %}
 
-<div class="alert alert-error">
-  SciGit does not currently support {{ get_os() }}. Don't worry, we'll send you
-  an email when we do support it! Thanks for being patient.
+<h1 class="center">
+  Thanks for signing up!
+</h1>
+
+<div class="separator-small"></div>
+
+<div class="alert alert-error" style="width: 75%; margin: auto;">
+  Thank you for your interest in SciGit. We notice you're on {{ get_os() }}, which we don't have a desktop app ready for. We'll email you when it's done. In the mean
+  time, feel free to explore the community. Thanks for being patient.
 </div>
 
 <div class="separator-small"></div>
 
 <div class="center">
-  <a class="btn btn-primary btn-xlarge" href="/">Explore Community Anyways</a>
+  <a class="btn btn-primary btn-xlarge" href="/">Explore SciGit Community</a>
 </div>
 
 {% endblock %}
