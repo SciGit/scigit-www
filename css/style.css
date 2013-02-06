@@ -278,6 +278,7 @@ body .content {
   margin: 40px 0 20px 0;
 }
 body .slogan {
+  padding-top: 10px;
   font-size: 55px;
   line-height: 75px;
   font-weight: 200;
@@ -720,7 +721,7 @@ body .navbar-search .search-query {
   background-color: white;
   margin-top: 1px;
   color: gray;
-  font-weight: 500;
+  font-weight: 200;
 }
 body .navbar-search .search-query:focus,
 body .navbar-search .search-query.focused {
@@ -732,10 +733,9 @@ body .navbar-search .search-query.focused {
   background-color: white;
   margin-top: 1px;
   color: gray;
-  font-weight: 500;
+  font-weight: 200;
 }
 body .navbar-search .search-submit {
   height: 28px;
   width: 28px;
-  z-index: 9999;
 }
