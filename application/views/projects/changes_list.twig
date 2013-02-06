@@ -31,6 +31,7 @@
     var curLineNum = 1;
     var numDeletions = 0;
     var fileName = '';
+    var fileNameWithoutPath;
     var createdFiles = new Array();
     var deletedFiles = new Array();
     var changedFiles = new Array();
@@ -40,8 +41,6 @@
 
     function addCurrentFileToChangedList() {
       if (!ignoreUntilNextFile) {
-        var fileNameWithoutPath = fileName;
-        fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         changedFiles.push(fileNameWithoutPath);
       }
     }
@@ -60,7 +59,7 @@
 
         fileName = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
 
-        var fileNameWithoutPath = fileName;
+        fileNameWithoutPath = fileName;
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         lines[line] = header +
                       '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table diff-text"><tr><th></th><th>' +
@@ -71,14 +70,14 @@
         ignoreUntilNextFile = false;
         firstChangeSetInFile = true;
       } else if (lines[line].indexOf('deleted') === 0) {
-        deletedFiles.push(fileName[1]);
+        deletedFiles.push(fileNameWithoutPath);
         ignoreUntilNextFile = true;
 
         for (var i = startOfFile; i <= line; i++) {
           lines[i] = null;
         }
       } else if (lines[line].indexOf('new file') === 0) {
-        createdFiles.push(fileName[1]);
+        createdFiles.push(fileNameWithoutPath);
         lines[line] = null;
       } else if (lines[line].indexOf('index') === 0 ||
                  lines[line].indexOf('deleted') === 0 ||
@@ -160,9 +159,19 @@
 
       var first = ' class="active"';
       for (var changedFile in changedFiles) {
-        changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '_' + change_id + '">' +
-                              changedFiles[changedFile] + '</a></li>';
-        first = '';
+        // Don't include created files in the changed files list.
+        var foundFileInCreatedFiles = false;
+        for (var createdFile in createdFiles) {
+          if (createdFiles[createdFile] == changedFiles[changedFile]) {
+            foundFileInCreatedFiles = true;
+          }
+        }
+
+        if (!foundFileInCreatedFiles) {
+          changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '_' + change_id + '">' +
+                                changedFiles[changedFile] + '</a></li>';
+          first = '';
+        }
       }
 
       changedFilesString += '<li class="nav-header"> </li>';
@@ -176,7 +185,7 @@
       foundLineWithActualContent = true;
 
       for (var createdFile in createdFiles) {
-        createdFilesString += '<li><a></a>' + createdFiles[createdFile] + '</li>';
+        createdFilesString += '<li><a href="#' + createdFiles[createdFile] + '_' + change_id + '">' + createdFiles[createdFile] + '</a></li>';
       }
 
       createdFilesString += '<li class="nav-header"> </li>';
