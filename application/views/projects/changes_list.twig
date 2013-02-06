@@ -24,7 +24,7 @@
     });
   });
 
-  function formatDiff(diff) {
+  function formatDiff(diff, change_id) {
     var formatted = new Object();
     formatted.diff = diff;
     var lines = formatted.diff.split('\n');
@@ -63,7 +63,7 @@
         var fileNameWithoutPath = fileName;
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         lines[line] = header +
-                      '<pre id="' + fileNameWithoutPath + '" class="highlight"><table class="table diff-text"><tr><th></th><th>' +
+                      '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
         curLineNum = 1;
@@ -160,7 +160,7 @@
 
       var first = ' class="active"';
       for (var changedFile in changedFiles) {
-        changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '">' +
+        changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '_' + change_id + '">' +
                               changedFiles[changedFile] + '</a></li>';
         first = '';
       }
@@ -232,7 +232,7 @@
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
                                     .addClass('icon-plus-sign-alt');
-            var formattedDiff = formatDiff(json.message);
+            var formattedDiff = formatDiff(json.message, change_id);
             var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
             var textElement = diffElement.find('.modal-body').find('.text');
             var modalBodyElement = diffElement.find('.modal-body');
