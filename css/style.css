@@ -223,6 +223,15 @@ body .modal-large {
 body .modal-large .modal-body {
   max-height: 500px;
 }
+body .modal-show-only {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+}
 body .buttons {
   margin: 0;
   padding: 0;
@@ -385,6 +394,9 @@ body .dropdown a.dropdown-toggle:hover {
 }
 body .username {
   line-height: 24px;
+}
+body .navbar-fixed-top {
+  z-index: 2;
 }
 body .nav .current {
   text-shadow: 0px 1px 0px #87a0ff !important;

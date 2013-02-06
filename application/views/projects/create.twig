@@ -44,15 +44,11 @@ function createProject(event) {
       if (json.error == 0) {
         $('#createProjectError').hide();
         $('#createProjectSuccess').html(json.message).show();
-        setTimeout(function() {
-          var waitingReload = true;
 
-          $('#createProject').modal('hide');
-          $('#createProject').on('hidden', function() {
-            if (waitingReload) {
-              window.location.href = '/projects/view/' + json.proj_id;
-            }
-          });
+        setTimeout(function() {
+          $('.modal-show-only').fadeIn(500);
+          $('#createProjectSuccess').html('<i class="icon-spinner icon-spin"></i> Loading new project...');
+          window.location.href = '/projects/view/' + json.proj_id;
         }, 1500);
       } else {
         $('#createProjectError').html(json.message).show();
@@ -86,6 +82,8 @@ function togglePublic(event) {
   }
 }
 </script>
+
+<div class="modal-show-only hide"></div>
 
 <div id="createProject" class="modal modal-small hide fade">
   <div class="modal-header">
