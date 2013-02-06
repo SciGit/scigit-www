@@ -110,7 +110,7 @@ class Projects extends SciGit_Controller
     } else {
       echo json_encode(array(
         'error' => '2',
-        'message' => 'Invalid project name, please pick another.'
+        'message' => 'That project name is taken; please pick another.'
       ));
     }
   }
