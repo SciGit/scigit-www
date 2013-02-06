@@ -190,7 +190,7 @@ function get_os() {
   return $cur_os;
 }
 
-function is_windows() {
+function is_os_supported() {
   return strpos(get_os(), 'Windows') !== FALSE;
 }
 

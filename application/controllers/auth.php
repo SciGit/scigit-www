@@ -124,7 +124,7 @@ class Auth extends SciGit_Controller
 
   function registered()
   {
-    if (is_windows()) {
+    if (is_os_supported()) {
       $this->twig->display('auth/registered_form.twig', null);
     } else {
       $this->twig->display('auth/registered_not_supported_form.twig', null);

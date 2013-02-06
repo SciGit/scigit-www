@@ -46,6 +46,14 @@ body .date {
 body .no-decoration a {
   text-decoration: none;
 }
+body a.disabled {
+  color: gray;
+  text-decoration: none;
+}
+body a.disabled:hover {
+  color: gray;
+  text-decoration: none;
+}
 body .scigit-brand {
   color: rgba(0,0,0,0) !important;
   padding: 0 !important;
