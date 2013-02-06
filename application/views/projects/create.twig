@@ -97,6 +97,11 @@ function togglePublic(event) {
     <div class="create-project">
       <div id="createProjectError" class="alert alert-error hide"></div>
       <div id="createProjectSuccess" class="alert alert-success hide"></div>
+      <div class="name">
+        {{ form_label('Project Name', 'name') | raw }}
+        {{ form_input('name', set_value('name')) | raw }} <br />
+      </div>
+      <div class="grey-separator"></div>
       <div class="public">
         <div class="hide">
           {{ form_checkbox('public', 1, set_value('public')) | raw }}
@@ -105,11 +110,6 @@ function togglePublic(event) {
         <a href="#" id="togglePublic" class="rawlink" rel="tooltip" title="Make public" data-placement="bottom">
           <i id="togglePublicIcon" class="icon-lock icon-2x"></i>
         </a>
-      </div>
-      <div class="grey-separator"></div>
-      <div class="name">
-        {{ form_label('Project Name', 'name') | raw }}
-        {{ form_input('name', set_value('name')) | raw }} <br />
       </div>
     </div>
   </div>
