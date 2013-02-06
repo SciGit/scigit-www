@@ -594,12 +594,6 @@ body .diff .nav {
   overflow: hidden;
   width: 90px;
 }
-body .diff .nav .deleted {
-  background-color: rgba(255,0,0,0.2);
-}
-body .diff .nav .created {
-  background-color: rgba(124,252,0,0.4);
-}
 body .diff .nav .active a {
   background-color: rgba(0,0,255,0.2);
   color: black;
