@@ -87,7 +87,8 @@ function unsubscribe(link) {
       {% else %}
         <tr class="nohover">
           <td valign="middle">
-            <p>You don't have access to any projects. {{ anchor("/projects/create", "Create a Project") | raw }} or have someone add you to one.</p>
+            <p>You don't have access to any projects.
+            <a href="#createProject" rel="tooltip" title="Create new project" data-toggle="modal">Create a Project</a> or have someone add you to one.</p>
           </td>
         </tr>
       {% endif %}
