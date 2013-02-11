@@ -240,12 +240,14 @@ body .modal-responsive {
   margin: 0;
   overflow: auto;
 }
-body .modal-responsive .modal-body {
-  max-height: 80%;
-}
 body .modal-responsive .modal-footer {
-  height: 30px;
-  width: 80%;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 body .modal-show-only {
   position: absolute;

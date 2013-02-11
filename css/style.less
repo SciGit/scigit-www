@@ -7,6 +7,18 @@
 @diff-gray: rgb(235, 235, 235);
 
 /**
+ * Useful utilities.
+ */
+
+#sg {
+  .box-sizing() {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+/**
  * Custom SciGit classes.
  */
 
@@ -288,12 +300,15 @@ body {
     overflow: auto;
 
     .modal-body {
-      max-height: 80%;
+
     }
 
     .modal-footer {
-      height: 30px;
-      width: 80%;
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      #sg > .box-sizing;
     }
   }
 
