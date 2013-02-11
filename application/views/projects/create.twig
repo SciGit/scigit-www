@@ -43,7 +43,7 @@ function createProject(event) {
       $(".project-create").val("Create");
       if (json.error == 0) {
         $('#createProjectError').hide();
-        $('#createProjectSuccess').html(json.message).show();
+        $('#createProjectSuccess').html('<i class="icon-ok-sign"></i><p>' + json.message + '</p>').show();
 
         setTimeout(function() {
           $('.modal-show-only').fadeIn(500);
@@ -51,7 +51,7 @@ function createProject(event) {
           window.location.href = '/projects/view/' + json.proj_id;
         }, 1500);
       } else {
-        $('#createProjectError').html(json.message).show();
+        $('#createProjectError').html('<i class="icon-remove-sign"></i><p>' + json.message + '</p>').show();
         $(".project-create").attr('class', 'btn btn-primary project-create');
         $(".project-cancel").attr('class', 'btn project-cancel');
       }
