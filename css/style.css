@@ -392,6 +392,9 @@ body .dropdown a.dropdown-toggle:hover {
   text-decoration: none;
   color: white;
 }
+body .dropdown:hover ul.dropdown-menu {
+  display: block;
+}
 body .username {
   line-height: 24px;
 }
