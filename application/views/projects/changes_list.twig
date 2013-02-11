@@ -153,7 +153,7 @@
     formatted.diff += '</table></pre>';
 
     if (changedFiles.length > 0) {
-      var changedFilesString = '<li class="nav-header">Changed Files</li>';
+      var changedFilesString = '<li class="nav-header">Updated Files</li>';
 
       foundLineWithActualContent = true;
 
@@ -321,7 +321,7 @@
     <tr>
       <th>
         <h2>
-          All Changes
+          All Updates
           {% if not show_all and changes %}
             <div class="pull-right">
               <a class="btn title-btn" href="{{ site_url("/projects/changes/#{project.id}") | raw }}">
@@ -337,7 +337,7 @@
       {% for change in changes %}
         <tr>
           <td class="change" valign="middle" data-change_id="{{ change.id }}">
-            {{ anchor("/users/profile/#{change.user_id}", change.username) | raw }} made change:
+            {{ anchor("/users/profile/#{change.user_id}", change.username) | raw }} updated:
             <div class="buttons">
               <div class="button">
                 {% if show_all %}
