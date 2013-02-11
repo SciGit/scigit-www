@@ -19,7 +19,10 @@
   </div>
 {% elseif not activated %}
   <div class="alert alert-error">
-    Your email has not been verified; certain features will not be available until you do so. Please check your email for a verification link, or <a href="/auth/send_again">get a new link</a>.
+    <i class="icon-remove-sign"></i>
+    <p>
+      Your email has not been verified; certain features will not be available until you do so. Please check your email for a verification link, or <a href="/auth/send_again">get a new link</a>.
+    </p>
   </div>
 {% endif %}
 
