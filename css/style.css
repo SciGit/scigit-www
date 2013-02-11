@@ -232,6 +232,21 @@ body .modal-large {
 body .modal-large .modal-body {
   max-height: 500px;
 }
+body .modal-responsive {
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  top: 5% !important;
+  margin: 0;
+  overflow: auto;
+}
+body .modal-responsive .modal-body {
+  max-height: 80%;
+}
+body .modal-responsive .modal-footer {
+  height: 30px;
+  width: 80%;
+}
 body .modal-show-only {
   position: absolute;
   top: 0;
@@ -602,6 +617,13 @@ body .clickable:hover pre table tr,
 body .clickable:hover pre table tr td {
   background-color: white;
 }
+body #diffs {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 2000px;
+  pointer-events: none;
+}
 body .diff-text {
   margin: 0 !important;
   width: 100%;
@@ -645,6 +667,9 @@ body .diff-text .change-line {
 }
 body .diff-text .change-line:hover {
   background-color: #d2d2d2;
+}
+body .diff {
+  pointer-events: auto;
 }
 body .diff .nav {
   position: fixed;

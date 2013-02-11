@@ -19,6 +19,8 @@
       e.preventDefault();
     });
 
+    $('body').append($('#diffs'));
+
     $('.diff').each(function() {
       $('#diffs').append(this);
     });
@@ -360,7 +362,7 @@
             <div class="description">
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
             </div>
-            <div class="modal modal-large hide fade diff" data-change_id="{{ change.id }}">
+            <div class="modal modal-responsive hide fade diff" data-change_id="{{ change.id }}">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3>
