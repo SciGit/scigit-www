@@ -50,6 +50,8 @@ class Users extends SciGit_Controller
           'user' => $user,
           'projects' => $projects,
           'fulltitle' => $fulltitle,
+          'is_me' => $id == get_user_id(),
+          'private' => $user->private,
         );
 
         $this->twig->display('users/profile.twig', $data);

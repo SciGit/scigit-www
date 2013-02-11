@@ -90,6 +90,15 @@ body .hero-unit h1 {
 body .hero-unit .close {
   margin: -45px -40px 0 0;
 }
+body .alert i {
+  float: left;
+  margin-top: 2px;
+  padding-right: 10px;
+}
+body .alert p {
+  overflow: auto;
+  margin: 0;
+}
 body .company {
   font-size: 16px;
   color: #a0a0a0;

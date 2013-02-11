@@ -9,7 +9,22 @@
   <span class="current">{{ anchor("/users/profile/#{user.id}", user.username ~ "'s Profile") | raw }} </span>
 </p>
 
-<br />
+<hr class="soften" />
+
+{% if is_me %}
+  <div class="alert alert-info">
+    <i class="icon-info-sign"></i>
+    <p>
+      This page is how others see your profile when they view it. They cannot make changes to it.
+      {% if private %}
+      Your profile is currently <strong>private</strong>. Only collaborators of your projects can view it.
+      {% else %}
+      Your profile is currently <strong>public</strong>. Setting it to private will prevent others from viewing it.
+      {% endif %}
+      This can be changed in your {{ anchor("/users/profile", "Settings") | raw }}.
+    </p>
+  </div>
+{% endif %}
 
 <div class="well blue-well">
 <div class="page-header">
