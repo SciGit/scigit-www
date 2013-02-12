@@ -85,6 +85,9 @@ set submit = {
         window.location.href = '/changes/view/' + this.getAttribute('data-change_id');
       }
     });
+    $('.modal-responsive').scroll(function(e) {
+      $(this).scrollTop(0);
+    })
   });
 </script>
 

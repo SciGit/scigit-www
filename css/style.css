@@ -242,7 +242,6 @@ body .modal-responsive {
 }
 body .modal-responsive .modal-body {
   max-height: 100%;
-  overflow: auto;
 }
 body .modal-responsive .modal-footer {
   height: 60px;
