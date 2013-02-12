@@ -623,13 +623,6 @@ body .clickable:hover pre table tr,
 body .clickable:hover pre table tr td {
   background-color: white;
 }
-body #diffs {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 2000px;
-  pointer-events: none;
-}
 body .diff-text {
   margin: 0 !important;
   width: 100%;
@@ -673,9 +666,6 @@ body .diff-text .change-line {
 }
 body .diff-text .change-line:hover {
   background-color: #d2d2d2;
-}
-body .diff {
-  pointer-events: auto;
 }
 body .diff .nav {
   position: fixed;

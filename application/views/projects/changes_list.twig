@@ -73,11 +73,7 @@
         firstChangeSetInFile = true;
       } else if (lines[line].indexOf('deleted') === 0) {
         deletedFiles.push(fileNameWithoutPath);
-        ignoreUntilNextFile = true;
-
-        for (var i = startOfFile; i <= line; i++) {
-          lines[i] = null;
-        }
+        lines[line] = null;
       } else if (lines[line].indexOf('new file') === 0) {
         createdFiles.push(fileNameWithoutPath);
         lines[line] = null;
@@ -161,15 +157,25 @@
 
       var first = ' class="active"';
       for (var changedFile in changedFiles) {
-        // Don't include created files in the changed files list.
-        var foundFileInCreatedFiles = false;
+        // Don't include created or deleted files in the changed files list.
+        var foundFileInCreatedOrDeletedFiles = false;
         for (var createdFile in createdFiles) {
           if (createdFiles[createdFile] == changedFiles[changedFile]) {
-            foundFileInCreatedFiles = true;
+            foundFileInCreatedOrDeletedFiles = true;
+            break;
           }
         }
 
-        if (!foundFileInCreatedFiles) {
+        if (!foundFileInCreatedOrDeletedFiles) {
+          for (var deletedFile in deletedFiles) {
+            if (deletedFiles[deletedFile] == changedFiles[changedFile]) {
+              foundFileInCreatedOrDeletedFiles = true;
+              break;
+            }
+          }
+        }
+
+        if (!foundFileInCreatedOrDeletedFiles) {
           changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '_' + change_id + '">' +
                                 changedFiles[changedFile] + '</a></li>';
           first = '';
@@ -201,7 +207,7 @@
       foundLineWithActualContent = true;
 
       for (var deletedFile in deletedFiles) {
-        deletedFilesString += '<li><a></a>' + deletedFiles[deletedFile] + '</li>';
+        deletedFilesString += '<li><a href="#' + deletedFiles[deletedFile] + '_' + change_id + '">' + deletedFiles[deletedFile] + '</a></li>';
       }
 
       deletedFilesString += '<li class="nav-header"> </li>';
