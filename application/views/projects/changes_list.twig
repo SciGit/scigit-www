@@ -274,12 +274,13 @@
                 var outerHeight = $(this).parent().height() - 100;
                 var highestPercentageInView = 0;
                 var highestPercentageInViewIndex = null;
+
                 modalBodyElement.find('pre').each(function() {
                   var innerScrollTop = $(this).position().top;
                   var innerHeight = $(this).height();
 
-                  var percentageInView = (Math.min(innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
-                                          Math.max(innerScrollTop, outerScrollTop)) /
+                  var percentageInView = (Math.min(outerScrollTop + innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
+                                          Math.max(outerScrollTop + innerScrollTop, outerScrollTop)) /
                                          innerHeight;
 
                   if (percentageInView > highestPercentageInView ||
@@ -287,7 +288,7 @@
                       // pick the one that is lowest.
                       (highestPercentageInViewIndex !== null &&
                        Math.abs(percentageInView - highestPercentageInView) < 0.1 &&
-                       innerScrollTop > highestPercentageInViewIndex.scrollTop())) {
+                       innerScrollTop > $(highestPercentageInViewIndex).position().top)) {
                     highestPercentageInView = percentageInView;
                     highestPercentageInViewIndex = this;
                   }
