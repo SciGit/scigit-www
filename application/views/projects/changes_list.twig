@@ -187,20 +187,6 @@
       formatted.changedFiles += changedFilesString;
     }
 
-    if (createdFiles.length > 0) {
-      var createdFilesString = '<li class="nav-header">Created Files</li>';
-
-      foundLineWithActualContent = true;
-
-      for (var createdFile in createdFiles) {
-        createdFilesString += '<li><a href="#' + createdFiles[createdFile] + '_' + change_id + '">' + createdFiles[createdFile] + '</a></li>';
-      }
-
-      createdFilesString += '<li class="nav-header"> </li>';
-
-      formatted.changedFiles += createdFilesString;
-    }
-
     if (deletedFiles.length > 0) {
       var deletedFilesString = '<li class="nav-header">Deleted Files</li>';
 
@@ -213,6 +199,20 @@
       deletedFilesString += '<li class="nav-header"> </li>';
 
       formatted.changedFiles += deletedFilesString;
+    }
+
+    if (createdFiles.length > 0) {
+      var createdFilesString = '<li class="nav-header">Created Files</li>';
+
+      foundLineWithActualContent = true;
+
+      for (var createdFile in createdFiles) {
+        createdFilesString += '<li><a href="#' + createdFiles[createdFile] + '_' + change_id + '">' + createdFiles[createdFile] + '</a></li>';
+      }
+
+      createdFilesString += '<li class="nav-header"> </li>';
+
+      formatted.changedFiles += createdFilesString;
     }
 
     if (!foundLineWithActualContent) {
@@ -271,7 +271,7 @@
               var currentlyScrolledElement = null;
               modalBodyElement.on('scroll', function(e) {
                 var outerScrollTop = $(this).scrollTop();
-                var outerHeight = $(this).height();
+                var outerHeight = $(this).parent().height() - 100;
                 var highestPercentageInView = 0;
                 var highestPercentageInViewIndex = null;
                 modalBodyElement.find('pre').each(function() {
@@ -286,7 +286,7 @@
                       // If there are multiple files on the page that are entirely in view,
                       // pick the one that is lowest.
                       (highestPercentageInViewIndex !== null &&
-                       Math.abs(percentageInView - highestPercentageInView) < 0.01 &&
+                       Math.abs(percentageInView - highestPercentageInView) < 0.1 &&
                        innerScrollTop > highestPercentageInViewIndex.scrollTop())) {
                     highestPercentageInView = percentageInView;
                     highestPercentageInViewIndex = this;
