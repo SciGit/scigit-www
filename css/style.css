@@ -688,8 +688,12 @@ body .diff .nav .active a {
   color: black;
   text-shadow: none;
 }
+body .diff .files,
+body .diff .files .nav {
+  width: 125px;
+}
 body .diff .text {
-  margin-bottom: 120px;
+  margin: 0 0 160px 170px;
 }
 body td:hover .diff-text th,
 body tr:hover .diff-text th {
