@@ -238,6 +238,10 @@ body .modal-responsive {
   left: 5%;
   top: 5% !important;
   margin: 0;
+  overflow: hidden;
+}
+body .modal-responsive .modal-body {
+  max-height: 100%;
   overflow: auto;
 }
 body .modal-responsive .modal-footer {
@@ -685,7 +689,7 @@ body .diff .nav .active a {
   text-shadow: none;
 }
 body .diff .text {
-  position: relative;
+  margin-bottom: 120px;
 }
 body td:hover .diff-text th,
 body tr:hover .diff-text th {
