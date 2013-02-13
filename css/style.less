@@ -6,6 +6,10 @@
 @diff-blue: rgba(0, 0, 255, 0.2);
 @diff-gray: rgb(235, 235, 235);
 
+@file-changed: rgba(0, 191, 255);
+@file-deleted: rgb(255, 0, 0);
+@file-created: rgb(0, 255, 0);
+
 /**
  * Useful utilities.
  */
@@ -15,6 +19,32 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+  }
+
+  .transition() {
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+  }
+
+  .border-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+  }
+
+  .box-shadow(@style, @c) when (iscolor(@c)) {
+    box-shadow:         @style @c;
+    -webkit-box-shadow: @style @c;
+    -moz-box-shadow:    @style @c;
+  }
+
+  .box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+    .box-shadow(@style, rgba(0, 0, 0, @alpha));
   }
 }
 
@@ -799,24 +829,109 @@ body {
 
   .diff {
     .nav {
-      position: fixed;
-      border-right: 1px solid @sg-gray;
-      overflow: hidden;
-      width: 90px;
+      /** Forcefully override fixed position on files div. */
+      border: 1px solid darken(@sg-gray, 10%);
+      position: relative !important;
+      width: 125px;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      #sg > .transition;
+
+      hr.soften {
+        margin: 5px 0;
+      }
+
+      &.changed-files {
+        &:hover, &.active {
+          border: 1px solid @file-changed;
+
+          & > i.arrow {
+            color: @file-changed;
+          }
+        }
+
+        a:hover  {
+          background-color: lighten(@file-changed, 45%);
+        }
+
+        li.active, li.active a {
+          background-color: lighten(@file-changed, 30%);
+        }
+      }
+
+      &.deleted-files {
+        &:hover, &.active {
+          border: 1px solid @file-deleted;
+
+          & > i.arrow {
+            color: @file-deleted;
+          }
+        }
+
+        a:hover  {
+          background-color: lighten(@file-deleted, 45%);
+        }
+
+        li.active, li.active a {
+          background-color: lighten(@file-deleted, 30%);
+        }
+      }
+
+      &.created-files {
+        &:hover, &.active {
+          border: 1px solid @file-created;
+
+          & > i.arrow {
+            color: @file-created;
+          }
+        }
+
+        a:hover  {
+          background-color: lighten(@file-created, 45%);
+        }
+
+        li.active, li.active a {
+          background-color: lighten(@file-created, 30%);
+        }
+      }
 
       .active a {
         background-color: @diff-blue;
         color: black;
         text-shadow: none;
       }
+
+      & > i.arrow {
+        color: darken(@sg-gray, 10%);
+        position: absolute;
+        top: 50%;
+        height: 8px;
+        margin-top: -4px;
+        margin-right: -14px;
+        right: 0;
+        z-index: -1;
+        #sg > .transition;
+      }
+
+      &.active {
+        #sg > .box-shadow(-2px 2px 2px 1px, darken(@sg-gray, 40%));
+      }
     }
 
-    .files, .files .nav {
-      width: 125px;
+    .files {
+      position: fixed;
+      padding-right: 15px;
+      border-right: 1px solid @sg-gray;
+
+      .nav {
+        width: 150px;
+      }
     }
 
     .text {
-      margin: 0 0 160px 170px;
+      margin: 0 0 160px 200px;
     }
   }
 

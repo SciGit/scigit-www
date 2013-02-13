@@ -19,6 +19,14 @@
       e.preventDefault();
     });
 
+    $('.diff .nav').click(function(e) {
+      if (e.target == this ||
+          e.target.tagName.toLowerCase() == 'div' ||
+          e.target.tagName.toLowerCase() == 'li') {
+        $(this).removeClass('transition').addClass('active').addClass('transition');
+      }
+    });
+
     $('body').append($('#diffs'));
 
     $('.diff').each(function() {
@@ -138,6 +146,8 @@
 
     formatted.diff = '';
     formatted.changedFiles = '';
+    formatted.deletedFiles = '';
+    formatted.createdFiles = '';
     var foundLineWithActualContent;
     for (var line in lines) {
       if (lines[line] !== null) {
@@ -151,7 +161,7 @@
     formatted.diff += '</table></pre>';
 
     if (changedFiles.length > 0) {
-      var changedFilesString = '<li class="nav-header">Updated Files</li>';
+      var changedFilesString = '<li class="nav-header">Updated Files</li><hr class="soften" />';
 
       foundLineWithActualContent = true;
 
@@ -182,13 +192,12 @@
         }
       }
 
-      changedFilesString += '<li class="nav-header"> </li>';
-
       formatted.changedFiles += changedFilesString;
+      formatted.changedFiles += '<i class="icon-play icon-large arrow"></i>';
     }
 
     if (deletedFiles.length > 0) {
-      var deletedFilesString = '<li class="nav-header">Deleted Files</li>';
+      var deletedFilesString = '<li class="nav-header">Deleted Files</li><hr class="soften" />';
 
       foundLineWithActualContent = true;
 
@@ -196,13 +205,12 @@
         deletedFilesString += '<li><a href="#' + deletedFiles[deletedFile] + '_' + change_id + '">' + deletedFiles[deletedFile] + '</a></li>';
       }
 
-      deletedFilesString += '<li class="nav-header"> </li>';
-
-      formatted.changedFiles += deletedFilesString;
+      formatted.deletedFiles += deletedFilesString;
+      formatted.deletedFiles += '<i class="icon-play icon-large arrow"></i>';
     }
 
     if (createdFiles.length > 0) {
-      var createdFilesString = '<li class="nav-header">Created Files</li>';
+      var createdFilesString = '<li class="nav-header">Created Files</li><hr class="soften" />';
 
       foundLineWithActualContent = true;
 
@@ -210,9 +218,8 @@
         createdFilesString += '<li><a href="#' + createdFiles[createdFile] + '_' + change_id + '">' + createdFiles[createdFile] + '</a></li>';
       }
 
-      createdFilesString += '<li class="nav-header"> </li>';
-
-      formatted.changedFiles += createdFilesString;
+      formatted.createdFiles += createdFilesString;
+      formatted.createdFiles += '<i class="icon-play icon-large arrow"></i>';
     }
 
     if (!foundLineWithActualContent) {
@@ -254,19 +261,14 @@
             var textElement = diffElement.find('.modal-body').find('.text');
             var modalBodyElement = diffElement.find('.modal-body');
             textElement.html(formattedDiff.diff);
-            modalBodyElement.find('.nav').html(formattedDiff.changedFiles);
+            modalBodyElement.find('.changed-files').html(formattedDiff.changedFiles);
+            modalBodyElement.find('.deleted-files').html(formattedDiff.deletedFiles);
+            modalBodyElement.find('.created-files').html(formattedDiff.createdFiles);
             diffElement.modal('show');
 
             icon.data('diffLoaded', 'true');
 
             diffElement.on('shown', function() {
-              // XXX: Fix an issue where the nav bar sliding into view doesn't end
-              // up in the right spot. This effectively forces reflow.
-              setTimeout(function() {
-                $('.nav').css('position', 'static');
-                $('.nav').css('position', 'fixed');
-              }, 100);
-
               // XXX: This is all generally ugly. We should clean it up eventually.
               var currentlyScrolledElement = null;
               modalBodyElement.on('scroll', function(e) {
@@ -383,7 +385,11 @@
               <div class="modal-body">
                 <div class="row-fluid">
                   <div class="files" data-change_id="{{ change.id }}">
-                    <ul class="nav nav-list">
+                    <ul class="nav nav-list changed-files">
+                    </ul>
+                    <ul class="nav nav-list deleted-files">
+                    </ul>
+                    <ul class="nav nav-list created-files">
                     </ul>
                   </div>
                   <div class="text" data-change_id="{{ change.id }}">
