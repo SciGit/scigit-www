@@ -860,85 +860,43 @@ body {
         #sg > .transition;
       }
 
-      &.changed-files {
+      .diff-files(@color) {
         &:hover, &.active {
-          border: 1px solid @file-changed;
+          border: 1px solid @color;
 
           & > i.arrow {
-            color: @file-changed;
+            color: @color;
           }
 
           li.nav-header {
-            color: @file-changed;
+            color: @color;
           }
 
           hr.soften {
-            border-top: 1px solid lighten(@file-changed, 30%);
-            border-bottom: 1px solid lighten(@file-changed, 45%);
+            border-top: 1px solid lighten(@color, 30%);
+            border-bottom: 1px solid lighten(@color, 45%);
           }
         }
 
         a:hover  {
-          background-color: lighten(@file-changed, 45%);
+          background-color: lighten(@color, 45%);
         }
 
         li.active, li.active a {
-          background-color: lighten(@file-changed, 30%);
+          background-color: lighten(@color, 30%);
         }
+      }
+
+      &.changed-files {
+        .diff-files(@file-changed);
       }
 
       &.deleted-files {
-        &:hover, &.active {
-          border: 1px solid @file-deleted;
-
-          & > i.arrow {
-            color: @file-deleted;
-          }
-
-          li.nav-header {
-            color: @file-deleted;
-          }
-
-          hr.soften {
-            border-top: 1px solid lighten(@file-deleted, 30%);
-            border-bottom: 1px solid lighten(@file-deleted, 45%);
-          }
-        }
-
-        a:hover  {
-          background-color: lighten(@file-deleted, 45%);
-        }
-
-        li.active, li.active a {
-          background-color: lighten(@file-deleted, 30%);
-        }
+        .diff-files(@file-deleted);
       }
 
       &.created-files {
-        &:hover, &.active {
-          border: 1px solid @file-created;
-
-          & > i.arrow {
-            color: @file-created;
-          }
-
-          li.nav-header {
-            color: @file-created;
-          }
-
-          hr.soften {
-            border-top: 1px solid lighten(@file-created, 30%);
-            border-bottom: 1px solid lighten(@file-created, 45%);
-          }
-        }
-
-        a:hover  {
-          background-color: lighten(@file-created, 45%);
-        }
-
-        li.active, li.active a {
-          background-color: lighten(@file-created, 30%);
-        }
+        .diff-files(@file-created);
       }
 
       .active a {

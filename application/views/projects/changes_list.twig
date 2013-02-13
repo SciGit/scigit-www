@@ -23,6 +23,7 @@
       if (e.target == this ||
           e.target.tagName.toLowerCase() == 'div' ||
           e.target.tagName.toLowerCase() == 'li') {
+        $(this).popover('toggle');
         $(this).addClass('transition-paused').addClass('active');
         setTimeout(function() { $(this).removeClass('transition-paused'); }, 500);
       }
@@ -386,11 +387,18 @@
               <div class="modal-body">
                 <div class="row-fluid">
                   <div class="files" data-change_id="{{ change.id }}">
-                    <ul class="nav nav-list changed-files">
+                    {% set settings = "data-toggle=popover data-placement=right" %}
+                    <ul class="nav nav-list changed-files" {{ settings }}
+                     data-content="You are now viewing only deleted files. Click here again to view all changes."
+                     data-original-title="Viewing Only Deleted Files">
                     </ul>
-                    <ul class="nav nav-list deleted-files">
+                    <ul class="nav nav-list deleted-files" {{ settings }}
+                     data-content="You are now viewing only deleted files. Click here again to view all changes."
+                     data-original-title="Viewing Only Deleted Files">
                     </ul>
-                    <ul class="nav nav-list created-files">
+                    <ul class="nav nav-list created-files" {{ settings }}
+                     data-content="You are now viewing only created files. Click here again to view all changes."
+                     data-original-title="Viewing Only Created Files">
                     </ul>
                   </div>
                   <div class="text" data-change_id="{{ change.id }}">
