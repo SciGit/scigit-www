@@ -258,7 +258,7 @@
                                     .removeClass('icon-spinner')
                                     .addClass('icon-plus-sign-alt');
             var formattedDiff = formatDiff(json.message, change_id);
-            var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
+            var diffElement = $("div.diff[data-change_id='" + change_id + "']");
             var textElement = diffElement.find('.modal-body').find('.text');
             var modalBodyElement = diffElement.find('.modal-body');
             textElement.html(formattedDiff.diff);

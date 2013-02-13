@@ -856,12 +856,25 @@ body {
         margin: 5px 0;
       }
 
+      li.nav-header, hr.soften {
+        #sg > .transition;
+      }
+
       &.changed-files {
         &:hover, &.active {
           border: 1px solid @file-changed;
 
           & > i.arrow {
             color: @file-changed;
+          }
+
+          li.nav-header {
+            color: @file-changed;
+          }
+
+          hr.soften {
+            border-top: 1px solid lighten(@file-changed, 30%);
+            border-bottom: 1px solid lighten(@file-changed, 45%);
           }
         }
 
@@ -881,6 +894,15 @@ body {
           & > i.arrow {
             color: @file-deleted;
           }
+
+          li.nav-header {
+            color: @file-deleted;
+          }
+
+          hr.soften {
+            border-top: 1px solid lighten(@file-deleted, 30%);
+            border-bottom: 1px solid lighten(@file-deleted, 45%);
+          }
         }
 
         a:hover  {
@@ -898,6 +920,15 @@ body {
 
           & > i.arrow {
             color: @file-created;
+          }
+
+          li.nav-header {
+            color: @file-created;
+          }
+
+          hr.soften {
+            border-top: 1px solid lighten(@file-created, 30%);
+            border-bottom: 1px solid lighten(@file-created, 45%);
           }
         }
 

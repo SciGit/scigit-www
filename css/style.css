@@ -690,6 +690,14 @@ body .diff .nav {
 body .diff .nav hr.soften {
   margin: 5px 0;
 }
+body .diff .nav li.nav-header,
+body .diff .nav hr.soften {
+  -o-transition: .5s;
+  -ms-transition: .5s;
+  -moz-transition: .5s;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
 body .diff .nav.changed-files:hover,
 body .diff .nav.changed-files.active {
   border: 1px solid #00bfff;
@@ -697,6 +705,15 @@ body .diff .nav.changed-files.active {
 body .diff .nav.changed-files:hover > i.arrow,
 body .diff .nav.changed-files.active > i.arrow {
   color: #00bfff;
+}
+body .diff .nav.changed-files:hover li.nav-header,
+body .diff .nav.changed-files.active li.nav-header {
+  color: #00bfff;
+}
+body .diff .nav.changed-files:hover hr.soften,
+body .diff .nav.changed-files.active hr.soften {
+  border-top: 1px solid #99e5ff;
+  border-bottom: 1px solid #e6f9ff;
 }
 body .diff .nav.changed-files a:hover {
   background-color: #e6f9ff;
@@ -713,6 +730,15 @@ body .diff .nav.deleted-files:hover > i.arrow,
 body .diff .nav.deleted-files.active > i.arrow {
   color: #ff0000;
 }
+body .diff .nav.deleted-files:hover li.nav-header,
+body .diff .nav.deleted-files.active li.nav-header {
+  color: #ff0000;
+}
+body .diff .nav.deleted-files:hover hr.soften,
+body .diff .nav.deleted-files.active hr.soften {
+  border-top: 1px solid #ff9999;
+  border-bottom: 1px solid #ffe6e6;
+}
 body .diff .nav.deleted-files a:hover {
   background-color: #ffe6e6;
 }
@@ -727,6 +753,15 @@ body .diff .nav.created-files.active {
 body .diff .nav.created-files:hover > i.arrow,
 body .diff .nav.created-files.active > i.arrow {
   color: #00ff00;
+}
+body .diff .nav.created-files:hover li.nav-header,
+body .diff .nav.created-files.active li.nav-header {
+  color: #00ff00;
+}
+body .diff .nav.created-files:hover hr.soften,
+body .diff .nav.created-files.active hr.soften {
+  border-top: 1px solid #99ff99;
+  border-bottom: 1px solid #e6ffe6;
 }
 body .diff .nav.created-files a:hover {
   background-color: #e6ffe6;
