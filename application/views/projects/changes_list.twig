@@ -26,6 +26,7 @@
         var target = this;
         $('.diff').find('.nav').each(function() {
           $(this).addClass('inactive');
+          $(this).removeClass('active');
         });
         $(this).removeClass('inactive');
         $(this).popover('toggle');
