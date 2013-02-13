@@ -23,7 +23,8 @@
       if (e.target == this ||
           e.target.tagName.toLowerCase() == 'div' ||
           e.target.tagName.toLowerCase() == 'li') {
-        $(this).removeClass('transition').addClass('active').addClass('transition');
+        $(this).addClass('transition-paused').addClass('active');
+        setTimeout(function() { $(this).removeClass('transition-paused'); }, 500);
       }
     });
 

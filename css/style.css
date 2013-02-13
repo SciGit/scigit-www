@@ -1,3 +1,10 @@
+.transition-paused {
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  -moz-transition: none !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+}
 body {
   overflow-y: scroll;
   padding-bottom: 0 !important;
