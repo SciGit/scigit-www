@@ -698,6 +698,9 @@ body .diff .nav hr.soften {
   -webkit-transition: .5s;
   transition: .5s;
 }
+body .diff .nav.inactive {
+  opacity: 0.5;
+}
 body .diff .nav.changed-files:hover,
 body .diff .nav.changed-files.active {
   border: 1px solid #00bfff;

@@ -23,6 +23,11 @@
       if (e.target == this ||
           e.target.tagName.toLowerCase() == 'div' ||
           e.target.tagName.toLowerCase() == 'li') {
+        var target = this;
+        $('.diff').find('.nav').each(function() {
+          $(this).toggleClass('inactive');
+        });
+        $(this).toggleClass('inactive');
         $(this).popover('toggle');
         $(this).addClass('transition-paused').addClass('active');
         setTimeout(function() { $(this).removeClass('transition-paused'); }, 500);

@@ -59,6 +59,12 @@
   .box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
     .box-shadow(@style, rgba(0, 0, 0, @alpha));
   }
+
+  .opacity(@alpha) {
+    opacity: @alpha;
+    /*filter: alpha(opacity=@alpha*100);
+    filter: "alpha(opacity=@alpha*100)";*/
+  }
 }
 
 /**
@@ -858,6 +864,10 @@ body {
 
       li.nav-header, hr.soften {
         #sg > .transition;
+      }
+
+      &.inactive {
+        #sg > .opacity(0.5);
       }
 
       .diff-files(@color) {
