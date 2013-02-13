@@ -25,9 +25,9 @@
           e.target.tagName.toLowerCase() == 'li') {
         var target = this;
         $('.diff').find('.nav').each(function() {
-          $(this).toggleClass('inactive');
+          $(this).addClass('inactive');
         });
-        $(this).toggleClass('inactive');
+        $(this).removeClass('inactive');
         $(this).popover('toggle');
         $(this).addClass('transition-paused').addClass('active');
         setTimeout(function() { $(this).removeClass('transition-paused'); }, 500);
