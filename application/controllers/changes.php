@@ -90,7 +90,7 @@ class Changes extends SciGit_Controller
 
       if ($diff == null || $diff == "" || $diff == " ")
       $diff = <<<EOF
-diff --git a/application/views/projects/changestwig b/application/views/projects/changestwig
+diff --git a/application/views/projects/changes.twig b/application/views/projects/changestwig
 index 995a4b6..0d53ef6 100755
 --- a/application/views/projects/changes.twig
 +++ b/application/views/projects/changes.twig
@@ -116,7 +116,7 @@ index 995a4b6..0d53ef6 100755
                  </a>
                </div>
                <div class="button">
-diff --git a/application/views/projects/changestwig2 b/application/views/projects/changes.twig
+diff --git a/application/views/projects/changes.twig2 b/application/views/projects/changes.twig
 index 995a4b6..0d53ef6 100755
 --- a/application/views/projects/changes.twig
 +++ b/application/views/projects/changes.twig
@@ -142,7 +142,7 @@ index 995a4b6..0d53ef6 100755
                  </a>
                </div>
                <div class="button">
-diff --git a/filewithspaces b/file with spaces
+diff --git a/file with spaces b/file with spaces
 deleted file mode 100644
 index 8d69e54..0000000
 --- a/file with spaces  
