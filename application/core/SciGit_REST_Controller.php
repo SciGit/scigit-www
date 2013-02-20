@@ -1,6 +1,6 @@
 <?php
 
-class REST_Controller extends CI_Controller
+class SciGit_REST_controller extends CI_Controller
 {
 	protected $http_method = null;
 	protected $args = array();

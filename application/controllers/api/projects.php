@@ -1,5 +1,7 @@
 <?
 
+require APPPATH.'/core/SciGit_REST_Controller.php';
+
 class Projects extends SciGit_REST_Controller
 {
 	public function __construct() {

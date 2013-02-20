@@ -1,5 +1,7 @@
 <?
 
+require APPPATH.'/core/SciGit_REST_Controller.php';
+
 class Users extends SciGit_REST_Controller
 {
 	public function profile_get() {
