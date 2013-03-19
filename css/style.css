@@ -5,7 +5,12 @@
   -webkit-transition: none !important;
   transition: none !important;
 }
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url("../fonts/Roboto-Regular.ttf");
+}
 body {
+  font-family: 'Roboto-Regular', sans-serif;
   overflow-y: scroll;
   padding-bottom: 0 !important;
 }
@@ -306,10 +311,10 @@ body .download {
   width: 600px;
   margin: auto;
 }
-body .download p {
+body .download > p {
   font-size: 18px;
 }
-body .download p.small {
+body .download > p.small {
   font-size: 18px;
   margin-bottom: 20px;
 }
@@ -497,7 +502,7 @@ body .subtitle {
 }
 body .explore {
   color: #787878;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 42px;
   font-weight: 200;
   margin: 50px auto;

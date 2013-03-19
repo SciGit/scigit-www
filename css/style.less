@@ -68,10 +68,20 @@
 }
 
 /**
+ * Fonts.
+ */
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+
+/**
  * Custom SciGit classes.
  */
 
 body {
+  font-family: 'Roboto-Regular', sans-serif;
+
 	overflow-y: scroll;
   padding-bottom: 0 !important;
 
@@ -413,7 +423,7 @@ body {
     width: 600px;
     margin: auto;
 
-    p {
+    > p {
       font-size: 18px;
 
       &.small {
@@ -638,7 +648,7 @@ body {
 
   .explore {
     color: rgb(120, 120, 120);
-    font-size: 21px;
+    font-size: 20px;
     line-height: 42px;
     font-weight: 200;
     margin: 50px auto;
