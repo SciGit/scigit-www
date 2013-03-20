@@ -33,6 +33,39 @@
 
 <div class="well well-light">
   <div class="row-fluid">
+    <div class="span9 well">
+      <h2>Stats</h2>
+      <hr class="soften" />
+      <div class="row-fluid">
+        <div class="span2">
+          <h3>8</h3>
+          <h4>Citations</h4>
+        </div>
+        <div class="span2">
+          <h3>327</h3>
+          <h4>Changes</h4>
+        </div>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        {% if fulltitle %}
+          <h3>Title</h3>
+          <h4>{{ fulltitle }}</h4>
+          <br />
+        {% endif %}
+        <h3>Location</h3>
+        <h4>{{ user.location | default("Not entered") }}</h4>
+        <br />
+        <h3>About</h3>
+        <h4>{{ user.about | default("No information") }}</h4>
+        <br />
+        <h3>Joined</h3>
+        <h4>{{ user.created | date("F j, Y") }}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
     <div class="span9 row-fluid">
       <div class="span6 well-list">
         <table class="table">
@@ -105,23 +138,6 @@
             </tr>
           {% endif %}
         </table>
-      </div>
-    </div>
-    <div class="span3">
-      <div class="well">
-        {% if fulltitle %}
-          <h3>Title</h3>
-          <h4>{{ fulltitle }}</h4>
-          <br />
-        {% endif %}
-        <h3>Location</h3>
-        <h4>{{ user.location | default("Not entered") }}</h4>
-        <br />
-        <h3>About</h3>
-        <h4>{{ user.about | default("No information") }}</h4>
-        <br />
-        <h3>Joined</h3>
-        <h4>{{ user.created | date("F j, Y") }}</h4>
       </div>
     </div>
   </div>
