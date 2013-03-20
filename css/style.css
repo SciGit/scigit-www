@@ -10,7 +10,6 @@ body {
   overflow-y: scroll;
   padding-bottom: 0 !important;
   font-size: 14px;
-  font-weight: 100;
 }
 body pre {
   background-color: white;
@@ -23,15 +22,22 @@ body a:hover {
 }
 body h1 {
   color: #4a5b76;
-  font-weight: 500;
+  font-weight: 200;
+  font-size: 28px;
 }
 body h2 {
   color: #4a5b76;
-  font-weight: 500;
+  font-weight: 200;
+  font-size: 28px;
 }
 body h3 {
   color: #4a5b76;
   font-size: 150%;
+  font-weight: 200;
+}
+body h4 {
+  font-weight: 400;
+  margin: 0;
 }
 body footer {
   padding: 20px;
@@ -84,6 +90,7 @@ body .breadcrumbs {
 }
 body .breadcrumbs .divider {
   margin: 0 3px;
+  font-weight: 100;
 }
 body .breadcrumbs .current {
   font-weight: 500;
@@ -106,6 +113,7 @@ body .alert p {
 }
 body .company {
   font-size: 16px;
+  font-weight: 100;
   color: #a0a0a0;
 }
 body .company .divider {
@@ -408,8 +416,9 @@ body .dropdown img.avatar {
 }
 body .dropdown #label-username,
 body .dropdown #label-projects {
-  font-size: 150%;
-  font-weight: 200;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 28px;
 }
 body .dropdown #label-username .caret,
 body .dropdown #label-projects .caret {
@@ -455,12 +464,12 @@ body .navitems li {
 body .navitems li a {
   display: block;
   color: white;
-  line-height: 45px;
-  font-size: 150%;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 100;
   margin: 0 10px;
   padding: 0 15px !important;
   text-decoration: none;
-  font-weight: 200;
 }
 body .navitems li a:hover {
   text-decoration: none;
@@ -489,9 +498,9 @@ body .table-noheader tr:first-child,
 body .table-noheader tr:first-child td {
   border-top: none;
 }
-body .subtitle {
+body p.subtitle {
   color: #4a5b76;
-  font-weight: 500;
+  font-size: 26px !important;
 }
 body .explore {
   color: #787878;
@@ -526,10 +535,12 @@ body .features i {
   float: left;
   margin: 6px 12px 0 0;
   font-size: 30px;
+  font-weight: 100;
 }
 body .features p {
   font-size: 18px;
   line-height: 26px;
+  font-weight: 100;
 }
 body .download-info {
   text-align: center;
@@ -599,15 +610,23 @@ body .tabular .buttons .button {
   margin-left: 10px;
   float: left;
 }
+body .project .title,
+body .change .title,
+body .tabular .title {
+  font-size: 16px;
+  float: left;
+}
 body .project .description,
 body .change .description,
 body .tabular .description {
+  clear: both;
   margin-top: 5px;
   color: gray;
 }
 body .project .description a,
 body .change .description a,
 body .tabular .description a {
+  clear: both;
   margin-top: 5px;
   color: gray;
 }
@@ -617,6 +636,7 @@ body .change .description a:active,
 body .change .description a:visited,
 body .tabular .description a:active,
 body .tabular .description a:visited {
+  clear: both;
   margin-top: 5px;
   color: gray;
 }
@@ -846,6 +866,14 @@ body form .required .inner-label:after {
   font-weight: bold;
   content: '*';
   display: inline-block;
+}
+body label,
+body input,
+body button,
+body select,
+body textarea {
+  font-size: 14px;
+  line-height: 24px;
 }
 body .btn {
   background-image: none;

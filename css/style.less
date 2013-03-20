@@ -78,7 +78,6 @@ body {
   padding-bottom: 0 !important;
 
   font-size: 14px;
-  font-weight: 100;
 
   p, .p {
 
@@ -98,17 +97,25 @@ body {
 
   h1 {
     color: @sg-blue;
-    font-weight: 500;
+    font-weight: 200;
+    font-size: 28px;
   }
 
   h2 {
     color: @sg-blue;
-    font-weight: 500;
+    font-weight: 200;
+    font-size: 28px;
   }
 
   h3 {
     color: @sg-blue;
     font-size: 150%;
+    font-weight: 200;
+  }
+
+  h4 {
+    font-weight: 400;
+    margin: 0;
   }
 
   footer {
@@ -174,6 +181,7 @@ body {
 
     .divider {
       margin: 0 3px;
+      font-weight: 100;
     }
 
     .current {
@@ -208,6 +216,7 @@ body {
 
   .company {
     font-size: 16px;
+    font-weight: 100;
     color: rgb(160, 160, 160);
 
     .divider {
@@ -538,8 +547,9 @@ body {
     }
 
     #label-username, #label-projects {
-      font-size: 150%;
-      font-weight: 200;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: 28px;
 
       .caret {
         margin: 10px 0 0 5px;
@@ -590,12 +600,12 @@ body {
       a {
         display: block;
         color: white;
-        line-height: 45px;
-        font-size: 150%;
+        line-height: 50px;
+        font-size: 20px;
+        font-weight: 100;
         margin: 0 10px;
         padding: 0 15px !important;
         text-decoration: none;
-        font-weight: 200;
 
         &:hover {
           text-decoration: none;
@@ -635,9 +645,9 @@ body {
     }
   }
 
-  .subtitle {
+  p.subtitle {
     color: @sg-blue;
-    font-weight: 500;
+    font-size: 26px !important;
   }
 
   .explore {
@@ -677,11 +687,13 @@ body {
       float: left;
       margin: 6px 12px 0 0;
       font-size: 30px;
+      font-weight: 100;
     }
 
     p {
       font-size: 18px;
       line-height: 26px;
+      font-weight: 100;
     }
   }
 
@@ -767,7 +779,13 @@ body {
       }
     }
 
+    .title {
+      font-size: 16px;
+      float: left;
+    }
+
     .description {
+      clear: both;
       margin-top: 5px;
       color: gray;
 
@@ -1006,6 +1024,11 @@ body {
  * Bootstrap overrides.
  */
 body {
+  label, input, button, select, textarea {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
   .btn {
     background-image: none;
     filter: none;

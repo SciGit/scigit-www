@@ -17,13 +17,15 @@
       <tr>
         <th>
           <h1>Popular Projects</h1>
-          <p class="no-margin">&nbsp;Projects with the most subscribers.</p>
+          <h4>&nbsp;Projects with the most subscribers.</h4>
         </th>
       </tr>
       {% for project in projects %}
         <tr>
           <td class="project" valign="middle" data-proj_id="{{ project.id }}">
-            {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+            <div class="title">
+              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+            </div>
             <div class="buttons">
               <div class="button">
                 <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
@@ -50,7 +52,7 @@
       <tr>
         <th>
           <h1>Recommended Projects</h1>
-          <p class="no-margin">&nbsp;Interesting projects that SciGit staff recommend.</p>
+          <h4>&nbsp;Interesting projects that SciGit staff recommend.</h4>
         </th>
       </tr>
       {% if featured_projects %}
