@@ -8,67 +8,112 @@
   var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
 
   $(document).ready(function() {
-    $('#user-invite').typeahead(
+    $('#user-invite form input').typeahead(
       {source: usernames}
     );
 
     function validateUser(field) {
+      $("#email-invite").addClass("faded");
+      $("#user-invite").removeClass("faded");
+
       if (usernames.indexOf(field.value) > -1) {
-        alert('yes');
+        $("#user-invite form i").attr("class", "icon-ok-sign")
+                                .css("color", "green");
+      } else {
+        $("#user-invite form i").attr("class", "icon-remove-sign")
+                                .css("color", "red");
       }
     }
 
-    $('#user-invite').live('change', function() {
+    $('#user-invite form input').live('change', function() {
       validateUser(this);
     });
-    $('#user-invite').live('change keypress', function() {
+    $('#user-invite form input').live('change keypress', function() {
       validateUser(this);
     });
 
     function validateEmail(field) {
+      $("#user-invite").addClass("faded");
+      $("#email-invite").removeClass("faded");
+
       var re = /\S+@\S+\.\S+/;
       if (re.test(field.value)) {
-        alert('yes');
+        $("#email-invite form i").attr("class", "icon-ok-sign")
+                                 .css("color", "green");
+      } else {
+        $("#email-invite form i").attr("class", "icon-remove-sign")
+                                 .css("color", "red");
       }
     }
 
-    $('#email-invite').live('change', function() {
+    $('#email-invite form input').live('change', function() {
       validateEmail(this);
     });
-    $('#email-invite').live('change keypress', function() {
+    $('#email-invite form input').live('change keypress', function() {
       validateEmail(this);
     });
   })
 </script>
 
-<div id="addContributor" class="modal hide fade">
+<div id="addContributor" class="modal modal-large hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h2>Add Contributor</h2>
+    <h1>Add Contributor</h1>
   </div>
   <div class="modal-body">
+    <h3>Step 1: Permissions</h3>
+    <h4>What permissions do you want to give this person?</h4>
+    <p></p>
+    <div class="well">
+      <div class="row-fluid">
+        <div class="span4 center">
+          <h3>Administrator</h3>
+          <p></p>
+          <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
+        </div>
+        <div class="span4 center">
+          <h3>Contributor</h3>
+          <p></p>
+          <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
+        </div>
+        <div class="span4 center">
+          <h3>Subscriber</h3>
+          <p></p>
+          <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
+        </div>
+      </div>
+    </div>
+    <h3>Step 2: Username or Email</h3>
+    <h4>Who do you want to add to the project as a contributor?</h4>
+    <p></p>
     <div class="row-fluid">
-      <div class="span6 center well">
+      <div id="user-invite" class="span6 center well">
         <h3>Find User</h3>
         <p></p>
         <p>Does the contributor you want to add already have a SciGit account? Search for them here.</p>
         <br />
         <p>Enter a username.</p>
         {{ form_open("/projects/invite/#{project.id}") | raw }}
-          {{ form_input({id: 'user-invite', class: 'full-width-input', name: 'invite', maxlength: 40}) | raw }}
+          {{ form_input({class: 'full-width-input', placeholder: 'Username', name: 'invite', maxlength: 40}) | raw }}
+          <i class="hide"></i>
         {{ form_close() | raw }}
       </div>
-      <div class="span6 center well">
+      <div id="email-invite" class="span6 center well">
         <h3>Invite to SciGit</h3>
         <p></p>
-        <p>Invite someone to SciGit! Once they've joined, they'll automatically be added to your project.</p>
+        <p>Invite someone to SciGit! Once they've joined, they'll be added to your project.</p>
         <br />
         <p>Enter an email.</p>
         {{ form_open("/users/invite/#{project.id}") | raw }}
-          {{ form_input({id: 'email-invite', class: 'full-width-input', name: 'invite', maxlength: 40}) | raw }}
+          {{ form_input({class: 'full-width-input', placeholder: 'Email Address', name: 'invite', maxlength: 40}) | raw }}
+          <i class="hide"></i>
         {{ form_close() | raw }}
       </div>
     </div>
+    <h3>Step 3: Go!</h3>
+    <h4>Click below to add this person.</h4>
+    <p></p>
+    <a href="#" class="btn btn-xlarge btn-primary">Add Contributor</a>
   </div>
   <div class="modal-footer">
     <a class="btn btn-primary" data-dismiss="modal">Close</a>

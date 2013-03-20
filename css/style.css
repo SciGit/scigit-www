@@ -5,6 +5,14 @@
   -webkit-transition: none !important;
   transition: none !important;
 }
+.faded {
+  opacity: 0.5;
+  -o-transition: 1.0s;
+  -ms-transition: 1.0s;
+  -moz-transition: 1.0s;
+  -webkit-transition: 1.0s;
+  transition: 1.0s;
+}
 body {
   font-family: 'Roboto', sans-serif;
   overflow-y: scroll;
@@ -875,6 +883,17 @@ body form .required .inner-label:after {
   font-weight: bold;
   content: '*';
   display: inline-block;
+}
+body #user-invite input,
+body #email-invite input {
+  z-index: 1;
+  float: left;
+}
+body #user-invite i,
+body #email-invite i {
+  float: right;
+  margin-top: -30px;
+  z-index: 9999;
 }
 body label,
 body input,

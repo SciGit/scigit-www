@@ -14,19 +14,6 @@
  * Useful utilities.
  */
 
-/** Global namespace */
-
-  /** Not a mixin. Intended to be added using jQuery. */
-  .transition-paused {
-    -o-transition: none !important;
-    -ms-transition: none !important;
-    -moz-transition: none !important;
-    -webkit-transition: none !important;
-    transition: none !important;
-  }
-
-/** End global namespace */
-
 #sg {
   .box-sizing() {
     -webkit-box-sizing: border-box;
@@ -34,12 +21,12 @@
     box-sizing: border-box;
   }
 
-  .transition() {
-    -o-transition: .5s;
-    -ms-transition: .5s;
-    -moz-transition: .5s;
-    -webkit-transition: .5s;
-    transition: .5s;
+  .transition(@time = .5s) {
+    -o-transition: @time;
+    -ms-transition: @time;
+    -moz-transition: @time;
+    -webkit-transition: @time;
+    transition: @time;
   }
 
   .border-radius (@radius: 5px) {
@@ -66,6 +53,24 @@
     filter: "alpha(opacity=@alpha*100)";*/
   }
 }
+
+/** Global namespace */
+
+  /** Not a mixin. Intended to be added using jQuery. */
+  .transition-paused {
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    -moz-transition: none !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+  }
+
+  .faded {
+    #sg > .opacity(0.5);
+    #sg > .transition(1.0s);
+  }
+
+/** End global namespace */
 
 /**
  * Custom SciGit classes.
@@ -1026,6 +1031,19 @@ body {
     font-weight: bold;
     content: '*';
     display: inline-block;
+  }
+
+  #user-invite, #email-invite {
+    input {
+      z-index: 1;
+      float: left;
+    }
+
+    i {
+      float: right;
+      margin-top: -30px;
+      z-index: 9999;
+    }
   }
 }
 
