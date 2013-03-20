@@ -8,6 +8,17 @@
   var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
 
   $(document).ready(function() {
+    $("#permissions .btn").click(function() {
+      $("#permissions .span4").each(function() {
+        $(this).addClass("faded");
+      })
+
+      $(this).html('<i class="icon-ok"></i> Selected')
+      $(this).removeClass("btn-primary")
+             .addClass("btn-success")
+             .parent().removeClass("faded");
+    })
+
     $('#user-invite form input').typeahead(
       {source: usernames}
     );
@@ -65,21 +76,27 @@
     <h4>What permissions do you want to give this person?</h4>
     <p></p>
     <div class="well">
-      <div class="row-fluid">
+      <div id="permissions" class="row-fluid">
         <div class="span4 center">
           <h3>Administrator</h3>
           <p></p>
           <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
+          <p></p>
+          <a href="#" class="btn btn-large btn-primary">Select</a>
         </div>
         <div class="span4 center">
           <h3>Contributor</h3>
           <p></p>
           <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
+          <p></p>
+          <a href="#" class="btn btn-large btn-primary">Select</a>
         </div>
         <div class="span4 center">
           <h3>Subscriber</h3>
           <p></p>
           <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
+          <p></p>
+          <a href="#" class="btn btn-large btn-primary">Select</a>
         </div>
       </div>
     </div>
