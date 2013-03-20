@@ -4,30 +4,36 @@
 
 {% block content %}
 
+<p class="breadcrumbs">
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  {% if member or admin %}
+    {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
+  {% else %}
+    {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
+  {% endif %}
+  <span class="current">{{ anchor("/projects/view/#{project.id}", project.name) | raw }}</span>
+</p>
+
+<div class="separator-xsmall"></div>
+
 <div class="page-header">
-  <div class="pull-right">
-    {% if admin %}
-      <a class="btn btn-large btn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
-        <i class="icon-wrench icon-white"></i>
-        Admin
-      </a>
-    {% elseif not member %}
-      {{ form_open("/projects/subscribe/#{project.id}") | raw }}
-        {{ form_input({class: 'hidden', name: 'return_to', value: 'view'}) | raw }}
-        {{ form_submit({class: subscribed ? 'btn btn-large btn-danger' : 'btn btn-large btn-success', name: 'subscribe'},
-            subscribed ? 'Unsubscribe' : 'Subscribe') | raw }}
-      {{ form_close() | raw }}
-    {% endif %}
-  </div>
-  <p class="breadcrumbs">
-    {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
-    {% if member or admin %}
-      {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
-    {% else %}
-      {{ anchor("/projects/explore", "Public") | raw }} <span class="divider">&gt;</span>
-    {% endif %}
-    <span class="current">{{ anchor("/projects/view/#{project.id}", project.name) | raw }}</span>
-  </p>
+  <h1>
+    <div class="pull-right">
+      {% if admin %}
+        <a class="btn btn-large btn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
+          <i class="icon-wrench icon-white"></i>
+          Admin
+        </a>
+      {% elseif not member %}
+        {{ form_open("/projects/subscribe/#{project.id}") | raw }}
+          {{ form_input({class: 'hidden', name: 'return_to', value: 'view'}) | raw }}
+          {{ form_submit({class: subscribed ? 'btn btn-large btn-danger' : 'btn btn-large btn-success', name: 'subscribe'},
+              subscribed ? 'Unsubscribe' : 'Subscribe') | raw }}
+        {{ form_close() | raw }}
+      {% endif %}
+    </div>
+    {{ project.name }}
+  </h1>
 </div>
 
 <div class="row-fluid">
@@ -86,7 +92,16 @@
       <table class="table table-condensed">
         <tr>
           <th>
-            <h2>Contributors</h2>
+            <h2>
+              Contributors
+              {% if admin %}
+                <div class="pull-right">
+                  <a href="{{ site_url("/projects/admin/#{project.id}") | raw }}" rel="tooltip" title="Add new collaborator" class="rawlink">
+                    <i class="icon-plus"></i>
+                  </a>
+                </div>
+              {% endif %}
+            </h2>
           </th>
         </tr>
         {% for perm in perms %}

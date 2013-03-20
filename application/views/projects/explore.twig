@@ -4,11 +4,15 @@
 
 {% block content %}
 
+<p class="breadcrumbs">
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ anchor("/projects/explore", "Public") | raw }}</span>
+</p>
+
+<div class="separator-xsmall"></div>
+
 <div class="page-header">
-  <p class="breadcrumbs">
-    {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
-    <span class="current">{{ anchor("/projects/explore", "Public") | raw }}</span>
-  </p>
+  <h1>Public Projects</h1>
 </div>
 
 <div class="row-fluid">
@@ -16,7 +20,7 @@
     <table class="table">
       <tr>
         <th>
-          <h1>Popular Projects</h1>
+          <h2>Popular Projects</h2>
           <h4>&nbsp;Projects with the most subscribers.</h4>
         </th>
       </tr>
@@ -51,7 +55,7 @@
     <table class="table">
       <tr>
         <th>
-          <h1>Recommended Projects</h1>
+          <h2>Recommended Projects</h2>
           <h4>&nbsp;Interesting projects that SciGit staff recommend.</h4>
         </th>
       </tr>

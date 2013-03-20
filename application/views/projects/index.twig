@@ -32,11 +32,15 @@ function unsubscribe(link) {
 }
 </script>
 
+<p class="breadcrumbs">
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ anchor("/projects/me", "My Projects") | raw }}</span>
+</p>
+
+<div class="separator-xsmall"></div>
+
 <div class="page-header">
-  <p class="breadcrumbs">
-    {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
-    <span class="current">{{ anchor("/projects/me", "My Projects") | raw }}</span>
-  </p>
+  <h1>Manage Projects</h1>
 </div>
 
 <div class="row-fluid">
@@ -44,14 +48,14 @@ function unsubscribe(link) {
     <table class="table">
       <tr>
         <th>
-          <h1>
+          <h2>
             My Projects
             <div class="pull-right">
               <a href="#createProject" rel="tooltip" title="Create new project" class="rawlink" data-toggle="modal">
                 <i class="icon-plus"></i>
               </a>
             </div>
-          </h1>
+          </h2>
         </th>
       </tr>
       {% if projects %}
@@ -101,14 +105,14 @@ function unsubscribe(link) {
     <table class="table">
       <tr>
         <th>
-          <h1>
+          <h2>
             Subscriptions
             <div class="pull-right">
               <a href="/projects/explore" rel="tooltip" title="View public projects" class="rawlink" data-toggle="modal">
                 <i class="icon-bookmark"></i>
               </a>
             </div>
-          </h1>
+          </h2>
         </th>
       </tr>
       {% if subscriptions %}

@@ -22,8 +22,8 @@ body a:hover {
 }
 body h1 {
   color: #4a5b76;
-  font-weight: 200;
-  font-size: 28px;
+  font-weight: 100;
+  font-size: 36px;
 }
 body h2 {
   color: #4a5b76;
@@ -230,6 +230,10 @@ body .separator {
 }
 body .separator-small {
   margin-bottom: 25px;
+}
+body .separator-xsmall {
+  margin-bottom: 15px;
+  height: 15px;
 }
 body.modal-open {
   overflow: hidden;
@@ -615,6 +619,11 @@ body .change .title,
 body .tabular .title {
   font-size: 16px;
   float: left;
+}
+body .project .subtitle,
+body .change .subtitle,
+body .tabular .subtitle {
+  margin-top: 22px;
 }
 body .project .description,
 body .change .description,

@@ -37,7 +37,7 @@
     <table class="table tabled-condensed">
       <tr>
         <th>
-          <h1>Collaboration Project Updates</h1>
+          <h2>Collaboration Project Updates</h2>
         </th>
       </tr>
       {% if activities %}
@@ -45,8 +45,12 @@
           <tr>
             <td class="project" valign="middle" data-proj_id="{{ activity.proj_id }}">
               <div class="pull-left">
-                <strong>{{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}</strong><br />
-                {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw}} made change:
+                <div class="title">
+                  {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
+                </div>
+                <div class="subtitle">
+                  {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw }} made change:
+                </div>
               </div>
               <div class="date pull-right">{{ time_ago(activity.commit_ts) }}</div>
               <div class="clearfix"></div>
@@ -70,7 +74,7 @@
     <table class="table">
       <tr>
         <th>
-          <h1>My Project Updates</h1>
+          <h2>My Project Updates</h2>
         </th>
       </tr>
       {% if projects %}
