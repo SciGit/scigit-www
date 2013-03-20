@@ -4,6 +4,77 @@
 
 {% block content %}
 
+<script>
+  var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
+
+  $(document).ready(function() {
+    $('#user-invite').typeahead(
+      {source: usernames}
+    );
+
+    function validateUser(field) {
+      if (usernames.indexOf(field.value) > -1) {
+        alert('yes');
+      }
+    }
+
+    $('#user-invite').live('change', function() {
+      validateUser(this);
+    });
+    $('#user-invite').live('change keypress', function() {
+      validateUser(this);
+    });
+
+    function validateEmail(field) {
+      var re = /\S+@\S+\.\S+/;
+      if (re.test(field.value)) {
+        alert('yes');
+      }
+    }
+
+    $('#email-invite').live('change', function() {
+      validateEmail(this);
+    });
+    $('#email-invite').live('change keypress', function() {
+      validateEmail(this);
+    });
+  })
+</script>
+
+<div id="addContributor" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2>Add Contributor</h2>
+  </div>
+  <div class="modal-body">
+    <div class="row-fluid">
+      <div class="span6 center well">
+        <h3>Find User</h3>
+        <p></p>
+        <p>Does the contributor you want to add already have a SciGit account? Search for them here.</p>
+        <br />
+        <p>Enter a username.</p>
+        {{ form_open("/projects/invite/#{project.id}") | raw }}
+          {{ form_input({id: 'user-invite', class: 'full-width-input', name: 'invite', maxlength: 40}) | raw }}
+        {{ form_close() | raw }}
+      </div>
+      <div class="span6 center well">
+        <h3>Invite to SciGit</h3>
+        <p></p>
+        <p>Invite someone to SciGit! Once they've joined, they'll automatically be added to your project.</p>
+        <br />
+        <p>Enter an email.</p>
+        {{ form_open("/users/invite/#{project.id}") | raw }}
+          {{ form_input({id: 'email-invite', class: 'full-width-input', name: 'invite', maxlength: 40}) | raw }}
+        {{ form_close() | raw }}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-primary" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
   {% if member or admin %}
@@ -22,7 +93,7 @@
       {% if admin %}
         <a class="btn btn-large btn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
           <i class="icon-wrench icon-white"></i>
-          Admin
+          Settings
         </a>
       {% elseif not member %}
         {{ form_open("/projects/subscribe/#{project.id}") | raw }}
@@ -96,7 +167,7 @@
               Contributors
               {% if admin %}
                 <div class="pull-right">
-                  <a href="{{ site_url("/projects/admin/#{project.id}") | raw }}" rel="tooltip" title="Add new collaborator" class="rawlink">
+                  <a href="#addContributor" rel="tooltip" title="Add new collaborator" class="rawlink" data-toggle="modal">
                     <i class="icon-plus"></i>
                   </a>
                 </div>

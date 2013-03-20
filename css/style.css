@@ -884,6 +884,9 @@ body textarea {
   font-size: 14px;
   line-height: 24px;
 }
+body form {
+  margin: 0;
+}
 body .btn {
   background-image: none;
   filter: none;
