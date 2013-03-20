@@ -8,6 +8,11 @@
   var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
 
   $(document).ready(function() {
+    $("#btnEditDescription").click(function() {
+      $("#description").hide();
+      $("#editDescription").show();
+    });
+
     $("#permissions .btn").click(function() {
       $("#permissions .span4").each(function() {
         $(this).addClass("faded");
@@ -175,18 +180,31 @@
       <table class="table table-condensed">
         <tr>
           <th>
-            <h2>Description</h2>
+            <h2>
+              {% if admin %}
+                <div class="pull-right">
+                  <a id="btnEditDescription" class="rawlink" href="#" rel="tooltip" title="Edit description">
+                    <i class="icon-xlarge icon-edit"></i>
+                  </a>
+                </div>
+              {% endif %}
+              Description
+            </h2>
           </th>
         </tr>
         <tr class="nohover">
           <td class="tabular" valign="middle">
-            <p>
+            <p id="description">
               {% if project.description %}
                 {{ word_wrap(project.description, 30) }}
               {% else %}
                 <p>This project has no description.</p>
               {% endif %}
             </p>
+            {{ form_open("/projects/admin/#{project.id}", {id: "editDescription", class: "hide"}) | raw }}
+              {{ form_textarea({class: "full-width-input", name: "description", value: project.description}) | raw }}
+              <a href="#" onclick="$('#editDescription').submit();" class="btn btn-primary pull-right">Save</a>
+            {{ form_close() | raw }}
           </td>
         </tr>
       </table>
