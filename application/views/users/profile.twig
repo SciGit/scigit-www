@@ -4,13 +4,6 @@
 
 {% block content %}
 
-<p class="breadcrumbs">
-  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
-  <span class="current">{{ anchor("/users/profile/#{user.id}", user.username ~ "'s Profile") | raw }} </span>
-</p>
-
-<hr class="soften" />
-
 {% if is_me %}
   <div class="alert alert-info">
     <i class="icon-info-sign"></i>
@@ -24,102 +17,113 @@
       This can be changed in your {{ anchor("/users/profile", "Settings") | raw }}.
     </p>
   </div>
+  <div class="separator-xsmall"></div>
 {% endif %}
 
-<div class="well blue-well">
+<p class="breadcrumbs">
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ anchor("/users/profile/#{user.id}", user.username ~ "'s Profile") | raw }} </span>
+</p>
+
+<div class="separator-xsmall"></div>
+
 <div class="page-header">
   <h1>{{ user.username }}'s Profile</h1>
-  <div class="pull-right snap-top">Joined <em>{{ user.created | date("F j, Y") }}</em></div>
 </div>
 
-{% if fulltitle %}
-  <div class="fulltitle">{{ fulltitle }}</div>
-{% endif %}
-<div class="row-fluid profile-entry">
-  <div class="span1 profile-field">
-    Location
-  </div>
-  <div class="span11 profile-value">
-    {{ user.location | default("Not entered") }}
-  </div>
-</div>
-<div class="row-fluid profile-entry">
-  <div class="span1 profile-field">
-    About
-  </div>
-  <div class="span11 profile-value">
-    {{ user.about | default("No information") }}
-  </div>
-</div>
-</div>
-
-<div class="row-fluid">
-  <div class="span6 well-list">
-    <table class="table">
-      <tr>
-        <th>
-          <h1>
-            Projects
-          </h1>
-        </th>
-      </tr>
-      {% if projects %}
-        {% for project in projects %}
+<div class="well well-light">
+  <div class="row-fluid">
+    <div class="span9 row-fluid">
+      <div class="span6 well-list">
+        <table class="table">
           <tr>
-            <td class="project" valign="middle" data-proj_id="{{ project.id }}">
-              {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
-              <div class="buttons">
-                <div class="button">
-                  <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
-                    {{ project.subscribers }}
-                    <i class="icon-star"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="description">{{ project.description | slice(0, 120) | default("No description.") }}</div>
+            <th>
+              <h2>
+                Projects
+              </h2>
+            </th>
+          </tr>
+          {% if projects %}
+            {% for project in projects %}
+              <tr>
+                <td class="project" valign="middle" data-proj_id="{{ project.id }}">
+                  {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+                  <div class="buttons">
+                    <div class="button">
+                      <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
+                        {{ project.subscribers }}
+                        <i class="icon-star"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="description">{{ project.description | slice(0, 120) | default("No description.") }}</div>
+                </td>
+              </tr>
+            {% endfor %}
+        {% else %}
+          <tr class="nohover">
+            <td valign="middle">
+              <p>This user isn't participating in any projects.</p>
             </td>
           </tr>
-        {% endfor %}
-    {% else %}
-      <tr class="nohover">
-        <td valign="middle">
-          <p>This user isn't participating in any projects.</p>
-        </td>
-      </tr>
-    {% endif %}
-    </table>
-  </div>
-  <div class="span6 well light-well">
-    <h3>Recent Activity</h3>
-    <hr class="soften" />
-    <ul>
-      {% for project in projects %}
-        {% if project.my_changes %}
-          {% set found_change = true %}
-          <li class="activity-entry">
-            {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
-            <ul class="unstyled">
-              {% for change in project.my_changes %}
-                <li>
-                  <div class="pull-right date p">
-                    {{ time_ago(change.commit_ts) }}
-                  </div>
-                  <div class="activity-msg">
-                    {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
-            {% if not loop.last and loop.next.my_changes %}
-              <hr class="soften" />
-            {% endif %}
-          </li>
         {% endif %}
-      {% endfor %}
-    </ul>
-    {% if not found_change %}
-      <p>No recent activity.</p>
-    {% endif %}
+        </table>
+      </div>
+      <div class="span6 well-list">
+        <table class="table">
+          <tr>
+            <th>
+              <h2>
+                Recent Activity
+              </h2>
+            </th>
+          </tr>
+          {% for project in projects %}
+            {% if project.my_changes %}
+              {% set found_change = true %}
+              <tr>
+                <td class="project" valign="middle" data-proj_id="{{ project.id }}">
+                  {{ anchor("/projects/changes/#{project.id}", project.name) | raw }}
+                  <div class="buttons">
+                    <div class="button">
+                      <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
+                        {{ project.subscribers }}
+                        <i class="icon-star"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="description">{{ project.description | slice(0, 120) | default("No description.") }}</div>
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          {% if not found_change %}
+            <tr class="nohover">
+              <td valign="middle">
+                <p>No recent activity.</p>
+              </td>
+            </tr>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        {% if fulltitle %}
+          <h3>Title</h3>
+          <h4>{{ fulltitle }}</h4>
+          <br />
+        {% endif %}
+        <h3>Location</h3>
+        <h4>{{ user.location | default("Not entered") }}</h4>
+        <br />
+        <h3>About</h3>
+        <h4>{{ user.about | default("No information") }}</h4>
+        <br />
+        <h3>Joined</h3>
+        <h4>{{ user.created | date("F j, Y") }}</h4>
+      </div>
+    </div>
   </div>
 </div>
 

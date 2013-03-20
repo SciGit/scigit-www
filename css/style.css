@@ -140,6 +140,13 @@ body .navbar-inner {
 body .blue-hero-unit {
   background-color: rgba(0,0,255,0.035);
 }
+body .well-light {
+  background-color: white;
+  box-shadow: 2px 2px 2px 1px #8f8f8f;
+  -webkit-box-shadow: 2px 2px 2px 1px #8f8f8f;
+  -moz-box-shadow: 2px 2px 2px 1px #8f8f8f;
+  border: 1px solid #c8c8c8;
+}
 body .well-list,
 body .blue-well-list {
   min-height: 20px;
