@@ -43,8 +43,23 @@ body h3 {
   font-weight: 200;
 }
 body h4 {
+  color: #4a5b76;
+  font-size: 26px;
+  font-weight: 200;
+  margin: 0 0 9px 0;
+}
+body h5 {
+  color: #4a5b76;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+body h6 {
+  color: #333;
+  font-size: 14px;
   font-weight: 400;
   margin: 0;
+  text-transform: none;
 }
 body footer {
   padding: 20px;

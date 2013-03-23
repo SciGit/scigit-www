@@ -39,11 +39,11 @@
       <div class="row-fluid">
         <div class="span2">
           <h3>8</h3>
-          <h4>Citations</h4>
+          <h6>Citations</h6>
         </div>
         <div class="span2">
           <h3>327</h3>
-          <h4>Changes</h4>
+          <h6>Changes</h6>
         </div>
       </div>
     </div>
@@ -51,17 +51,17 @@
       <div class="well">
         {% if fulltitle %}
           <h3>Title</h3>
-          <h4>{{ fulltitle }}</h4>
+          <h6>{{ fulltitle }}</h6>
           <br />
         {% endif %}
         <h3>Location</h3>
-        <h4>{{ user.location | default("Not entered") }}</h4>
+        <h6>{{ user.location | default("Not entered") }}</h6>
         <br />
         <h3>About</h3>
-        <h4>{{ user.about | default("No information") }}</h4>
+        <h6>{{ user.about | default("No information") }}</h6>
         <br />
         <h3>Joined</h3>
-        <h4>{{ user.created | date("F j, Y") }}</h4>
+        <h6>{{ user.created | date("F j, Y") }}</h6>
       </div>
     </div>
   </div>
