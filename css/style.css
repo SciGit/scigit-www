@@ -923,6 +923,9 @@ body #email-invite i {
   margin-top: -30px;
   z-index: 9999;
 }
+body .stats > * {
+  padding: 10px 0 5px 13px;
+}
 body label,
 body input,
 body button,
