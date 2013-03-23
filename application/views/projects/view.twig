@@ -71,10 +71,10 @@
   })
 </script>
 
-<div id="addContributor" class="modal modal-large hide fade">
+<div id="addMember" class="modal modal-large hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h1>Add Contributor</h1>
+    <h1>Add Member</h1>
   </div>
   <div class="modal-body">
     <h3>Step 1: Permissions</h3>
@@ -132,13 +132,10 @@
         {{ form_close() | raw }}
       </div>
     </div>
-    <h3>Step 3: Go!</h3>
-    <h6>Click below to add this person.</h6>
-    <p></p>
-    <a href="#" class="btn btn-xlarge btn-primary">Add Contributor</a>
   </div>
   <div class="modal-footer">
-    <a class="btn btn-primary" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-primary">Add Member</a>
+    <a class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>
 
@@ -158,7 +155,7 @@
   <h1>
     <div class="pull-right">
       {% if admin %}
-        <a class="btn btn-large btn-primary title-btn" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
+        <a class="btn btn-large btn-primary" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
           <i class="icon-wrench icon-white"></i>
           Settings
         </a>
@@ -183,8 +180,8 @@
             <h2>
               {% if admin %}
                 <div class="pull-right">
-                  <a id="btnEditDescription" class="rawlink" href="#" rel="tooltip" title="Edit description">
-                    <i class="icon-xlarge icon-edit"></i>
+                  <a id="btnEditDescription" class="btn btn-valign center" href="#" rel="tooltip" title="Edit description">
+                    <i class="icon-large icon-edit"></i> Edit
                   </a>
                 </div>
               {% endif %}
@@ -244,11 +241,11 @@
         <tr>
           <th>
             <h2>
-              Contributors
+              Members
               {% if admin %}
                 <div class="pull-right">
-                  <a href="#addContributor" rel="tooltip" title="Add new collaborator" class="rawlink" data-toggle="modal">
-                    <i class="icon-plus"></i>
+                  <a href="#addMember" rel="tooltip" title="Add new member" class="btn btn-valign" data-toggle="modal">
+                    <i class="icon-plus"></i> Add
                   </a>
                 </div>
               {% endif %}
