@@ -364,7 +364,8 @@ body {
   }
 
   .separator-small {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    height: 10px;
   }
 
   .separator-xsmall {
@@ -388,6 +389,16 @@ body {
     width: @modal-large-length;
     /* must be half of the width, minus scrollbar on the left (30px) */
     margin: 0 0 0 -1*@modal-large-length/2;
+
+    .modal-header, .modal-body, .modal-footer {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .modal-header {
+      padding-top: 10px;
+      padding-bottom: 0;
+    }
 
     .modal-body {
       max-height: @modal-large-length * (2/3);

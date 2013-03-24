@@ -276,7 +276,8 @@ body .separator {
   height: 20px;
 }
 body .separator-small {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  height: 10px;
 }
 body .separator-xsmall {
   margin-bottom: 15px;
@@ -292,6 +293,16 @@ body .modal-small {
 body .modal-large {
   width: 800px;
   margin: 0 0 0 -400px;
+}
+body .modal-large .modal-header,
+body .modal-large .modal-body,
+body .modal-large .modal-footer {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+body .modal-large .modal-header {
+  padding-top: 10px;
+  padding-bottom: 0;
 }
 body .modal-large .modal-body {
   max-height: 533.33333333333px;
