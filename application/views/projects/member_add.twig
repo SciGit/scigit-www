@@ -19,9 +19,20 @@ $(document).ready(function() {
     $(this).parent().removeClass("faded");
   })
 
-  $('#user-invite input').typeahead(
-    {source: usernames}
-  );
+  $('#user-invite input').typeahead({
+    source: function(query, process) {
+      return $.ajax({
+        url: '/users/autocomplete_ajax',
+        type: 'get',
+        data: {query: query},
+        dataType: 'json',
+        success: function(json) {
+          alert(JSON.stringify(json.options));
+          return typeof json.options == 'undefined' ? false : process(json.options);
+        }
+      });
+    }
+  });
 
   function validateUser(field) {
     existingOrNew = 0;

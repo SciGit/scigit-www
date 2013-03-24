@@ -74,6 +74,24 @@ class User extends CI_Model
 	}
 
 	/**
+	 * Get user record by username, partial matches
+	 *
+	 * @param	string
+	 * @return	object
+	 */
+	function get_user_by_username_partial($username, $limit = 0)
+	{
+    $this->db->like('LOWER(username)', $username);
+    if ($limit > 0) {
+      $this->db->limit($limit);
+    }
+
+		$query = $this->db->get($this->table_name);
+		if ($query->num_rows() == 1) return $query->row();
+		return NULL;
+	}
+
+	/**
 	 * Get user record by email
 	 *
 	 * @param	string

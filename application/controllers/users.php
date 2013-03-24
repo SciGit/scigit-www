@@ -59,6 +59,18 @@ class Users extends SciGit_Controller
     }
   }
 
+  public function autocomplete_ajax() {
+    $username = trim($this->input->get('query'));
+    $users = $this->user->find_user_by_username_partial($username, 5);
+
+    $result = array('options' : array());
+    foreach ($users as $user) {
+      $result['options'][] = $user->name;
+    }
+
+    echo json_encode($result);
+  }
+
 	private function profile_me() {
 		check_login();
 		$msg = '';
