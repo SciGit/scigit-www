@@ -81,14 +81,12 @@ class User extends CI_Model
 	 */
 	function get_user_by_username_partial($username, $limit = 0)
 	{
-    $this->db->like('LOWER(username)', $username);
+    $this->db->like('LOWER(username)', strtolower($username));
     if ($limit > 0) {
       $this->db->limit($limit);
     }
 
-		$query = $this->db->get($this->table_name);
-		if ($query->num_rows() == 1) return $query->row();
-		return NULL;
+		return $this->db->get($this->table_name)->result();
 	}
 
 	/**

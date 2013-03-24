@@ -27,7 +27,6 @@ $(document).ready(function() {
         data: {query: query},
         dataType: 'json',
         success: function(json) {
-          alert(JSON.stringify(json.options));
           return typeof json.options == 'undefined' ? false : process(json.options);
         }
       });
