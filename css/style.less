@@ -99,6 +99,8 @@ body {
   }
 
   h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+
     & > * {
       font-weight: 400;
     }
@@ -108,6 +110,7 @@ body {
     color: @sg-blue;
     font-weight: 200;
     font-size: 36px;
+    margin: 15px 0;
   }
 
   h2 {
@@ -120,12 +123,14 @@ body {
     color: @sg-blue;
     font-size: 26px;
     font-weight: 200;
+    margin: 0;
   }
 
   h4 {
     color: @sg-blue;
     font-size: 150%;
     font-weight: 200;
+    margin: 0;
   }
 
   h5 {
@@ -375,14 +380,14 @@ body {
     @modal-small-length: 450px;
     width: @modal-small-length;
     /* must be half of the width, minus scrollbar on the left (30px) */
-    margin: ((-1*@modal-small-length/2)+30) 0 0 -1*@modal-small-length/2;
+    margin: 0 0 0 -1*@modal-small-length/2;
   }
 
   .modal-large {
-    @modal-large-length: 750px;
+    @modal-large-length: 800px;
     width: @modal-large-length;
     /* must be half of the width, minus scrollbar on the left (30px) */
-    margin: ((-1*@modal-large-length/2)+30) 0 0 -1*@modal-large-length/2;
+    margin: 0 0 0 -1*@modal-large-length/2;
 
     .modal-body {
       max-height: @modal-large-length * (2/3);
@@ -451,10 +456,13 @@ body {
     }
   }
 
-  /** XXX */
-  .input-append button.add-on {
-    height: inherit !important;
-    margin-left: 0;
+  .input-append {
+    float: right;
+
+    button.add-on {
+      height: inherit !important;
+      margin-left: 0;
+    }
   }
 
   .download {
@@ -815,6 +823,7 @@ body {
     }
 
     .title {
+      margin-bottom: 5px;
       font-size: 16px;
       float: left;
     }
@@ -1073,7 +1082,7 @@ body {
 
   .stats {
     > * {
-      padding: 10px 0 5px 13px;
+      padding: 10px 0 5px 30px;
     }
   }
 
@@ -1155,8 +1164,9 @@ body {
   }
 
   .dropdown-menu  {
-    li > a:hover, .active > a, .active > a:hover {
-      background-color: rgb(74, 91, 118);
+    > li > a:hover, .active > a, .active > a:hover {
+      background-image: none;
+      background-color: @sg-blue;
     }
   }
 

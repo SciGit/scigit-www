@@ -27,6 +27,14 @@ body a {
 body a:hover {
   text-decoration: none;
 }
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  margin: 0;
+}
 body h1 > *,
 body h2 > *,
 body h3 > *,
@@ -39,6 +47,7 @@ body h1 {
   color: #4a5b76;
   font-weight: 200;
   font-size: 36px;
+  margin: 15px 0;
 }
 body h2 {
   color: #4a5b76;
@@ -49,11 +58,13 @@ body h3 {
   color: #4a5b76;
   font-size: 26px;
   font-weight: 200;
+  margin: 0;
 }
 body h4 {
   color: #4a5b76;
   font-size: 150%;
   font-weight: 200;
+  margin: 0;
 }
 body h5 {
   color: #4a5b76;
@@ -276,14 +287,14 @@ body.modal-open {
 }
 body .modal-small {
   width: 450px;
-  margin: -195px 0 0 -225px;
+  margin: 0 0 0 -225px;
 }
 body .modal-large {
-  width: 750px;
-  margin: -345px 0 0 -375px;
+  width: 800px;
+  margin: 0 0 0 -400px;
 }
 body .modal-large .modal-body {
-  max-height: 500px;
+  max-height: 533.33333333333px;
 }
 body .modal-responsive {
   width: 70%;
@@ -342,6 +353,9 @@ body a.rawlink:hover,
 body a.rawlink:active {
   text-decoration: none;
   color: black;
+}
+body .input-append {
+  float: right;
 }
 body .input-append button.add-on {
   height: inherit !important;
@@ -652,6 +666,7 @@ body .tabular .buttons .button {
 body .project .title,
 body .change .title,
 body .tabular .title {
+  margin-bottom: 5px;
   font-size: 16px;
   float: left;
 }
@@ -923,7 +938,7 @@ body #email-invite i {
   z-index: 9999;
 }
 body .stats > * {
-  padding: 10px 0 5px 13px;
+  padding: 10px 0 5px 30px;
 }
 body .black {
   color: #333;
@@ -986,9 +1001,10 @@ body .btn-xlarge {
   border-radius: 5px;
   padding: 9px 25px;
 }
-body .dropdown-menu li > a:hover,
+body .dropdown-menu > li > a:hover,
 body .dropdown-menu .active > a,
 body .dropdown-menu .active > a:hover {
+  background-image: none;
   background-color: #4a5b76;
 }
 body .caret {
