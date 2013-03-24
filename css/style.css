@@ -939,9 +939,6 @@ body textarea {
 body form {
   margin: 0;
 }
-body hr.soften {
-  margin: 8px 0;
-}
 body .btn {
   background-color: #f5f5f5;
   *background-color: #f5f5f5;
