@@ -1,10 +1,118 @@
+<script>
+var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
+var existingOrNew = 0;
+
+$(document).ready(function() {
+  $("#addMember").submit(addMember);
+
+  $("#btnEditDescription").click(function() {
+    $("#description").hide();
+    $("#editDescription").show();
+  });
+
+  $("#permission .btn").click(function() {
+    $("#permission .span4").each(function() {
+      $(this).addClass("faded");
+    })
+
+    $(this).find("input").attr("checked", true);
+    $(this).parent().removeClass("faded");
+  })
+
+  $('#user-invite input').typeahead(
+    {source: usernames}
+  );
+
+  function validateUser(field) {
+    existingOrNew = 0;
+
+    $("#email-invite").addClass("faded");
+    $("#user-invite").removeClass("faded");
+
+    if (usernames.indexOf(field.value) > -1) {
+      $("#user-invite i").attr("class", "icon-ok-sign")
+                         .css("color", "green");
+    } else {
+      $("#user-invite i").attr("class", "icon-remove-sign")
+                         .css("color", "red");
+    }
+  }
+
+  $('#user-invite input').live('change', function() {
+    validateUser(this);
+  });
+  $('#user-invite input').live('change keypress', function() {
+    validateUser(this);
+  });
+
+  function validateEmail(field) {
+    existingOrNew = 1;
+
+    $("#user-invite").addClass("faded");
+    $("#email-invite").removeClass("faded");
+
+    var re = /\S+@\S+\.\S+/;
+    if (re.test(field.value)) {
+      $("#email-invite i").attr("class", "icon-ok-sign")
+                          .css("color", "green");
+    } else {
+      $("#email-invite i").attr("class", "icon-remove-sign")
+                          .css("color", "red");
+    }
+  }
+
+  $('#email-invite input').live('change', function() {
+    validateEmail(this);
+  });
+  $('#email-invite input').live('change keypress', function() {
+    validateEmail(this);
+  });
+});
+
+function addMember(event) {
+  event.preventDefault();
+
+  $("#btn-add-member").addClass("disabled");
+  $("#btn-cancel").addClass("disabled");
+
+  var username = $("input[name='username']").val();
+  var email = $("input[name='email']").val();
+
+  var form_data = {
+    username : (existingOrNew == 0 ? username : null),
+    email : (existingOrNew == 1 ? email : null),
+    permission : Number($("input[name='permission']:checked").val()),
+    proj_id: {{ project.id }}
+  };
+
+  alert(JSON.stringify(form_data));
+
+  $.ajax({
+    url: "/projects/add_member_ajax",
+    type: "POST",
+    data: form_data,
+    dataType: "json",
+    cache: false,
+
+    success: function(json) {
+      $("#btn-add-member").removeClass("disabled");
+      $("#btn-cancel").removeClass("disabled");
+
+      alert(JSON.stringify(json));
+    }
+  })
+}
+</script>
+
 <div id="addMember" class="modal modal-large hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h1>Add Member</h1>
   </div>
   <div class="modal-body">
-    {{ form_open("/projects/invite/#{project.id}") | raw }}
+    <div id="addMemberError" class="alert alert-error hide"></div>
+    <div id="addMemberSuccess" class="alert alert-success hide"></div>
+    {{ form_open("/projects/invite/#{project.id}", {id: 'addMember'}) | raw }}
       <h3>Step 1: New or Existing User</h3>
       <h6>Who do you want to add to the project as a contributor?</h6>
       <p></p>
@@ -13,14 +121,14 @@
           <h4>Existing User</h4>
           <p></p>
           <p>Does the contributor you want to add already have a SciGit account? Search for them here.</p>
-          {{ form_input({class: 'full-width-input', placeholder: 'Username', name: 'invite', maxlength: 40, autocomplete: 'off'}) | raw }}
+          {{ form_input({class: 'full-width-input', placeholder: 'Username', name: 'username', maxlength: 40, autocomplete: 'off'}) | raw }}
           <i class="hide"></i>
         </div>
         <div id="email-invite" class="span6 center well">
           <h4>New User</h4>
           <p></p>
           <p>Invite someone to SciGit! Once they've joined, they'll be added to your project.</p>
-          {{ form_input({class: 'full-width-input', placeholder: 'Email Address', name: 'invite', maxlength: 40, autocomplete: 'off'}) | raw }}
+          {{ form_input({class: 'full-width-input', placeholder: 'Email Address', name: 'email', maxlength: 40, autocomplete: 'off'}) | raw }}
           <i class="hide"></i>
         </div>
       </div>
@@ -28,34 +136,34 @@
       <h6>What permissions do you want to give this person?</h6>
       <p></p>
       <div class="well">
-        <div id="permissions" class="row-fluid">
+        <div id="permission" class="row-fluid">
           <div class="span4 center">
             <h4><i class="black icon-wrench"></i> Administrator</h4>
             <p></p>
             <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
             <p></p>
-            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permissions'}) | raw }} Select</a>
+            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "1"}) | raw }} Select</a>
           </div>
           <div class="span4 center">
             <h4><i class="black icon-edit"></i> Contributor</h4>
             <p></p>
             <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
             <p></p>
-            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permissions'}) | raw }} Select</a>
+            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "2"}) | raw }} Select</a>
           </div>
           <div class="span4 center">
             <h4><i class="black icon-bookmark-empty"></i> Subscriber</h4>
             <p></p>
             <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
             <p></p>
-            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permissions'}) | raw }} Select</a>
+            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
           </div>
         </div>
       </div>
     {{ form_close() | raw }}
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn btn-primary">Add Member</a>
-    <a class="btn" data-dismiss="modal">Cancel</a>
+    <a id="btn-add-member" onclick="$('#addMember').submit();" class="btn btn-primary">Add Member</a>
+    <a id="btn-cancel" class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>

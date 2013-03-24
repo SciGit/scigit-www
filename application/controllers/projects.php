@@ -156,32 +156,7 @@ class Projects extends SciGit_Controller
     $success = false;
     $form_name = 'users';
 		if ($this->input->post('add_user')) {
-      $form_name = 'users';
-			$this->form_validation->set_rules('username', 'Username',
-				'required|callback_check_username');
-			$this->form_validation->set_rules('write', 'Write', 'trim');
-			$this->form_validation->set_rules('admin', 'Admin', 'trim');
-			if ($this->form_validation->run()) {
-				$username = $this->input->post('username');
-				$user = $this->user->get_user_by_login($username);
-				$write = $this->input->post('write') == '1';
-				$admin = $this->input->post('admin') == '1';
-        $perms = Permission::READ;
-        $perms |= $write ? Permission::WRITE : 0;
-        $perms |= $admin ? Permission::ADMIN : 0;
-        if ($this->permission->get_by_user_on_project($user->id, $proj_id) === null) {
-          $this->email_queue->add_invite_email(get_user_id(), $user->id, $proj_id);
-        }
-				if ($this->permission->set_user_perms(
-							$user->id, $proj_id, $perms)) {
-					$msg = 'User added.';
-          $success = true;
-				} else {
-					$msg = 'Database error';
-				}
-      } else {
-        $msg = 'Must provide a valid username.';
-      }
+      // XXX: not valid anymore
     } else if ($this->input->post('settings')) {
       $form_name = 'settings';
       $this->form_validation->set_rules('description', 'Description',
@@ -259,10 +234,81 @@ class Projects extends SciGit_Controller
 		}
 	}
 
+  public function add_member_ajax() {
+		check_login();
+
+    $this->form_validation->set_rules('username', 'Username',
+      'callback_check_username|trim');
+    $this->form_validation->set_rules('email', 'Email Address',
+      'callback_check_email|trim');
+    $this->form_validation->set_rules('permission', 'Permissions', 'trim|required');
+    $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
+
+    if (!$this->form_validation->run()) {
+      die(json_encode(array(
+        'error' => '2',
+        'message' => 'temp',
+      )));
+    }
+
+    $proj_id = $this->input->post('proj_id');
+    if (!$proj_id || !is_numeric($proj_id)) {
+      die(json_encode(array(
+        'error' => '2',
+        'message' => 'Invalid format of request.',
+      )));
+    }
+
+    check_project_perms($proj_id);
+
+    $username = $this->input->post('username');
+    if ($username == null) {
+      die(json_encode(array(
+        'error' => '3',
+        'message' => 'You must use a username for now.',
+      )));
+    }
+
+    $user = $this->user->get_user_by_login($username);
+    $subscriber = $this->input->post('permission') == '3';
+    $write = $this->input->post('permission') == '2';
+    $admin = $this->input->post('permission') == '1';
+
+    $perms = Permission::NONE;
+    if ($subscriber) {
+      $perms = Permission::SUBSCRIBER;
+    } else {
+      $perms = Permission::READ;
+      $perms |= $write ? Permission::WRITE : 0;
+      $perms |= $admin ? Permission::ADMIN : 0;
+    }
+
+    if ($this->permission->get_by_user_on_project($user->id, $proj_id) === null) {
+      $this->email_queue->add_invite_email(get_user_id(), $user->id, $proj_id);
+    }
+
+    if (!$this->permission->set_user_perms(
+          $user->id, $proj_id, $perms)) {
+      die(json_encode(array(
+        'error' => '1',
+        'message' => 'Database error.',
+      )));
+    }
+
+    die(json_encode(array(
+      'error' => '0',
+      'message' => 'Member added.',
+    )));
+  }
+
   public function publish($proj_id) {
     //check_login();
     //check_project_perms($proj_id);
     $this->twig->display('projects/publish.twig');
+  }
+
+  public function check_email($str) {
+    return true;
   }
 
 	public function check_username($str) {

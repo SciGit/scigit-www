@@ -5,6 +5,7 @@ class Permission extends CI_Model
   public $projects_table = 'projects';
   public $permission_table = 'proj_permissions';
 
+  const NONE = 0;
   const SUBSCRIBER = 1;
   const READ = 2;
   const WRITE = 4;

@@ -4,72 +4,7 @@
 
 {% block content %}
 
-<script>
-  var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
-
-  $(document).ready(function() {
-    $("#btnEditDescription").click(function() {
-      $("#description").hide();
-      $("#editDescription").show();
-    });
-
-    $("#permissions .btn").click(function() {
-      $("#permissions .span4").each(function() {
-        $(this).addClass("faded");
-      })
-
-      $(this).find("input").attr("checked", true);
-      $(this).parent().removeClass("faded");
-    })
-
-    $('#user-invite input').typeahead(
-      {source: usernames}
-    );
-
-    function validateUser(field) {
-      $("#email-invite").addClass("faded");
-      $("#user-invite").removeClass("faded");
-
-      if (usernames.indexOf(field.value) > -1) {
-        $("#user-invite i").attr("class", "icon-ok-sign")
-                           .css("color", "green");
-      } else {
-        $("#user-invite i").attr("class", "icon-remove-sign")
-                           .css("color", "red");
-      }
-    }
-
-    $('#user-invite input').live('change', function() {
-      validateUser(this);
-    });
-    $('#user-invite input').live('change keypress', function() {
-      validateUser(this);
-    });
-
-    function validateEmail(field) {
-      $("#user-invite").addClass("faded");
-      $("#email-invite").removeClass("faded");
-
-      var re = /\S+@\S+\.\S+/;
-      if (re.test(field.value)) {
-        $("#email-invite i").attr("class", "icon-ok-sign")
-                            .css("color", "green");
-      } else {
-        $("#email-invite i").attr("class", "icon-remove-sign")
-                            .css("color", "red");
-      }
-    }
-
-    $('#email-invite input').live('change', function() {
-      validateEmail(this);
-    });
-    $('#email-invite input').live('change keypress', function() {
-      validateEmail(this);
-    });
-  })
-</script>
-
-{% include 'projects/member_add.twig' %}
+{% include 'projects/member_add.twig' with {project: project} %}
 
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
