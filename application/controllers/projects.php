@@ -92,13 +92,13 @@ class Projects extends SciGit_Controller
     check_login();
     $this->form_validation->set_rules('name', 'name', 'required|callback_check_projname');
     $this->form_validation->set_rules('public', 'public', '');
+    $name = $this->input->post('name');
     if ($this->form_validation->run()) {
-      $name = $this->input->post('name');
       $public = $this->input->post('public');
       if (($project = $this->project->create(get_user_id(), $name, $public))) {
         echo json_encode(array(
           'error' => '0',
-          'message' => 'Project created!',
+          'message' => 'Project created! Refreshing. <i class="icon-spinner icon-spin"></i>',
           'proj_id' => $project['id'],
         ));
       } else {
@@ -110,7 +110,8 @@ class Projects extends SciGit_Controller
     } else {
       echo json_encode(array(
         'error' => '2',
-        'message' => 'That project name is taken; please pick another.'
+        'message' => $name == '' ? 'You must enter a project name.' :
+                                   'That project name is taken; please pick another.'
       ));
     }
   }
