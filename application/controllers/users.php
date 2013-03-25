@@ -61,14 +61,12 @@ class Users extends SciGit_Controller
 
   public function autocomplete_ajax() {
     $username = trim($this->input->get('query'));
-    error_log(json_encode($username));
     $users = $this->user->get_user_by_username_partial($username, 5);
 
     $result = array('options' => array());
     foreach ($users as $user) {
       $result['options'][] = $user->username;
     }
-    error_log(json_encode($result));
 
     echo json_encode($result);
   }
