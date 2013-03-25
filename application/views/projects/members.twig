@@ -248,3 +248,62 @@ function addMember(event) {
     <a id="btn-cancel" class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>
+
+<div class="well-list">
+  <table class="table table-hover table-condensed">
+    <tr>
+      <th>
+        <h2>
+          Members
+          {% if admin %}
+            <div class="pull-right">
+              <a href="#addMember" rel="tooltip" title="Add new member" class="btn btn-primary btn-valign" data-toggle="modal">
+                <i class="icon-plus"></i> Add
+              </a>
+            </div>
+          {% endif %}
+        </h2>
+      </th>
+    </tr>
+    {% for perm in perms %}
+      <tr>
+        <td class="tabular" valign="middle">
+          <div class="statuses">
+            <div class="status">
+              {% if perm.permission b-and 16 %}
+                <a class="rawlink" rel="tooltip" title="Owner">
+                  <i class="icon-trophy"></i>
+                </a>
+              {% elseif perm.permission b-and 8 %}
+                <a class="rawlink" rel="tooltip" title="Administrator">
+                  <i class="icon-wrench"></i>
+                </a>
+              {% elseif perm.permission b-and 4 %}
+                <a class="rawlink" rel="tooltip" title="Contributor">
+                  <i class="icon-edit"></i>
+                </a>
+              {% elseif perm.permission b-and 2 %}
+                <a class="rawlink" rel="tooltip" title="Reader">
+                  <i class="icon-eye-open"></i>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+          {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
+          {% if admin %}
+            <div class="buttons shrink">
+              <a class="editMember btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+               rel="tooltip" title="Edit {{ perm.username }}'s permissions">
+                <i class="icon-edit"></i>
+              </a>
+              <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+               rel="tooltip" title="Remove {{ perm.username }} from project">
+                <i class="icon-trash"></i>
+              </a>
+            </div>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
