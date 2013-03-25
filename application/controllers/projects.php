@@ -291,7 +291,8 @@ class Projects extends SciGit_Controller
     }
 
     if ($userPermission->permission & (Permission::ADMIN|Permission::OWNER) == 0 ||
-        $changeUserPermission->permission > $userPermission->permission) {
+        $changeUserPermission->permission > $userPermission->permission ||
+        $changeUser->id == $adminUser->id) {
       die(json_encode(array(
         'error' => '4',
         'message' => 'You do not have permission to make this change.',
