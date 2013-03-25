@@ -47,7 +47,7 @@
             <h2>
               {% if admin %}
                 <div class="pull-right">
-                  <a id="btnEditDescription" class="btn btn-valign center" href="#" rel="tooltip" title="Edit description">
+                  <a id="btnEditDescription" class="btn btn-primary btn-valign center" href="#" rel="tooltip" title="Edit description">
                     <i class="icon-large icon-edit"></i> Edit
                   </a>
                 </div>
@@ -81,7 +81,7 @@
               Members
               {% if admin %}
                 <div class="pull-right">
-                  <a href="#addMember" rel="tooltip" title="Add new member" class="btn btn-valign" data-toggle="modal">
+                  <a href="#addMember" rel="tooltip" title="Add new member" class="btn btn-primary btn-valign" data-toggle="modal">
                     <i class="icon-plus"></i> Add
                   </a>
                 </div>
@@ -120,7 +120,7 @@
                    rel="tooltip" title="Edit {{ perm.username }}'s permissions">
                     <i class="icon-edit"></i>
                   </a>
-                  <a class="deleteMember btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+                  <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
                    rel="tooltip" title="Remove {{ perm.username }} from project">
                     <i class="icon-trash"></i>
                   </a>
