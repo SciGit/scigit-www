@@ -154,7 +154,7 @@ class Projects extends SciGit_Controller
 		check_project_admin($proj_id);
     $msg = '';
     $success = false;
-    $form_name = 'users';
+    $form_name = 'members';
 		if ($this->input->post('add_user')) {
       // XXX: not valid anymore
     } else if ($this->input->post('settings')) {
