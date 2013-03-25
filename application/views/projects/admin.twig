@@ -37,15 +37,14 @@ set buttons_settings = [
 ]
 %}
 
-<div class="page-header">
-	<h2>
-    <p class="breadcrumbs">
-      {{ anchor("/projects", "Projects") | raw }} <span class="divider">&gt;</span>
-      <span class="current">{{ project.name }}</span> <span class="divider">&gt;</span>
-      <span class="current">Admin</span>
-    </p>
-	</h2>
-</div>
+<p class="breadcrumbs">
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  {{ anchor("/projects", "My Projects") | raw }} <span class="divider">&gt;</span>
+  {{ anchor("/projects/view/#{project.id}", project.name) | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ anchor("/projects/admin/#{project.id}", "Changes") | raw }}</span>
+</p>
+
+<div class="separator-small"></div>
 
 <ul class="nav nav-tabs">
   <li{% if form_name == 'members' %} class="active"{% endif %}><a href="#members" data-toggle="tab">Members</a></li>
