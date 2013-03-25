@@ -711,6 +711,7 @@ body .tabular .title {
 body .project .subtitle,
 body .change .subtitle,
 body .tabular .subtitle {
+  clear: both;
   margin-top: 22px;
 }
 body .project .description,
