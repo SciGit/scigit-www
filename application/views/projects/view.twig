@@ -114,6 +114,18 @@
                 </div>
               </div>
               {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
+              {% if admin %}
+                <div class="buttons shrink">
+                  <a class="editMember btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+                   rel="tooltip" title="Edit {{ perm.username }}'s permissions">
+                    <i class="icon-edit"></i>
+                  </a>
+                  <a class="deleteMember btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+                   rel="tooltip" title="Remove {{ perm.username }} from project">
+                    <i class="icon-trash"></i>
+                  </a>
+                </div>
+              {% endif %}
             </td>
           </tr>
         {% endfor %}

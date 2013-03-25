@@ -358,6 +358,13 @@ body .buttons li:first-child {
 body .buttons li:last-child {
   margin: 0;
 }
+body .buttons.shrink {
+  height: 14px;
+}
+body .buttons.shrink .btn-small {
+  margin-top: -15px;
+  margin-bottom: -15px;
+}
 body .btn-valign {
   top: 50%;
   margin-top: -8px;
@@ -1031,6 +1038,10 @@ body .btn-xlarge {
   -moz-border-radius: 5px;
   border-radius: 5px;
   padding: 9px 25px;
+}
+body .btn-mini {
+  margin-top: -5px;
+  margin-bottom: -5px;
 }
 body .dropdown-menu > li > a:hover,
 body .dropdown-menu .active > a,
