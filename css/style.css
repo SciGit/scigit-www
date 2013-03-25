@@ -1052,3 +1052,6 @@ body .navbar-search .search-submit {
   height: 28px;
   width: 28px;
 }
+body .typeahead {
+  text-align: left;
+}

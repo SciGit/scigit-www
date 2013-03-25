@@ -19,6 +19,8 @@ $(document).ready(function() {
     $(this).parent().removeClass("faded");
   })
 
+  this.lastQuery = null;
+
   $('#user-invite input').typeahead({
     source: function(query, process) {
       return $.ajax({
@@ -30,37 +32,54 @@ $(document).ready(function() {
           return typeof json.options == 'undefined' ? false : process(json.options);
         }
       });
-    }
-  });
+    },
 
-  function validateUser(field) {
-    existingOrNew = 0;
+    matcher: function(item) {
+      if (item.toLowerCase() === this.query.toLowerCase()) {
+        $("#user-invite i").attr("class", "icon-ok-sign")
+                           .css("color", "green");
+      } else if (this.lastQuery != this.query) {
+        this.lastQuery = this.query;
+        $("#user-invite i").attr("class", "icon-remove-sign")
+                           .css("color", "red");
+      }
 
-    $("#email-invite").addClass("faded");
-    $("#user-invite").removeClass("faded");
+      return true;
+    },
 
-    if (usernames.indexOf(field.value) > -1) {
+    updater: function(item) {
       $("#user-invite i").attr("class", "icon-ok-sign")
                          .css("color", "green");
-    } else {
-      $("#user-invite i").attr("class", "icon-remove-sign")
-                         .css("color", "red");
+      return item;
+    },
+
+    minLength: 3,
+  });
+
+  function updateSendFormField(field) {
+    if (field == 'username') {
+      existingOrNew = 0;
+
+      $("#email-invite").addClass("faded");
+      $("#user-invite").removeClass("faded");
+    } else if (field == 'email') {
+      existingOrNew = 1;
+
+      $("#user-invite").addClass("faded");
+      $("#email-invite").removeClass("faded");
     }
+
+    return;
   }
 
-  $('#user-invite input').live('change', function() {
-    validateUser(this);
+  $('#user-invite input').on('change', function() {
+    updateSendFormField('username');
   });
-  $('#user-invite input').live('change keypress', function() {
-    validateUser(this);
+  $('#user-invite input').on('change keypress', function() {
+    updateSendFormField('username');
   });
 
   function validateEmail(field) {
-    existingOrNew = 1;
-
-    $("#user-invite").addClass("faded");
-    $("#email-invite").removeClass("faded");
-
     var re = /\S+@\S+\.\S+/;
     if (re.test(field.value)) {
       $("#email-invite i").attr("class", "icon-ok-sign")
@@ -72,9 +91,11 @@ $(document).ready(function() {
   }
 
   $('#email-invite input').live('change', function() {
+    updateSendFormField('email');
     validateEmail(this);
   });
   $('#email-invite input').live('change keypress', function() {
+    updateSendFormField('email');
     validateEmail(this);
   });
 });
