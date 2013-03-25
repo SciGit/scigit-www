@@ -95,7 +95,9 @@
               {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
               <div class="buttons">
                 <div class="button">
-                  {% if perm.permission b-and 8 %}
+                  {% if perm.permission b-and 16 %}
+                    <i class="icon-trophy"></i>
+                  {% elseif perm.permission b-and 8 %}
                     <i class="icon-wrench"></i>
                   {% elseif perm.permission b-and 4 %}
                     <i class="icon-edit"></i>
