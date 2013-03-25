@@ -283,6 +283,13 @@ class Projects extends SciGit_Controller
     $admin = $this->input->post('permission') == '1';
     $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
 
+    if ($adminUser->id === $changeUser->id) {
+      die(json_encode(array(
+        'error' => '4',
+        'message' => 'You cannot change your own permissions.',
+      )));
+    }
+
     if ($subscriber && !$project->public) {
       die(json_encode(array(
         'error' => '2',
@@ -291,8 +298,7 @@ class Projects extends SciGit_Controller
     }
 
     if ($userPermission->permission & (Permission::ADMIN|Permission::OWNER) == 0 ||
-        $changeUserPermission->permission > $userPermission->permission ||
-        $changeUser->id == $adminUser->id) {
+        $changeUserPermission->permission > $userPermission->permission) {
       die(json_encode(array(
         'error' => '4',
         'message' => 'You do not have permission to make this change.',
