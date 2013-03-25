@@ -3,6 +3,19 @@ var existingOrNew = 0;
 
 $(document).ready(function() {
   $("#option-subscriber").popover();
+  $(".deleteMember").each(function() {
+    $(this).popover();
+    $(this).tooltip();
+    $(this).data("hasTooltip", true);
+  });
+  $(".deleteMember").click(function() {
+    $(this).data("hasTooltip", !$(this).data("hasTooltip"));
+    if ($(this).data("hasTooltip")) {
+      $(this).tooltip();
+    } else {
+      $(this).tooltip('destroy');
+    }
+  });
 
   $("#addMember").submit(addMember);
   $("#editMember").submit(editMember);
@@ -322,7 +335,9 @@ function submitMemberForm(root, form_data) {
                 <i class="icon-edit"></i>
               </a>
               <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
-               rel="tooltip" title="Remove {{ perm.username }} from project">
+               title="Remove {{ perm.username }} from project"
+               data-original-title="Confirm Member Removal" data-content="Are you sure you want to delete this member?"
+               data-placement="top">
                 <i class="icon-trash"></i>
               </a>
             </div>
