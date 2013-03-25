@@ -5,10 +5,29 @@ $(document).ready(function() {
   $("#option-subscriber").popover();
 
   $("#addMember").submit(addMember);
+  $("#editMember").submit(editMember);
 
   $("#btnEditDescription").click(function() {
     $("#description").hide();
     $("#editDescription").show();
+  });
+
+  $(".editMember").click(function(e) {
+    $(this).editingMember = $(this).data("user_id");
+    $("#editMemberName").html(
+      "Edit " + $(this).data("user_name") + "'s Permissions");
+
+    var permission = $(this).data("user_perm");
+    alert(permission);
+    if (permission & 8 /* Administrator */) {
+      $('#editMember input[type="radio"][value="1"]').click();
+    } else if (permission & 4 /* Contributor */) {
+      $('#editMember input[type="radio"][value="2"]').click();
+    } else if (permission & 2 /* Reader */) {
+      $('#editMember input[type="radio"][value="3"]').click();
+    } else if (permission & 1 /* Subscriber */) {
+      $('#editMember input[type="radio"][value="4"]').click();
+    }
   });
 
   $("#permission .btn").click(function(e) {
@@ -112,6 +131,10 @@ $(document).ready(function() {
   });
 });
 
+function editMember(event) {
+  addMember(event);
+}
+
 function addMember(event) {
   event.preventDefault();
 
@@ -174,6 +197,20 @@ function addMember(event) {
 }
 </script>
 
+<div id="editMember" class="modal modal-large hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h1 id="editMemberName">Edit Member Permissions</h1>
+  </div>
+  <div class="modal-body">
+    {% include 'projects/members_permissions.twig' %}
+  </div>
+  <div class="modal-footer">
+    <a id="btn-add-member" onclick="$('#editMember').submit();" class="btn btn-primary">Submit</a>
+    <a id="btn-cancel" class="btn" data-dismiss="modal">Cancel</a>
+  </div>
+</div>
+
 <div id="addMember" class="modal modal-large hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -202,46 +239,11 @@ function addMember(event) {
           <i class="hide"></i>
         </div>
       </div>
-      <h3>Step 2: Permissions</h3>
-      <h6>What permissions do you want to give this person?</h6>
-      <p></p>
-      <div class="well">
-        <div id="permission" class="row-fluid">
-          <div class="span3 center">
-            <h4><i class="black icon-wrench"></i> Administrator</h4>
-            <p></p>
-            <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
-            <p></p>
-            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "1"}) | raw }} Select</a>
-          </div>
-          <div class="span3 center">
-            <h4><i class="black icon-edit"></i> Contributor</h4>
-            <p></p>
-            <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
-            <p></p>
-            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "2"}) | raw }} Select</a>
-          </div>
-          <div class="span3 center">
-            <h4><i class="black icon-eye-open"></i> Reader</h4>
-            <p></p>
-            <p>This user can track changes to the project, even when it is private. It is similar to a subscriber.</p>
-            <p></p>
-            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
-          </div>
-          <div class="span3 center {% if not project.public %}extra-faded{% endif %}" id="option-subscriber"
-           {% if not public.project %}
-           rel="popover" data-content="You cannot add subscribers to private projects." data-original-title="Private Project"
-           data-placement="top" data-trigger="hover"
-           {% endif %}>
-            <h4><i class="black icon-bookmark-empty"></i> Subscriber</h4>
-            <p></p>
-            <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
-            <p></p>
-            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "4"}) | raw }} Select</a>
-          </div>
-        </div>
-      </div>
     {{ form_close() | raw }}
+    <h3>Step 2: Permissions</h3>
+    <h6>What permissions do you want to give this person?</h6>
+    <p></p>
+    {% include 'projects/members_permissions.twig' with {project: project} %}
   </div>
   <div class="modal-footer">
     <a id="btn-add-member" onclick="$('#addMember').submit();" class="btn btn-primary">Add Member</a>
@@ -292,8 +294,11 @@ function addMember(event) {
           {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
           {% if admin %}
             <div class="buttons shrink">
-              <a class="editMember btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
-               rel="tooltip" title="Edit {{ perm.username }}'s permissions">
+              <a class="editMember btn btn-small" href="#editMember"
+               data-user_id="{{ perm.user_id }}" data-user_name="{{ perm.username }}"
+               data-user_perm="{{ perm.permission }}"
+               rel="tooltip" title="Edit {{ perm.username }}'s permissions"
+               data-toggle="modal">
                 <i class="icon-edit"></i>
               </a>
               <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"

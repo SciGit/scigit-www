@@ -1,0 +1,36 @@
+<div class="well">
+  <div id="permission" class="row-fluid">
+    <div class="span3 center">
+      <h4><i class="black icon-wrench"></i> Administrator</h4>
+      <p></p>
+      <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
+      <p></p>
+      <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "1"}) | raw }} Select</a>
+    </div>
+    <div class="span3 center">
+      <h4><i class="black icon-edit"></i> Contributor</h4>
+      <p></p>
+      <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
+      <p></p>
+      <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "2"}) | raw }} Select</a>
+    </div>
+    <div class="span3 center">
+      <h4><i class="black icon-eye-open"></i> Reader</h4>
+      <p></p>
+      <p>This user can track changes to the project, even when it is private. It is similar to a subscriber.</p>
+      <p></p>
+      <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
+    </div>
+    <div class="span3 center {% if not project.public %}extra-faded{% endif %}" id="option-subscriber"
+     {% if not project.public %}
+     rel="popover" data-content="You cannot add subscribers to private projects." data-original-title="Private Project"
+     data-placement="top" data-trigger="hover"
+     {% endif %}>
+      <h4><i class="black icon-bookmark-empty"></i> Subscriber</h4>
+      <p></p>
+      <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
+      <p></p>
+      <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "4"}) | raw }} Select</a>
+    </div>
+  </div>
+</div>
