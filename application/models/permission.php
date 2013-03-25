@@ -78,6 +78,12 @@ class Permission extends CI_Model
     return $this->db->get($this->permission_table)->result();
   }
 
+  public function is_owner($user_id, $proj_id) {
+    $r = $this->get_by_user_on_project($user_id, $proj_id);
+    if (empty($r)) return false;
+    return !!($r->permission & (self::OWNER));
+  }
+
 	public function is_admin($user_id, $proj_id) {
     $r = $this->get_by_user_on_project($user_id, $proj_id);
     if (empty($r)) return false;

@@ -235,7 +235,46 @@ class Projects extends SciGit_Controller
 		}
 	}
 
-  public function add_member_ajax() {
+  public function member_delete_ajax() {
+		check_login();
+
+    $this->form_validation->set_rules('user_id', 'User ID', 'trim|required');
+    $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
+
+    if (!$this->form_validation->run()) {
+      die(json_encode(array(
+        'error' => '2',
+        'message' => "Invalid request format.",
+      )));
+    }
+
+    $proj_id = $this->input->post('proj_id');
+    $user_id = $this->input->post('user_id');
+
+    check_project_perms($proj_id);
+
+    if (!$this->permission->is_admin(get_user_id(), $proj_id) ||
+        $this->permission->is_owner($user_id, $proj_id)) {
+      die(json_encode(array(
+        'error' => '4',
+        'message' => "You don't have permission to remove this user."
+      )));
+    }
+
+    if (!$this->permission->set_user_perms($user_id, $proj_id, Permission::NONE)) {
+      die(json_encode(array(
+        'error' => '1',
+        'message' => 'Database error.',
+      )));
+    }
+
+    die(json_encode(array(
+      'error' => '0',
+      'message' => '<i class="icon-spinner icon-spin"></i> Member removed.',
+    )));
+  }
+
+  public function member_add_ajax() {
 		check_login();
 
     $this->form_validation->set_rules('username', 'Username',
@@ -286,7 +325,9 @@ class Projects extends SciGit_Controller
     $admin = $this->input->post('permission') == '1';
     $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
 
-    if ($this->input->post('type') != 'edit' && $changeUserPermission !== null) {
+    if ($this->input->post('type') != 'edit' &&
+        $changeUserPermission !== null &&
+        $changeUserPermission->permission != 0 && $changeUserPermission->permission != Permission::SUBSCRIBER) {
       die(json_encode(array(
         'error' => '2',
         'message' => 'This user is already a member of this project.',
