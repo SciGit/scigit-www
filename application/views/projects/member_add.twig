@@ -173,21 +173,21 @@ function addMember(event) {
             <p></p>
             <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
             <p></p>
-            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "1"}) | raw }} Select</a>
+            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "1"}) | raw }} Select</a>
           </div>
           <div class="span4 center">
             <h4><i class="black icon-edit"></i> Contributor</h4>
             <p></p>
             <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
             <p></p>
-            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "2"}) | raw }} Select</a>
+            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "2"}) | raw }} Select</a>
           </div>
           <div class="span4 center">
             <h4><i class="black icon-bookmark-empty"></i> Subscriber</h4>
             <p></p>
             <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
             <p></p>
-            <a href="#" class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
+            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
           </div>
         </div>
       </div>
