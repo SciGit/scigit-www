@@ -150,7 +150,9 @@ body .hero-unit h1 {
 body .hero-unit .close {
   margin: -45px -40px 0 0;
 }
-body .alert i {
+body .alert i.icon-ok-sign,
+body .alert i.icon-remove-sign,
+body .alert i.icon-info {
   float: left;
   margin-top: 2px;
   padding-right: 10px;

@@ -243,6 +243,7 @@ class Projects extends SciGit_Controller
       'callback_check_email|trim');
     $this->form_validation->set_rules('permission', 'Permissions', 'trim|required');
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
+    $this->form_validation->set_rules('type', 'Type', 'trim|required');
 
     if (!$this->form_validation->run()) {
       $using = $this->input->post('username') !== null ? "username" : "email";
@@ -283,6 +284,13 @@ class Projects extends SciGit_Controller
     $write = $this->input->post('permission') == '2';
     $admin = $this->input->post('permission') == '1';
     $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
+
+    if ($this->input->post('type') != 'edit' && $changeUserPermission !== null) {
+      die(json_encode(array(
+        'error' => '2',
+        'message' => 'This user is already a member of this project.',
+      )));
+    }
 
     if ($adminUser->id === $changeUser->id) {
       die(json_encode(array(
@@ -328,9 +336,12 @@ class Projects extends SciGit_Controller
       )));
     }
 
+    $msg = (($this->input->post('type') === 'edit') ? 'Changes saved.' : 'Member added.') .
+           ' Refreshing. <i class="icon-spinner icon-spin"></i>';
+
     die(json_encode(array(
       'error' => '0',
-      'message' => 'Member added.',
+      'message' => $msg,
     )));
   }
 

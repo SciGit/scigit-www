@@ -13,7 +13,9 @@ $(document).ready(function() {
   });
 
   $(".editMember").click(function(e) {
-    $(this).editingMember = $(this).data("user_id");
+    $("#editMember").data("editingMember", $(this).data("user_id"));
+    $("#editMember").data("editingMemberName", $(this).data("user_name"));
+
     $("#editMemberName").html(
       "Edit " + $(this).data("user_name") + "'s Permissions");
 
@@ -131,26 +133,45 @@ $(document).ready(function() {
 });
 
 function editMember(event) {
-  addMember(event);
+  $("#btn-edit-member").addClass("disabled");
+  $("#btn-edit-member").data("oldHtml", $("#btn-edit-member").html());
+  $("#btn-edit-member").html('<i class="icon-spinner icon-spin"></i> Loading...');
+  $("#btn-edit-cancel").addClass("disabled");
+
+  var form_data = {
+    username : $("#editMember").data("editingMemberName"),
+    email : null,
+    permission : Number($("#editMember input[name='permission']:checked").val()),
+    proj_id: {{ project.id }},
+    type: "edit",
+  };
+
+  submitMemberForm("#editMember", form_data);
 }
 
 function addMember(event) {
   event.preventDefault();
 
   $("#btn-add-member").addClass("disabled");
+  $("#btn-add-member").data("oldHtml", $("#btn-add-member").html());
   $("#btn-add-member").html('<i class="icon-spinner icon-spin"></i> Loading...');
-  $("#btn-cancel").addClass("disabled");
+  $("#btn-add-cancel").addClass("disabled");
 
-  var username = $("input[name='username']").val();
-  var email = $("input[name='email']").val();
+  var username = $("#addMember input[name='username']").val();
+  var email = $("#addMember input[name='email']").val();
 
   var form_data = {
     username : (existingOrNew == 0 ? username : null),
     email : (existingOrNew == 1 ? email : null),
-    permission : Number($("input[name='permission']:checked").val()),
-    proj_id: {{ project.id }}
+    permission : Number($("#addMember input[name='permission']:checked").val()),
+    proj_id: {{ project.id }},
+    type: "add",
   };
 
+  submitMemberForm("#addMember", form_data);
+}
+
+function submitMemberForm(root, form_data) {
   $.ajax({
     url: "/projects/add_member_ajax",
     type: "POST",
@@ -159,37 +180,35 @@ function addMember(event) {
     cache: false,
 
     success: function(json) {
-      $("#btn-add-member").removeClass("disabled");
-      $("#btn-add-member").html('Add Member');
-      $("#btn-cancel").removeClass("disabled");
+      $(root + ' [id^="btn-"][id$="-member"]').removeClass("disabled");
+      $(root + ' [id^="btn-"][id$="-member"]').html(
+        $(root + ' [id^="btn-"][id$="-member"]').data("oldHtml"));
+      $(root + ' [id^="btn-"][id$="-cancel"]').removeClass("disabled");
 
       if (json.error == 0) {
-        $("#user-invite input").val("");
-        $("#email-invite input").val("");
+        if (root == "#addMember") {
+          $("#user-invite input").val("");
+          $("#email-invite input").val("");
 
-        $("#user-invite i").attr("class", "");
-        $("#email-invite i").attr("class", "");
+          $("#user-invite i").attr("class", "");
+          $("#email-invite i").attr("class", "");
 
-        $("#user-invite").removeClass("faded");
-        $("#email-invite").removeClass("faded");
+          $("#user-invite").removeClass("faded");
+          $("#email-invite").removeClass("faded");
+        }
 
-        $("#permission .span3").each(function() {
-          $(this).find('input[type="radio"]').attr("checked", false);
-          $(this).removeClass("faded");
-        });
-
-        $("#addMemberSuccess").html('<i class="icon-ok-sign"></i>' + json.message).show();
-        $("#addMemberError").hide();
+        $(root + " " + root + "Success").html('<i class="icon-ok-sign"></i>' + json.message).show();
+        $(root + " " + root + "Error").hide();
 
         setTimeout(function() {
-          $("#addMember").modal("hide");
+          $(root).modal("hide");
           setTimeout(function() {
             document.location.reload(true);
           }, 500);
-        }, 1500);
+        }, 2000);
       } else {
-        $("#addMemberSuccess").hide();
-        $("#addMemberError").html('<i class="icon-remove-sign"></i>' + json.message).show();
+        $(root + " " + root + "Success").hide();
+        $(root + " " + root + "Error").html('<i class="icon-remove-sign"></i>' + json.message).show();
       }
     }
   })
@@ -207,8 +226,8 @@ function addMember(event) {
     {% include 'projects/members_permissions.twig' %}
   </div>
   <div class="modal-footer">
-    <a id="btn-add-member" onclick="$('#editMember').submit();" class="btn btn-primary">Submit</a>
-    <a id="btn-cancel" class="btn" data-dismiss="modal">Cancel</a>
+    <a id="btn-edit-member" onclick="$('#editMember').submit();" class="btn btn-primary">Submit</a>
+    <a id="btn-edit-cancel" class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>
 
@@ -248,7 +267,7 @@ function addMember(event) {
   </div>
   <div class="modal-footer">
     <a id="btn-add-member" onclick="$('#addMember').submit();" class="btn btn-primary">Add Member</a>
-    <a id="btn-cancel" class="btn" data-dismiss="modal">Cancel</a>
+    <a id="btn-add-cancel" class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>
 
