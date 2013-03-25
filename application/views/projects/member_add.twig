@@ -129,8 +129,6 @@ function addMember(event) {
     proj_id: {{ project.id }}
   };
 
-  alert(JSON.stringify(form_data));
-
   $.ajax({
     url: "/projects/add_member_ajax",
     type: "POST",
@@ -139,6 +137,8 @@ function addMember(event) {
     cache: false,
 
     success: function(json) {
+      alert(JSON.stringify(json));
+
       $("#btn-add-member").removeClass("disabled");
       $("#btn-add-member").html('Add Member');
       $("#btn-cancel").removeClass("disabled");
@@ -171,8 +171,6 @@ function addMember(event) {
         $("#addMemberSuccess").hide();
         $("#addMemberError").html('<i class="icon-remove-sign"></i>' + json.message).show();
       }
-
-      alert(JSON.stringify(json));
     }
   })
 }
