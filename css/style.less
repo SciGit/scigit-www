@@ -1180,11 +1180,22 @@ body {
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
     filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  }
 
-    &:hover {
-      background-color: darken(@btn-primary-start-color, 10%);
-      *background-color: darken(@btn-primary-start-color, 10%);
-    }
+  .btn-primary:hover,
+  .btn-primary:focus,
+  .btn-primary:active,
+  .btn-primary.active,
+  .btn-primary.disabled,
+  .btn-primary[disabled] {
+    color: #ffffff;
+    background-color: darken(@btn-primary-start-color, 10%);
+    *background-color: darken(@btn-primary-start-color, 10%);
+  }
+
+  .btn-primary:active,
+  .btn-primary.active {
+    background-color: darken(@btn-primary-start-color, 10%) \9;
   }
 
   @btn-danger-default-color: #da4f49;

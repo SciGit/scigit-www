@@ -1027,9 +1027,19 @@ body .btn-primary {
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc',endColorstr='#0055cc',GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
-body .btn-primary:hover {
+body .btn-primary:hover,
+body .btn-primary:focus,
+body .btn-primary:active,
+body .btn-primary.active,
+body .btn-primary.disabled,
+body .btn-primary[disabled] {
+  color: #ffffff;
   background-color: #4a5b76;
   *background-color: #4a5b76;
+}
+body .btn-primary:active,
+body .btn-primary.active {
+  background-color: #4a5b76 \9;
 }
 body .btn-danger {
   color: #ffffff;
