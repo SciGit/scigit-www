@@ -261,8 +261,6 @@ class Projects extends SciGit_Controller
 
     check_project_perms($proj_id);
 
-		$project = $this->project->get($proj_id);
-
     $username = $this->input->post('username');
     if ($username == null) {
       die(json_encode(array(
@@ -271,32 +269,11 @@ class Projects extends SciGit_Controller
       )));
     }
 
-    // Data of the user who is making the change.
-    $user = $this->user->get_user_by_id(get_user_id());
-    $userPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
-
-    // Data of the user who is being edited.
-    $changeUser = $this->user->get_user_by_login($username);
+    $user = $this->user->get_user_by_login($username);
     $subscriber = $this->input->post('permission') == '4';
     $reader = $this->input->post('permission') == '3';
     $write = $this->input->post('permission') == '2';
     $admin = $this->input->post('permission') == '1';
-    $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
-
-    if ($subscriber && !$project->public) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => 'Invalid format of request.',
-      )));
-    }
-
-    if ($userPermission & (Permission::ADMIN|Permission::OWNER) == 0 ||
-        $changeUserPermission > $userPermission) {
-      die(json_encode(array(
-        'error' => '4',
-        'message' => 'You do not have permission to make this change.',
-      )));
-    }
 
     $perms = Permission::NONE;
     if ($subscriber) {
@@ -308,12 +285,12 @@ class Projects extends SciGit_Controller
       $perms |= $admin ? Permission::ADMIN : 0;
     }
 
-    if ($changeUserPermission === null) {
-      $this->email_queue->add_invite_email($user->id, $changeUser->id, $proj_id);
+    if ($this->permission->get_by_user_on_project($user->id, $proj_id) === null) {
+      $this->email_queue->add_invite_email(get_user_id(), $user->id, $proj_id);
     }
 
     if (!$this->permission->set_user_perms(
-          $changeUser->id, $proj_id, $perms)) {
+          $user->id, $proj_id, $perms)) {
       die(json_encode(array(
         'error' => '1',
         'message' => 'Database error.',
@@ -337,7 +314,7 @@ class Projects extends SciGit_Controller
   }
 
 	public function check_username($str) {
-		if (strlen($str) > 0 && $this->user->get_user_by_login($str) === null) {
+		if ($this->user->get_user_by_login($str) === null) {
 			$this->form_validation->set_message('check_username',
 				'Must provide a valid username.');
 			return false;
