@@ -270,7 +270,8 @@ class Projects extends SciGit_Controller
     }
 
     $user = $this->user->get_user_by_login($username);
-    $subscriber = $this->input->post('permission') == '3';
+    $subscriber = $this->input->post('permission') == '4';
+    $reader = $this->input->post('permission') == '3';
     $write = $this->input->post('permission') == '2';
     $admin = $this->input->post('permission') == '1';
 
@@ -278,6 +279,7 @@ class Projects extends SciGit_Controller
     if ($subscriber) {
       $perms = Permission::SUBSCRIBER;
     } else {
+      // Reader is a permission given to admins and collaborators anyways.
       $perms = Permission::READ;
       $perms |= $write ? Permission::WRITE : 0;
       $perms |= $admin ? Permission::ADMIN : 0;

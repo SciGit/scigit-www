@@ -97,8 +97,10 @@
                 <div class="button">
                   {% if perm.permission b-and 8 %}
                     <i class="icon-wrench"></i>
-                  {% else %}
+                  {% elseif perm.permission b-and 4 %}
                     <i class="icon-edit"></i>
+                  {% elseif perm.permission b-and 2 %}
+                    <i class="icon-eye-open"></i>
                   {% endif %}
                 </div>
               </div>

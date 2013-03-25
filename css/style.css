@@ -6,7 +6,15 @@
   transition: none !important;
 }
 .faded {
-  opacity: 0.5;
+  opacity: 0.6;
+  -o-transition: 1.0s;
+  -ms-transition: 1.0s;
+  -moz-transition: 1.0s;
+  -webkit-transition: 1.0s;
+  transition: 1.0s;
+}
+.extra-faded {
+  opacity: 0.15;
   -o-transition: 1.0s;
   -ms-transition: 1.0s;
   -moz-transition: 1.0s;
@@ -291,8 +299,8 @@ body .modal-small {
   margin: 0 0 0 -225px;
 }
 body .modal-large {
-  width: 800px;
-  margin: 0 0 0 -400px;
+  width: 900px;
+  margin: 0 0 0 -450px;
 }
 body .modal-large .modal-header,
 body .modal-large .modal-body,
@@ -305,7 +313,7 @@ body .modal-large .modal-header {
   padding-bottom: 0;
 }
 body .modal-large .modal-body {
-  max-height: 533.33333333333px;
+  max-height: 600px;
 }
 body .modal-responsive {
   width: 70%;

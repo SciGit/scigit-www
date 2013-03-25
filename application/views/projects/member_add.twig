@@ -1,8 +1,9 @@
 <script>
-var usernames = ['dsherk', 'ericho', 'hansonw', 'tammyt'];
 var existingOrNew = 0;
 
 $(document).ready(function() {
+  $("#option-subscriber").popover();
+
   $("#addMember").submit(addMember);
 
   $("#btnEditDescription").click(function() {
@@ -10,8 +11,19 @@ $(document).ready(function() {
     $("#editDescription").show();
   });
 
-  $("#permission .btn").click(function() {
-    $("#permission .span4").each(function() {
+  $("#permission .btn").click(function(e) {
+    var isPrivateProject = {{ not project.public }};
+    var radio = $(e.target).find('input[type="radio"]');
+    if (radio.length == 0) {
+      radio = $(e.target);
+    }
+
+    if (isPrivateProject && radio[0].value == 4) {
+      e.preventDefault();
+      return true;
+    }
+
+    $("#permission .span3").each(function() {
       $(this).addClass("faded");
     })
 
@@ -104,6 +116,7 @@ function addMember(event) {
   event.preventDefault();
 
   $("#btn-add-member").addClass("disabled");
+  $("#btn-add-member").html('<i class="icon-spinner icon-spin"></i> Loading...');
   $("#btn-cancel").addClass("disabled");
 
   var username = $("input[name='username']").val();
@@ -127,21 +140,37 @@ function addMember(event) {
 
     success: function(json) {
       $("#btn-add-member").removeClass("disabled");
+      $("#btn-add-member").html('Add Member');
       $("#btn-cancel").removeClass("disabled");
 
-      $("#user-invite input").val("");
-      $("#email-invite input").val("");
+      if (json.error == 0) {
+        $("#user-invite input").val("");
+        $("#email-invite input").val("");
 
-      $("#user-invite i").attr("class", "");
-      $("#email-invite i").attr("class", "");
+        $("#user-invite i").attr("class", "");
+        $("#email-invite i").attr("class", "");
 
-      $("#user-invite").removeClass("faded");
-      $("#email-invite").removeClass("faded");
+        $("#user-invite").removeClass("faded");
+        $("#email-invite").removeClass("faded");
 
-      $("#permission .span4").each(function() {
-        $(this).find('input[type="radio"]').attr("checked", false);
-        $(this).removeClass("faded");
-      })
+        $("#permission .span3").each(function() {
+          $(this).find('input[type="radio"]').attr("checked", false);
+          $(this).removeClass("faded");
+        });
+
+        $("#addMemberSuccess").html('<i class="icon-ok-sign"></i>' + json.message).show();
+        $("#addMemberError").hide();
+
+        setTimeout(function() {
+          $("#addMember").modal("hide");
+          setTimeout(function() {
+            document.location.reload(true);
+          }, 500);
+        }, 1500);
+      } else {
+        $("#addMemberSuccess").hide();
+        $("#addMemberError").html('<i class="icon-remove-sign"></i>' + json.message).show();
+      }
 
       alert(JSON.stringify(json));
     }
@@ -182,26 +211,37 @@ function addMember(event) {
       <p></p>
       <div class="well">
         <div id="permission" class="row-fluid">
-          <div class="span4 center">
+          <div class="span3 center">
             <h4><i class="black icon-wrench"></i> Administrator</h4>
             <p></p>
             <p>This user can edit the project and its settings, and add more contributors, or remove them.</p>
             <p></p>
             <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "1"}) | raw }} Select</a>
           </div>
-          <div class="span4 center">
+          <div class="span3 center">
             <h4><i class="black icon-edit"></i> Contributor</h4>
             <p></p>
             <p>This user can make changes to the contents of the project, but can't change settings or users.</p>
             <p></p>
             <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "2"}) | raw }} Select</a>
           </div>
-          <div class="span4 center">
+          <div class="span3 center">
+            <h4><i class="black icon-eye-open"></i> Reader</h4>
+            <p></p>
+            <p>This user can track changes to the project, even when it is private. It is similar to a subscriber.</p>
+            <p></p>
+            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
+          </div>
+          <div class="span3 center {% if not project.public %}extra-faded{% endif %}" id="option-subscriber"
+           {% if not public.project %}
+           rel="popover" data-content="You cannot add subscribers to private projects." data-original-title="Private Project"
+           data-placement="top" data-trigger="hover"
+           {% endif %}>
             <h4><i class="black icon-bookmark-empty"></i> Subscriber</h4>
             <p></p>
             <p>This user can only track changes to this project. Use this to invite people to watch your project.</p>
             <p></p>
-            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "3"}) | raw }} Select</a>
+            <a class="btn btn-large btn-primary">{{ form_radio({name: 'permission', value: "4"}) | raw }} Select</a>
           </div>
         </div>
       </div>
