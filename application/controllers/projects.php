@@ -245,9 +245,10 @@ class Projects extends SciGit_Controller
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
 
     if (!$this->form_validation->run()) {
+      $using = $this->input->post('username') !== null ? "username" : "email";
       die(json_encode(array(
         'error' => '2',
-        'message' => 'temp',
+        'message' => "The $using that you entered is invalid.",
       )));
     }
 
