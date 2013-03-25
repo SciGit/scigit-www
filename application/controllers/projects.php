@@ -272,8 +272,8 @@ class Projects extends SciGit_Controller
     }
 
     // Data of the user who is making the change.
-    $user = $this->user->get_user_by_id(get_user_id());
-    $userPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
+    $adminUser = $this->user->get_user_by_id(get_user_id(), true);
+    $userPermission = $this->permission->get_by_user_on_project($adminUser->id, $proj_id);
 
     // Data of the user who is being edited.
     $changeUser = $this->user->get_user_by_login($username);
@@ -290,8 +290,8 @@ class Projects extends SciGit_Controller
       )));
     }
 
-    if ($userPermission & (Permission::ADMIN|Permission::OWNER) == 0 ||
-        $changeUserPermission > $userPermission) {
+    if ($userPermission->permission & (Permission::ADMIN|Permission::OWNER) == 0 ||
+        $changeUserPermission->permission > $userPermission->permission) {
       die(json_encode(array(
         'error' => '4',
         'message' => 'You do not have permission to make this change.',
@@ -309,7 +309,7 @@ class Projects extends SciGit_Controller
     }
 
     if ($changeUserPermission === null) {
-      $this->email_queue->add_invite_email($user->id, $changeUser->id, $proj_id);
+      $this->email_queue->add_invite_email($adminUser->id, $changeUser->id, $proj_id);
     }
 
     if (!$this->permission->set_user_perms(

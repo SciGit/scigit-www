@@ -137,8 +137,6 @@ function addMember(event) {
     cache: false,
 
     success: function(json) {
-      alert(JSON.stringify(json));
-
       $("#btn-add-member").removeClass("disabled");
       $("#btn-add-member").html('Add Member');
       $("#btn-cancel").removeClass("disabled");
