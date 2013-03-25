@@ -18,7 +18,6 @@ $(document).ready(function() {
       "Edit " + $(this).data("user_name") + "'s Permissions");
 
     var permission = $(this).data("user_perm");
-    alert(permission);
     if (permission & 8 /* Administrator */) {
       $('#editMember input[type="radio"][value="1"]').click();
     } else if (permission & 4 /* Contributor */) {
@@ -42,7 +41,7 @@ $(document).ready(function() {
       return true;
     }
 
-    $("#permission .span3").each(function() {
+    $(e.target).parents("#permission").find(".span3").each(function() {
       $(this).addClass("faded");
     })
 
@@ -292,7 +291,7 @@ function addMember(event) {
             </div>
           </div>
           {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
-          {% if admin %}
+          {% if admin and not (perm.permission b-and 16)  %}
             <div class="buttons shrink">
               <a class="editMember btn btn-small" href="#editMember"
                data-user_id="{{ perm.user_id }}" data-user_name="{{ perm.username }}"
