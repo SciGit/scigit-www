@@ -92,20 +92,28 @@
         {% for perm in perms %}
           <tr>
             <td class="tabular" valign="middle">
-              {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
-              <div class="buttons">
-                <div class="button">
+              <div class="statuses">
+                <div class="status">
                   {% if perm.permission b-and 16 %}
-                    <i class="icon-trophy"></i>
+                    <a class="rawlink" rel="tooltip" title="Owner">
+                      <i class="icon-trophy"></i>
+                    </a>
                   {% elseif perm.permission b-and 8 %}
-                    <i class="icon-wrench"></i>
+                    <a class="rawlink" rel="tooltip" title="Administrator">
+                      <i class="icon-wrench"></i>
+                    </a>
                   {% elseif perm.permission b-and 4 %}
-                    <i class="icon-edit"></i>
+                    <a class="rawlink" rel="tooltip" title="Contributor">
+                      <i class="icon-edit"></i>
+                    </a>
                   {% elseif perm.permission b-and 2 %}
-                    <i class="icon-eye-open"></i>
+                    <a class="rawlink" rel="tooltip" title="Reader">
+                      <i class="icon-eye-open"></i>
+                    </a>
                   {% endif %}
                 </div>
               </div>
+              {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
             </td>
           </tr>
         {% endfor %}

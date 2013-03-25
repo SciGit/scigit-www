@@ -682,6 +682,18 @@ body .tabular .buttons .button {
   margin-left: 10px;
   float: left;
 }
+body .project .statuses,
+body .change .statuses,
+body .tabular .statuses {
+  float: left;
+  padding: 0;
+}
+body .project .statuses .status,
+body .change .statuses .status,
+body .tabular .statuses .status {
+  margin-right: 10px;
+  float: right;
+}
 body .project .title,
 body .change .title,
 body .tabular .title {
