@@ -18,7 +18,7 @@ class Email extends SciGit_Controller
   public function index() {
     $this->process_change_emails();
     $this->process_register_emails();
-    $this->process_invite_emails();
+    $this->process_add_to_project_emails();
   }
 
   private function process_change_emails() {
@@ -47,16 +47,16 @@ class Email extends SciGit_Controller
     $this->email_queue->clear_user_emails();
   }
 
-  private function process_invite_emails() {
-    $emails = $this->email_queue->get_invite_emails();
+  private function process_add_to_project_emails() {
+    $emails = $this->email_queue->get_add_to_project_emails();
     foreach ($emails as $email) {
       $from_user = $this->user->get_user_by_id($email->user_id, false);
       $to_user = $this->user->get_user_by_id($email->user_id2, false);
       $project = $this->project->get($email->proj_id);
       if ($from_user != NULL && $to_user != NULL) {
-        email_invite($from_user, $to_user, $project);
+        email_add_to_project($from_user, $to_user, $project);
       }
     }
-    $this->email_queue->clear_invite_emails();
+    $this->email_queue->clear_add_to_project_emails();
   }
 }

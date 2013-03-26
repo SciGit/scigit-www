@@ -367,7 +367,7 @@ class Projects extends SciGit_Controller
     }
 
     if ($changeUserPermission === null) {
-      $this->email_queue->add_invite_email($adminUser->id, $changeUser->id, $proj_id);
+      $this->email_queue->add_add_to_project_email($adminUser->id, $changeUser->id, $proj_id);
     }
 
     if (!$this->permission->set_user_perms(

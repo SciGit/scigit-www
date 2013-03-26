@@ -4,7 +4,7 @@ class Email_Queue extends CI_Model
 {
   public $email_table = 'email_queue';
   public $email_user_table = 'email_user_queue';
-  public $email_invite_table = 'email_invite_queue';
+  public $email_add_to_project_table = 'email_add_to_project_queue';
 
   public function get() {
     return $this->db->get($this->email_table)->result();
@@ -14,8 +14,8 @@ class Email_Queue extends CI_Model
     return $this->db->get($this->email_user_table)->result();
   }
 
-  public function get_invite_emails() {
-    return $this->db->get($this->email_invite_table)->result();
+  public function get_add_to_project_emails() {
+    return $this->db->get($this->email_add_to_project_table)->result();
   }
 
   public function clear() {
@@ -26,8 +26,8 @@ class Email_Queue extends CI_Model
     return $this->db->empty_table($this->email_user_table);
   }
 
-  public function clear_invite_emails() {
-    return $this->db->empty_table($this->email_invite_table);
+  public function clear_add_to_project_emails() {
+    return $this->db->empty_table($this->email_add_to_project_table);
   }
 
   public function add_user_email($user_id) {
@@ -36,8 +36,8 @@ class Email_Queue extends CI_Model
     ));
   }
 
-  public function add_invite_email($user_id, $user_id2, $proj_id) {
-    $this->db->insert($this->email_invite_table, array(
+  public function add_add_to_project_email($user_id, $user_id2, $proj_id) {
+    $this->db->insert($this->email_add_to_project_table, array(
       'user_id' => $user_id,
       'user_id2' => $user_id2,
       'proj_id' => $proj_id,

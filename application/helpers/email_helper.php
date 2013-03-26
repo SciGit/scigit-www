@@ -42,14 +42,14 @@ function email_register($user) {
   $CI->postageapp->send();
 }
 
-function email_invite($from_user, $to_user, $project) {
+function email_add_to_project($from_user, $to_user, $project) {
   $CI = &get_instance();
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to_user->email);
   $CI->postageapp->subject("Added to project $project->name");
 
-  $CI->postageapp->template('invite');
+  $CI->postageapp->template('add_to_project');
   $CI->postageapp->variables(array(
     'site' => 'http://beta.scigit.com',
     'user_name' => $from_user->username,
