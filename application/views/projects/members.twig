@@ -102,7 +102,7 @@ $(document).ready(function() {
   });
 
   $("#permission .btn").click(function(e) {
-    var isPrivateProject = {{ not project.public }};
+    var isPrivateProject = !{{ project.public }};
     var radio = $(e.target).find('input[type="radio"]');
     if (radio.length == 0) {
       radio = $(e.target);
