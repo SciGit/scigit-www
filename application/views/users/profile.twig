@@ -98,6 +98,7 @@
             </h2>
           </th>
         </tr>
+        {% set found_change = false %}
         {% for project in projects %}
           {% if project.my_changes %}
             {% set found_change = true %}
