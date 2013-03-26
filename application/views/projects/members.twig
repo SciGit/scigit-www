@@ -4,19 +4,33 @@ var existingOrNew = 0;
 $(document).ready(function() {
   $("#option-subscriber").popover();
   $(".deleteMember").each(function() {
+    if ($(this).attr("disabled") == "disabled") {
+      return;
+    }
+
     $(this).popover({
       html: true,
       content: function() {
         return $("#deleteMemberPopoverContent").html();
       },
       placement: "top",
-      trigger: 'click focus',
+      trigger: 'manual',
     });
     $(this).tooltip();
     $(this).data("hasTooltip", true);
   });
-  $(".deleteMember").click(function() {
+  $(".deleteMember").click(function(e) {
+    var target = $(e.target).prop('tagName').toLowerCase() == 'a' ? $(e.target) : $(e.target).parent();
+    if (target.attr("disabled") == "disabled") {
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
+    }
+
+    target.popover('toggle');
+
     $("#deleteMember").data("deletingMember", $(this).data("user_id"));
+
     $(this).data("hasTooltip", !$(this).data("hasTooltip"));
     if ($(this).data("hasTooltip")) {
       $(this).tooltip();
@@ -54,7 +68,22 @@ $(document).ready(function() {
     $("#editDescription").show();
   });
 
+  $(".editMember").each(function() {
+    if ($(this).attr("disabled") == "disabled") {
+      return;
+    }
+
+    $(this).tooltip();
+  });
+
   $(".editMember").click(function(e) {
+    var target = $(e.target).prop('tagName').toLowerCase() == 'a' ? $(e.target) : $(e.target).parent();
+    if (target.attr("disabled") == "disabled") {
+      e.stopPropagation();
+      e.preventDefault();
+      return true;
+    }
+
     $("#editMember").data("editingMember", $(this).data("user_id"));
     $("#editMember").data("editingMemberName", $(this).data("user_name"));
 
@@ -364,21 +393,21 @@ function submitMemberForm(root, form_data) {
             </div>
           </div>
           {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
-          {% if admin and not (perm.permission b-and 16)  %}
-            <div class="buttons shrink">
-              <a class="editMember btn btn-small" href="#editMember"
-               data-user_id="{{ perm.user_id }}" data-user_name="{{ perm.username }}"
-               data-user_perm="{{ perm.permission }}"
-               rel="tooltip" title="Edit {{ perm.username }}'s permissions"
-               data-toggle="modal">
-                <i class="icon-edit"></i>
-              </a>
-              <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
-               title="Remove {{ perm.username }} from project">
-                <i class="icon-trash"></i>
-              </a>
-            </div>
-          {% endif %}
+          <div class="buttons shrink">
+            <a class="editMember btn btn-small" href="#editMember"
+             data-user_id="{{ perm.user_id }}" data-user_name="{{ perm.username }}"
+             data-user_perm="{{ perm.permission }}"
+             title="Edit {{ perm.username }}'s permissions"
+             data-toggle="modal"
+             {% if (perm.permission b-and 16) %}disabled="disabled"{% endif %}>
+              <i class="icon-edit"></i>
+            </a>
+            <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+             title="Remove {{ perm.username }} from project"
+             {% if (perm.permission b-and 16) %}disabled="disabled"{% endif %}>
+              <i class="icon-trash"></i>
+            </a>
+          </div>
         </td>
       </tr>
     {% endfor %}
