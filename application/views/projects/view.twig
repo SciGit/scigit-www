@@ -4,6 +4,15 @@
 
 {% block content %}
 
+<script>
+$(document).ready(function() {
+  $("#btnEditDescription").click(function() {
+    $("#description").hide();
+    $("#editDescription").show();
+  });
+});
+</script>
+
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
   {% if member or admin %}
@@ -60,7 +69,7 @@
               {% if project.description %}
                 {{ word_wrap(project.description, 30) }}
               {% else %}
-                <p>This project has no description.</p>
+                This project has no description.
               {% endif %}
             </p>
             {{ form_open("/projects/admin/#{project.id}", {id: "editDescription", class: "hide"}) | raw }}

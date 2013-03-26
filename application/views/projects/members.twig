@@ -62,11 +62,6 @@ $(document).ready(function() {
   $("#addMember").submit(addMember);
   $("#editMember").submit(editMember);
 
-  $("#btnEditDescription").click(function() {
-    $("#description").hide();
-    $("#editDescription").show();
-  });
-
   $(".editMember").each(function() {
     if ($(this).attr("disabled") == "disabled") {
       return;
