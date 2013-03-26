@@ -392,21 +392,23 @@ function submitMemberForm(root, form_data) {
             </div>
           </div>
           {{ anchor("/users/profile/#{perm.user_id}", perm.username) | raw }}
-          <div class="buttons shrink">
-            <a class="editMember btn btn-small" href="#editMember"
-             data-user_id="{{ perm.user_id }}" data-user_name="{{ perm.username }}"
-             data-user_perm="{{ perm.permission }}"
-             title="Edit {{ perm.username }}'s permissions"
-             data-toggle="modal"
-             {% if (perm.permission b-and 16) %}disabled="disabled"{% endif %}>
-              <i class="icon-edit"></i>
-            </a>
-            <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
-             title="Remove {{ perm.username }} from project"
-             {% if (perm.permission b-and 16) %}disabled="disabled"{% endif %}>
-              <i class="icon-trash"></i>
-            </a>
-          </div>
+          {% if admin %}
+            <div class="buttons shrink">
+              <a class="editMember btn btn-small" href="#editMember"
+               data-user_id="{{ perm.user_id }}" data-user_name="{{ perm.username }}"
+               data-user_perm="{{ perm.permission }}"
+               title="Edit {{ perm.username }}'s permissions"
+               data-toggle="modal"
+               {% if (perm.permission b-and 16) %}disabled="disabled"{% endif %}>
+                <i class="icon-edit"></i>
+              </a>
+              <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="{{ perm.user_id }}"
+               title="Remove {{ perm.username }} from project"
+               {% if (perm.permission b-and 16) %}disabled="disabled"{% endif %}>
+                <i class="icon-trash"></i>
+              </a>
+            </div>
+          {% endif %}
         </td>
       </tr>
     {% endfor %}
