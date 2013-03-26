@@ -340,7 +340,11 @@
     <tr>
       <th>
         <h2>
-          All Updates
+          {% if show_all %}
+            All Updates
+          {% else %}
+            Recent Updates
+          {% endif %}
           {% if not show_all and changes %}
             <div class="pull-right">
               <a class="btn btn-primary btn-valign" href="{{ site_url("/projects/changes/#{project.id}") | raw }}">
