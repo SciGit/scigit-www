@@ -101,7 +101,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#permission .btn").click(function(e) {
+  $(".permission .btn").click(function(e) {
     var isPrivateProject = !{{ project.public }};
     var radio = $(e.target).find('input[type="radio"]');
     if (radio.length == 0) {
@@ -113,7 +113,7 @@ $(document).ready(function() {
       return true;
     }
 
-    $(e.target).parents("#permission").find(".span3").each(function() {
+    $(e.target).parents(".permission").find(".span3").each(function() {
       $(this).addClass("faded");
     })
 

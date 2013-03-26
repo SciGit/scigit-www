@@ -152,7 +152,8 @@ body .hero-unit .close {
 }
 body .alert i.icon-ok-sign,
 body .alert i.icon-remove-sign,
-body .alert i.icon-info-sign {
+body .alert i.icon-info-sign,
+body .alert i.icon-warning-sign {
   float: left;
   margin-top: 2px;
   padding-right: 10px;
@@ -983,6 +984,11 @@ body .stats {
 }
 body .black {
   color: #333;
+}
+body .permission .powers-list {
+  width: 190px;
+  margin: 20px auto;
+  text-align: left;
 }
 body label,
 body input,
