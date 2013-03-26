@@ -72,8 +72,9 @@ $(document).ready(function() {
                 This project has no description.
               {% endif %}
             </p>
-            {{ form_open("/projects/admin/#{project.id}", {id: "editDescription", class: "hide"}) | raw }}
+            {{ form_open("/projects/edit_description_ajax", {id: "editDescription", class: "hide"}) | raw }}
               {{ form_textarea({class: "full-width-input", name: "description", value: project.description}) | raw }}
+              {{ form_input({class: "hidden", name: "proj_id", value: project.id}) | raw }}
               <a href="#" onclick="$('#editDescription').submit();" class="btn btn-primary pull-right">Save</a>
             {{ form_close() | raw }}
           </td>

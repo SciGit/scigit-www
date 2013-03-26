@@ -387,6 +387,35 @@ class Projects extends SciGit_Controller
     )));
   }
 
+  public function edit_description_ajax() {
+    $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
+    $this->form_validation->set_rules('description', 'Description',
+      'max_length[1024]|xss_clean|trim');
+
+    error_log($this->input->post('proj_id'));
+    error_log($this->input->post('description'));
+
+    if (!$this->form_validation->run()) {
+      die (json_encode(array(
+        'error' => '1',
+        'message' => 'Invalid request format.',
+      )));
+    }
+
+    $proj_id = $this->input->post('proj_id');
+    $description = $this->input->post('description');
+
+    check_project_perms($proj_id);
+
+		$project = $this->project->get($proj_id);
+    $this->project->set_description($proj_id, $description);
+
+    die(json_encode(array(
+      'error' => '0',
+      'message' => 'Description updated. Refreshing. <i class="icon-spinner icon-spin"></i>',
+    )));
+  }
+
   public function publish($proj_id) {
     //check_login();
     //check_project_perms($proj_id);
