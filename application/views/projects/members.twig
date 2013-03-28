@@ -19,10 +19,11 @@ $(document).ready(function() {
     $(this).data("hasTooltip", true);
   });
   $(".deleteMember").click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+
     var target = $(e.target).prop('tagName').toLowerCase() == 'a' ? $(e.target) : $(e.target).parent();
     if (target.attr("disabled") == "disabled") {
-      e.stopPropagation();
-      e.preventDefault();
       return false;
     }
 
@@ -38,6 +39,9 @@ $(document).ready(function() {
     }
   });
   $("#members").on("click", ".deleteMemberConfirm", function(event) {
+    e.preventDefault();
+    e.stopPropagation();
+
     var user_id = $("#deleteMember").data("deletingMember");
     $.ajax({
       url: '/projects/member_delete_ajax',
@@ -57,6 +61,8 @@ $(document).ready(function() {
         }
       }
     });
+
+    return true;
   });
 
   $("#addMember").submit(addMember);
