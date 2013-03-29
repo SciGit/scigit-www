@@ -8,10 +8,44 @@
 $(document).ready(function() {
   $("#btnEditDescription").click(function() {
     $("#description").hide();
+    $("#btnEditDescription").hide();
     $("#editDescription").show();
+  });
+
+  $("#editDescription").submit(function(e) {
+    e.preventDefault();
+
+    $('#editDescription a[name="submit"]').attr("class", "btn faded");
+    $('#editDescription a[name="submit"]').html('<i class="icon-spinner icon-spin"></i> Loading...');
+
+    var description = $('#editDescription textarea[name="description"]').val();
+
+    $.ajax({
+      url: '/projects/edit_description_ajax',
+      type: 'post',
+      data: {proj_id: {{ project.id }}, description: description},
+      dataType: 'json',
+      success: function(json) {
+        $('#editDescription a[name="submit"]').attr("class", "btn btn-primary");
+        $('#editDescription a[name="submit"]').html("Save");
+
+        if (json.error == 0) {
+          $("#description").text(description).show();
+          $("#btnEditDescription").show();
+          $("#editDescription").hide();
+
+          $("#projectSuccess").html(json.message).show();
+          $("#projectMessagePost").show();
+        }
+      }
+    });
   });
 });
 </script>
+
+<div id="projectError" class="alert alert-error hide"></div>
+<div id="projectSuccess" class="alert alert-success hide"></div>
+<div id="projectMessagePost" class="separator-small"></div>
 
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
@@ -75,7 +109,7 @@ $(document).ready(function() {
             {{ form_open("/projects/edit_description_ajax", {id: "editDescription", class: "hide"}) | raw }}
               {{ form_textarea({class: "full-width-input", name: "description", value: project.description}) | raw }}
               {{ form_input({class: "hidden", name: "proj_id", value: project.id}) | raw }}
-              <a href="#" onclick="$('#editDescription').submit();" class="btn btn-primary pull-right">Save</a>
+              <a href="#" name="submit" onclick="$('#editDescription').submit();" class="btn btn-primary pull-right">Save</a>
             {{ form_close() | raw }}
           </td>
         </tr>

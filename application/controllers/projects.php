@@ -412,7 +412,7 @@ class Projects extends SciGit_Controller
 
     die(json_encode(array(
       'error' => '0',
-      'message' => 'Description updated. Refreshing. <i class="icon-spinner icon-spin"></i>',
+      'message' => 'Description updated.',
     )));
   }
 
