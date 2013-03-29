@@ -39,8 +39,11 @@ $(document).ready(function() {
     }
   });
   $("#members").on("click", ".deleteMemberConfirm", function(event) {
-    e.preventDefault();
-    e.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
+
+    $(event.target).attr("class", "btn faded");
+    $(event.target).html('<i class="icon-spinner icon-spin"></i> Loading...');
 
     var user_id = $("#deleteMember").data("deletingMember");
     $.ajax({
@@ -49,6 +52,9 @@ $(document).ready(function() {
       data: {user_id: user_id, proj_id: {{ project.id }}},
       dataType: 'json',
       success: function(json) {
+        $(event.target).attr("class", "btn btn-danger");
+        $(event.target).html('Confirm');
+
         if (json.error == 0) {
           $('.popover .deleteMemberSuccess').html(json.message).show();
           $('.popover .deleteMemberError').hide();
