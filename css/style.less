@@ -3,7 +3,7 @@
 
 @diff-green: rgba(124, 252, 0, 0.4);
 @diff-red: rgba(255, 0, 0, 0.2);
-@diff-blue: rgba(0, 0, 255, 0.2);
+@diff-blue: @sg-blue;
 @diff-gray: rgb(235, 235, 235);
 
 @file-changed: @sg-blue;
@@ -93,9 +93,7 @@ body {
 
   pre {
     background-color: white;
-  }
-
-  a {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     text-decoration: none;
 
     &:hover {
@@ -902,14 +900,10 @@ body {
     }
   }
 
-  #diffs {
-
-  }
-
   .diff-text {
     margin: 0 !important;
     width: 100%;
-    font-size: 10px;
+    font-size: 12px;
 
     td, tr td {
       padding: 2px !important;
@@ -918,6 +912,7 @@ body {
 
     th {
       background-color: @diff-blue;
+      color: white;
       border-bottom: 2px solid @diff-gray;
 
       &:hover {
@@ -1028,7 +1023,7 @@ body {
 
   /** Special cases that are hard to write out in a nice format */
   td:hover .diff-text th, tr:hover .diff-text th {
-    background-color: @diff-bue;
+    background-color: @diff-blue;
   }
 
   td:hover .diff-text .change-addition {

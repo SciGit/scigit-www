@@ -28,11 +28,7 @@ body {
 }
 body pre {
   background-color: white;
-}
-body a {
-  text-decoration: none;
-}
-body a:hover {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
 }
 body h1,
@@ -758,7 +754,7 @@ body .clickable:hover pre table tr td {
 body .diff-text {
   margin: 0 !important;
   width: 100%;
-  font-size: 10px;
+  font-size: 12px;
 }
 body .diff-text td,
 body .diff-text tr td {
@@ -766,11 +762,13 @@ body .diff-text tr td {
   margin: 0 !important;
 }
 body .diff-text th {
-  background-color: rgba(0,0,255,0.2);
+  background-color: #4a5b76;
+  color: white;
   border-bottom: 2px solid #ebebeb;
 }
 body .diff-text th:hover {
-  background-color: rgba(0,0,255,0.2);
+  background-color: #4a5b76;
+  color: white;
   border-bottom: 2px solid #ebebeb;
 }
 body .diff-text .linenumber {
@@ -855,7 +853,7 @@ body #diffModal .text {
 }
 body td:hover .diff-text th,
 body tr:hover .diff-text th {
-  background-color: ;
+  background-color: #4a5b76;
 }
 body td:hover .diff-text .change-addition {
   background-color: rgba(124,252,0,0.4);
@@ -864,7 +862,7 @@ body td:hover .diff-text .change-deletion {
   background-color: rgba(255,0,0,0.2);
 }
 body td:hover .diff-text .change-line {
-  background-color: rgba(0,0,255,0.2);
+  background-color: #4a5b76;
 }
 body .create-project {
   width: 315px;

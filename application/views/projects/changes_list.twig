@@ -192,12 +192,12 @@
         var changeType = '';
         if (lines[line][0] == '+') {
           changeType = 'change-addition';
-          lines[line] = ' ' + lines[line].slice(1, lines[line].length).escapeHTML();
+          lines[line] = lines[line].escapeHTML();
           curLineNum -= numDeletions;
           numDeletions = 0;
         } else if (lines[line][0] == '-') {
           changeType = 'change-deletion';
-          lines[line] = ' ' + lines[line].slice(1, lines[line].length).escapeHTML();
+          lines[line] = lines[line].escapeHTML();
           numDeletions++;
         } else {
           lines[line] = lines[line].escapeHTML();
