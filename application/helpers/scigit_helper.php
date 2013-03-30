@@ -191,7 +191,7 @@ function get_os() {
 }
 
 function is_os_supported() {
-  return true;
+  return strpos(get_os(), "Windows") === 0;
 }
 
 function time_ago($timestamp){
