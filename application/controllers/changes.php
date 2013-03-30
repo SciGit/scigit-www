@@ -162,6 +162,7 @@ EOF;
         'error' => '0',
         'message' => $diff,
         'file' => $file,
+        'commit_msg' => $change->commit_msg,
       ));
     } else {
       echo json_encode(array(

@@ -799,141 +799,59 @@ body .diff-text .change-line {
 body .diff-text .change-line:hover {
   background-color: #d2d2d2;
 }
-body .diff .nav {
+body #diffModal .nav {
   border: 1px solid #dcdcdc;
   position: relative !important;
   width: 125px;
   margin-bottom: 20px;
   padding: 10px 15px;
   border-radius: 5px;
-  cursor: pointer;
   -o-transition: .5s;
   -ms-transition: .5s;
   -moz-transition: .5s;
   -webkit-transition: .5s;
   transition: .5s;
 }
-body .diff .nav hr.soften {
+body #diffModal .nav hr.soften {
   margin: 5px 0;
 }
-body .diff .nav li.nav-header,
-body .diff .nav hr.soften {
-  -o-transition: .5s;
-  -ms-transition: .5s;
-  -moz-transition: .5s;
-  -webkit-transition: .5s;
-  transition: .5s;
+body #diffModal .nav.changed-files:hover,
+body #diffModal .nav.changed-files.active {
+  border: 1px solid #4a5b76;
 }
-body .diff .nav.inactive {
-  opacity: 0.5;
+body #diffModal .nav.changed-files:hover > i.arrow,
+body #diffModal .nav.changed-files.active > i.arrow {
+  color: #4a5b76;
 }
-body .diff .nav.changed-files:hover,
-body .diff .nav.changed-files.active {
-  border: 1px solid #00bfff;
+body #diffModal .nav.changed-files:hover li.nav-header,
+body #diffModal .nav.changed-files.active li.nav-header {
+  color: #4a5b76;
 }
-body .diff .nav.changed-files:hover > i.arrow,
-body .diff .nav.changed-files.active > i.arrow {
-  color: #00bfff;
+body #diffModal .nav.changed-files:hover hr.soften,
+body #diffModal .nav.changed-files.active hr.soften {
+  border-top: 1px solid #9aa8bf;
+  border-bottom: 1px solid #c9d0dd;
 }
-body .diff .nav.changed-files:hover li.nav-header,
-body .diff .nav.changed-files.active li.nav-header {
-  color: #00bfff;
+body #diffModal .nav.changed-files a:hover {
+  background-color: #4a5b76;
 }
-body .diff .nav.changed-files:hover hr.soften,
-body .diff .nav.changed-files.active hr.soften {
-  border-top: 1px solid #99e5ff;
-  border-bottom: 1px solid #e6f9ff;
+body #diffModal .nav.changed-files li.active,
+body #diffModal .nav.changed-files li.active a {
+  background-color: #4a5b76;
 }
-body .diff .nav.changed-files a:hover {
-  background-color: #e6f9ff;
+body #diffModal .nav .active a {
+  background-color: #4a5b76;
 }
-body .diff .nav.changed-files li.active,
-body .diff .nav.changed-files li.active a {
-  background-color: #99e5ff;
-}
-body .diff .nav.deleted-files:hover,
-body .diff .nav.deleted-files.active {
-  border: 1px solid #ff0000;
-}
-body .diff .nav.deleted-files:hover > i.arrow,
-body .diff .nav.deleted-files.active > i.arrow {
-  color: #ff0000;
-}
-body .diff .nav.deleted-files:hover li.nav-header,
-body .diff .nav.deleted-files.active li.nav-header {
-  color: #ff0000;
-}
-body .diff .nav.deleted-files:hover hr.soften,
-body .diff .nav.deleted-files.active hr.soften {
-  border-top: 1px solid #ff9999;
-  border-bottom: 1px solid #ffe6e6;
-}
-body .diff .nav.deleted-files a:hover {
-  background-color: #ffe6e6;
-}
-body .diff .nav.deleted-files li.active,
-body .diff .nav.deleted-files li.active a {
-  background-color: #ff9999;
-}
-body .diff .nav.created-files:hover,
-body .diff .nav.created-files.active {
-  border: 1px solid #00ff00;
-}
-body .diff .nav.created-files:hover > i.arrow,
-body .diff .nav.created-files.active > i.arrow {
-  color: #00ff00;
-}
-body .diff .nav.created-files:hover li.nav-header,
-body .diff .nav.created-files.active li.nav-header {
-  color: #00ff00;
-}
-body .diff .nav.created-files:hover hr.soften,
-body .diff .nav.created-files.active hr.soften {
-  border-top: 1px solid #99ff99;
-  border-bottom: 1px solid #e6ffe6;
-}
-body .diff .nav.created-files a:hover {
-  background-color: #e6ffe6;
-}
-body .diff .nav.created-files li.active,
-body .diff .nav.created-files li.active a {
-  background-color: #99ff99;
-}
-body .diff .nav .active a {
-  background-color: rgba(0,0,255,0.2);
-  color: black;
-  text-shadow: none;
-}
-body .diff .nav > i.arrow {
-  color: #dcdcdc;
-  position: absolute;
-  top: 50%;
-  height: 8px;
-  margin-top: -4px;
-  margin-right: -15px;
-  right: 0;
-  z-index: -1;
-  -o-transition: .5s;
-  -ms-transition: .5s;
-  -moz-transition: .5s;
-  -webkit-transition: .5s;
-  transition: .5s;
-}
-body .diff .nav.active {
-  box-shadow: -2px 2px 2px 1px #8f8f8f;
-  -webkit-box-shadow: -2px 2px 2px 1px #8f8f8f;
-  -moz-box-shadow: -2px 2px 2px 1px #8f8f8f;
-}
-body .diff .files {
+body #diffModal .files {
   position: fixed;
-  padding-right: 15px;
+  padding-right: 14px;
   border-right: 1px solid #f5f5f5;
 }
-body .diff .files .nav {
-  width: 150px;
+body #diffModal .files .nav {
+  width: 200px;
 }
-body .diff .text {
-  margin: 0 0 160px 200px;
+body #diffModal .text {
+  margin: 0 0 160px 250px;
 }
 body td:hover .diff-text th,
 body tr:hover .diff-text th {

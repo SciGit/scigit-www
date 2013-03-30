@@ -6,7 +6,7 @@
 @diff-blue: rgba(0, 0, 255, 0.2);
 @diff-gray: rgb(235, 235, 235);
 
-@file-changed: rgba(0, 191, 255);
+@file-changed: @sg-blue;
 @file-deleted: rgb(255, 0, 0);
 @file-created: rgb(0, 255, 0);
 
@@ -960,7 +960,7 @@ body {
     }
   }
 
-  .diff {
+  #diffModal {
     .nav {
       /** Forcefully override fixed position on files div. */
       border: 1px solid darken(@sg-gray, 10%);
@@ -969,19 +969,10 @@ body {
       margin-bottom: 20px;
       padding: 10px 15px;
       border-radius: 5px;
-      cursor: pointer;
       #sg > .transition;
 
       hr.soften {
         margin: 5px 0;
-      }
-
-      li.nav-header, hr.soften {
-        #sg > .transition;
-      }
-
-      &.inactive {
-        #sg > .opacity(0.5);
       }
 
       .diff-files(@color) {
@@ -1003,11 +994,11 @@ body {
         }
 
         a:hover  {
-          background-color: lighten(@color, 45%);
+          background-color: @color;
         }
 
         li.active, li.active a {
-          background-color: lighten(@color, 30%);
+          background-color: @color;
         }
       }
 
@@ -1015,49 +1006,23 @@ body {
         .diff-files(@file-changed);
       }
 
-      &.deleted-files {
-        .diff-files(@file-deleted);
-      }
-
-      &.created-files {
-        .diff-files(@file-created);
-      }
-
       .active a {
-        background-color: @diff-blue;
-        color: black;
-        text-shadow: none;
-      }
-
-      & > i.arrow {
-        color: darken(@sg-gray, 10%);
-        position: absolute;
-        top: 50%;
-        height: 8px;
-        margin-top: -4px;
-        margin-right: -15px;
-        right: 0;
-        z-index: -1;
-        #sg > .transition;
-      }
-
-      &.active {
-        #sg > .box-shadow(-2px 2px 2px 1px, darken(@sg-gray, 40%));
+        background-color: @sg-blue;
       }
     }
 
     .files {
       position: fixed;
-      padding-right: 15px;
+      padding-right: 14px;
       border-right: 1px solid @sg-gray;
 
       .nav {
-        width: 150px;
+        width: 200px;
       }
     }
 
     .text {
-      margin: 0 0 160px 200px;
+      margin: 0 0 160px 250px;
     }
   }
 

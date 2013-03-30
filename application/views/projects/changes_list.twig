@@ -19,26 +19,89 @@
       e.preventDefault();
     });
 
-    $('.diff .nav').click(function(e) {
-      if (e.target == this ||
-          e.target.tagName.toLowerCase() == 'div' ||
-          e.target.tagName.toLowerCase() == 'li') {
-        var target = this;
-        $('.diff').find('.nav').each(function() {
-          $(this).addClass('inactive');
-          $(this).removeClass('active');
-        });
-        $(this).removeClass('inactive');
-        $(this).popover('toggle');
-        $(this).addClass('transition-paused').addClass('active');
-        setTimeout(function() { $(this).removeClass('transition-paused'); }, 500);
-      }
-    });
+    $('.btnViewChanges').click(function(e) {
+      e.preventDefault();
 
-    $('body').append($('#diffs'));
+      var target = e.target.tagName.toLowerCase() == 'i' ? $(e.target).parent() : $(e.target);
 
-    $('.diff').each(function() {
-      $('#diffs').append(this);
+      var change_id = target.data('change_id');
+
+      var icon = $(e.target).find('.changes');
+      icon.removeClass('icon-search')
+          .addClass('icon-spinner')
+          .addClass('icon-spin');
+
+      var form_data = {
+        id : change_id,
+      };
+
+      $.ajax({
+        url: "/changes/diff_ajax",
+        type: "POST",
+        data: form_data,
+        dataType: "json",
+        cache: false,
+
+        success: function(json) {
+          $(icon).removeClass('icon-spin')
+                 .removeClass('icon-spinner')
+                 .addClass('icon-search');
+
+          if (json.error == 0) {
+            var formattedDiff = formatDiff(json.message, change_id);
+            var modalElement = $('#diffModal');
+            var modalBodyElement = modalElement.find(".modal-body");
+            var textElement = modalElement.find('#modal-text');
+            var titleElement = modalElement.find('#modal-title');
+            textElement.html(formattedDiff.diff);
+            titleElement.html(json.commit_msg);
+            modalElement.find('#changed-files').html(formattedDiff.changedFiles);
+            modalElement.modal('show');
+
+            modalElement.on('shown', function() {
+              // XXX: This is all generally ugly. We should clean it up eventually.
+              var currentlyScrolledElement = null;
+              modalBodyElement.on('scroll', function(e) {
+                var outerScrollTop = $(this).scrollTop();
+                var outerHeight = $(this).parent().height() - 100;
+                var highestPercentageInView = 0;
+                var highestPercentageInViewIndex = null;
+
+                modalElement.find('pre').each(function() {
+                  var innerScrollTop = $(this).position().top;
+                  var innerHeight = $(this).height();
+
+                  var percentageInView = (Math.min(outerScrollTop + innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
+                                          Math.max(outerScrollTop + innerScrollTop, outerScrollTop)) /
+                                         innerHeight;
+
+                  if (percentageInView > highestPercentageInView ||
+                      // If there are multiple files on the page that are entirely in view,
+                      // pick the one that is lowest.
+                      (highestPercentageInViewIndex !== null &&
+                       Math.abs(percentageInView - highestPercentageInView) < 0.1 &&
+                       innerScrollTop > $(highestPercentageInViewIndex).position().top)) {
+                    highestPercentageInView = percentageInView;
+                    highestPercentageInViewIndex = this;
+                  }
+                });
+
+                if (highestPercentageInViewIndex !== null &&
+                    highestPercentageInViewIndex !== currentlyScrolledElement) {
+                  if (currentlyScrolledElement !== null) {
+                    var id = $(currentlyScrolledElement).attr('id');
+                    $('a[href="#' + id + '"]').parent().removeClass('active');
+                  }
+
+                  currentlyScrolledElement = highestPercentageInViewIndex;
+                  var id = $(currentlyScrolledElement).attr('id');
+                  $('a[href="#' + id + '"]').parent().addClass('active');
+                }
+              });
+            });
+          }
+        }
+      });
     });
   });
 
@@ -193,15 +256,12 @@
           }
         }
 
-        if (!foundFileInCreatedOrDeletedFiles) {
-          changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '_' + change_id + '">' +
-                                changedFiles[changedFile] + '</a></li>';
-          first = '';
-        }
+        changedFilesString += '<li' + first + '><a href="#' + changedFiles[changedFile] + '_' + change_id + '">' +
+                              changedFiles[changedFile] + '</a></li>';
+        first = '';
       }
 
       formatted.changedFiles += changedFilesString;
-      formatted.changedFiles += '<i class="icon-play icon-large arrow"></i>';
     }
 
     if (deletedFiles.length > 0) {
@@ -214,7 +274,6 @@
       }
 
       formatted.deletedFiles += deletedFilesString;
-      formatted.deletedFiles += '<i class="icon-play icon-large arrow"></i>';
     }
 
     if (createdFiles.length > 0) {
@@ -227,7 +286,6 @@
       }
 
       formatted.createdFiles += createdFilesString;
-      formatted.createdFiles += '<i class="icon-play icon-large arrow"></i>';
     }
 
     if (!foundLineWithActualContent) {
@@ -236,103 +294,27 @@
 
     return formatted;
   }
-
-  function expandChanges(change) {
-    var change_id = change.getAttribute('data-change_id');
-    var td = $("[data-change_id='" + change_id + "']");
-
-    var icon = $(td).find('.changes');
-
-    if (icon.length !== 0 && !icon.data('diffLoaded')) {
-      icon.removeClass('icon-search')
-          .addClass('icon-spinner')
-          .addClass('icon-spin');
-
-      var form_data = {
-        id : change_id,
-      };
-
-      $.ajax({
-        url: "/changes/diff_ajax",
-        type: "POST",
-        data: form_data,
-        dataType: "json",
-        cache: false,
-
-        success: function(json) {
-          if (json.error == 0) {
-            $(td).find('.icon-spin').removeClass('icon-spin')
-                                    .removeClass('icon-spinner')
-                                    .addClass('icon-search');
-            var formattedDiff = formatDiff(json.message, change_id);
-            var diffElement = $("div.diff[data-change_id='" + change_id + "']");
-            var textElement = diffElement.find('.modal-body').find('.text');
-            var modalBodyElement = diffElement.find('.modal-body');
-            textElement.html(formattedDiff.diff);
-            modalBodyElement.find('.changed-files').html(formattedDiff.changedFiles);
-            modalBodyElement.find('.deleted-files').html(formattedDiff.deletedFiles);
-            modalBodyElement.find('.created-files').html(formattedDiff.createdFiles);
-            diffElement.modal('show');
-
-            icon.data('diffLoaded', 'true');
-
-            diffElement.on('shown', function() {
-              // XXX: This is all generally ugly. We should clean it up eventually.
-              var currentlyScrolledElement = null;
-              modalBodyElement.on('scroll', function(e) {
-                var outerScrollTop = $(this).scrollTop();
-                var outerHeight = $(this).parent().height() - 100;
-                var highestPercentageInView = 0;
-                var highestPercentageInViewIndex = null;
-
-                modalBodyElement.find('pre').each(function() {
-                  var innerScrollTop = $(this).position().top;
-                  var innerHeight = $(this).height();
-
-                  var percentageInView = (Math.min(outerScrollTop + innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
-                                          Math.max(outerScrollTop + innerScrollTop, outerScrollTop)) /
-                                         innerHeight;
-
-                  if (percentageInView > highestPercentageInView ||
-                      // If there are multiple files on the page that are entirely in view,
-                      // pick the one that is lowest.
-                      (highestPercentageInViewIndex !== null &&
-                       Math.abs(percentageInView - highestPercentageInView) < 0.1 &&
-                       innerScrollTop > $(highestPercentageInViewIndex).position().top)) {
-                    highestPercentageInView = percentageInView;
-                    highestPercentageInViewIndex = this;
-                  }
-                });
-
-                if (highestPercentageInViewIndex !== null &&
-                    highestPercentageInViewIndex !== currentlyScrolledElement) {
-                  if (currentlyScrolledElement !== null) {
-                    var id = $(currentlyScrolledElement).attr('id');
-                    $('a[href="#' + id + '"]').parent().removeClass('active');
-                  }
-
-                  currentlyScrolledElement = highestPercentageInViewIndex;
-                  var id = $(currentlyScrolledElement).attr('id');
-                  $('a[href="#' + id + '"]').parent().addClass('active');
-                }
-              });
-            });
-          } else {
-            $(td).find('.icon-spin').removeClass('icon-spin')
-                                    .removeClass('icon-spinner')
-                                    .addClass('icon-search');
-          }
-        }
-      });
-    } else {
-      var diffElement = $("div.diff[data-change_id='" + change_id + "']'");
-      diffElement.modal('show');
-    }
-  }
 </script>
 
-<div id="diffs">
-
+<div id="diffModal" class="modal modal-responsive hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2 id="modal-title">
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="row-fluid">
+      <div class="files">
+        <ul id="changed-files" class="nav nav-list">
+        </ul>
+      </div>
+      <div id="modal-text" class="text">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-primary" data-dismiss="modal">Close</a>
+  </div>
 </div>
 
 <div class="well-list">
@@ -369,7 +351,7 @@
                   <em>{{ time_ago(change.commit_ts) }}</em>
                 {% endif %}
               </div>
-              <a href="#" class="btn btn-info btn-small" onclick="expandChanges(this)" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
+              <a href="#" class="btnViewChanges btn btn-info btn-small" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
                 <i class="changes icon-search"></i>
               </a>
               <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small" rel="tooltip" title="View all files">
@@ -378,42 +360,6 @@
             </div>
             <div class="description">
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-            </div>
-            <div class="modal modal-responsive hide fade diff" data-change_id="{{ change.id }}">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2>
-                  {% if change.commit_msg | length > 50 %}
-                    {{ change.commit_msg | slice(0, 50) }} ...
-                  {% else %}
-                    {{ change.commit_msg }}
-                  {% endif %}
-                </h2>
-              </div>
-              <div class="modal-body">
-                <div class="row-fluid">
-                  <div class="files" data-change_id="{{ change.id }}">
-                    {% set settings = "data-toggle=popover data-placement=right" %}
-                    <ul class="nav nav-list changed-files" {{ settings }}
-                     data-content="You are now viewing only deleted files. Click here again to view all changes."
-                     data-original-title="Viewing Only Deleted Files">
-                    </ul>
-                    <ul class="nav nav-list deleted-files" {{ settings }}
-                     data-content="You are now viewing only deleted files. Click here again to view all changes."
-                     data-original-title="Viewing Only Deleted Files">
-                    </ul>
-                    <ul class="nav nav-list created-files" {{ settings }}
-                     data-content="You are now viewing only created files. Click here again to view all changes."
-                     data-original-title="Viewing Only Created Files">
-                    </ul>
-                  </div>
-                  <div class="text" data-change_id="{{ change.id }}">
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a class="btn btn-primary" data-dismiss="modal">Close</a>
-              </div>
             </div>
           </td>
         </tr>
