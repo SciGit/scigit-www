@@ -1029,14 +1029,14 @@ body .btn input[type="radio"] {
   margin-top: -3px;
 }
 body .btn-primary {
-  background-color: #4a5b76;
-  *background-color: #4a5b76;
-  background-image: -ms-linear-gradient(top,#5e7395,#4a5b76);
-  background-image: -webkit-gradient(linear,0 0,0 100%,from(#5e7395),to(#4a5b76));
-  background-image: -webkit-linear-gradient(top,#5e7395,#4a5b76);
-  background-image: -o-linear-gradient(top,#5e7395,#4a5b76);
-  background-image: -moz-linear-gradient(top,#5e7395,#4a5b76);
-  background-image: linear-gradient(top,#5e7395,#4a5b76);
+  background-color: #5e7395;
+  *background-color: #5e7395;
+  background-image: -ms-linear-gradient(top,#6b80a2,#4a5b76);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#6b80a2),to(#4a5b76));
+  background-image: -webkit-linear-gradient(top,#6b80a2,#4a5b76);
+  background-image: -o-linear-gradient(top,#6b80a2,#4a5b76);
+  background-image: -moz-linear-gradient(top,#6b80a2,#4a5b76);
+  background-image: linear-gradient(top,#6b80a2,#4a5b76);
   background-repeat: repeat-x;
   border-color: #0055cc #0055cc #003580;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
@@ -1055,7 +1055,7 @@ body .btn-primary[disabled] {
 }
 body .btn-primary:active,
 body .btn-primary.active {
-  background-color: #4a5b76 \9;
+  background-color: #4a5b76;
 }
 body .btn-danger {
   color: #ffffff;
@@ -1116,6 +1116,36 @@ body .btn-success[disabled] {
 body .btn-success:active,
 body .btn-success.active {
   background-color: #408140 \9;
+}
+body .btn-info {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: #a9b6c9;
+  *background-color: #a9b6c9;
+  background-image: -moz-linear-gradient(top,#b9c3d3,#8a9bb6);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#b9c3d3),to(#8a9bb6));
+  background-image: -webkit-linear-gradient(top,#b9c3d3,#8a9bb6);
+  background-image: -o-linear-gradient(top,#b9c3d3,#8a9bb6);
+  background-image: linear-gradient(to bottom,#b9c3d3,#8a9bb6);
+  background-repeat: repeat-x;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@btn-info-start-color',endColorstr='@btn-info-end-color',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+body .btn-info:hover,
+body .btn-info:focus,
+body .btn-info:active,
+body .btn-info.active,
+body .btn-info.disabled,
+body .btn-info[disabled] {
+  color: #ffffff;
+  background-color: #8a9bb6;
+  *background-color: #8a9bb6;
+}
+body .btn-info:active,
+body .btn-info.active {
+  background-color: #8a9bb6 \9;
 }
 body .btn-xlarge {
   font-size: 15px;

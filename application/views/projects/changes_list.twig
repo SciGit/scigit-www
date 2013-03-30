@@ -369,7 +369,7 @@
                   <em>{{ time_ago(change.commit_ts) }}</em>
                 {% endif %}
               </div>
-              <a href="#" class="btn btn-primary btn-small" onclick="expandChanges(this)" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
+              <a href="#" class="btn btn-info btn-small" onclick="expandChanges(this)" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
                 <i class="changes icon-search"></i>
               </a>
               <a href="/changes/files/{{ change.id }}" class="btn btn-small" rel="tooltip" title="View all files">

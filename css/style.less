@@ -1178,8 +1178,8 @@ body {
     }
   }
 
-  @btn-primary-default-color: @sg-blue;
-  @btn-primary-start-color: lighten(@sg-blue, 10%);
+  @btn-primary-default-color: lighten(@sg-blue, 10%);
+  @btn-primary-start-color: lighten(@sg-blue, 15%);
   @btn-primary-end-color: @sg-blue;
   .btn-primary {
     background-color: @btn-primary-default-color;
@@ -1204,13 +1204,13 @@ body {
   .btn-primary.disabled,
   .btn-primary[disabled] {
     color: #ffffff;
-    background-color: darken(@btn-primary-start-color, 10%);
-    *background-color: darken(@btn-primary-start-color, 10%);
+    background-color: @btn-primary-end-color;
+    *background-color: @btn-primary-end-color;
   }
 
   .btn-primary:active,
   .btn-primary.active {
-    background-color: darken(@btn-primary-start-color, 10%) \9;
+    background-color: @btn-primary-end-color;
   }
 
   @btn-danger-default-color: #da4f49;
@@ -1280,6 +1280,42 @@ body {
   .btn-success:active,
   .btn-success.active {
     background-color: #408140 \9;
+  }
+
+  @btn-info-default-color: lighten(@btn-primary-default-color, 25%);
+  @btn-info-start-color: lighten(@btn-primary-default-color, 30%);
+  @btn-info-end-color: lighten(@btn-primary-default-color, 15%);
+  .btn-info {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: @btn-info-default-color;
+    *background-color: @btn-info-default-color;
+    background-image: -moz-linear-gradient(top, @btn-info-start-color, @btn-info-end-color);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@btn-info-start-color), to(@btn-info-end-color));
+    background-image: -webkit-linear-gradient(top, @btn-info-start-color, @btn-info-end-color);
+    background-image: -o-linear-gradient(top, @btn-info-start-color, @btn-info-end-color);
+    background-image: linear-gradient(to bottom, @btn-info-start-color, @btn-info-end-color);
+    background-repeat: repeat-x;
+    border-color: #2f96b4 #2f96b4 #1f6377;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@btn-info-start-color', endColorstr='@btn-info-end-color', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  }
+
+  .btn-info:hover,
+  .btn-info:focus,
+  .btn-info:active,
+  .btn-info.active,
+  .btn-info.disabled,
+  .btn-info[disabled] {
+    color: #ffffff;
+    background-color: @btn-info-end-color;
+    *background-color: @btn-info-end-color;
+  }
+
+  .btn-info:active,
+  .btn-info.active {
+    background-color: @btn-info-end-color \9;
   }
 
   .btn-xlarge {
