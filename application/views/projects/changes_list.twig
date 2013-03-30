@@ -143,7 +143,7 @@
         fileNameWithoutPath = fileName;
         fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
         lines[line] = header +
-                      '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table diff-text"><tr><th></th><th>' +
+                      '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
                       fileName[1] +
                       '</th></tr>';
         curLineNum = 1;

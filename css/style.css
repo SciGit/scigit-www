@@ -768,7 +768,7 @@ body .diff-text th {
   font-size: 14px;
   border-bottom: 2px solid #ebebeb;
 }
-body .diff-text th:hover {
+body .diff-text tr:hover th {
   background-color: #4a5b76;
   color: white;
   font-weight: 400;
