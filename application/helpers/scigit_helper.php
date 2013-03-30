@@ -144,7 +144,7 @@ function scigit_get_listing($proj_id, $commit_hash, $path) {
 function scigit_get_diff($proj_id, $commit_hash, $path) {
   $dir = SCIGIT_REPO_DIR . '/r' . $proj_id;
   $escape_path = escapeshellarg($path);
-	$handle = popen("cd $dir; git diff $commit_hash:$escape_path", 'r');
+	$handle = popen("cd $dir; git diff $commit_hash^ $commit_hash -- $escape_path", 'r');
 	$output = '';
 	while (!feof($handle)) {
 		$output .= fread($handle, 1024);
