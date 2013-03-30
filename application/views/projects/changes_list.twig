@@ -241,10 +241,10 @@
     var change_id = change.getAttribute('data-change_id');
     var td = $("[data-change_id='" + change_id + "']");
 
-    var icon = $(td).find('.icon-plus-sign-alt');
+    var icon = $(td).find('.changes');
 
     if (icon.length !== 0 && !icon.data('diffLoaded')) {
-      icon.removeClass('icon-plus-sign-alt')
+      icon.removeClass('icon-search')
           .addClass('icon-spinner')
           .addClass('icon-spin');
 
@@ -263,7 +263,7 @@
           if (json.error == 0) {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
-                                    .addClass('icon-plus-sign-alt');
+                                    .addClass('icon-search');
             var formattedDiff = formatDiff(json.message, change_id);
             var diffElement = $("div.diff[data-change_id='" + change_id + "']");
             var textElement = diffElement.find('.modal-body').find('.text');
@@ -320,7 +320,7 @@
           } else {
             $(td).find('.icon-spin').removeClass('icon-spin')
                                     .removeClass('icon-spinner')
-                                    .addClass('icon-plus-sign-alt');
+                                    .addClass('icon-search');
           }
         }
       });
@@ -361,24 +361,20 @@
         <tr>
           <td class="change" valign="middle" data-change_id="{{ change.id }}">
             {{ anchor("/users/profile/#{change.user_id}", change.username) | raw }} updated:
-            <div class="buttons">
-              <div class="button">
+            <div class="buttons shrink">
+              <div class="date">
                 {% if show_all %}
                   <em>{{ change.commit_ts | date('M d, Y') }} at {{ change.commit_ts | date('H:m a') }}</em>
                 {% else %}
                   <em>{{ time_ago(change.commit_ts) }}</em>
                 {% endif %}
               </div>
-              <div class="button">
-                <a href="#" class="rawlink" onclick="expandChanges(this)" data-change_id="{{ change.id }}" rel="tooltip" title="Expand differences">
-                  <i class="changes icon-plus-sign-alt icon-large"></i>
-                </a>
-              </div>
-              <div class="button">
-                <a href="/changes/files/{{ change.id }}" class="rawlink" rel="tooltip" title="View all files">
-                  <i class="icon-folder-close icon-large"></i>
-                </a>
-              </div>
+              <a href="#" class="btn btn-primary btn-small" onclick="expandChanges(this)" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
+                <i class="changes icon-search"></i>
+              </a>
+              <a href="/changes/files/{{ change.id }}" class="btn btn-small" rel="tooltip" title="View all files">
+                <i class="icon-copy"></i>
+              </a>
             </div>
             <div class="description">
               {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
