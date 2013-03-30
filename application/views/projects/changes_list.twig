@@ -372,7 +372,7 @@
               <a href="#" class="btn btn-info btn-small" onclick="expandChanges(this)" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
                 <i class="changes icon-search"></i>
               </a>
-              <a href="/changes/files/{{ change.id }}" class="btn btn-small" rel="tooltip" title="View all files">
+              <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small" rel="tooltip" title="View all files">
                 <i class="icon-copy"></i>
               </a>
             </div>
