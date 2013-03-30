@@ -367,6 +367,8 @@ body .buttons.shrink {
 body .buttons.shrink .btn-small {
   margin-top: -15px;
   margin-bottom: -15px;
+  padding: 2px 5px;
+  font-size: 18px;
 }
 body .btn-valign {
   top: 50%;
