@@ -764,11 +764,15 @@ body .diff-text tr td {
 body .diff-text th {
   background-color: #4a5b76;
   color: white;
+  font-weight: 400;
+  font-size: 14px;
   border-bottom: 2px solid #ebebeb;
 }
 body .diff-text th:hover {
   background-color: #4a5b76;
   color: white;
+  font-weight: 400;
+  font-size: 14px;
   border-bottom: 2px solid #ebebeb;
 }
 body .diff-text .linenumber {
@@ -780,16 +784,16 @@ body .diff-text .content {
   border-left: 5px solid #ebebeb;
 }
 body .diff-text .change-addition {
-  background-color: rgba(124,252,0,0.4);
+  background-color: rgba(124,252,0,0.3);
 }
 body .diff-text .change-addition:hover {
-  background-color: rgba(111,227,0,0.4);
+  background-color: rgba(111,227,0,0.3);
 }
 body .diff-text .change-deletion {
-  background-color: rgba(255,0,0,0.2);
+  background-color: rgba(255,0,0,0.1);
 }
 body .diff-text .change-deletion:hover {
-  background-color: rgba(153,0,0,0.2);
+  background-color: rgba(153,0,0,0.1);
 }
 body .diff-text .change-line {
   background-color: #ebebeb;
@@ -856,10 +860,10 @@ body tr:hover .diff-text th {
   background-color: #4a5b76;
 }
 body td:hover .diff-text .change-addition {
-  background-color: rgba(124,252,0,0.4);
+  background-color: rgba(124,252,0,0.3);
 }
 body td:hover .diff-text .change-deletion {
-  background-color: rgba(255,0,0,0.2);
+  background-color: rgba(255,0,0,0.1);
 }
 body td:hover .diff-text .change-line {
   background-color: #4a5b76;
