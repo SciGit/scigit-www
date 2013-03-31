@@ -53,7 +53,7 @@
             var modalBodyElement = modalElement.find(".modal-body");
             var textElement = modalElement.find('#modal-text');
             var titleElement = modalElement.find('#modal-title');
-            textElement.html(formattedDiff.diff);
+            textElement.html(formattedDiff.diffs);
             titleElement.html(json.commit_msg);
             modalElement.find('#changed-files').html(formattedDiff.changedFiles);
             modalElement.modal('show');
@@ -105,14 +105,10 @@
     });
   });
 
-  function formatDiff(diff, change_id) {
+  function formatDiff(diffs, change_id) {
     var formatted = new Object();
-    formatted.diff = diff;
-    var lines = formatted.diff.split('\n');
-    var curLineNum = 1;
+    formatted.diffs = diffs;
     var numDeletions = 0;
-    var fileName = '';
-    var fileNameWithoutPath;
     var createdFiles = new Array();
     var deletedFiles = new Array();
     var changedFiles = new Array();
@@ -126,88 +122,95 @@
       }
     }
 
-    for (var line in lines) {
-      if (lines[line].indexOf('diff --git') === 0) {
-        var header = '';
-        // We got a new file, and there was one we were processing before this
-        // one.
-        if (fileName != '') {
-          // If we weren't skipping the last file because it was deleted or
-          // invalid, we should add it to the list of files changed.
-          addCurrentFileToChangedList();
-          header = '</table></pre>';
-        }
+    for (var file in diffs) {
+      if (diffs[file].diff == null) {
+        continue;
+      }
 
-        fileName = lines[line].match(/diff --git "?a\/(.*)"? "?b\//);
+      var lines = diffs[file].diff.split('\n');
+      var curLineNum = 1;
+      var fileName = diffs[file].path;
+      var fileNameWithoutPath = fileName.replace(/^.*[\\\/]/, '');
 
-        fileNameWithoutPath = fileName;
-        fileNameWithoutPath = fileNameWithoutPath[1].replace(/^.*[\\\/]/, '');
-        lines[line] = header +
-                      '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
-                      fileName[1] +
-                      '</th></tr>';
-        curLineNum = 1;
-        startOfFile = line;
-        ignoreUntilNextFile = false;
-        firstChangeSetInFile = true;
-      } else if (lines[line].indexOf('deleted') === 0) {
-        deletedFiles.push(fileNameWithoutPath);
-        lines[line] = null;
-      } else if (lines[line].indexOf('new file') === 0) {
-        createdFiles.push(fileNameWithoutPath);
-        lines[line] = null;
-      } else if (lines[line].indexOf('index') === 0 ||
-                 lines[line].indexOf('deleted') === 0 ||
-                 lines[line].indexOf('--') === 0 ||
-                 lines[line].indexOf('++') === 0 ||
-                 lines[line].indexOf('file: ') === 0 ||
-                 lines[line].indexOf('new file mode') === 0) {
-        lines[line] = null;
-      } else if (lines[line][0] == '@') {
-        if (ignoreUntilNextFile) {
+      for (var line in lines) {
+        if (lines[line].indexOf('diff --git') === 0) {
+          var header = '';
+          // We got a new file, and there was one we were processing before this
+          // one.
+          if (file > 0) {
+            // If we weren't skipping the last file because it was deleted or
+            // invalid, we should add it to the list of files changed.
+            addCurrentFileToChangedList();
+            header = '</table></pre>';
+          }
+
+          lines[line] = header +
+                        '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
+                        fileName[1] +
+                        '</th></tr>';
+          curLineNum = 1;
+          startOfFile = line;
+          ignoreUntilNextFile = false;
+          firstChangeSetInFile = true;
+        } else if (lines[line].indexOf('deleted') === 0) {
+          deletedFiles.push(fileNameWithoutPath);
           lines[line] = null;
-          continue;
-        }
+        } else if (lines[line].indexOf('new file') === 0) {
+          createdFiles.push(fileNameWithoutPath);
+          lines[line] = null;
+        } else if (lines[line].indexOf('index') === 0 ||
+                   lines[line].indexOf('deleted') === 0 ||
+                   lines[line].indexOf('--') === 0 ||
+                   lines[line].indexOf('++') === 0 ||
+                   lines[line].indexOf('file: ') === 0 ||
+                   lines[line].indexOf('new file mode') === 0) {
+          lines[line] = null;
+        } else if (lines[line][0] == '@') {
+          if (ignoreUntilNextFile) {
+            lines[line] = null;
+            continue;
+          }
 
-        var lineInFile = lines[line].match(/\d+/);
-        if (lineInFile == 0) {
-          lineInFile = 1;
-        }
+          var lineInFile = lines[line].match(/\d+/);
+          if (lineInFile == 0) {
+            lineInFile = 1;
+          }
 
-        curLineNum = lineInFile;
+          curLineNum = lineInFile;
 
-        if (lineInFile >= 0 && !firstChangeSetInFile) {
-          lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">&nbsp;' +
+          if (lineInFile >= 0 && !firstChangeSetInFile) {
+            lines[line] = '<tr><td class="linenumber"></td><td class="content change-line">&nbsp;' +
+                          '</td></tr>';
+          } else {
+            lines[line] = null;
+            firstChangeSetInFile = false;
+          }
+        } else {
+          if (ignoreUntilNextFile) {
+            lines[line] = null;
+            continue;
+          }
+
+          var changeType = '';
+          if (lines[line][0] == '+') {
+            changeType = 'change-addition';
+            lines[line] = lines[line].escapeHTML();
+            curLineNum -= numDeletions;
+            numDeletions = 0;
+          } else if (lines[line][0] == '-') {
+            changeType = 'change-deletion';
+            lines[line] = lines[line].escapeHTML();
+            numDeletions++;
+          } else {
+            lines[line] = lines[line].escapeHTML();
+          }
+
+          lines[line] = '<tr><td class="linenumber">' +
+                        curLineNum++ +
+                        '</td><td class="content ' + changeType + '">' +
+                        lines[line] +
                         '</td></tr>';
-        } else {
-          lines[line] = null;
-          firstChangeSetInFile = false;
         }
-      } else {
-        if (ignoreUntilNextFile) {
-          lines[line] = null;
-          continue;
-        }
-
-        var changeType = '';
-        if (lines[line][0] == '+') {
-          changeType = 'change-addition';
-          lines[line] = lines[line].escapeHTML();
-          curLineNum -= numDeletions;
-          numDeletions = 0;
-        } else if (lines[line][0] == '-') {
-          changeType = 'change-deletion';
-          lines[line] = lines[line].escapeHTML();
-          numDeletions++;
-        } else {
-          lines[line] = lines[line].escapeHTML();
-        }
-
-        lines[line] = '<tr><td class="linenumber">' +
-                      curLineNum++ +
-                      '</td><td class="content ' + changeType + '">' +
-                      lines[line] +
-                      '</td></tr>';
       }
     }
 
