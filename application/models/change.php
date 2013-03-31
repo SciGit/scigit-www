@@ -98,4 +98,9 @@ class Change extends CI_Model
     if ($change == null) return null;
     return scigit_get_diff($change->proj_id, $change->commit_hash, $path);
   }
+
+  public function get_diff_set($id, $path) {
+    $change = $this->get($id);
+    return scigit_get_diff_set($change->proj_id, $change->commit_hash);
+  }
 }

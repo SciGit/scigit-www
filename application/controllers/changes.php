@@ -86,10 +86,10 @@ class Changes extends SciGit_Controller
         return;
       }
       $file = $this->change->get_file($id, $path);
-      $diff = $this->change->get_diff($id, $path);
+      $diff = $this->change->get_diff_set($id, $path);
 
-      if ($diff == null || $diff == "" || $diff == " ")
-      $diff = <<<EOF
+      if ($diff == null || $diff == "" || $diff == " " || empty($diff)) {
+        $diff = <<<EOF
 diff --git a/application/views/projects/changes.twig b/application/views/projects/changestwig
 index 995a4b6..0d53ef6 100755
 --- a/application/views/projects/changes.twig
@@ -157,6 +157,7 @@ index 0000000..12892f5
 @@ -0,0 +1 @@
 +oh
 EOF;
+      }
 
       echo json_encode(array(
         'error' => '0',

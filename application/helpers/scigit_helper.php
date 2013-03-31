@@ -152,6 +152,33 @@ function scigit_get_diff($proj_id, $commit_hash, $path) {
 	return $output;
 }
 
+function scigit_get_diff_set($proj_id, $commit_hash) {
+  $dir = SCIGIT_REPO_DIR . '/r' . $proj_id;
+	$handle = popen("cd $dir; git diff --name-only $commit_hash^ $commit_hash", 'r');
+	$output = '';
+	while (!feof($handle)) {
+		$output .= fread($handle, 1024);
+	}
+
+  $diffs = array();
+
+  if ($output != '') {
+    $fileNames = explode("\n", $output);
+
+    foreach ($fileNames as $fileName) {
+      $escape_path = escapeshellarg($fileName);
+      $handle = popen("cd $dir; git diff $commit_hash^ $commit_hash -- $fileName", 'r');
+      $output = '';
+      while (!feof($handle)) {
+        $output .= fread($handle, 1024);
+      }
+      $diffs[$fileName] = $output;
+    }
+  }
+
+	return $diffs;
+}
+
 function get_os() {
   $os_list = array(
     // Match user agent string with operating systems
