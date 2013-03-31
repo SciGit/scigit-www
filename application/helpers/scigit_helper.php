@@ -172,7 +172,20 @@ function scigit_get_diff_set($proj_id, $commit_hash) {
       while (!feof($handle)) {
         $output .= fread($handle, 1024);
       }
-      $diffs[$fileName] = $output;
+
+      $binary = true;
+      $type = scigit_get_type($proj_id, $commit_hash, $fileName);
+      if ($type == 'file') {
+        $file = scigit_get_file($proj_id, $commit_hash, $fileName);
+        if (strpos($file, '\0') === false) {
+          $binary = false;
+        }
+      }
+
+      $diffs[$fileName] = array(
+        'diff' => $output,
+        'binary' => $binary,
+      );
     }
   }
 
