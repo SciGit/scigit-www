@@ -182,9 +182,14 @@ function scigit_get_diff_set($proj_id, $commit_hash) {
         }
       }
 
+      if ($binary == true) {
+        $output = null;
+      }
+
       $diffs[$fileName] = array(
         'diff' => $output,
         'binary' => $binary,
+        'path' => $fileName,
       );
     }
   }

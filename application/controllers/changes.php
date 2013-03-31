@@ -89,7 +89,8 @@ class Changes extends SciGit_Controller
       $diff = $this->change->get_diff_set($id, $path);
 
       if ($diff == null || $diff == "" || $diff == " " || empty($diff)) {
-        $diff = <<<EOF
+        $diff1 =
+<<<EOF
 diff --git a/application/views/projects/changes.twig b/application/views/projects/changestwig
 index 995a4b6..0d53ef6 100755
 --- a/application/views/projects/changes.twig
@@ -116,6 +117,10 @@ index 995a4b6..0d53ef6 100755
                  </a>
                </div>
                <div class="button">
+EOF;
+
+        $diff2 =
+<<<EOF
 diff --git a/application/views/projects/changes.twig2 b/application/views/projects/changes.twig
 index 995a4b6..0d53ef6 100755
 --- a/application/views/projects/changes.twig
@@ -142,6 +147,10 @@ index 995a4b6..0d53ef6 100755
                  </a>
                </div>
                <div class="button">
+EOF;
+
+        $diff3 =
+<<<EOF
 diff --git a/file with spaces b/file with spaces
 deleted file mode 100644
 index 8d69e54..0000000
@@ -149,6 +158,10 @@ index 8d69e54..0000000
 +++ /dev/null
 @@ -1 +0,0 @@
 -file: file with spaces
+EOF;
+
+        $diff4 =
+<<<EOF
 diff --git a/application/controllers/testthing b/application/controllers/testthing
 new file mode 100644
 index 0000000..12892f5
@@ -157,6 +170,34 @@ index 0000000..12892f5
 @@ -0,0 +1 @@
 +oh
 EOF;
+
+        $diff = array(
+          array(
+            'binary' => 'true',
+            'path' => 'test.binary',
+            'diff' => null,
+          ),
+          array(
+            'path' => 'application/views/projects/changes.twig',
+            'binary' => 'false',
+            'diff' => $diff1,
+          ),
+          array(
+            'path' => 'application/views/projects/changes.twig2',
+            'binary' => 'false',
+            'diff' => $diff2,
+          ),
+          array(
+            'path' => 'file with spaces',
+            'binary' => 'false',
+            'diff' => $diff3,
+          ),
+          array(
+            'path' => 'application/controllers/testthing',
+            'binary' => 'false',
+            'diff' => $diff4,
+          )
+        );
       }
 
       echo json_encode(array(
