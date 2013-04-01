@@ -25,6 +25,8 @@
       var target = e.target.tagName.toLowerCase() == 'i' ? $(e.target).parent() : $(e.target);
 
       var change_id = target.data('change_id');
+      var proj_id = target.data('proj_id');
+      var commit_hash = target.data('commit_hash');
 
       var icon = $(e.target).find('.changes');
       icon.removeClass('icon-search')
@@ -48,7 +50,7 @@
                  .addClass('icon-search');
 
           if (json.error == 0) {
-            var formattedDiff = formatDiff(json.message, change_id);
+            var formattedDiff = formatDiff(json.message, change_id, proj_id, commit_hash);
             var modalElement = $('#diffModal');
             var modalBodyElement = modalElement.find(".modal-body");
             var textElement = modalElement.find('#modal-text');
@@ -105,7 +107,8 @@
     });
   });
 
-  function formatDiff(diffs, change_id) {
+  // XXX: This entire function should be rewritten.
+  function formatDiff(diffs, change_id, proj_id, commit_hash) {
     var formatted = new Object();
     var numDeletions = 0;
     var createdFiles = new Array();
@@ -128,6 +131,22 @@
       changedFiles.push(fileNameWithoutPath);
 
       if (diffs[file].diff == null) {
+        var message = 'The changes in this file are unavailable.';
+        if (fileExtension.toLowerCase() == 'docx') {
+          message = '<a href="scigit://view_diff?project_id=' + proj_id +
+                    '&commit_hash=' + commit_hash +
+                    '&filename=' + fileName +
+                    '">View changes to this file on the SciGit client.</a>';
+        }
+
+        if (diffs[file].binary) {
+          formatted.diff += '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
+                            fileName +
+                            '</th></tr>' +
+                            '<tr><td class="linenumber"></td>' +
+                            '<td class="content">' + message + '</td>' +
+                            '</tr></table></pre>';
+        }
         continue;
       }
 
@@ -136,18 +155,7 @@
 
       for (var line in lines) {
         if (lines[line].indexOf('diff --git') === 0) {
-          var header = '';
-          // We got a new file, and there was one we were processing before this
-          // one.
-          if (file > 0) {
-            // If we weren't skipping the last file because it was deleted or
-            // invalid, we should add it to the list of files changed.
-            //addCurrentFileToChangedList();
-            header = '</table></pre>';
-          }
-
-          lines[line] = header +
-                        '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
+          lines[line] = '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
                         fileName +
                         '</th></tr>';
           curLineNum = 1;
@@ -324,7 +332,9 @@
                   <em>{{ time_ago(change.commit_ts) }}</em>
                 {% endif %}
               </div>
-              <a href="#" class="btnViewChanges btn btn-info btn-small" data-change_id="{{ change.id }}" rel="tooltip" title="View differences">
+              <a href="#" class="btnViewChanges btn btn-info btn-small"
+               data-change_id="{{ change.id }}" data-proj_id="{{ change.proj_id }}" data-commit_hash="{{ change.commit_hash }}"
+               rel="tooltip" title="View differences">
                 <i class="changes icon-search"></i>
               </a>
               <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small" rel="tooltip" title="View all files">

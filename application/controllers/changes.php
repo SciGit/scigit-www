@@ -183,6 +183,11 @@ EOF;
             'diff' => $diff1,
           ),
           array(
+            'binary' => 'true',
+            'path' => 'document.docx',
+            'diff' => null,
+          ),
+          array(
             'path' => 'application/views/projects/changes.twig2',
             'binary' => 'false',
             'diff' => $diff2,
