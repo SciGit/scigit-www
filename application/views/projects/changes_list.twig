@@ -53,7 +53,7 @@
             var modalBodyElement = modalElement.find(".modal-body");
             var textElement = modalElement.find('#modal-text');
             var titleElement = modalElement.find('#modal-title');
-            textElement.html(formattedDiff.diffs);
+            textElement.html(formattedDiff.diff);
             titleElement.html(json.commit_msg);
             modalElement.find('#changed-files').html(formattedDiff.changedFiles);
             modalElement.modal('show');
@@ -107,7 +107,6 @@
 
   function formatDiff(diffs, change_id) {
     var formatted = new Object();
-    formatted.diffs = diffs;
     var numDeletions = 0;
     var createdFiles = new Array();
     var deletedFiles = new Array();
@@ -116,21 +115,24 @@
     var firstChangeSetInFile = true;
     var startOfFile;
 
-    function addCurrentFileToChangedList() {
-      if (!ignoreUntilNextFile) {
-        changedFiles.push(fileNameWithoutPath);
-      }
-    }
+    formatted.diff = '';
+    formatted.changedFiles = '';
+    formatted.deletedFiles = '';
+    formatted.createdFiles = '';
 
     for (var file in diffs) {
+      var fileName = diffs[file].path;
+      var fileNameWithoutPath = fileName.replace(/^.*[\\\/]/, '');
+      var fileExtension = fileName.split('.').pop();
+
+      changedFiles.push(fileNameWithoutPath);
+
       if (diffs[file].diff == null) {
         continue;
       }
 
-      var lines = diffs[file].diff.split('\n');
       var curLineNum = 1;
-      var fileName = diffs[file].path;
-      var fileNameWithoutPath = fileName.replace(/^.*[\\\/]/, '');
+      var lines = diffs[file].diff.split('\n');
 
       for (var line in lines) {
         if (lines[line].indexOf('diff --git') === 0) {
@@ -140,13 +142,13 @@
           if (file > 0) {
             // If we weren't skipping the last file because it was deleted or
             // invalid, we should add it to the list of files changed.
-            addCurrentFileToChangedList();
+            //addCurrentFileToChangedList();
             header = '</table></pre>';
           }
 
           lines[line] = header +
                         '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
-                        fileName[1] +
+                        fileName +
                         '</th></tr>';
           curLineNum = 1;
           startOfFile = line;
@@ -212,27 +214,19 @@
                         '</td></tr>';
         }
       }
-    }
 
-    if (fileName != '') {
-      addCurrentFileToChangedList();
-    }
+      var foundLineWithActualContent = false;
+      for (var line in lines) {
+        if (lines[line] !== null) {
+          if (lines[line].length > 0) {
+            foundLineWithActualContent = true;
+          }
 
-    formatted.diff = '';
-    formatted.changedFiles = '';
-    formatted.deletedFiles = '';
-    formatted.createdFiles = '';
-    var foundLineWithActualContent;
-    for (var line in lines) {
-      if (lines[line] !== null) {
-        if (lines[line].length > 0) {
-          foundLineWithActualContent = true;
+          formatted.diff = formatted.diff + lines[line] + '\n';
         }
-
-        formatted.diff = formatted.diff + lines[line] + '\n';
       }
+      formatted.diff += '</table></pre>';
     }
-    formatted.diff += '</table></pre>';
 
     if (changedFiles.length > 0) {
       var changedFilesString = '<li class="nav-header">Updated Files</li><hr class="soften" />';
@@ -265,30 +259,6 @@
       }
 
       formatted.changedFiles += changedFilesString;
-    }
-
-    if (deletedFiles.length > 0) {
-      var deletedFilesString = '<li class="nav-header">Deleted Files</li><hr class="soften" />';
-
-      foundLineWithActualContent = true;
-
-      for (var deletedFile in deletedFiles) {
-        deletedFilesString += '<li><a href="#' + deletedFiles[deletedFile] + '_' + change_id + '">' + deletedFiles[deletedFile] + '</a></li>';
-      }
-
-      formatted.deletedFiles += deletedFilesString;
-    }
-
-    if (createdFiles.length > 0) {
-      var createdFilesString = '<li class="nav-header">Created Files</li><hr class="soften" />';
-
-      foundLineWithActualContent = true;
-
-      for (var createdFile in createdFiles) {
-        createdFilesString += '<li><a href="#' + createdFiles[createdFile] + '_' + change_id + '">' + createdFiles[createdFile] + '</a></li>';
-      }
-
-      formatted.createdFiles += createdFilesString;
     }
 
     if (!foundLineWithActualContent) {
