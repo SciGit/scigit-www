@@ -25,7 +25,9 @@ class Auth extends SciGit_Controller
 		$this->lang->load('tank_auth');
     $this->load->model('tank_auth/user');
     $this->load->model('email_queue');
+    $this->load->model('user_invite');
     $this->load->model('project');
+    $this->load->model('permission');
 	}
 
 	function index()
@@ -175,6 +177,24 @@ class Auth extends SciGit_Controller
 						$this->form_validation->set_value('email'),
 						$this->form_validation->set_value('password'),
 						$email_activation))) {									// success
+
+          // If this user was invited, deal with the invitation now.
+          if ($this->session->userdata('invite_hash') !== false) {
+            $hash = $this->session->userdata('invite_hash');
+            $invite = $this->user_invite->get_by_hash($hash);
+
+            // Fail silently if there's no invite matching this hash.
+            if ($invite !== null) {
+              $proj_id = $invite->proj_id;
+              $permission = $invite->permission;
+
+              $this->permission->set_user_perms($data['user_id'], $proj_id, $permission);
+            }
+
+            $this->user_invite->delete($invite->id);
+
+            $this->session->unset_userdata('invite_hash');
+          }
 
 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 

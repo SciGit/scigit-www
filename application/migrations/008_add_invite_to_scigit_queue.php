@@ -55,6 +55,12 @@ class Migration_Add_invite_to_scigit_queue extends CI_Migration
         'null' => false,
       ),
 
+      'to' => array(
+        'type' => 'VARCHAR',
+        'constraint' => '100',
+        'null' => false,
+      ),
+
       'permission' => array(
         'type' => 'INT',
         'null' => false,

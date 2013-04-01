@@ -22,6 +22,7 @@ class User_Invite extends CI_Model
     $data = array(
       'proj_id' => $proj_id,
       'permission' => $permission,
+      'to' => $to_email,
       'hash' => $hash,
     );
 

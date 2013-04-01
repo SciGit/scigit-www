@@ -278,22 +278,28 @@ class Projects extends SciGit_Controller
   public function member_add_ajax() {
 		check_login();
 
-    $this->form_validation->set_rules('username', 'Username',
-      'callback_check_username|trim');
-    $this->form_validation->set_rules('email', 'Email Address',
-      'callback_check_email|valid_email|is_unique[users.email]|is_unique[user_invites.to]');
+    $username = $this->input->post('username');
+    $email = $this->input->post('email');
+
+    if ($username != null && $username != 'null') {
+      $this->form_validation->set_rules('username', 'Username',
+        'callback_check_username|trim');
+    }
+    if ($email != null && $email != 'null') {
+      $this->form_validation->set_rules('email', 'Email Address',
+        'valid_email|is_unique[users.email]|is_unique[user_invites.to]');
+    }
+
     $this->form_validation->set_rules('permission', 'Permissions', 'trim|required');
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
     $this->form_validation->set_rules('type', 'Type', 'trim|required');
 
-    error_log($this->input->post('username'));
-    error_log($this->input->post('email'));
-    error_log($this->input->post('permission'));
-    error_log($this->input->post('proj_id'));
-    error_log($this->input->post('type'));
+    if (!$this->form_validation->run()) {
+      $using = "username";
+      if ($email != null) {
+        $using = "email";
+      }
 
-    if (false && !$this->form_validation->run()) {
-      $using = $this->input->post('username') !== null ? "username" : "email";
       die(json_encode(array(
         'error' => '2',
         'message' => "The $using that you entered is invalid.",
@@ -316,8 +322,6 @@ class Projects extends SciGit_Controller
     $userPermission = $this->permission->get_by_user_on_project($adminUser->id, $proj_id);
 
     // Data of the user who is making the change.
-    $username = $this->input->post('username');
-    $email = $this->input->post('email');
     $permission = $this->input->post('permission');
 
     $subscriber = $permission == '4';
@@ -343,7 +347,7 @@ class Projects extends SciGit_Controller
     }
 
     // Add user by email.
-    if ($email != null) {
+    if ($email != null && $email != 'null') {
       invite_user_to_scigit($adminUser->id, $email, $project->id, $perms);
 
       die(json_encode(array(
@@ -352,7 +356,7 @@ class Projects extends SciGit_Controller
       )));
 
     // Add user by username.
-    } else if ($username != null) {
+    } else if ($username != null && $username != 'null') {
       // Data of the user who is being edited.
       $changeUser = $this->user->get_user_by_login($username);
       $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
@@ -439,10 +443,6 @@ class Projects extends SciGit_Controller
     //check_login();
     //check_project_perms($proj_id);
     $this->twig->display('projects/publish.twig');
-  }
-
-  public function check_email($str) {
-    return true;
   }
 
 	public function check_username($str) {
