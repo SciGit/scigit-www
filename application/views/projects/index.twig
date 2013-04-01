@@ -62,7 +62,7 @@ function unsubscribe(link) {
         {% for project in projects %}
           <tr>
             <td class="project" valign="middle" data-proj_id="{{ project.id }}">
-              <div class="title">
+              <div class="title pull-left">
                 {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
               </div>
               <div class="buttons">
@@ -119,7 +119,7 @@ function unsubscribe(link) {
         {% for subscription in subscriptions %}
           <tr>
             <td class="project" valign="middle" data-proj_id="{{ subscription.id }}">
-              <div class="title">
+              <div class="title pull-left">
                 {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
               </div>
               <div class="buttons">
