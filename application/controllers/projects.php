@@ -9,6 +9,7 @@ class Projects extends SciGit_Controller
 		$this->load->model('change');
 		$this->load->model('permission');
 		$this->load->model('email_queue');
+		$this->load->model('user_invite');
 		$this->load->library('form_validation');
 	}
 
@@ -285,7 +286,13 @@ class Projects extends SciGit_Controller
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
     $this->form_validation->set_rules('type', 'Type', 'trim|required');
 
-    if (!$this->form_validation->run()) {
+    error_log($this->input->post('username'));
+    error_log($this->input->post('email'));
+    error_log($this->input->post('permission'));
+    error_log($this->input->post('proj_id'));
+    error_log($this->input->post('type'));
+
+    if (false && !$this->form_validation->run()) {
       $using = $this->input->post('username') !== null ? "username" : "email";
       die(json_encode(array(
         'error' => '2',
@@ -305,56 +312,18 @@ class Projects extends SciGit_Controller
 
 		$project = $this->project->get($proj_id);
 
-    $username = $this->input->post('username');
-    if ($username == null) {
-      die(json_encode(array(
-        'error' => '3',
-        'message' => 'You must use a username for now.',
-      )));
-    }
-
-    // Data of the user who is making the change.
     $adminUser = $this->user->get_user_by_id(get_user_id(), true);
     $userPermission = $this->permission->get_by_user_on_project($adminUser->id, $proj_id);
 
-    // Data of the user who is being edited.
-    $changeUser = $this->user->get_user_by_login($username);
-    $subscriber = $this->input->post('permission') == '4';
-    $reader = $this->input->post('permission') == '3';
-    $write = $this->input->post('permission') == '2';
-    $admin = $this->input->post('permission') == '1';
-    $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
+    // Data of the user who is making the change.
+    $username = $this->input->post('username');
+    $email = $this->input->post('email');
+    $permission = $this->input->post('permission');
 
-    if ($this->input->post('type') != 'edit' &&
-        $changeUserPermission !== null &&
-        $changeUserPermission->permission != 0 && $changeUserPermission->permission != Permission::SUBSCRIBER) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => 'This user is already a member of this project.',
-      )));
-    }
-
-    if ($adminUser->id === $changeUser->id) {
-      die(json_encode(array(
-        'error' => '4',
-        'message' => 'You cannot change your own permissions.',
-      )));
-    }
-
-    if ($subscriber && !$project->public) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => 'Invalid format of request.',
-      )));
-    }
-
-    if ($userPermission->permission & (Permission::ADMIN|Permission::OWNER) == 0 ||
-        ($changeUserPermission !== null && $changeUserPermission->permission > $userPermission->permission)) {
-      die(json_encode(array(
-        'error' => '4',
-        'message' => 'You do not have permission to make this change.',
-      )));
-    }
+    $subscriber = $permission == '4';
+    $reader = $permission == '3';
+    $write = $permission == '2';
+    $admin = $permission == '1';
 
     $perms = Permission::NONE;
     if ($subscriber) {
@@ -366,34 +335,84 @@ class Projects extends SciGit_Controller
       $perms |= $admin ? Permission::ADMIN : 0;
     }
 
-    if ($changeUserPermission === null) {
-      $this->email_queue->add_add_to_project_email($adminUser->id, $changeUser->id, $proj_id);
-    }
-
-    if (!$this->permission->set_user_perms(
-          $changeUser->id, $proj_id, $perms)) {
+    if ($userPermission->permission & (Permission::ADMIN|Permission::OWNER) == 0) {
       die(json_encode(array(
-        'error' => '1',
-        'message' => 'Database error.',
+        'error' => '4',
+        'message' => 'You do not have permission to make this change.',
       )));
     }
 
-    $msg = (($this->input->post('type') === 'edit') ? 'Changes saved.' : 'Member added.') .
-           ' Refreshing. <i class="icon-spinner icon-spin"></i>';
+    // Add user by email.
+    if ($email != null) {
+      invite_user_to_scigit($adminUser->id, $email, $project->id, $perms);
 
-    die(json_encode(array(
-      'error' => '0',
-      'message' => $msg,
-    )));
+      die(json_encode(array(
+        'error' => '0',
+        'message' => 'User invited. Refreshing. <i class="icon-spinner icon-spin"></i>',
+      )));
+
+    // Add user by username.
+    } else if ($username != null) {
+      // Data of the user who is being edited.
+      $changeUser = $this->user->get_user_by_login($username);
+      $changeUserPermission = $this->permission->get_by_user_on_project($changeUser->id, $proj_id);
+
+      if ($this->input->post('type') != 'edit' &&
+          $changeUserPermission !== null &&
+          $changeUserPermission->permission != 0 && $changeUserPermission->permission != Permission::SUBSCRIBER) {
+        die(json_encode(array(
+          'error' => '2',
+          'message' => 'This user is already a member of this project.',
+        )));
+      }
+
+      if ($adminUser->id === $changeUser->id) {
+        die(json_encode(array(
+          'error' => '4',
+          'message' => 'You cannot change your own permissions.',
+        )));
+      }
+
+      if ($subscriber && !$project->public) {
+        die(json_encode(array(
+          'error' => '2',
+          'message' => 'Invalid format of request.',
+        )));
+      }
+
+      if ($changeUserPermission !== null && $changeUserPermission->permission > $userPermission->permission) {
+        die(json_encode(array(
+          'error' => '4',
+          'message' => 'You do not have permission to make this change.',
+        )));
+      }
+
+      if ($changeUserPermission === null) {
+        $this->email_queue->add_add_to_project_email($adminUser->id, $changeUser->id, $proj_id);
+      }
+
+      if (!$this->permission->set_user_perms(
+            $changeUser->id, $proj_id, $perms)) {
+        die(json_encode(array(
+          'error' => '1',
+          'message' => 'Database error.',
+        )));
+      }
+
+      $msg = (($this->input->post('type') === 'edit') ? 'Changes saved.' : 'Member added.') .
+             ' Refreshing. <i class="icon-spinner icon-spin"></i>';
+
+      die(json_encode(array(
+        'error' => '0',
+        'message' => $msg,
+      )));
+    }
   }
 
   public function edit_description_ajax() {
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
     $this->form_validation->set_rules('description', 'Description',
       'max_length[1024]|xss_clean|trim');
-
-    error_log($this->input->post('proj_id'));
-    error_log($this->input->post('description'));
 
     if (!$this->form_validation->run()) {
       die (json_encode(array(

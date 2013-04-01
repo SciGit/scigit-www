@@ -61,7 +61,7 @@ function email_add_to_project($from_user, $to_user, $project) {
   $CI->postageapp->send();
 }
 
-function email_invite_to_scigit($from_user, $to_email, $project, $permission) {
+function email_invite_to_scigit($from_user, $to_email, $project, $permission, $hash) {
   $CI = &get_instance();
 
   $from_name = $from_user->fullname != null ? $from_user->fullname : $from_user->username;
@@ -77,6 +77,9 @@ function email_invite_to_scigit($from_user, $to_email, $project, $permission) {
     'user_id' => $from_user->id,
     'proj_name' => $project->name,
     'proj_id' => $project->id,
+    'permission' => $permission,
     'hash' => $hash,
   ));
+
+  $CI->postageapp->send();
 }

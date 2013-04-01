@@ -19,6 +19,7 @@ class Email extends SciGit_Controller
     $this->process_change_emails();
     $this->process_register_emails();
     $this->process_add_to_project_emails();
+    $this->process_invite_to_scigit_emails();
   }
 
   private function process_change_emails() {

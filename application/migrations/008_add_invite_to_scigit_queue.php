@@ -1,6 +1,6 @@
 <?
 
-class Migration_Invite_to_scigit_queue extends CI_Migration
+class Migration_Add_invite_to_scigit_queue extends CI_Migration
 {
   public function up()
   {

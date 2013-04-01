@@ -17,7 +17,7 @@ class User_Invite extends CI_Model
 
   public function create($from_user, $to_email, $proj_id, $permission) {
     $from_name = $from_user->fullname != null ? $from_user->fullname : $from_user->username;
-    $hash = hash('sha256', '1a2a|' + $from_name + '|' + $to_email);
+    $hash = hash('sha256', '1a2a|' . $from_name . '|' . $to_email);
 
     $data = array(
       'proj_id' => $proj_id,
