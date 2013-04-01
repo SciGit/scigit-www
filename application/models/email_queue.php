@@ -52,4 +52,14 @@ class Email_Queue extends CI_Model
       'proj_id' => $proj_id,
     ));
   }
+
+  public function add_invite_to_scigit_email($user_id, $to, $proj_id, $permission, $hash) {
+    $this->db->insert($this->email_invite_to_scigit_table, array(
+      'user_id' => $user_id,
+      'proj_id' => $proj_id,
+      'to' => $to,
+      'permission' => $permission,
+      'hash' => $hash,
+    ));
+  }
 }

@@ -19,6 +19,22 @@ class Permission extends CI_Model
   // All permissions together.
   const ALL = 31;
 
+  public function get_permission_literal($permission, $lowercase = false) {
+    if ($permission & self::OWNER) {
+      return $lowercase ? "owner" : "Owner";
+    } else if ($permission & self::ADMIN) {
+      return $lowercase ? "administrator" : "Administrator";
+    } else if ($permission & self::WRITE) {
+      return $lowercase ? "contributor" : "Contributor";
+    } else if ($permission & self::READ) {
+      return $lowercase ? "reader" : "Reader";
+    } else if ($permission & self::SUBSCRIBER) {
+      return $lowercase ? "subscriber" : "Subscriber";
+    } else {
+      return $lowercase ? "none" : "None";
+    }
+  }
+
 	public function get_by_user_on_project($user_id, $proj_id) {
 		$this->db->where('user_id', $user_id);
 		$this->db->where('proj_id', $proj_id);

@@ -62,6 +62,15 @@ function check_project_admin($proj_id) {
   }
 }
 
+function invite_user_to_scigit($from_user_id, $to_email, $proj_id, $permission) {
+  $CI = &get_instance();
+
+  $user = $CI->user->get_user_by_id($from_user_id, true);
+
+  $invite = $CI->user_invite->create($user, $to_email, $proj_id, $permission);
+  $CI->email_queue->add_invite_to_scigit_email($user->id, $to_email, $proj_id, $permission, $invite['hash']);
+}
+
 function show_403() {
   show_error('Not authorized.', 403);
 }
@@ -195,6 +204,11 @@ function scigit_get_diff_set($proj_id, $commit_hash) {
   }
 
 	return $diffs;
+}
+
+function get_permission_literal($permission, $lowercase = false) {
+  $CI = &get_instance();
+  return $CI->permission->get_permission_literal($permission, $lowercase);
 }
 
 function get_os() {

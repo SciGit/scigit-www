@@ -59,4 +59,19 @@ class Email extends SciGit_Controller
     }
     $this->email_queue->clear_add_to_project_emails();
   }
+
+  private function process_invite_to_scigit_emails() {
+    $emails = $this->email_queue->get_invite_to_scigit_emails();
+    foreach ($emails as $email) {
+      $from_user = $this->user->get_user_by_id($email->user_id, false);
+      $to_email = $email->to;
+      $project = $this->project->get($email->proj_id);
+      $permission = get_permission_literal($email->permission);
+      $hash = $email->hash;
+      if ($from_user != NULL && $to_email != NULL) {
+        email_invite_to_scigit($from_user, $to_email, $project, $permission, $hash);
+      }
+    }
+    $this->email_queue->clear_invite_to_scigit_emails();
+  }
 }

@@ -60,3 +60,23 @@ function email_add_to_project($from_user, $to_user, $project) {
 
   $CI->postageapp->send();
 }
+
+function email_invite_to_scigit($from_user, $to_email, $project, $permission) {
+  $CI = &get_instance();
+
+  $from_name = $from_user->fullname != null ? $from_user->fullname : $from_user->username;
+
+  $CI->postageapp->from('no-reply@scigit.com');
+  $CI->postageapp->to($to_email);
+  $CI->postageapp->subject("$from_name has invited you to join SciGit!");
+
+  $CI->postageapp->template('invite_to_scigit');
+  $CI->postageapp->variables(array(
+    'site' => 'http://beta.scigit.com',
+    'user_name' => $from_name,
+    'user_id' => $from_user->id,
+    'proj_name' => $project->name,
+    'proj_id' => $project->id,
+    'hash' => $hash,
+  ));
+}

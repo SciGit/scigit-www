@@ -280,7 +280,7 @@ class Projects extends SciGit_Controller
     $this->form_validation->set_rules('username', 'Username',
       'callback_check_username|trim');
     $this->form_validation->set_rules('email', 'Email Address',
-      'callback_check_email|trim');
+      'callback_check_email|valid_email|is_unique[users.email]|is_unique[user_invites.to]');
     $this->form_validation->set_rules('permission', 'Permissions', 'trim|required');
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
     $this->form_validation->set_rules('type', 'Type', 'trim|required');
