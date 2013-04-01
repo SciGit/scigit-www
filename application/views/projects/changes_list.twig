@@ -130,16 +130,18 @@
 
       changedFiles.push(fileNameWithoutPath);
 
-      if (diffs[file].diff == null || fileExtension.toLowerCase() == 'docx') {
-        var message = 'The changes in this file are unavailable.';
-        if (fileExtension.toLowerCase() == 'docx') {
+      var isDoc = fileExtension.toLowerCase() == 'doc' || 
+                  fileExtension.toLowerCase() == 'docx';
+      if (diffs[file].diff == null || isDoc) {
+        var message = 'This file cannot be viewed as plain-text.';
+        if (isDoc) {
           message = '<a href="scigit://view_change?project_id=' + proj_id +
                     '&commit_hash=' + commit_hash +
                     '&filename=' + fileName +
                     '">View changes to this file on the SciGit client.</a>';
         }
 
-        if (diffs[file].binary) {
+        if (diffs[file].binary || isDoc) {
           formatted.diff += '<pre id="' + fileNameWithoutPath + '_' + change_id + '" class="highlight"><table class="table table-hover diff-text"><tr><th></th><th>' +
                             fileName +
                             '</th></tr>' +

@@ -146,10 +146,10 @@ function scigit_get_listing($proj_id, $commit_hash, $path) {
   return $ret;
 }
 
-function scigit_get_diff($proj_id, $commit_hash, $path) {
+function scigit_get_diff($proj_id, $commit_hash, $path, $flags = '') {
   $dir = SCIGIT_REPO_DIR . '/r' . $proj_id;
   $escape_path = escapeshellarg($path);
-	$handle = popen("cd $dir; git diff $commit_hash^ $commit_hash -- $escape_path", 'r');
+	$handle = popen("cd $dir; git diff $flags $commit_hash^ $commit_hash -- $escape_path", 'r');
 	$output = '';
 	while (!feof($handle)) {
 		$output .= fread($handle, 1024);
@@ -158,14 +158,8 @@ function scigit_get_diff($proj_id, $commit_hash, $path) {
 }
 
 function scigit_get_diff_set($proj_id, $commit_hash) {
-  $dir = SCIGIT_REPO_DIR . '/r' . $proj_id;
-	$handle = popen("cd $dir; git diff --name-only $commit_hash^ $commit_hash", 'r');
-	$output = '';
-	while (!feof($handle)) {
-		$output .= fread($handle, 1024);
-	}
-
   $diffs = array();
+  $output = scigit_get_diff($proj_id, $commit_hash, '', '--name-only');
 
   if ($output != '') {
     $fileNames = explode("\n", $output);
@@ -175,24 +169,23 @@ function scigit_get_diff_set($proj_id, $commit_hash) {
         continue;
       }
 
-      $escape_path = escapeshellarg($fileName);
-      $handle = popen("cd $dir; git diff $commit_hash^ $commit_hash -- $fileName", 'r');
-      $output = '';
-      while (!feof($handle)) {
-        $output .= fread($handle, 1024);
-      }
-
-      $binary = true;
+      $binary = false;
       $type = scigit_get_type($proj_id, $commit_hash, $fileName);
       if ($type == 'file') {
         $file = scigit_get_file($proj_id, $commit_hash, $fileName);
-        if (strpos($file, '\0') === false) {
-          $binary = false;
+        $len = strlen($file);
+        for ($i = 0; $i < $len; $i++) {
+          if (ord($file[$i]) == 0) {
+            $binary = true;
+            break;
+          }
         }
       }
 
       if ($binary == true) {
         $output = null;
+      } else {
+        $output = scigit_get_diff($proj_id, $commit_hash, $fileName);
       }
 
       $diffs[$fileName] = array(
