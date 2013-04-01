@@ -133,7 +133,7 @@
       if (diffs[file].diff == null || fileExtension.toLowerCase() == 'docx') {
         var message = 'The changes in this file are unavailable.';
         if (fileExtension.toLowerCase() == 'docx') {
-          message = '<a href="scigit://view_diff?project_id=' + proj_id +
+          message = '<a href="scigit://view_change?project_id=' + proj_id +
                     '&commit_hash=' + commit_hash +
                     '&filename=' + fileName +
                     '">View changes to this file on the SciGit client.</a>';
