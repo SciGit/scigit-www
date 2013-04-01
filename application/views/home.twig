@@ -46,7 +46,7 @@
           <tr>
             <td class="project" valign="middle" data-proj_id="{{ activity.proj_id }}">
               <div class="pull-left">
-                <div class="title">
+                <div class="title pull-left">
                   {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
                 </div>
                 <div class="subtitle">
@@ -83,7 +83,9 @@
           {% if project.my_changes %}
             <tr>
               <td class="project" valign="middle" data-proj_id="{{ project.id }}">
-                {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+                <div class="title">
+                  {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+                </div>
                 <ul class="unstyled">
                   {% for change in project.my_changes %}
                     <li>
