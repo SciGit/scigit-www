@@ -2,7 +2,6 @@
 
 function email_project_update($change, $to) {
   $CI = &get_instance();
-  $CI->load->helper('environment');
 
   $project = $CI->project->get($change->proj_id);
   $user = $CI->user->get_user_by_id($change->user_id, true);
@@ -28,7 +27,6 @@ function email_project_update($change, $to) {
 
 function email_register($user) {
   $CI = &get_instance();
-  $CI->load->helper('environment');
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($user->email);
@@ -47,7 +45,6 @@ function email_register($user) {
 
 function email_add_to_project($from_user, $to_user, $project) {
   $CI = &get_instance();
-  $CI->load->helper('environment');
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to_user->email);
@@ -67,7 +64,6 @@ function email_add_to_project($from_user, $to_user, $project) {
 
 function email_invite_to_scigit($from_user, $to_email, $project, $permission, $hash) {
   $CI = &get_instance();
-  $CI->load->helper('environment');
 
   $from_name = $from_user->fullname != null ? $from_user->fullname : $from_user->username;
 
