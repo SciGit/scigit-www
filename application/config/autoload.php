@@ -64,7 +64,7 @@ $autoload['libraries'] = array('tank_auth', 'twig', 'postageapp');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('scigit', 'url', 'form', 'text', 'email');
+$autoload['helper'] = array('scigit', 'environment', 'url', 'form', 'text', 'email');
 
 
 /*

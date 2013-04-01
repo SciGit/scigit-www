@@ -2,6 +2,8 @@
 
 function email_project_update($change, $to) {
   $CI = &get_instance();
+  $CI->load->helper('environment');
+
   $project = $CI->project->get($change->proj_id);
   $user = $CI->user->get_user_by_id($change->user_id, true);
 
@@ -11,7 +13,7 @@ function email_project_update($change, $to) {
 
   $CI->postageapp->template('project_update');
   $CI->postageapp->variables(array(
-    'site' => 'http://beta.scigit.com',
+    'site' => get_hostname(),
     'user_id' => $user->id,
     'user_name' => $user->username,
     'proj_id' => $project->id,
@@ -26,6 +28,7 @@ function email_project_update($change, $to) {
 
 function email_register($user) {
   $CI = &get_instance();
+  $CI->load->helper('environment');
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($user->email);
@@ -33,7 +36,7 @@ function email_register($user) {
 
   $CI->postageapp->template('validate_email');
   $CI->postageapp->variables(array(
-    'site' => 'http://beta.scigit.com',
+    'site' => get_hostname(),
     'username' => $user->username,
     'user_id' => $user->id,
     'new_email_key' => $user->new_email_key,
@@ -44,6 +47,7 @@ function email_register($user) {
 
 function email_add_to_project($from_user, $to_user, $project) {
   $CI = &get_instance();
+  $CI->load->helper('environment');
 
   $CI->postageapp->from('no-reply@scigit.com');
   $CI->postageapp->to($to_user->email);
@@ -51,7 +55,7 @@ function email_add_to_project($from_user, $to_user, $project) {
 
   $CI->postageapp->template('add_to_project');
   $CI->postageapp->variables(array(
-    'site' => 'http://beta.scigit.com',
+    'site' => get_hostname(),
     'user_name' => $from_user->username,
     'user_id' => $from_user->id,
     'proj_name' => $project->name,
@@ -63,6 +67,7 @@ function email_add_to_project($from_user, $to_user, $project) {
 
 function email_invite_to_scigit($from_user, $to_email, $project, $permission, $hash) {
   $CI = &get_instance();
+  $CI->load->helper('environment');
 
   $from_name = $from_user->fullname != null ? $from_user->fullname : $from_user->username;
 
@@ -72,7 +77,7 @@ function email_invite_to_scigit($from_user, $to_email, $project, $permission, $h
 
   $CI->postageapp->template('invite_to_scigit');
   $CI->postageapp->variables(array(
-    'site' => 'http://beta.scigit.com',
+    'site' => get_hostname(),
     'user_name' => $from_name,
     'user_id' => $from_user->id,
     'proj_name' => $project->name,

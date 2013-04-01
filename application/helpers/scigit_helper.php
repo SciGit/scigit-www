@@ -4,10 +4,6 @@ define('SCIGIT_DIR', '/var/scigit');
 define('SCIGIT_REPO_DIR', '/var/scigit/repos');
 define('SCIGIT_REPO_LIMIT', 16 * 1024 * 1024);
 
-function is_ssl() {
-  return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off';
-}
-
 function get_user_id() {
   $CI = &get_instance();
   return $CI->tank_auth->get_user_id();
