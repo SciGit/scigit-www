@@ -130,7 +130,7 @@
 
       changedFiles.push(fileNameWithoutPath);
 
-      if (diffs[file].diff == null) {
+      if (diffs[file].diff == null || fileExtension.toLowerCase() == 'docx') {
         var message = 'The changes in this file are unavailable.';
         if (fileExtension.toLowerCase() == 'docx') {
           message = '<a href="scigit://view_diff?project_id=' + proj_id +

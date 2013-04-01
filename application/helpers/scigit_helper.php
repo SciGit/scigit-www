@@ -175,6 +175,10 @@ function scigit_get_diff_set($proj_id, $commit_hash) {
     $fileNames = explode("\n", $output);
 
     foreach ($fileNames as $fileName) {
+      if ($fileName == '' || $fileName == null) {
+        continue;
+      }
+
       $escape_path = escapeshellarg($fileName);
       $handle = popen("cd $dir; git diff $commit_hash^ $commit_hash -- $fileName", 'r');
       $output = '';
