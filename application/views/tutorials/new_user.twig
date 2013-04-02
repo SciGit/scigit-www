@@ -1,0 +1,76 @@
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('#newUserModal').modal('show');
+    }, 500);
+
+    $('#newUserForm').submit(function(e) {
+      e.preventDefault();
+
+      $('#newUserModal').modal('hide');
+
+      if ($('#newUserForm input[name="dont_show"]').is(':checked')) {
+        $.ajax({
+          url: '/users/seen_tutorial_ajax',
+          type: 'get',
+          success: function(json) {
+
+          }
+        });
+      }
+    })
+  });
+</script>
+
+<div id="newUserModal" class="modal modal-large fade hide">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2>Welcome to SciGit!</h2>
+  </div>
+  <div class="modal-body">
+    <div id="newUser" class="carousel slide" data-interval="10000">
+      <ol class="carousel-indicators">
+        <li data-target="#newUser" data-slide-to="0" class="active"></li>
+        <li data-target="#newUser" data-slide-to="1"></li>
+        <li data-target="#newUser" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="img/tutorial1.png" alt />
+          <div class="carousel-caption">
+            <h4>How to use SciGit</h4>
+            <p>This tutorial is a short walkthrough of everything you can do with SciGit.
+            You can skip it at any time by clicking "Skip".</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/tutorial2.png" alt />
+          <div class="carousel-caption">
+            <h4>Managing Projects</h4>
+            <p>You can manage your projects and subscriptions from the "Manage Projects"
+            section which you can find in the main menu.</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/tutorial3.png" alt />
+          <div class="carousel-caption">
+            <h4>Adding Members to Projects</h4>
+            <p>You can add members to a project by clicking the "Add" button in the
+            "Members" section on the project's page.</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control left" href="#newUser" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#newUser" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+  <div class="modal-footer">
+    {{ form_open("/users/seen_tutorial_ajax", {id: 'newUserForm'}) | raw }}
+      <div class="pull-left">
+        {{ form_checkbox({name: 'dont_show', 'checked': '1', 'value': '1', 'class': 'checkbox'}) | raw }}
+        Don't show again
+      </div>
+      {{ form_submit({class: 'btn btn-primary', name: 'skip'}, 'Skip Tutorial') | raw }}
+    {{ form_close() | raw }}
+  </div>
+</div>

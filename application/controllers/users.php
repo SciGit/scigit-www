@@ -8,6 +8,7 @@ class Users extends SciGit_Controller
     $this->load->model('change');
 		$this->load->model('public_key');
 		$this->load->model('permission');
+		$this->load->model('user_seen');
 		$this->load->library('form_validation');
 	}
 
@@ -146,6 +147,12 @@ class Users extends SciGit_Controller
 		);
 		$this->twig->display('users/me.twig', $data);
 	}
+
+  public function seen_tutorial_ajax() {
+		check_login();
+    $id = get_user_id();
+    $this->user_seen->set($id, 'tutorials', 1);
+  }
 
   public function current_password($current_password) {
     // Change password to itself because we can't change it properly yet. This

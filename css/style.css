@@ -102,7 +102,6 @@ body .move-down {
 body .date {
   padding-left: 20px;
   padding-bottom: 7px;
-  line-height: 13px;
   font-style: italic;
 }
 body .no-decoration a {
@@ -713,6 +712,7 @@ body .change .title,
 body .tabular .title {
   margin-bottom: 5px;
   font-size: 16px;
+  float: left;
 }
 body .project .subtitle,
 body .change .subtitle,
@@ -894,6 +894,9 @@ body form .required .inner-label:after {
   font-weight: bold;
   content: '*';
   display: inline-block;
+}
+body form .checkbox {
+  margin: 0 8px;
 }
 body #user-invite input,
 body #email-invite input {

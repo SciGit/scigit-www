@@ -11,6 +11,7 @@ class Home extends SciGit_Controller
     $this->load->model('project');
     $this->load->model('change');
     $this->load->model('permission');
+    $this->load->model('user_seen');
 	}
 
 	function index()
@@ -63,6 +64,8 @@ class Home extends SciGit_Controller
         $projects = array();
       }
 
+      $seen_tutorials = $this->user_seen->get($user_id, 'tutorials');
+
       // Sort everything by most recent timestamp. Because of the way we're
       // smashing objects together without a clear structure to them, we have to
       // sort them afterwards rather than using something that'll do this for us.
@@ -78,8 +81,9 @@ class Home extends SciGit_Controller
         'activated' => $user->activated,
         'username' => $user->username,
         'user_id' => $user_id,
-        'just_started' => (empty($activities) && !$has_projects)
-                       || $has_only_sample_project,
+        'just_started' => (empty($activities) && !$has_projects) ||
+                          $has_only_sample_project,
+        'show_tutorial' => !$seen_tutorials,
       );
 			$this->twig->display('home.twig', $data);
 		}
