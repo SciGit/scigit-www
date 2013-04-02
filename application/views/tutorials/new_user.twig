@@ -12,24 +12,9 @@
       }
     }
 
-    $('#newUser').bind('slide', function(e) {
-      var index = $(this).find('.active').index();
-      if (e.direction == 'left') {
-        // We are sliding into the 6th slide.
-        if (index == 4) {
-          $(this).carousel('pause');
-          sendWatchedTutorial();
-        // We are at the 6th slide and sliding to the first slide.
-        } else if (index == 5) {
-          $('#newUserModal').modal('hide');
-          e.preventDefault();
-        }
-      }
-    });
-
     $('#newUser').bind('slid', function(e) {
-      var index = $(this).find('.active').index();
-      if (index == 5 && e.direction == 'left') {
+      var index = $(this).find(".active").index();
+      if (index == 5) {
         $(this).carousel('pause');
         sendWatchedTutorial();
       }
@@ -118,8 +103,6 @@
         Don't show again
       </div>
       {{ form_submit({class: 'btn btn-primary', name: 'skip'}, 'Skip Tutorial') | raw }}
-      <a class="btn btn-info left" href="#newUser" data-slide="prev">Back</a>
-      <a class="btn btn-info right" href="#newUser" data-slide="next">Next</a>
     {{ form_close() | raw }}
   </div>
 </div>

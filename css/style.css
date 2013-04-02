@@ -1131,7 +1131,3 @@ body .navbar-search .search-submit {
 body .typeahead {
   text-align: left;
 }
-body .carousel .carousel-indicators {
-  top: auto;
-  bottom: 50px;
-}

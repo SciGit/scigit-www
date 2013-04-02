@@ -336,11 +336,10 @@
               </div>
               <a href="#" class="btnViewChanges btn btn-info btn-small"
                data-change_id="{{ change.id }}" data-proj_id="{{ change.proj_id }}" data-commit_hash="{{ change.commit_hash }}"
-               rel="tooltip" title="View changes">
+               rel="tooltip" title="View differences">
                 <i class="changes icon-search"></i>
               </a>
-              <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small"
-               rel="tooltip" title="View changes on client">
+              <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small" rel="tooltip" title="View all files">
                 <i class="icon-copy"></i>
               </a>
             </div>
