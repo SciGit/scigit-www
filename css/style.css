@@ -101,9 +101,7 @@ body .move-down {
 }
 body .date {
   padding-left: 20px;
-  padding-bottom: 7px;
   font-style: italic;
-  line-height: 13px;
 }
 body .no-decoration a {
   text-decoration: none;
