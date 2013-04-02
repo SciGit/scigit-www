@@ -14,7 +14,7 @@
 
     $('#newUser').bind('slid', function(e) {
       var index = $(this).find(".active").index();
-      if (index == 4) {
+      if (index == 5) {
         $(this).carousel('pause');
         sendWatchedTutorial();
       }
@@ -43,18 +43,26 @@
         <li data-target="#newUser" data-slide-to="2"></li>
         <li data-target="#newUser" data-slide-to="3"></li>
         <li data-target="#newUser" data-slide-to="4"></li>
+        <li data-target="#newUser" data-slide-to="5"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
           <img src="/img/tutorial1.png" alt />
           <div class="carousel-caption">
             <h4>How to use SciGit</h4>
-            <p>This tutorial is a short walkthrough of everything you can do with SciGit.
-            It will also teach you how to create projects.</p>
+            <p>This tutorial is a short walkthrough of everything you can do with SciGit.</p>
           </div>
         </div>
         <div class="item">
           <img src="/img/tutorial2.png" alt />
+          <div class="carousel-caption">
+            <h4>Creating Projects</h4>
+            <p>Create a project by clicking on the <em>Create New Project</em> button in the
+            main menu.</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/img/tutorial3.png" alt />
           <div class="carousel-caption">
             <h4>Managing Projects</h4>
             <p>You manage your projects and subscriptions from the <em>Manage Projects</em>
@@ -62,7 +70,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="/img/tutorial3.png" alt />
+          <img src="/img/tutorial4.png" alt />
           <div class="carousel-caption">
             <h4>Adding Members to Projects</h4>
             <p>You add members to a project by clicking the <em>Add</em> button in the
@@ -70,14 +78,14 @@
           </div>
         </div>
         <div class="item">
-          <img src="/img/tutorial4.png" alt />
+          <img src="/img/tutorial5.png" alt />
           <div class="carousel-caption">
             <h4>Viewing Changes</h4>
             <p>Changes to a project can be viewed on the client or in the list of changes.</p>
           </div>
         </div>
         <div class="item">
-          <img src="/img/tutorial5.png" alt />
+          <img src="/img/tutorial6.png" alt />
           <div class="carousel-caption">
             <h4>That's all!</h4>
             <p>You can close this window to get started using SciGit.</p>

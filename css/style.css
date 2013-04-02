@@ -103,7 +103,6 @@ body .date {
   padding-left: 20px;
   padding-bottom: 7px;
   font-style: italic;
-  line-height: 13px;
 }
 body .no-decoration a {
   text-decoration: none;
@@ -314,6 +313,9 @@ body .modal-large .modal-header {
 }
 body .modal-large .modal-body {
   max-height: 600px;
+}
+body .modal-large.fade.in {
+  top: 5%;
 }
 body .modal-responsive {
   width: 70%;
@@ -713,6 +715,7 @@ body .change .title,
 body .tabular .title {
   margin-bottom: 5px;
   font-size: 16px;
+  float: left;
 }
 body .project .subtitle,
 body .change .subtitle,
