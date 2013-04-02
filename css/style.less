@@ -125,6 +125,7 @@ body {
   h3 {
     color: @sg-blue;
     font-size: 26px;
+    line-height: 33px;
     font-weight: 200;
     margin: 0;
   }
@@ -146,6 +147,7 @@ body {
   h6 {
     color: #333;
     font-size: 14px;
+    line-height: 14px;
     font-weight: 400;
     margin: 0;
     text-transform: none;
@@ -389,7 +391,7 @@ body {
   }
 
   .modal-large {
-    @modal-large-length: 900px;
+    @modal-large-length: 1000px;
     width: @modal-large-length;
     /* must be half of the width, minus scrollbar on the left (30px) */
     margin: 0 0 0 -1*@modal-large-length/2;
@@ -405,7 +407,7 @@ body {
     }
 
     .modal-body {
-      max-height: @modal-large-length * (2/3);
+      max-height: @modal-large-length * 0.5;
     }
 
     &.fade.in {

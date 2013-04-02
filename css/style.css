@@ -61,6 +61,7 @@ body h2 {
 body h3 {
   color: #4a5b76;
   font-size: 26px;
+  line-height: 33px;
   font-weight: 200;
   margin: 0;
 }
@@ -79,6 +80,7 @@ body h5 {
 body h6 {
   color: #333;
   font-size: 14px;
+  line-height: 14px;
   font-weight: 400;
   margin: 0;
   text-transform: none;
@@ -299,8 +301,8 @@ body .modal-small {
   margin: 0 0 0 -225px;
 }
 body .modal-large {
-  width: 900px;
-  margin: 0 0 0 -450px;
+  width: 1000px;
+  margin: 0 0 0 -500px;
 }
 body .modal-large .modal-header,
 body .modal-large .modal-body,
@@ -313,7 +315,7 @@ body .modal-large .modal-header {
   padding-bottom: 0;
 }
 body .modal-large .modal-body {
-  max-height: 600px;
+  max-height: 500px;
 }
 body .modal-large.fade.in {
   top: 5%;
