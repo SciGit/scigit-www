@@ -508,6 +508,9 @@ body .dropdown #label-username .caret,
 body .dropdown #label-projects .caret {
   margin: 10px 0 0 5px;
 }
+body .dropdown .dropdown-menu {
+  margin: 0;
+}
 body .dropdown a.dropdown-toggle {
   text-decoration: none;
   color: white;
