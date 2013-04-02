@@ -103,6 +103,7 @@ body .date {
   padding-left: 20px;
   padding-bottom: 7px;
   font-style: italic;
+  line-height: 13px;
 }
 body .no-decoration a {
   text-decoration: none;
@@ -712,7 +713,6 @@ body .change .title,
 body .tabular .title {
   margin-bottom: 5px;
   font-size: 16px;
-  float: left;
 }
 body .project .subtitle,
 body .change .subtitle,
