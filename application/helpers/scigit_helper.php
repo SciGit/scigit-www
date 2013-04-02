@@ -70,8 +70,13 @@ function invite_user_to_scigit($from_user_id, $to_email, $proj_id, $permission) 
 function should_show_tutorial() {
   $CI = &get_instance();
   $user_id = $CI->tank_auth->get_user_id();
-  $CI->load->model('user_seen');
-  return !$CI->user_seen->get($user_id, 'tutorials');
+
+  if ($CI->tank_auth->is_logged_in(true)) {
+    $CI->load->model('user_seen');
+    return !$CI->user_seen->get($user_id, 'tutorials');
+  }
+
+  return false;
 }
 
 function show_403() {

@@ -32,6 +32,8 @@ function unsubscribe(link) {
 }
 </script>
 
+{% include 'tutorials/new_user_slug.twig' %}
+
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
   <span class="current">{{ anchor("/projects/me", "My Projects") | raw }}</span>
