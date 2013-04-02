@@ -320,20 +320,28 @@ body .modal-large.fade.in {
 }
 @media (max-height: 768px) {
   body .modal-responsive {
-    width: 70%;
+    top: 0 !important;
     height: 70%;
-    left: 15%;
-    top: 5% !important;
-    margin: 0;
-    overflow: hidden;
+  }
+  body .modal-responsive .carousel-caption {
+    bottom: 100px;
+  }
+  body .modal-responsive .carousel-indicators {
+    bottom: 150px !important;
+  }
+  body .modal-responsive .modal-footer {
+    position: static !important;
+    bottom: 100px !important;
   }
 }
 @media (min-height: 768px) {
   body .modal-responsive {
-    width: 900px;
-    margin: 0 0 0 -450px;
     height: 680px;
   }
+}
+body .modal-responsive {
+  width: 900px;
+  margin: 0 0 0 -450px;
 }
 body .modal-responsive.fade.in {
   top: 5%;
@@ -341,6 +349,7 @@ body .modal-responsive.fade.in {
 body .modal-responsive .modal-body {
   max-height: 100%;
   padding: 0;
+  overflow: hidden;
 }
 body .modal-responsive .modal-footer {
   height: 60px;

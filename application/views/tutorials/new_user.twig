@@ -45,81 +45,84 @@
   });
 </script>
 
-<div id="newUserModal" class="modal modal-responsive fade hide">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h2>Welcome to SciGit!</h2>
-  </div>
-  <div class="modal-body">
-    <div id="newUser" class="carousel slide" data-interval="10000">
-      <ol class="carousel-indicators">
-        <li data-target="#newUser" data-slide-to="0" class="active"></li>
-        <li data-target="#newUser" data-slide-to="1"></li>
-        <li data-target="#newUser" data-slide-to="2"></li>
-        <li data-target="#newUser" data-slide-to="3"></li>
-        <li data-target="#newUser" data-slide-to="4"></li>
-        <li data-target="#newUser" data-slide-to="5"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="/img/tutorial1.png" alt />
-          <div class="carousel-caption">
-            <h4>How to use SciGit</h4>
-            <p>This tutorial is a short walkthrough of everything you can do with SciGit.</p>
+<div class="modal-wrapper">
+  <div id="newUserModal" class="modal modal-responsive fade hide">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h2>Welcome to SciGit!</h2>
+    </div>
+    <div class="modal-body">
+      <div id="newUser" class="carousel slide" data-interval="10000">
+        <ol class="carousel-indicators">
+          <li data-target="#newUser" data-slide-to="0" class="active"></li>
+          <li data-target="#newUser" data-slide-to="1"></li>
+          <li data-target="#newUser" data-slide-to="2"></li>
+          <li data-target="#newUser" data-slide-to="3"></li>
+          <li data-target="#newUser" data-slide-to="4"></li>
+          <li data-target="#newUser" data-slide-to="5"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="/img/tutorial1.png" alt />
+            <div class="carousel-caption">
+              <h4>How to use SciGit</h4>
+              <p>This tutorial is a short walkthrough of everything you can do with SciGit.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/tutorial2.png" alt />
+            <div class="carousel-caption">
+              <h4>Creating Projects</h4>
+              <p>Create a project by clicking on the <em>Create New Project</em> button in the
+              main menu.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/tutorial3.png" alt />
+            <div class="carousel-caption">
+              <h4>Managing Projects</h4>
+              <p>You manage your projects and subscriptions from the <em>Manage Projects</em>
+              section which you can find in the main menu.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/tutorial4.png" alt />
+            <div class="carousel-caption">
+              <h4>Adding Members to Projects</h4>
+              <p>You add members to a project by clicking the <em>Add</em> button in the
+              <em>Members</em> section on the project's page.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/tutorial5.png" alt />
+            <div class="carousel-caption">
+              <h4>Viewing Changes</h4>
+              <p>Changes to a project can be viewed on the client or in the list of changes.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/tutorial6.png" alt />
+            <div class="carousel-caption">
+              <h4>That's all!</h4>
+              <p>You can close this window to get started using SciGit.</p>
+            </div>
           </div>
         </div>
-        <div class="item">
-          <img src="/img/tutorial2.png" alt />
-          <div class="carousel-caption">
-            <h4>Creating Projects</h4>
-            <p>Create a project by clicking on the <em>Create New Project</em> button in the
-            main menu.</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/tutorial3.png" alt />
-          <div class="carousel-caption">
-            <h4>Managing Projects</h4>
-            <p>You manage your projects and subscriptions from the <em>Manage Projects</em>
-            section which you can find in the main menu.</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/tutorial4.png" alt />
-          <div class="carousel-caption">
-            <h4>Adding Members to Projects</h4>
-            <p>You add members to a project by clicking the <em>Add</em> button in the
-            <em>Members</em> section on the project's page.</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/tutorial5.png" alt />
-          <div class="carousel-caption">
-            <h4>Viewing Changes</h4>
-            <p>Changes to a project can be viewed on the client or in the list of changes.</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/tutorial6.png" alt />
-          <div class="carousel-caption">
-            <h4>That's all!</h4>
-            <p>You can close this window to get started using SciGit.</p>
-          </div>
-        </div>
+        <a class="carousel-control left" href="#newUser" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#newUser" data-slide="next">&rsaquo;</a>
       </div>
-      <a class="carousel-control left" href="#newUser" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#newUser" data-slide="next">&rsaquo;</a>
+    </div>
+    <div class="modal-footer">
+      {{ form_open("/users/seen_tutorial_ajax", {id: 'newUserForm'}) | raw }}
+        <div class="pull-left">
+          {{ form_checkbox({name: 'dont_show', 'checked': '1', 'value': '1', 'class': 'checkbox'}) | raw }}
+          Don't show again
+        </div>
+        {{ form_submit({class: 'btn btn-primary', name: 'skip'}, 'Skip Tutorial') | raw }}
+        <a class="btn btn-info left" href="#newUser" data-slide="prev">Back</a>
+        <a class="btn btn-info right" href="#newUser" data-slide="next">Next</a>
+      {{ form_close() | raw }}
     </div>
   </div>
-  <div class="modal-footer">
-    {{ form_open("/users/seen_tutorial_ajax", {id: 'newUserForm'}) | raw }}
-      <div class="pull-left">
-        {{ form_checkbox({name: 'dont_show', 'checked': '1', 'value': '1', 'class': 'checkbox'}) | raw }}
-        Don't show again
-      </div>
-      {{ form_submit({class: 'btn btn-primary', name: 'skip'}, 'Skip Tutorial') | raw }}
-      <a class="btn btn-info left" href="#newUser" data-slide="prev">Back</a>
-      <a class="btn btn-info right" href="#newUser" data-slide="next">Next</a>
-    {{ form_close() | raw }}
-  </div>
+  <div class="modal-padding"></div>
 </div>

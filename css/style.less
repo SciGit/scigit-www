@@ -413,29 +413,39 @@ body {
     }
   }
 
+  @modal-responsive: 900px;
+
   @media (max-height: 768px) {
     .modal-responsive {
-      width: 70%;
+      top: 0 !important;
       height: 70%;
-      left: 15%;
-      top: 5% !important;
-      margin: 0;
-      overflow: hidden;
+
+      .carousel-caption {
+        bottom: 100px;
+      }
+
+      .carousel-indicators {
+        bottom: 150px !important;
+      }
+
+      .modal-footer {
+        position: static !important;
+        bottom: 100px !important;
+      }
     }
   }
 
   @media (min-height: 768px) {
     .modal-responsive {
-      @modal-large-length: 900px;
-      width: @modal-large-length;
-      /* must be half of the width, minus scrollbar on the left (30px) */
-      margin: 0 0 0 -1*@modal-large-length/2;
-
       height: 680px;
     }
   }
 
   .modal-responsive {
+    width: @modal-responsive;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin: 0 0 0 -1*@modal-responsive/2;
+
     &.fade.in {
       top: 5%;
     }
@@ -443,6 +453,7 @@ body {
     .modal-body {
       max-height: 100%;
       padding: 0;
+      overflow: hidden;
     }
 
     .modal-footer {
