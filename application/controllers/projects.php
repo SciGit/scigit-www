@@ -55,9 +55,20 @@ class Projects extends SciGit_Controller
 
   public function explore($page = 0) {
     $projects_per_page = 25;
+
     // XXX: SO BAD! In the future, we should stick these in a DB table so we
     // don't have to code push every time they change.
-    $featured_project_ids = array(449);
+    $featured_project_ids = array();
+    switch (ENVIRONMENT) {
+    case 'development':
+      break;
+    case 'testing':
+      $featured_project_ids = array(9);
+      break;
+    case 'production':
+      $featured_project_ids = array(449);
+    }
+
     $projects = $this->project->get_by_popularity($projects_per_page, $page);
 
     foreach ($projects as $project) {
