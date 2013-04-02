@@ -124,9 +124,9 @@ class Users extends SciGit_Controller
       }
     } else if ($this->input->post('password')) {
       $form_name = 'password';
-			$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+			$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']');
 			$this->form_validation->set_rules('confirm_new_password', 'Confirm Password', 'trim|required|xss_clean|matches[new_password]');
-			$this->form_validation->set_rules('current_password', 'Current Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash|callback_current_password');
+			$this->form_validation->set_rules('current_password', 'Current Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|callback_current_password');
       if ($this->form_validation->run()) {
         $this->tank_auth->change_password(
           $this->input->post('current_password'), $this->input->post('new_password'));
