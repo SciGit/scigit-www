@@ -294,13 +294,16 @@ body .separator-xsmall {
 body.modal-open {
   overflow: hidden;
 }
+body .no-padding {
+  padding: 0;
+}
 body .modal-small {
   width: 450px;
   margin: 0 0 0 -225px;
 }
 body .modal-large {
-  width: 1000px;
-  margin: 0 0 0 -500px;
+  width: 900px;
+  margin: 0 0 0 -450px;
 }
 body .modal-large .modal-header,
 body .modal-large .modal-body,
@@ -313,7 +316,7 @@ body .modal-large .modal-header {
   padding-bottom: 0;
 }
 body .modal-large .modal-body {
-  max-height: 500px;
+  max-height: 360px;
 }
 body .modal-large.fade.in {
   top: 5%;
@@ -348,7 +351,6 @@ body .modal-responsive.fade.in {
 }
 body .modal-responsive .modal-body {
   max-height: 100%;
-  padding: 0;
   overflow: hidden;
 }
 body .modal-responsive .modal-footer {
