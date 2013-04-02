@@ -413,7 +413,48 @@ body {
     }
   }
 
+  @media (max-height: 768px) {
+    .modal-responsive {
+      width: 70%;
+      height: 70%;
+      left: 15%;
+      top: 5% !important;
+      margin: 0;
+      overflow: hidden;
+    }
+  }
+
+  @media (min-height: 768px) {
+    .modal-responsive {
+      @modal-large-length: 900px;
+      width: @modal-large-length;
+      /* must be half of the width, minus scrollbar on the left (30px) */
+      margin: 0 0 0 -1*@modal-large-length/2;
+
+      height: 680px;
+    }
+  }
+
   .modal-responsive {
+    &.fade.in {
+      top: 5%;
+    }
+
+    .modal-body {
+      max-height: 100%;
+      padding: 0;
+    }
+
+    .modal-footer {
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      #sg > .box-sizing;
+    }
+  }
+
+  .modal-responsive-large {
     width: 70%;
     height: 90%;
     left: 15%;

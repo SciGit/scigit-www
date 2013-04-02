@@ -318,7 +318,40 @@ body .modal-large .modal-body {
 body .modal-large.fade.in {
   top: 5%;
 }
-body .modal-responsive {
+@media (max-height: 768px) {
+  body .modal-responsive {
+    width: 70%;
+    height: 70%;
+    left: 15%;
+    top: 5% !important;
+    margin: 0;
+    overflow: hidden;
+  }
+}
+@media (min-height: 768px) {
+  body .modal-responsive {
+    width: 900px;
+    margin: 0 0 0 -450px;
+    height: 680px;
+  }
+}
+body .modal-responsive.fade.in {
+  top: 5%;
+}
+body .modal-responsive .modal-body {
+  max-height: 100%;
+  padding: 0;
+}
+body .modal-responsive .modal-footer {
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body .modal-responsive-large {
   width: 70%;
   height: 90%;
   left: 15%;
@@ -326,10 +359,10 @@ body .modal-responsive {
   margin: 0;
   overflow: hidden;
 }
-body .modal-responsive .modal-body {
+body .modal-responsive-large .modal-body {
   max-height: 100%;
 }
-body .modal-responsive .modal-footer {
+body .modal-responsive-large .modal-footer {
   height: 60px;
   position: absolute;
   bottom: 0;
