@@ -16,10 +16,6 @@ class Home extends SciGit_Controller
 
 	function index()
 	{
-    if (ENVIRONMENT == 'production') {
-      die("We're launching soon! Check back later and watch your email.");
-    }
-
 		if (!$this->tank_auth->is_logged_in()) {
       $data['page'] = get_class();
 			$this->twig->display('index.twig', $data);
