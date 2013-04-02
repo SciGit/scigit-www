@@ -72,7 +72,7 @@ function togglePublic(event) {
     $("label[for='public']").text("Private");
     $("input[name='public']").prop('checked', false);
   } else {
-    $("#togglePublicIcon").attr('class', 'icon-group icon-2x');
+    $("#togglePublicIcon").attr('class', 'icon-globe icon-2x');
     $("#togglePublic").tooltip('hide')
                       .attr('data-original-title', 'Make private')
                       .tooltip('fixTitle')
@@ -105,7 +105,7 @@ function togglePublic(event) {
           {{ form_checkbox('public', 1, set_value('public')) | raw }}
         </div>
         {{ form_label('Private', 'public') | raw }}
-        <a href="#" id="togglePublic" class="rawlink" rel="tooltip" title="Make public" data-placement="top">
+        <a href="#" id="togglePublic" class="btn btn-primary btn-small" rel="tooltip" title="Make public" data-placement="top">
           <i id="togglePublicIcon" class="icon-lock icon-2x"></i>
         </a>
       </div>
