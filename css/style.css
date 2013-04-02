@@ -176,6 +176,7 @@ body .custom-color {
 }
 body .navbar-inner {
   min-height: 50px;
+  filter: none;
 }
 body .blue-hero-unit {
   background-color: rgba(0,0,255,0.035);
