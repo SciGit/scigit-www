@@ -57,7 +57,7 @@ class Projects extends SciGit_Controller
     $projects_per_page = 25;
     // XXX: SO BAD! In the future, we should stick these in a DB table so we
     // don't have to code push every time they change.
-    $featured_project_ids = array();
+    $featured_project_ids = array(449);
     $projects = $this->project->get_by_popularity($projects_per_page, $page);
 
     foreach ($projects as $project) {
@@ -78,7 +78,10 @@ class Projects extends SciGit_Controller
 
     $featured_projects = array();
     foreach ($featured_project_ids as $featured_project_id) {
-      array_push($featured_projects, $this->project->get($featured_project_id));
+      $fp = $this->project->get($featured_project_id);
+      $fp->member_count =
+        $this->permission->get_by_project($fp->id, null, 1);
+      $featured_projects[] = $fp;
     }
 
     $data = array(

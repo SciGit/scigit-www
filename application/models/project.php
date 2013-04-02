@@ -13,7 +13,7 @@ class Project extends CI_Model
 	}
 
 	public function get_by_name($name) {
-		$this->db->like('name', $name);
+		$this->db->like('name', $name, 'none');
 		$r = $this->db->get($this->proj_table)->result();
 		if (empty($r)) return null;
 		return $r[0];
