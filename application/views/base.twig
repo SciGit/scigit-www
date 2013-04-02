@@ -92,6 +92,18 @@ set submit = {
 </script>
 
 {% include 'projects/create.twig' %}
+{% include 'tutorials/new_user.twig' %}
+
+{% if should_show_tutorial() %}
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('#newUserModal').modal('show');
+    }, 500);
+  });
+</script>
+{% endif %}
+
 
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
@@ -178,6 +190,11 @@ set submit = {
           {% else %}
             <a href="/download">Download Desktop Client</a>
           {% endif %}
+          <span class="divider">|</span>
+          <a href="#newUserModal" data-toggle="modal"
+           rel="tooltip" title="Click here at any time to see a tutorial on how to use SciGit.">
+            Guide
+          </a>
           <span class="divider">|</span>
           <a href="#">About</a> <span class="divider">|</span>
           <a href="#">Terms</a>

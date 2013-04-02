@@ -67,6 +67,13 @@ function invite_user_to_scigit($from_user_id, $to_email, $proj_id, $permission) 
   $CI->email_queue->add_invite_to_scigit_email($user->id, $to_email, $proj_id, $permission, $invite['hash']);
 }
 
+function should_show_tutorial() {
+  $CI = &get_instance();
+  $user_id = $CI->tank_auth->get_user_id();
+  $CI->load->model('user_seen');
+  return !$CI->user_seen->get($user_id, 'tutorials');
+}
+
 function show_403() {
   show_error('Not authorized.', 403);
 }
