@@ -118,9 +118,9 @@
           {{ form_checkbox({name: 'dont_show', 'checked': '1', 'value': '1', 'class': 'checkbox'}) | raw }}
           Don't show again
         </div>
-        {{ form_submit({class: 'btn btn-primary', name: 'skip'}, 'Skip Tutorial') | raw }}
-        <a class="btn btn-info left" href="#newUser" data-slide="prev">Back</a>
-        <a class="btn btn-info right" href="#newUser" data-slide="next">Next</a>
+        {{ form_submit({class: 'btn btn-info', name: 'skip'}, 'Skip Tutorial') | raw }}
+        <a class="btn btn-primary left" href="#newUser" data-slide="prev">Back</a>
+        <a class="btn btn-primary right" href="#newUser" data-slide="next">Next</a>
       {{ form_close() | raw }}
     </div>
   </div>
