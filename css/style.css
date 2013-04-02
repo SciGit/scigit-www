@@ -103,9 +103,7 @@ body .move-down {
 }
 body .date {
   padding-left: 20px;
-  padding-bottom: 7px;
   font-style: italic;
-  line-height: 13px;
 }
 body .no-decoration a {
   text-decoration: none;
@@ -1162,6 +1160,7 @@ body .navbar-search .search-query.focused {
 body .navbar-search .search-submit {
   height: 28px;
   width: 28px;
+  z-index: 9999;
 }
 body .typeahead {
   text-align: left;
