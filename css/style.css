@@ -1127,6 +1127,7 @@ body .navbar-search .search-query.focused {
 body .navbar-search .search-submit {
   height: 28px;
   width: 28px;
+  z-index: 9999;
 }
 body .typeahead {
   text-align: left;
