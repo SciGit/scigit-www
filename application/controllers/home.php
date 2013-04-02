@@ -30,9 +30,11 @@ class Home extends SciGit_Controller
         // this data format.
         $changes = $this->change->get_by_project($project->id);
         foreach ($changes as $change) {
-          $change->proj_name = $project->name;
+          if ($change->user_id != $user_id) {
+            $change->proj_name = $project->name;
+            $activities[] = $change;
+          }
         }
-        $activities = array_merge($changes, $activities);
 
         // Merge this object with its most recent changes done by this user.
         // Show more of them if this is the only project the user has.
@@ -54,7 +56,6 @@ class Home extends SciGit_Controller
       $has_only_sample_project =
         count($projects) == 1 && strpos($projects[0]->name, 'Sample Project by') !== FALSE;
 
-      $activities = array_slice($activities, 0, 10);
       $has_projects = !!count($this->permission->get_user_accessible($user_id));
       if (!$has_projects || !$projects_has_at_least_one_change) {
         $projects = array();
@@ -64,6 +65,7 @@ class Home extends SciGit_Controller
       // smashing objects together without a clear structure to them, we have to
       // sort them afterwards rather than using something that'll do this for us.
       usort($activities, "activity_sort");
+      $activities = array_slice($activities, 0, 10);
       usort($projects, "project_sort");
 
       $user = $this->user->get_user_by_id($user_id, true);
