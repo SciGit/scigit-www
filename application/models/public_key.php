@@ -53,7 +53,7 @@ class Public_key extends CI_Model
     if ($key === null) return false;
 
     $this->db->where('id', $id);
-    if (!$this->db->delete($this->table)) return false;
+    $this->db->delete($this->table);
 
     try {
       $this->load->library('scigit_thrift');
