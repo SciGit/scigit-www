@@ -18,7 +18,8 @@
             $('#deletePubKeyError').hide();
 
             setTimeout(function() {
-              document.location.reload(true);
+              window.location.hash = '#advanced';
+              window.location.reload(true);
             }, 1500);
           } else {
             $('#deletePubKeySuccess').hide();
