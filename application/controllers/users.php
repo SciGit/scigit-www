@@ -188,6 +188,8 @@ class Users extends SciGit_Controller
 	}
 
   public function pub_key_add_ajax() {
+    check_logged();
+
     $this->form_validation->set_rules('pub_key', 'Public Key', 'required|xss_clean|callback_check_public_key');
     $this->form_validation->set_rules('comment', 'Comment', 'max_length[255]|xss_clean');
 
@@ -211,6 +213,8 @@ class Users extends SciGit_Controller
   }
 
   public function pub_key_delete_ajax($id) {
+    check_logged();
+
     $user_id = get_user_id();
 
     $pub_keys = $this->public_key->get_by_user($user_id);
