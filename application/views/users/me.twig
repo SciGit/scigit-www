@@ -6,6 +6,12 @@
 
 {% include 'users/delete_pub_key.twig' %}
 
+<script>
+  $(document).ready(function() {
+    $('#instructions').popover();
+  });
+</script>
+
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
   <span class="current">{{ anchor("/users/profile", "Settings") | raw }} </span>
@@ -239,17 +245,27 @@ set buttons_password = [
     <div class="row-fluid">
       <div class="span6">
         <div class="well-list">
-          <table class="table table-condensed table-hover table-white">
+          <table class="table table-hover table-white">
             <tr>
               <th class="tabular">
                 <h4>
                   Public SSH Keys
                   <div class="pull-right">
-                    <a href="#addPubKey" rel="tooltip" title="Add new public SSH key" class="btn btn-primary btn-valign-small" data-toggle="modal">
+                    <a href="#addPubKey" rel="tooltip" title="Add new public SSH key" class="btn btn-large btn-primary btn-valign-small" data-toggle="modal">
                       <i class="icon-plus"></i> Add
                     </a>
                   </div>
                 </h4>
+                <p></p>
+                <h6>
+                  For terminal Git users.
+                  <a id="instructions" rel="popover"
+                   data-html="true" data-original-title="Using Terminal Git with SciGit Instructions" data-placement="right" data-trigger="hover"
+                   data-content="<p>To use terminal Git, you first have to add your public key here. Once that's done, you can find a Git URL on
+                   each project page. Use it to clone a project.</p>
+                   <p>Some features are restricted. You cannot branch, merge commit, or non-fast-forward. We're working on supporting these.</p>
+                   <p>When pulling or merging, you should use the <em>--rebase</em> flag.</p>">Instructions</a>.
+                </h6>
               </th>
             </tr>
             {% if ssh_keys %}
