@@ -27,10 +27,14 @@ class Users extends SciGit_REST_Controller
 		if (!$name) $this->response(array('name' => 'required'), 400);
 
 		if ($d = $this->public_key->parse_key($public_key)) {
-			if ($this->public_key->get_by_key($d['public_key'])) {
+      $key = $this->public_key->get_by_key($d['public_key']);
+      if ($key !== null && $key->enabled) {
 				$this->response(array('public_key' => 'duplicate_public_key'), 409);
-			}
-			if ($this->public_key->create($user->id, $name, $public_key)) {
+      }
+      if ($key !== null) {
+        $this->public_key->update($key->id, $name);
+        $this->response($d);
+      } else if ($this->public_key->create($user->id, $name, $public_key)) {
 				$this->response($d);
 			} else {
 				$this->error(500);
