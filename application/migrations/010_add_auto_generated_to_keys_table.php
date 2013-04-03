@@ -8,6 +8,7 @@ class Migration_Add_auto_generated_to_keys_table extends CI_Migration
       'auto_generated' => array(
         'type' => 'INT',
         'null' => false,
+        'default' => '1',
       ),
     );
     $this->dbforge->add_column('user_pub_keys', $user_pub_keys_add_columns);
