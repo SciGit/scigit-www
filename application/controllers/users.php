@@ -178,8 +178,11 @@ class Users extends SciGit_Controller
 			$this->form_validation->set_message('check_public_key',
 				'Not a valid SSH key.');
 			return false;
-		}
-		if ($this->public_key->get_by_key($data['public_key'])) {
+    }
+
+    $user_id = get_user_id();
+    $pk = $this->public_key->get_by_key($data['public_key']);
+    if ($pk !== null && ($pk->user_id != $user_id || $pk->enabled)) {
 			$this->form_validation->set_message('check_public_key',
 				'Public key already in use.');
 			return false;
@@ -200,10 +203,16 @@ class Users extends SciGit_Controller
     $public_key_text = $this->input->post('pub_key');
     $comment = $this->input->post('comment');
 
-    $user_pub_key = $this->public_key->create(get_user_id(), $comment, $public_key_text, false);
-    if ($user_pub_key == null) {
-      $this->form_validation->set_message('pub_key', 'Database error.');
-      die($this->json_encode_validation_errors(2));
+    $data = $this->public_key->parse_key($public_key_text);
+    $user_pub_key = $this->public_key->get_by_key($data['public_key']);
+    if ($user_pub_key !== null) {
+      $this->public_key->update($user_pub_key->id, $comment);
+    } else {
+      $user_pub_key = $this->public_key->create(get_user_id(), $comment, $public_key_text, false);
+      if ($user_pub_key == null) {
+        $this->form_validation->set_message('pub_key', 'Database error.');
+        die($this->json_encode_validation_errors(2));
+      }
     }
 
     die(json_encode(array(
