@@ -1,7 +1,7 @@
 <?
 
 define('SCIGIT_BASE_PATH_PRE', 'https://');
-define('SCIGIT_BASE_PATH_PRE_GIT', 'ssh://git@');
+define('SCIGIT_BASE_PATH_PRE_GIT', 'git@');
 define('SCIGIT_BASE_PATH_POST', 'scigit.com');
 
 define('SCIGIT_DEVELOPMENT_PATH', SCIGIT_BASE_PATH_PRE + 'localhost');
