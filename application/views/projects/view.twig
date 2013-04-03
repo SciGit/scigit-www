@@ -115,6 +115,21 @@ $(document).ready(function() {
         </tr>
       </table>
     </div>
+    <div class="well-list">
+      <table class="table table-condensed">
+        <tr>
+          <th>
+            <h2>Tools</h2>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <h5>Git Clone Command</h5>
+            <code rel="tooltip" title="If you're using the client, don't worry about this. Use this command to clone this project in a terminal.">git clone git@scigit.com:r{{ project.id }}</code>
+          </td>
+        </tr>
+      </table>
+    </div>
     {% include 'projects/members.twig' with {project: project, perms: perms, admin: admin} %}
     <div class="well-list">
       <table class="table table-condensed">

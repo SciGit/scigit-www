@@ -1191,3 +1191,6 @@ body .carousel .carousel-indicators {
   top: auto;
   bottom: 50px;
 }
+body code {
+  color: #666;
+}
