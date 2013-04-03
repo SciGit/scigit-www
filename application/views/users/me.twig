@@ -9,6 +9,21 @@
 <script>
   $(document).ready(function() {
     $('#instructions').popover();
+
+    switch (window.location.hash) {
+    case '#settings':
+      $('a.settings').click();
+      break;
+    case '#profile':
+      $('a.profile').click();
+      break;
+    case '#password':
+      $('a.password').click();
+      break;
+    case '#advanced':
+      $('a.advanced').click();
+      break;
+    }
   });
 </script>
 
@@ -195,10 +210,10 @@ set buttons_password = [
 {% include 'users/add_pub_key.twig' %}
 
 <ul class="nav nav-tabs">
-  <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
-  <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
-  <li{% if form_name == 'password' %} class="active"{% endif %}><a href="#password" data-toggle="tab">Password</a></li>
-  <li{% if form_name == 'advanced' %} class="active"{% endif %}><a href="#advanced" data-toggle="tab">Advanced</a></li>
+  <li{% if form_name == 'settings' %} class="active"{% endif %}><a class="settings" href="#settings" data-toggle="tab">Settings</a></li>
+  <li{% if form_name == 'profile' %} class="active"{% endif %}><a class="profile" href="#profile" data-toggle="tab">Profile</a></li>
+  <li{% if form_name == 'password' %} class="active"{% endif %}><a class="password" href="#password" data-toggle="tab">Password</a></li>
+  <li{% if form_name == 'advanced' %} class="active"{% endif %}><a class="advanced" href="#advanced" data-toggle="tab">Advanced</a></li>
 </ul>
 
 {% if message %}
