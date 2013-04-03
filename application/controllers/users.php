@@ -188,7 +188,7 @@ class Users extends SciGit_Controller
 	}
 
   public function pub_key_add_ajax() {
-    check_logged();
+    check_login();
 
     $this->form_validation->set_rules('pub_key', 'Public Key', 'required|xss_clean|callback_check_public_key');
     $this->form_validation->set_rules('comment', 'Comment', 'max_length[255]|xss_clean');
@@ -213,7 +213,7 @@ class Users extends SciGit_Controller
   }
 
   public function pub_key_delete_ajax($id) {
-    check_logged();
+    check_login();
 
     $user_id = get_user_id();
 
@@ -229,7 +229,7 @@ class Users extends SciGit_Controller
     if (!$found_key_on_user) {
       die(json_encode(array(
         'error' => '2',
-        'message' => 'Database error.',
+        'message' => 'This key is not yours.',
       )));
     }
 
