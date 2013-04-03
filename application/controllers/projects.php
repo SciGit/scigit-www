@@ -105,11 +105,17 @@ class Projects extends SciGit_Controller
 
   public function create_ajax() {
     check_login();
-    $this->form_validation->set_rules('name', 'name', 'required|callback_check_projname');
-    $this->form_validation->set_rules('public', 'public', '');
+    $public = $this->input->post('public');
+    if ($public) {
+      $this->form_validation->set_rules('name', 'name', 'required|callback_check_projname');
+    } else {
+      // XXX: We have to check when permissions are changed if the project name is taken.
+      $this->form_validation->set_rules('name', 'name', 'required');
+    }
+
+    $this->form_validation->set_rules('public', 'public', 'is_natural');
     $name = $this->input->post('name');
     if ($this->form_validation->run()) {
-      $public = $this->input->post('public');
       if (($project = $this->project->create(get_user_id(), $name, $public))) {
         echo json_encode(array(
           'error' => '0',
