@@ -1,0 +1,21 @@
+diff --git a/system/libraries/Form_validation.php b/system/libraries/Form_validation.php
+index 9aab5da..b59e88b 100755
+--- a/system/libraries/Form_validation.php
++++ b/system/libraries/Form_validation.php
+@@ -29,8 +29,14 @@ class CI_Form_validation {
+ 	protected $CI;
+ 	protected $_field_data			= array();
+ 	protected $_config_rules		= array();
+-	protected $_error_array			= array();
+-	protected $_error_messages		= array();
++  /**
++   * BEGIN SCIGIT PATCHES
++   */
++	public    $_error_array			= array();
++	public    $_error_messages  = array();
++  /**
++   * END SCIGIT PATCHES
++   */
+ 	protected $_error_prefix		= '<p>';
+ 	protected $_error_suffix		= '</p>';
+ 	protected $error_string			= '';

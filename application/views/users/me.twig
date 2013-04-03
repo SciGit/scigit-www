@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% include 'users/delete_pub_key.twig' %}
+
 <p class="breadcrumbs">
   {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
   <span class="current">{{ anchor("/users/profile", "Settings") | raw }} </span>
@@ -184,10 +186,13 @@ set buttons_password = [
 ]
 %}
 
+{% include 'users/add_pub_key.twig' %}
+
 <ul class="nav nav-tabs">
   <li{% if form_name == 'settings' %} class="active"{% endif %}><a href="#settings" data-toggle="tab">Settings</a></li>
   <li{% if form_name == 'profile' %} class="active"{% endif %}><a href="#profile" data-toggle="tab">Profile</a></li>
   <li{% if form_name == 'password' %} class="active"{% endif %}><a href="#password" data-toggle="tab">Password</a></li>
+  <li{% if form_name == 'advanced' %} class="active"{% endif %}><a href="#advanced" data-toggle="tab">Advanced</a></li>
 </ul>
 
 {% if message %}
@@ -202,6 +207,8 @@ set buttons_password = [
 
 <div id="my-tab-content" class="tab-content">
   <div class="tab-pane fade in {% if form_name == 'settings' %}active{% endif %}" id="settings">
+    <h3>Settings</h3>
+    <p></p>
     {% include 'forms/generic.twig'
         with {'fields': settings_fields,
               'form' : {class: 'well'},
@@ -209,6 +216,8 @@ set buttons_password = [
               'buttons': buttons_settings} %}
   </div>
   <div class="tab-pane fade in {% if form_name == 'profile' %}active{% endif %}" id="profile">
+    <h3>Profile</h3>
+    <p></p>
     {% include 'forms/generic.twig'
       with {'fields': profile_fields,
             'form': {class: 'well'},
@@ -216,11 +225,57 @@ set buttons_password = [
             'buttons': buttons_profile} %}
   </div>
   <div class="tab-pane fade in {% if form_name == 'password' %}active{% endif %}" id="password">
+    <h3>Password</h3>
+    <p></p>
     {% include 'forms/generic.twig'
       with {'fields': password_fields,
             'form': {class: 'well'},
             'columns': [2, 8],
             'buttons': buttons_password} %}
+  </div>
+  <div class="tab-pane fade in {% if form_name == 'advanced' %}active{% endif %}" id="advanced">
+    <h3>Advanced</h3>
+    <p></p>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="well-list">
+          <table class="table table-condensed table-hover table-white">
+            <tr>
+              <th class="tabular">
+                <h4>
+                  Public SSH Keys
+                  <div class="pull-right">
+                    <a href="#addPubKey" rel="tooltip" title="Add new public SSH key" class="btn btn-primary btn-valign-small" data-toggle="modal">
+                      <i class="icon-plus"></i> Add
+                    </a>
+                  </div>
+                </h4>
+              </th>
+            </tr>
+            {% if ssh_keys %}
+              {% for ssh_key in ssh_keys %}
+                <tr>
+                  <td class="tabular">
+                    {{ ssh_key.name | default("No description") }}
+                    <div class="buttons shrink">
+                      <a class="deletePubKey btn btn-danger btn-small" data-key_id="{{ ssh_key.id }}">
+                        <i class="icon-trash"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr class="nohover">
+                <td>
+                  No public keys added.
+                </td>
+              </tr>
+            {% endif %}
+          </table>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -125,7 +125,6 @@ body {
   h3 {
     color: @sg-blue;
     font-size: 26px;
-    line-height: 33px;
     font-weight: 200;
     margin: 0;
   }
@@ -147,7 +146,6 @@ body {
   h6 {
     color: #333;
     font-size: 14px;
-    line-height: 14px;
     font-weight: 400;
     margin: 0;
     text-transform: none;
@@ -336,6 +334,13 @@ body {
         .table .background;
         // Override .table's padding.
         padding: 10px !important;
+      }
+    }
+
+    .table.table-white {
+      background-color: white;
+      th {
+        background-color: lighten(@sg-gray, 2%);
       }
     }
 
@@ -532,6 +537,11 @@ body {
   .btn-valign {
     top: 50%;
     margin-top: -8px;
+  }
+
+  .btn-valign-small {
+    top: 50%;
+    margin-top: -2px;
   }
 
   a.rawlink {

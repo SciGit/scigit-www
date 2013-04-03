@@ -1,0 +1,56 @@
+<script>
+  $(document).ready(function() {
+    $('#addPubKey form[name="pub_key_add"]').submit(function(e) {
+      e.preventDefault();
+
+      var form_data = {
+        pub_key: $('#addPubKey textarea[name="user_pub_key"]').val(),
+        comment: $('#addPubKey input[name="comment"]').val(),
+      };
+
+      $.ajax({
+        url: '/users/pub_key_add_ajax',
+        type: 'POST',
+        data: form_data,
+        dataType: 'json',
+        cache: false,
+
+        success: function(json) {
+          if (json.error == 0) {
+            $('#addPubKeySuccess').html(
+              json.message + ' <i class="icon-spinner icon-spin"></i>').show();
+            $('#addPubKeyError').hide();
+
+            setTimeout(function() {
+              document.location.reload(true);
+            }, 1500);
+          } else {
+            $('#addPubKeySuccess').hide();
+            $('#addPubKeyError').html(json.message).show();
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<div id="addPubKey" class="modal fade hide">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2>Add Public SSH Key</h2>
+  </div>
+  {{ form_open('/users/pub_key_add_ajax', {name: 'pub_key_add'}) | raw }}
+  <div class="modal-body">
+    <div id="addPubKeyError" class="alert alert-error hide"></div>
+    <div id="addPubKeySuccess" class="alert alert-success hide"></div>
+    {{ form_label('Public Key', 'user_pub_key') | raw }}
+    {{ form_textarea({name: 'user_pub_key', class: 'full-width-input', id: 'user_pub_key', rel: 'tooltip', title: 'Paste your public key here', placement: 'bottom'}) | raw }}
+    {{ form_label('Comment', 'comment') | raw }}
+    {{ form_input({name: 'comment', class: 'full-width-input', id: 'comment'}) | raw }}
+  </div>
+  <div class="modal-footer">
+    {{ form_submit({class: 'btn btn-primary', name: 'add_pub_key'}, 'Save') | raw }}
+    <a class="btn" data-dismiss="modal">Cancel</a>
+  </div>
+  {{ form_close() | raw }}
+</div>

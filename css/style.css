@@ -61,7 +61,6 @@ body h2 {
 body h3 {
   color: #4a5b76;
   font-size: 26px;
-  line-height: 33px;
   font-weight: 200;
   margin: 0;
 }
@@ -80,7 +79,6 @@ body h5 {
 body h6 {
   color: #333;
   font-size: 14px;
-  line-height: 14px;
   font-weight: 400;
   margin: 0;
   text-transform: none;
@@ -256,6 +254,14 @@ body .blue-well-list .table-condensed th {
   background-color: #f5f5f5;
   padding: 10px !important;
 }
+body .well-list .table.table-white,
+body .blue-well-list .table.table-white {
+  background-color: white;
+}
+body .well-list .table.table-white th,
+body .blue-well-list .table.table-white th {
+  background-color: #fafafa;
+}
 body .well-list tr.alwayshover td,
 body .blue-well-list tr.alwayshover td {
   background-color: #f5f5f5;
@@ -419,6 +425,10 @@ body .buttons.shrink .btn-small {
 body .btn-valign {
   top: 50%;
   margin-top: -8px;
+}
+body .btn-valign-small {
+  top: 50%;
+  margin-top: -2px;
 }
 body a.rawlink {
   text-decoration: none;
