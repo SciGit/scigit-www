@@ -336,8 +336,8 @@ class Auth extends SciGit_Controller
 
 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
-					// Send email with password activation link
-					$this->_send_email('forgot_password', $data['email'], $data);
+          // Send email with password activation link
+          email_forgot_password($data);
 
 					$this->_show_message($this->lang->line('auth_message_new_password_sent'));
 
@@ -374,8 +374,8 @@ class Auth extends SciGit_Controller
 
 				$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
-				// Send email with new password
-				$this->_send_email('reset_password', $data['email'], $data);
+        // Send email with new password
+        email_reset_password($data);
 
 				$this->_show_message($this->lang->line('auth_message_new_password_activated').' '.anchor('/auth/login/', 'Login'));
 
@@ -434,6 +434,8 @@ class Auth extends SciGit_Controller
 	 */
 	function change_email()
 	{
+    show_404(); // don't use this right now
+
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
 			redirect('/auth/login/');
 

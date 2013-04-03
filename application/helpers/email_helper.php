@@ -84,3 +84,38 @@ function email_invite_to_scigit($from_user, $to_email, $project, $permission, $h
 
   $CI->postageapp->send();
 }
+
+function email_forgot_password($data) {
+  $CI = &get_instance();
+
+  $CI->postageapp->from('no-reply@scigit.com');
+  $CI->postageapp->to($data['email']);
+  $CI->postageapp->subject("SciGit password reset");
+
+  $CI->postageapp->template('forgot_password');
+  $CI->postageapp->variables(array(
+    'site' => get_hostname(),
+    'username' => $data['username'],
+    'user_id' => $data['user_id'],
+    'new_pass_key' => $data['new_pass_key'],
+  ));
+
+  $CI->postageapp->send();
+}
+
+function email_reset_password($data) {
+  $CI = &get_instance();
+
+  $CI->postageapp->from('no-reply@scigit.com');
+  $CI->postageapp->to($data['email']);
+  $CI->postageapp->subject("SciGit password successfully reset");
+
+  $CI->postageapp->template('reset_password');
+  $CI->postageapp->variables(array(
+    'site' => get_hostname(),
+    'username' => $data['username'],
+    'user_id' => $data['user_id']
+  ));
+
+  $CI->postageapp->send();
+}
