@@ -67,7 +67,7 @@ $(document).ready(function() {
           <i class="icon-wrench icon-white"></i>
           Settings
         </a>
-      {% elseif not member %}
+      {% elseif not member and is_logged_in() %}
         {{ form_open("/projects/subscribe/#{project.id}") | raw }}
           {{ form_input({class: 'hidden', name: 'return_to', value: 'view'}) | raw }}
           {{ form_submit({class: subscribed ? 'btn btn-large btn-danger' : 'btn btn-large btn-success', name: 'subscribe'},
@@ -124,7 +124,7 @@ $(document).ready(function() {
         </tr>
         <tr>
           <td>
-            <h5>Git Clone Command - {{ anchor("/users/profile#advanced", "Advanced Settings") | raw }}</h5>
+            <h5>Git Clone Command{% if is_logged_in() %} - {{ anchor("/users/profile#advanced", "Advanced Settings") | raw }}{% endif %}</h5>
             <p></p>
             <code
              rel="tooltip"
