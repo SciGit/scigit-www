@@ -55,14 +55,43 @@ set buttons = [
 
 {% block content %}
 
+<script>
+  $(document).ready(function() {
+    $('#login').prepend($('#recaptcha'));
+  });
+</script>
 
 <div class="login-form">
   <div class="page-header">
     <h2>Login</h2>
   </div>
+  {% if show_captcha %}
+    <div id="recaptcha">
+      <div class="control-group {% if form_error('recaptcha_response_field') or form_error('captcha') %} error {% endif %}">
+        <label class="control-label" for="recaptcha_response_field">
+          You have attempted to log in too many times. Please enter the text you see below.
+        </label>
+        <div class="controls">
+          {% if use_recaptcha %}
+            {{ recaptcha_html | raw }}
+            <span class="help-inline">
+              {{ form_error('recaptcha_response_field') | raw }}
+            </span>
+          {% elseif captcha_registration %}
+            <p>{{ captcha_html | raw }}</p>
+            {{ form_input('captcha', set_value('captcha')) | raw }}
+            <span class="help-inline">
+              {{ form_error('captcha') | raw }}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+      <br />
+    </div>
+  {% endif %}
   {% include 'forms/generic.twig'
       with {'fields': fields,
-            'form' : {class: ''},
+            'form' : {id: 'login'},
             'columns': [4, 8],
             'buttons' : buttons} %}
 </div>
