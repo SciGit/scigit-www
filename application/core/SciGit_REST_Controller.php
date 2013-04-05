@@ -1,6 +1,6 @@
 <?php
 
-class SciGit_REST_controller extends CI_Controller
+class SciGit_REST_Controller extends SciGit_Controller
 {
 	protected $http_method = null;
 	protected $args = array();
@@ -63,22 +63,5 @@ class SciGit_REST_controller extends CI_Controller
 			return $this->args[$name];
 		}
 		return null;
-	}
-
-	protected function set_status($code) {
-		header('HTTP/1.1: ' . $code);
-		header('Status: ' . $code);
-	}
-
-	protected function response($data = array(), $code = 200) {
-		$this->set_status($code);
-		header('Content-Type: application/json');
-		exit(json_encode($data));
-	}
-
-	protected function error($code) {
-		$this->set_status($code);
-		header('Content-Type: application/json');
-		exit();
 	}
 }

@@ -1,6 +1,6 @@
 <?
 
-class Users extends SciGit_Controller
+class Users extends SciGit_Site_Controller
 {
 	public function __construct() {
 		parent::__construct();

@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends SciGit_Controller
+class Home extends SciGit_Site_Controller
 {
 	function __construct()
 	{

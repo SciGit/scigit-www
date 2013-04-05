@@ -1,6 +1,6 @@
 <?
 
-class Legal extends SciGit_Controller
+class Legal extends SciGit_Site_Controller
 {
   function __construct()
   {

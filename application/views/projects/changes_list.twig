@@ -49,59 +49,57 @@
                  .removeClass('icon-spinner')
                  .addClass('icon-search');
 
-          if (json.error == 0) {
-            var formattedDiff = formatDiff(json.message, change_id, proj_id, commit_hash);
-            var modalElement = $('#diffModal');
-            var modalBodyElement = modalElement.find(".modal-body");
-            var textElement = modalElement.find('#modal-text');
-            var titleElement = modalElement.find('#modal-title');
-            textElement.html(formattedDiff.diff);
-            titleElement.html(json.commit_msg);
-            modalElement.find('#changed-files').html(formattedDiff.changedFiles);
-            modalElement.modal('show');
+          var formattedDiff = formatDiff(json.message, change_id, proj_id, commit_hash);
+          var modalElement = $('#diffModal');
+          var modalBodyElement = modalElement.find(".modal-body");
+          var textElement = modalElement.find('#modal-text');
+          var titleElement = modalElement.find('#modal-title');
+          textElement.html(formattedDiff.diff);
+          titleElement.html(json.commit_msg);
+          modalElement.find('#changed-files').html(formattedDiff.changedFiles);
+          modalElement.modal('show');
 
-            modalElement.on('shown', function() {
-              // XXX: This is all generally ugly. We should clean it up eventually.
-              var currentlyScrolledElement = null;
-              modalBodyElement.on('scroll', function(e) {
-                var outerScrollTop = $(this).scrollTop();
-                var outerHeight = $(this).parent().height() - 100;
-                var highestPercentageInView = 0;
-                var highestPercentageInViewIndex = null;
+          modalElement.on('shown', function() {
+            // XXX: This is all generally ugly. We should clean it up eventually.
+            var currentlyScrolledElement = null;
+            modalBodyElement.on('scroll', function(e) {
+              var outerScrollTop = $(this).scrollTop();
+              var outerHeight = $(this).parent().height() - 100;
+              var highestPercentageInView = 0;
+              var highestPercentageInViewIndex = null;
 
-                modalElement.find('pre').each(function() {
-                  var innerScrollTop = $(this).position().top;
-                  var innerHeight = $(this).height();
+              modalElement.find('pre').each(function() {
+                var innerScrollTop = $(this).position().top;
+                var innerHeight = $(this).height();
 
-                  var percentageInView = (Math.min(outerScrollTop + innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
-                                          Math.max(outerScrollTop + innerScrollTop, outerScrollTop)) /
-                                         innerHeight;
+                var percentageInView = (Math.min(outerScrollTop + innerScrollTop + innerHeight, outerScrollTop + outerHeight) -
+                                        Math.max(outerScrollTop + innerScrollTop, outerScrollTop)) /
+                                       innerHeight;
 
-                  if (percentageInView > highestPercentageInView ||
-                      // If there are multiple files on the page that are entirely in view,
-                      // pick the one that is lowest.
-                      (highestPercentageInViewIndex !== null &&
-                       Math.abs(percentageInView - highestPercentageInView) < 0.1 &&
-                       innerScrollTop > $(highestPercentageInViewIndex).position().top)) {
-                    highestPercentageInView = percentageInView;
-                    highestPercentageInViewIndex = this;
-                  }
-                });
-
-                if (highestPercentageInViewIndex !== null &&
-                    highestPercentageInViewIndex !== currentlyScrolledElement) {
-                  if (currentlyScrolledElement !== null) {
-                    var id = $(currentlyScrolledElement).attr('id');
-                    $('a[href="#' + id + '"]').parent().removeClass('active');
-                  }
-
-                  currentlyScrolledElement = highestPercentageInViewIndex;
-                  var id = $(currentlyScrolledElement).attr('id');
-                  $('a[href="#' + id + '"]').parent().addClass('active');
+                if (percentageInView > highestPercentageInView ||
+                    // If there are multiple files on the page that are entirely in view,
+                    // pick the one that is lowest.
+                    (highestPercentageInViewIndex !== null &&
+                     Math.abs(percentageInView - highestPercentageInView) < 0.1 &&
+                     innerScrollTop > $(highestPercentageInViewIndex).position().top)) {
+                  highestPercentageInView = percentageInView;
+                  highestPercentageInViewIndex = this;
                 }
               });
+
+              if (highestPercentageInViewIndex !== null &&
+                  highestPercentageInViewIndex !== currentlyScrolledElement) {
+                if (currentlyScrolledElement !== null) {
+                  var id = $(currentlyScrolledElement).attr('id');
+                  $('a[href="#' + id + '"]').parent().removeClass('active');
+                }
+
+                currentlyScrolledElement = highestPercentageInViewIndex;
+                var id = $(currentlyScrolledElement).attr('id');
+                $('a[href="#' + id + '"]').parent().addClass('active');
+              }
             });
-          }
+          });
         }
       });
     });

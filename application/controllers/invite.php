@@ -1,6 +1,6 @@
 <?
 
-class Invite extends SciGit_Controller
+class Invite extends SciGit_Site_Controller
 {
   public function __construct() {
     parent::__construct();

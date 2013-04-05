@@ -1,6 +1,6 @@
 <?
 
-class Changes extends SciGit_Controller
+class Changes extends SciGit_Site_Controller
 {
 	public function __construct() {
 		parent::__construct();
@@ -68,22 +68,14 @@ class Changes extends SciGit_Controller
 
       $change = $this->change->get($id);
       if ($change == null) {
-        echo json_encode(array(
-          'error' => '1',
-          'message' => 'Database error, please try later.',
-        ));
-        return;
+        $this->response(array('message' => 'Database error. Try again later.'), 424);
       }
       check_project_perms($change->proj_id);
 
       $path = urldecode($path);
       $type = $this->change->get_type($id, $path);
       if (false && $type != 'file') {
-        echo json_encode(array(
-          'error' => '2',
-          'message' => 'Invalid change id.',
-        ));
-        return;
+        $this->response(array('message' => 'Invalid change id.'), 404);
       }
       $file = $this->change->get_file($id, $path);
       $diff = $this->change->get_diff_set($id, $path);
@@ -205,18 +197,13 @@ EOF;
         );
       }
 
-      echo json_encode(array(
-        'error' => '0',
+      $this->response(array(
         'message' => $diff,
         'file' => $file,
         'commit_msg' => $change->commit_msg,
-      ));
+      ), 200);
     } else {
-      echo json_encode(array(
-        'error' => '2',
-        'message' => 'Invalid change id.',
-      ));
-      return;
+      $this->response(array('message' => 'Invalid change id.'), 404);
     }
   }
 }
