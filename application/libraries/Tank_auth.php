@@ -267,7 +267,7 @@ class Tank_auth
 	 */
 	function activate_user($user_id, $activation_key, $activate_by_email = TRUE)
 	{
-		$this->ci->user->purge_na($this->ci->config->item('email_activation_expire', 'tank_auth'));
+		// $this->ci->user->purge_na($this->ci->config->item('email_activation_expire', 'tank_auth'));
 
 		if ((strlen($user_id) > 0) AND (strlen($activation_key) > 0)) {
 			return $this->ci->user->activate_user($user_id, $activation_key, $activate_by_email);
