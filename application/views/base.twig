@@ -184,11 +184,10 @@ set submit = {
            rel="tooltip" title="Click here at any time to see a tutorial on how to use SciGit.">
             Guide
           </a>
-          <!--
-            <span class="divider">|</span>
-            <a href="#">About</a> <span class="divider">|</span>
-            <a href="#">Terms</a>
-          -->
+          <span class="divider">|</span>
+          {{ anchor("/legal/privacy_policy", "Privacy Policy") | raw }} <span class="divider">|</span>
+          {{ anchor("/legal/user_agreement", "User Agreement") | raw }} <span class="divider">|</span>
+          {{ anchor("/legal/Terms and Conditions", "Terms and Conditions") | raw }}
         </p>
       </div>
     </footer>

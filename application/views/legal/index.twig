@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block title %}
+Legal
+{% endblock %}
+
+{% block content %}
+
+<p class="breadcrumbs">
+  {{ anchor("/", "Home") | raw }} <span class="divider">&gt;</span>
+  <span class="current">{{ anchor("/legal", "Legal") | raw }}</span>
+</p>
+
+<div class="separator-small"></div>
+
+<h1>Legal</h1>
+<hr class="soften" />
+
+<p>This page has all the legal information for SciGit. Click a link below to read more.</p>
+
+<ul>
+<li>{{ anchor("/legal/privacy_policy", "Privacy Policy") | raw }}</li>
+<li>{{ anchor("/legal/user_agreement", "User Agreement") | raw }}</li>
+<li>{{ anchor("/legal/terms_and_conditions", "Terms and Conditions") | raw }}</li>
+</ul>
+
+{% endblock %}
