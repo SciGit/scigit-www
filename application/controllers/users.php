@@ -194,10 +194,9 @@ class Users extends SciGit_Site_Controller
     check_login();
 
     $this->form_validation->set_rules('pub_key', 'Public Key', 'required|xss_clean|callback_check_public_key');
-    $this->form_validation->set_rules('comment', 'Comment', 'max_length[255]|xss_clean');
 
     if (!$this->form_validation->run()) {
-      die($this->json_encode_validation_errors(1));
+      $this->response(array('errors' => $this->validation_errors()), 400);
     }
 
     $public_key_text = $this->input->post('pub_key');
@@ -211,7 +210,7 @@ class Users extends SciGit_Site_Controller
       $user_pub_key = $this->public_key->create(get_user_id(), $comment, $public_key_text, false);
       if ($user_pub_key == null) {
         $this->form_validation->set_message('pub_key', 'Database error.');
-        die($this->json_encode_validation_errors(2));
+        $this->response(array('errors' => $this->validation_errors()), 500);
       }
     }
 

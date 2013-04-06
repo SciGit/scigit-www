@@ -16,8 +16,9 @@
         cache: false,
 
         error: function(json) {
+          var errors = decodeValidationErrors($.parseJSON(json.responseText).errors);
           $('#addPubKeySuccess').hide();
-          $('#addPubKeyError').html(json.message).show();
+          $('#addPubKeyError').html(errors).show();
         },
 
         success: function(json) {

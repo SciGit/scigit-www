@@ -13,8 +13,9 @@
         dataType: 'json',
 
         error: function(json) {
+          var message = $.parseJSON(json.responseText).message;
           $('#deletePubKeySuccess').hide();
-          $('#deletePubKeyError').html(json.message).show();
+          $('#deletePubKeyError').html(message).show();
         },
 
         success: function(json) {
