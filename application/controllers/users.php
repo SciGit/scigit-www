@@ -150,7 +150,7 @@ class Users extends SciGit_Site_Controller
       $result['options'][] = $user->username;
     }
 
-    echo json_encode($result);
+    $this->response($result, 200);
   }
 
   public function seen_tutorial_ajax() {
@@ -215,10 +215,7 @@ class Users extends SciGit_Site_Controller
       }
     }
 
-    die(json_encode(array(
-      'error' => '0',
-      'message' => 'Public key added. Refreshing.',
-    )));
+    $this->response(array('message' => 'Public key added. Refreshing.'), 200);
   }
 
   public function pub_key_delete_ajax($id) {
@@ -236,23 +233,14 @@ class Users extends SciGit_Site_Controller
     }
 
     if (!$found_key_on_user) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => 'This key is not yours.',
-      )));
+      $this->response(array('message' => 'This key is not yours.'), 403);
     }
 
     if ($this->public_key->delete($id) == false) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => 'Database error.',
-      )));
+      $this->response(array('message' => 'Database error.'), 500);
     }
 
-    die(json_encode(array(
-      'error' => '0',
-      'message' => 'Public key deleted. Refreshing.',
-    )));
+    $this->response(array('message' => 'Public key deleted. Refreshing.'), 200);
   }
 }
 
