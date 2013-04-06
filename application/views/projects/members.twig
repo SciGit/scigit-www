@@ -51,20 +51,28 @@ $(document).ready(function() {
       type: 'post',
       data: {user_id: user_id, proj_id: {{ project.id }}},
       dataType: 'json',
-      success: function(json) {
+
+      complete: function(json) {
         $(event.target).attr("class", "btn btn-danger");
         $(event.target).html('Confirm');
+      },
 
-        if (json.error == 0) {
-          $('.popover .deleteMemberSuccess').html(json.message).show();
-          $('.popover .deleteMemberError').hide();
-          setTimeout(function() {
-            document.location.reload(true);
-          }, 2000);
-        } else {
-          $('.popover .deleteMemberSuccess').hide();
-          $('.popover .deleteMemberError').html(json.message).show();
-        }
+      error: function(json) {
+        this.complete(json);
+
+        $('.popover .deleteMemberSuccess').hide();
+        $('.popover .deleteMemberError').html(json.message).show();
+      },
+
+      success: function(json) {
+        this.complete(json);
+
+        $('.popover .deleteMemberSuccess').html(json.message).show();
+        $('.popover .deleteMemberError').hide();
+
+        setTimeout(function() {
+          document.location.reload(true);
+        }, 2000);
       }
     });
 
@@ -256,37 +264,45 @@ function submitMemberForm(root, form_data) {
     dataType: "json",
     cache: false,
 
-    success: function(json) {
+    complete: function(json) {
       $(root + ' [id^="btn-"][id$="-member"]').removeClass("disabled");
       $(root + ' [id^="btn-"][id$="-member"]').html(
         $(root + ' [id^="btn-"][id$="-member"]').data("oldHtml"));
       $(root + ' [id^="btn-"][id$="-cancel"]').removeClass("disabled");
+    },
 
-      if (json.error == 0) {
-        if (root == "#addMember") {
-          $("#user-invite input").val("");
-          $("#email-invite input").val("");
+    error: function(json) {
+      this.complete(json);
 
-          $("#user-invite i").attr("class", "");
-          $("#email-invite i").attr("class", "");
+      var message = $.parseJSON(json.responseText).message;
 
-          $("#user-invite").removeClass("faded");
-          $("#email-invite").removeClass("faded");
-        }
+      $(root + " " + root + "Success").hide();
+      $(root + " " + root + "Error").html('<i class="icon-remove-sign"></i>' + message).show();
+    },
 
-        $(root + " " + root + "Success").html('<i class="icon-ok-sign"></i>' + json.message).show();
-        $(root + " " + root + "Error").hide();
+    success: function(json) {
+      this.complete(json);
 
-        setTimeout(function() {
-          $(root).modal("hide");
-          setTimeout(function() {
-            document.location.reload(true);
-          }, 500);
-        }, 2000);
-      } else {
-        $(root + " " + root + "Success").hide();
-        $(root + " " + root + "Error").html('<i class="icon-remove-sign"></i>' + json.message).show();
+      if (root == "#addMember") {
+        $("#user-invite input").val("");
+        $("#email-invite input").val("");
+
+        $("#user-invite i").attr("class", "");
+        $("#email-invite i").attr("class", "");
+
+        $("#user-invite").removeClass("faded");
+        $("#email-invite").removeClass("faded");
       }
+
+      $(root + " " + root + "Success").html('<i class="icon-ok-sign"></i>' + json.message).show();
+      $(root + " " + root + "Error").hide();
+
+      setTimeout(function() {
+        $(root).modal("hide");
+        setTimeout(function() {
+          document.location.reload(true);
+        }, 500);
+      }, 2000);
     }
   })
 }

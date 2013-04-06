@@ -13,6 +13,11 @@ class SciGit_Controller extends CI_Controller
 		exit(json_encode($data));
 	}
 
+  protected function success($code) {
+    // For code clarity.
+    $this->error($code);
+  }
+
 	protected function error($code) {
 		$this->set_status($code);
 		header('Content-Type: application/json');

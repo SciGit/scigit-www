@@ -55,9 +55,8 @@ function createProject(event) {
 
     success: function (json) {
       this.complete(json);
-      var message = $.parseJSON(json.responseText).message;
       $('#createProjectError').hide();
-      $('#createProjectSuccess').html('<i class="icon-ok-sign"></i><p>' + message + '</p>').show();
+      $('#createProjectSuccess').html('<i class="icon-ok-sign"></i><p>' + json.message + '</p>').show();
 
       setTimeout(function() {
         $('.modal-show-only').fadeIn(500);

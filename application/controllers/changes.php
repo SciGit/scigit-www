@@ -68,7 +68,7 @@ class Changes extends SciGit_Site_Controller
 
       $change = $this->change->get($id);
       if ($change == null) {
-        $this->response(array('message' => 'Database error. Try again later.'), 424);
+        $this->response(array('message' => 'Database error. Try again later.'), 500);
       }
       check_project_perms($change->proj_id);
 

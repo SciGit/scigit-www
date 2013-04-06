@@ -116,7 +116,7 @@ class Projects extends SciGit_Site_Controller
           'proj_id' => $project['id'],
         ), 200);
       } else {
-        $this->response(array('message' => 'Database error, please try later.'), 424);
+        $this->response(array('message' => 'Database error, please try later.'), 500);
       }
     } else {
       $message = $name == '' ? 'You must enter a project name.' :
@@ -205,9 +205,7 @@ class Projects extends SciGit_Site_Controller
       $user_id = get_user_id();
       $project = $this->project->get($proj_id);
       if ($this->permission->is_member($user_id, $proj_id)) {
-        echo json_encode(array(
-          'error' => '1'
-        ));
+        $this->error(403);
       }
 
       if ($this->permission->is_subscribed($user_id, $proj_id)) {
@@ -216,13 +214,9 @@ class Projects extends SciGit_Site_Controller
         $this->permission->add_permission($user_id, $proj_id, Permission::SUBSCRIBER);
       }
 
-      echo json_encode(array(
-        'error' => '0'
-      ));
+      $this->success(200);
     } else {
-      echo json_encode(array(
-        'error' => '2'
-      ));
+      $this->error(400);
     }
   }
 
@@ -251,10 +245,7 @@ class Projects extends SciGit_Site_Controller
     $this->form_validation->set_rules('proj_id', 'Project ID', 'trim|required');
 
     if (!$this->form_validation->run()) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => "Invalid request format.",
-      )));
+      $this->response(array('message' => 'Invalid request format.'), 400);
     }
 
     $proj_id = $this->input->post('proj_id');
@@ -264,23 +255,14 @@ class Projects extends SciGit_Site_Controller
 
     if (!$this->permission->is_admin(get_user_id(), $proj_id) ||
         $this->permission->is_owner($user_id, $proj_id)) {
-      die(json_encode(array(
-        'error' => '4',
-        'message' => "You don't have permission to remove this user."
-      )));
+      $this->response(array('message' => 'You don\'t have permission to remove this user.'), 403);
     }
 
     if (!$this->permission->set_user_perms($user_id, $proj_id, Permission::NONE)) {
-      die(json_encode(array(
-        'error' => '1',
-        'message' => 'Database error.',
-      )));
+      $this->response(array('message' => 'Database error. Please try again later.'), 500);
     }
 
-    die(json_encode(array(
-      'error' => '0',
-      'message' => '<i class="icon-spinner icon-spin"></i> Member removed.',
-    )));
+    $this->response(array('message' => '<i class="icon-spinner icon-spin"></i> Member removed.'), 200);
   }
 
   public function member_add_ajax() {
@@ -308,18 +290,12 @@ class Projects extends SciGit_Site_Controller
         $using = "email";
       }
 
-      die(json_encode(array(
-        'error' => '2',
-        'message' => "The $using that you entered is invalid.",
-      )));
+      $this->response(array('message' => "The $using that you entered is invalid."), 400);
     }
 
     $proj_id = $this->input->post('proj_id');
     if (!$proj_id || !is_numeric($proj_id)) {
-      die(json_encode(array(
-        'error' => '2',
-        'message' => 'Invalid format of request.',
-      )));
+      $this->response(array('message' => 'Invalid format of request.'), 400);
     }
 
     check_project_perms($proj_id);
@@ -348,20 +324,14 @@ class Projects extends SciGit_Site_Controller
     }
 
     if ($userPermission->permission & (Permission::ADMIN|Permission::OWNER) == 0) {
-      die(json_encode(array(
-        'error' => '4',
-        'message' => 'You do not have permission to make this change.',
-      )));
+      $this->response(array('message' => 'You do not have permission to make this change.'), 403);
     }
 
     // Add user by email.
     if ($email != null && $email != 'null') {
       invite_user_to_scigit($adminUser->id, $email, $project->id, $perms);
 
-      die(json_encode(array(
-        'error' => '0',
-        'message' => 'User invited. Refreshing. <i class="icon-spinner icon-spin"></i>',
-      )));
+      $this->response(array('message' => 'User invited. Refreshing. <i class="icon-spinner icon-spin"></i>'), 200);
 
     // Add user by username.
     } else if ($username != null && $username != 'null') {
@@ -372,31 +342,19 @@ class Projects extends SciGit_Site_Controller
       if ($this->input->post('type') != 'edit' &&
           $changeUserPermission !== null &&
           $changeUserPermission->permission != 0 && $changeUserPermission->permission != Permission::SUBSCRIBER) {
-        die(json_encode(array(
-          'error' => '2',
-          'message' => 'This user is already a member of this project.',
-        )));
+        $this->response(array('message' => 'This user is already a member of this project'), 403);
       }
 
       if ($adminUser->id === $changeUser->id) {
-        die(json_encode(array(
-          'error' => '4',
-          'message' => 'You cannot change your own permissions.',
-        )));
+        $this->response(array('message' => 'You cannot change your own permissions.'), 403);
       }
 
       if ($subscriber && !$project->public) {
-        die(json_encode(array(
-          'error' => '2',
-          'message' => 'Invalid format of request.',
-        )));
+        $this->response(array('message' => 'Invalid format of request.'), 400);
       }
 
       if ($changeUserPermission !== null && $changeUserPermission->permission > $userPermission->permission) {
-        die(json_encode(array(
-          'error' => '4',
-          'message' => 'You do not have permission to make this change.',
-        )));
+        $this->response(array('message' => 'You do not have permission to make this change.'), 403);
       }
 
       if ($changeUserPermission === null) {
@@ -405,19 +363,13 @@ class Projects extends SciGit_Site_Controller
 
       if (!$this->permission->set_user_perms(
             $changeUser->id, $proj_id, $perms)) {
-        die(json_encode(array(
-          'error' => '1',
-          'message' => 'Database error.',
-        )));
+        $this->response(array('message' => 'Database error. Please try again later.'), 500);
       }
 
       $msg = (($this->input->post('type') === 'edit') ? 'Changes saved.' : 'Member added.') .
              ' Refreshing. <i class="icon-spinner icon-spin"></i>';
 
-      die(json_encode(array(
-        'error' => '0',
-        'message' => $msg,
-      )));
+      $this->response(array('message' => $msg), 200);
     }
   }
 
@@ -427,10 +379,7 @@ class Projects extends SciGit_Site_Controller
       'max_length[1024]|xss_clean|trim');
 
     if (!$this->form_validation->run()) {
-      die (json_encode(array(
-        'error' => '1',
-        'message' => 'Invalid request format.',
-      )));
+      $this->response(array('message' => 'Invalid request format.'), 400);
     }
 
     $proj_id = $this->input->post('proj_id');
@@ -441,10 +390,7 @@ class Projects extends SciGit_Site_Controller
 		$project = $this->project->get($proj_id);
     $this->project->set_description($proj_id, $description);
 
-    die(json_encode(array(
-      'error' => '0',
-      'message' => 'Description updated.',
-    )));
+    $this->response(array('message' => 'Description updated.'), 200);
   }
 
   public function publish($proj_id) {

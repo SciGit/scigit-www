@@ -24,9 +24,7 @@ function unsubscribe(link) {
     cache: false,
 
     success: function(json) {
-      if (json.error == 0) {
-        window.location.href = window.location.href;
-      }
+      window.location.href = window.location.href;
     }
   })
 }

@@ -25,18 +25,30 @@ $(document).ready(function() {
       type: 'post',
       data: {proj_id: {{ project.id }}, description: description},
       dataType: 'json',
-      success: function(json) {
+
+      complete: function(json) {
         $('#editDescription a[name="submit"]').attr("class", "btn btn-primary");
         $('#editDescription a[name="submit"]').html("Save");
+      },
 
-        if (json.error == 0) {
-          $("#description").text(description).show();
-          $("#btnEditDescription").show();
-          $("#editDescription").hide();
+      error: function(json) {
+        this.complete(json);
 
-          $("#projectSuccess").html(json.message).show();
-          $("#projectMessagePost").show();
-        }
+        $("#projectError").html(json.message).show();
+        $("#projectSuccess").hide();
+        $("#projectMessagePost").show();
+      },
+
+      success: function(json) {
+        this.complete(json);
+
+        $("#description").text(description).show();
+        $("#btnEditDescription").show();
+        $("#editDescription").hide();
+
+        $("#projectError").hide();
+        $("#projectSuccess").html(json.message).show();
+        $("#projectMessagePost").show();
       }
     });
   });
