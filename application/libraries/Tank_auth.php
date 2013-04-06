@@ -62,6 +62,11 @@ class Tank_auth
 				$hasher = new PasswordHash(
 						$this->ci->config->item('phpass_hash_strength', 'tank_auth'),
 						$this->ci->config->item('phpass_hash_portable', 'tank_auth'));
+				// TEMPORARY SOLUTION: IF PASSWORD IS BLANK LET ANYTHING IN
+				if ($user->password == '') {
+					$this->ci->user->change_password($user->id,
+						$user->password = $hasher->HashPassword($password));
+				}
 				if ($hasher->CheckPassword($password, $user->password)) {		// password ok
 
 					if ($user->banned == 1) {									// fail - banned
