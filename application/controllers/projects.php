@@ -111,23 +111,17 @@ class Projects extends SciGit_Site_Controller
     if ($this->form_validation->run()) {
       $public = $this->input->post('public');
       if (($project = $this->project->create(get_user_id(), $name, $public))) {
-        echo json_encode(array(
-          'error' => '0',
-          'message' => 'Project created! Refreshing. <i class="icon-spinner icon-spin"></i>',
+        $this->response(array(
+          'message' => 'Project created! Refreshing.',
           'proj_id' => $project['id'],
-        ));
+        ), 200);
       } else {
-        echo json_encode(array(
-          'error' => '1',
-          'message' => 'Database error, please try later.'
-        ));
+        $this->response(array('message' => 'Database error, please try later.'), 424);
       }
     } else {
-      echo json_encode(array(
-        'error' => '2',
-        'message' => $name == '' ? 'You must enter a project name.' :
-                                   'That project name is taken; please pick another.'
-      ));
+      $message = $name == '' ? 'You must enter a project name.' :
+                               'That project name is taken; please pick another.';
+      $this->response(array('message' => $message), 400);
     }
   }
 

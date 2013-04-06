@@ -39,23 +39,31 @@ function createProject(event) {
     dataType: "json",
     cache: false,
 
-    success: function (json) {
+    complete: function(json) {
       $(".project-create").val("Create");
-      if (json.error == 0) {
-        $('#createProjectError').hide();
-        $('#createProjectSuccess').html('<i class="icon-ok-sign"></i><p>' + json.message + '</p>').show();
-
-        setTimeout(function() {
-          $('.modal-show-only').fadeIn(500);
-          $('#createProjectSuccess').html('<i class="icon-spinner icon-spin"></i> Loading new project...');
-          window.location.href = '/projects/view/' + json.proj_id;
-        }, 1500);
-      } else {
-        $('#createProjectError').html('<i class="icon-remove-sign"></i><p>' + json.message + '</p>').show();
-        $(".project-create").attr('class', 'btn btn-primary project-create');
-        $(".project-cancel").attr('class', 'btn project-cancel');
-      }
+      $(".project-create").attr('class', 'btn btn-primary project-create');
+      $(".project-cancel").attr('class', 'btn project-cancel');
       create_project_submitted = false;
+    },
+
+    error: function(json) {
+      this.complete(json);
+      var message = $.parseJSON(json.responseText).message;
+      $('#createProjectError').html('<i class="icon-remove-sign"></i><p>' + message + '</p>').show();
+      $('#createProjectSuccess').hide();
+    },
+
+    success: function (json) {
+      this.complete(json);
+      var message = $.parseJSON(json.responseText).message;
+      $('#createProjectError').hide();
+      $('#createProjectSuccess').html('<i class="icon-ok-sign"></i><p>' + message + '</p>').show();
+
+      setTimeout(function() {
+        $('.modal-show-only').fadeIn(500);
+        $('#createProjectSuccess').html('<i class="icon-spinner icon-spin"></i> Loading new project...');
+        window.location.href = '/projects/view/' + json.proj_id;
+      }, 1500);
     }
   });
 }
