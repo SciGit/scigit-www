@@ -5,6 +5,7 @@ class Support extends SciGit_Site_Controller
   function __construct()
   {
     parent::__construct();
+		$this->load->library('form_validation');
   }
 
   function index()
@@ -20,7 +21,7 @@ class Support extends SciGit_Site_Controller
   function feedback_ajax()
   {
     check_login();
-    $user = $this->user->get(get_user_by_id(), true);
+    $user = $this->user->get_user_by_id(get_user_id(), true);
 
     $this->form_validation->set_rules('subject', 'Subject', 'max_length[80]|xss_clean|required');
     $this->form_validation->set_rules('message', 'Message', 'max_length[10000]|xss_clean|required');
@@ -33,6 +34,8 @@ class Support extends SciGit_Site_Controller
     $message = $this->input->post('message');
 
     $data = array(
+      'user_id' => $user->id,
+      'username' => $user->username,
       'email' => $user->email,
       'subject' => $subject,
       'message' => $message,

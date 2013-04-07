@@ -8,8 +8,6 @@
         message: $('#feedbackModal textarea[name="message"]').val(),
       };
 
-      alert(JSON.stringify(form_data));
-
       $.ajax({
         url: '/support/feedback_ajax',
         type: 'POST',
@@ -18,15 +16,18 @@
         cache: false,
 
         error: function(json) {
-          alert(JSON.stringify(json));
           var errors = decodeValidationErrors($.parseJSON(json.responseText).errors);
           $('#feedbackSuccess').hide();
           $('#feedbackError').html(message).show();
         },
 
         success: function(json) {
-          $('#feedbackSuccess').html(json.message).show();
+          $('#feedbackSuccess').html(json.message + ' <i class="icon-spinner icon-spin"></i>').show();
           $('#feedbackError').hide();
+
+          setTimeout(function() {
+            $('#feedbackModal').modal('hide');
+          }, 1500);
         },
       });
     });

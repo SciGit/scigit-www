@@ -129,6 +129,9 @@ function email_feedback($data) {
 
   $CI->postageapp->template('feedback');
   $CI->postageapp->variables(array(
+    'site' => get_hostname(),
+    'user_id' => $data['user_id'],
+    'username' => $data['username'],
     'message' => $data['message'],
   ));
 
