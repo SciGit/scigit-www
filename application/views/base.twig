@@ -92,6 +92,7 @@ set submit = {
 
 {% include 'projects/create.twig' %}
 {% include 'tutorials/new_user.twig' %}
+{% include 'support/feedback_modal.twig' %}
 
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
@@ -163,31 +164,70 @@ set submit = {
     <footer>
       <div class="container">
         <hr class="soften" />
-        <p class="pull-left">
+        <div class="pull-left">
           Copyright © 2013, SciGit Inc.
-        </p>
-        <p class="company pull-right">
-          {% if is_logged_in %}
-            {{ anchor("/", "Home") | raw }} <span class="divider">|</span>
-          {% else %}
-            {{ anchor("/auth/login", "Home") | raw }} <span class="divider">|</span>
-          {% endif %}
-          {% if is_logged_in() and not is_os_supported() %}
-            <a href="#disabled" class="disabled" rel="tooltip"
-               title="{{ get_os() }} is not supported, we'll email you when it is! Thanks for your patience.">Download Desktop Client</a>
-          {% else %}
-            <a href="/download">Download Desktop Client</a>
-          {% endif %}
-          <span class="divider">|</span>
-          <a href="#newUserModal" data-toggle="modal"
-           rel="tooltip" title="Click here at any time to see a tutorial on how to use SciGit.">
-            Guide
-          </a>
-          <span class="divider">|</span>
-          {{ anchor("/legal/privacy_policy", "Privacy Policy") | raw }} <span class="divider">|</span>
-          {{ anchor("/legal/user_agreement", "User Agreement") | raw }} <span class="divider">|</span>
-          {{ anchor("/legal/terms_and_conditions", "Terms and Conditions") | raw }}
-        </p>
+        </div>
+        <div class="company pull-right row-fluid">
+          <div class="span4">
+            <h5>SciGit</h5>
+            <ul>
+              <li>
+              {% if is_logged_in() %}
+                {{ anchor("/", "Home") | raw }}
+              {% else %}
+                {{ anchor("/auth/login", "Home") | raw }}
+              {% endif %}
+              </li>
+              {% if not is_logged_in() %}
+              <li>
+                {{ anchor("/auth/login", "Login") | raw }}
+              </li>
+              <li>
+                {{ anchor("/auth/register", "Sign Up") | raw }}
+              </li>
+              {% else %}
+              <li>
+                {{ anchor("/auth/logout", "Logout") | raw }}
+              </li>
+              {% endif %}
+              <li>
+                {% if is_logged_in() and not is_os_supported() %}
+                  <a href="#disabled" class="disabled" rel="tooltip"
+                     title="{{ get_os() }} is not supported, we'll email you when it is! Thanks for your patience.">Download Desktop Client</a>
+                {% else %}
+                  <a href="/download">Download Desktop Client</a>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+          <div class="span4">
+            <h5>Help and Support</h5>
+            <ul>
+              <li>
+                <a href="#newUserModal" data-toggle="modal"
+                 rel="tooltip" title="Click here at any time to see a tutorial on how to use SciGit.">
+                  Guide
+                </a>
+              </li>
+              <li>{{ anchor("/support/contact_us", "Contact Us") | raw }}</li>
+              {% if is_logged_in() %}
+                <li><a href="#feedbackModal" rel="tooltip" title="We love to hear your feedback! Tell us what you're thinking."
+                     data-toggle="modal">Feedback</a></li>
+              {% else %}
+                <li><a href="#disabled" class="disabled" rel="tooltip"
+                     title="Please login before submitting feedback.">Feedback</a></li>
+              {% endif %}
+            </ul>
+          </div>
+          <div class="span4">
+            <h5>Legal</h5>
+            <ul>
+              <li>{{ anchor("/legal/privacy_policy", "Privacy Policy") | raw }}</li>
+              <li>{{ anchor("/legal/user_agreement", "User Agreement") | raw }}</li>
+              <li>{{ anchor("/legal/terms_and_conditions", "Terms and Conditions") | raw }}</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
     {% endblock %}

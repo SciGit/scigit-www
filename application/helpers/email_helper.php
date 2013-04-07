@@ -119,3 +119,18 @@ function email_reset_password($data) {
 
   $CI->postageapp->send();
 }
+
+function email_feedback($data) {
+  $CI = &get_instance();
+
+  $CI->postageapp->from($data['email']);
+  $CI->postageapp->to('eric@scigit.com, doug@scigit.com, hanson@scigit.com');
+  $CI->postageapp->subject('Feedback: ' . $data['subject']);
+
+  $CI->postageapp->template('feedback');
+  $CI->postageapp->variables(array(
+    'message' => $data['message'],
+  ));
+
+  $CI->postageapp->send();
+}

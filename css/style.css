@@ -158,12 +158,15 @@ body .alert p {
   margin: 0;
 }
 body .company {
+  text-align: left;
   font-size: 14px;
   font-weight: 200;
   color: #a0a0a0;
+  width: 600px;
 }
-body .company .divider {
-  margin: 0 10px;
+body .company ul {
+  margin: 0;
+  list-style-type: none;
 }
 body .custom-color {
   background-color: #4a5b76;
