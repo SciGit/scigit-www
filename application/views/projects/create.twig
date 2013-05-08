@@ -103,8 +103,7 @@ function togglePublic(event) {
       <div id="createProjectError" class="alert alert-error hide"></div>
       <div id="createProjectSuccess" class="alert alert-success hide"></div>
       {{ form_label('Document Name', 'name') | raw }}
-      <input type="text" class="full-width-input"></input>
-      <!--{{ form_input('name', set_value('name')) | raw }} <br />-->
+      {{ form_input('name', set_value('name')) | raw }}
     </div>
   </div>
   <div class="modal-footer">
