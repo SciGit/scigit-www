@@ -121,23 +121,20 @@ set submit = {
               </ul>
               <div class="dropdown">
                 <a id="label-projects" class="dropdown-toggle username" data-toggle="dropdown" href="#">
-                  My Projects<b class="caret"></b>
+                  My Documents<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
-                  <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create New Project</a></li>
+                  <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create Blank Document</a></li>
+                  <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create Document from Template</a></li>
+                  <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Scan Document</a></li>
                   <li class="divider"></li>
-                  <li><a tabindex="-1" href="/projects/me">Manage Projects</a></li>
-                  <li><a tabindex="-1" href="/projects/me">Manage Subscriptions</a></li>
+                  <li><a tabindex="-1" href="/projects/me">Manage Documents</a></li>
                 </ul>
               </div>
             {% endif %}
             {% block nav_items %}
               <ul class="navitems">
                 <li class="divider"><div class="inner"></div></li>
-                {% if is_logged_in() %}
-                  <li {% if page == 'Explore' %}class="current"{% endif %}><a href="/projects/explore">Public</a></li>
-                  <li class="divider"><div class="inner"></div></li>
-                {% endif %}
                 {% if not is_logged_in() %}
                   <li {% if page == 'Login' %}class="current"{% endif %}><a href="/auth/login">Login</a></li>
                 {% endif %}

@@ -95,27 +95,16 @@ function togglePublic(event) {
 <div id="createProject" class="modal modal-small hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h2>Create New Project</h2>
+    <h2>Create New Document</h2>
   </div>
   {{ form_open('') | raw }}
   <div class="modal-body">
     <div class="create-project">
       <div id="createProjectError" class="alert alert-error hide"></div>
       <div id="createProjectSuccess" class="alert alert-success hide"></div>
-      <div class="name">
-        {{ form_label('Project Name', 'name') | raw }}
-        {{ form_input('name', set_value('name')) | raw }} <br />
-      </div>
-      <div class="grey-separator"></div>
-      <div class="public">
-        <div class="hide">
-          {{ form_checkbox('public', 1, set_value('public')) | raw }}
-        </div>
-        {{ form_label('Private', 'public') | raw }}
-        <a href="#" id="togglePublic" class="btn btn-primary btn-small" rel="tooltip" title="Make public" data-placement="top">
-          <i id="togglePublicIcon" class="icon-lock icon-2x"></i>
-        </a>
-      </div>
+      {{ form_label('Document Name', 'name') | raw }}
+      <input type="text" class="full-width-input"></input>
+      <!--{{ form_input('name', set_value('name')) | raw }} <br />-->
     </div>
   </div>
   <div class="modal-footer">
