@@ -120,10 +120,10 @@ body a.disabled:hover {
 body .scigit-brand {
   color: rgba(0,0,0,0) !important;
   padding: 0 !important;
-  margin: 10px 60px 7px 0px !important;
+  margin: 8px 60px 7px 2px !important;
   background-image: url(/img/site-logo.png);
-  width: 153px;
-  height: 31px;
+  width: 113px;
+  height: 32px;
 }
 body .breadcrumbs {
   margin-top: 15px;
