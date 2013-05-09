@@ -1,0 +1,31 @@
+<h1>Listing project_changes</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Project</th>
+    <th>Commit msg</th>
+    <th>Commit hash</th>
+    <th>Commit timestamp</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @project_changes.each do |project_change| %>
+  <tr>
+    <td><%= project_change.user_id %></td>
+    <td><%= project_change.project_id %></td>
+    <td><%= project_change.commit_msg %></td>
+    <td><%= project_change.commit_hash %></td>
+    <td><%= project_change.commit_timestamp %></td>
+    <td><%= link_to 'Show', project_change %></td>
+    <td><%= link_to 'Edit', edit_project_change_path(project_change) %></td>
+    <td><%= link_to 'Destroy', project_change, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project change', new_project_change_path %>

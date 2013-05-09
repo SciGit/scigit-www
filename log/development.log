@@ -1,0 +1,4069 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (1.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateProjects (20130409185110)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "public" boolean, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130409185110')[0m
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-04-09 15:04:43 -0400
+Served asset /rails.png - 200 OK (19ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-04-09 15:04:49 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" [0m
+  Rendered projects/index.html.erb within layouts/application (3.0ms)
+Compiled projects.css  (20ms)  (pid 72788)
+Compiled scaffolds.css  (8ms)  (pid 72788)
+Compiled application.css  (56ms)  (pid 72788)
+Compiled jquery.js  (2ms)  (pid 72788)
+Compiled jquery_ujs.js  (0ms)  (pid 72788)
+Compiled projects.js  (316ms)  (pid 72788)
+Compiled application.js  (377ms)  (pid 72788)
+Completed 200 OK in 620ms (Views: 538.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /scaffolds.css - 200 OK (5ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /projects.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /jquery.js - 200 OK (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /jquery_ujs.js - 200 OK (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /application.css - 200 OK (4ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /projects.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-09 15:04:50 -0400
+Served asset /application.js - 200 OK (7ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-04-09 15:04:52 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (59.4ms)
+  Rendered projects/new.html.erb within layouts/application (113.0ms)
+Completed 200 OK in 151ms (Views: 145.2ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (105.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (309.3ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (1.7ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130409185110)
+  [1m[35m (151.1ms)[0m  CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `public` tinyint(1), `description` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130409185110')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (18.0ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130409185110)
+Migrating to CreateProjPermissions (20130410165207)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130409185110)
+Migrating to CreateProjPermissions (20130410165327)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (2.8ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130409185110)
+Migrating to CreateProjPermissions (20130410165417)
+  [1m[35m (170.7ms)[0m  CREATE TABLE `proj_permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `proj_id` int(11), `permission` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130410165417')[0m
+  [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-05-09 12:42:16 -0400
+Served asset /rails.png - 200 OK (32ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-05-09 13:14:36 -0400
+Served asset /rails.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-05-09 13:14:37 -0400
+Served asset /rails.png - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (70.8ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130509171923)
+  [1m[35m (0.5ms)[0m  CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `description` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+Mysql::Error: Table 'projects' already exists: CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `description` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+Connecting to database specified by database.yml
+  [1m[36m (1.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130509171923)
+  [1m[35m (411.9ms)[0m  CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `description` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130509171923')[0m
+Migrating to CreateProjectPermissions (20130509171943)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProjects (20130509171923)
+Migrating to CreateProjectPermissions (20130509172129)
+  [1m[35m (294.1ms)[0m  CREATE TABLE `project_permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `project_id` int(11), `permission` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130509172129')[0m
+Migrating to CreateProjectChanges (20130509172206)
+  [1m[35m (433.0ms)[0m  CREATE TABLE `project_changes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `project_id` int(11), `commit_msg` varchar(255), `commit_hash` varchar(255), `commit_timestamp` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130509172206')[0m
+  [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 13:31:30 -0400
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 13:33:32 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (1.4ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.8ms)
+Compiled project_changes.css  (34ms)  (pid 32529)
+Compiled project_permissions.css  (1ms)  (pid 32529)
+Compiled application.css  (47ms)  (pid 32529)
+Compiled project_changes.js  (332ms)  (pid 32529)
+Compiled project_permissions.js  (104ms)  (pid 32529)
+Compiled application.js  (450ms)  (pid 32529)
+Completed 200 OK in 619ms (Views: 585.7ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /project_changes.css - 200 OK (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /application.css - 200 OK (8ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /project_permissions.css - 200 OK (1ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /projects.css - 200 OK (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /scaffolds.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /jquery.js - 200 OK (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /project_changes.js - 200 OK (1ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /project_permissions.js - 200 OK (1ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /projects.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 13:33:33 -0400
+Served asset /application.js - 200 OK (22ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 13:33:40 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (32.4ms)
+  Rendered projects/new.html.erb within layouts/application (56.6ms)
+Completed 200 OK in 106ms (Views: 101.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 13:33:42 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.4ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 28ms (Views: 26.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 13:33:44 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (1.6ms)
+  Rendered projects/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 47ms (Views: 46.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 13:35:40 -0400
+
+ArgumentError (missing :controller):
+  config/routes.rb:58:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (13.3ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (29.5ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 14:00:22 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 66ms (Views: 61.2ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:23 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (1.9ms)
+  Rendered projects/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 63ms (Views: 59.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:24 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (1.4ms)
+  Rendered projects/new.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 60ms (Views: 59.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:00:29 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 14:09:33 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (2.2ms)
+  Rendered projects/new.html.erb within layouts/application (2.8ms)
+Compiled home.css  (1ms)  (pid 32529)
+Compiled application.css  (8ms)  (pid 32529)
+Compiled home.js  (113ms)  (pid 32529)
+Compiled application.js  (146ms)  (pid 32529)
+Completed 200 OK in 244ms (Views: 232.5ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /home.css - 200 OK (2ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /home.js - 200 OK (1ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /application.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (1.8ms)
+  Rendered projects/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 69ms (Views: 68.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:09:34 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 14:09:38 -0400
+
+AbstractController::ActionNotFound (The action 'index' could not be found for HomeController):
+  actionpack (3.2.13) lib/abstract_controller/base.rb:116:in `process'
+  actionpack (3.2.13) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.13) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.13) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.13) lib/action_dispatch/routing/route_set.rb:612:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.13) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.13) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `_run__3952304062450155150__call__3771536258329000459__callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.13) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.13) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 14:20:33 -0400
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 38ms
+
+ActionView::MissingTemplate (Missing template home/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 14:20:34 -0400
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 1ms
+
+ActionView::MissingTemplate (Missing template home/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 54ms (Views: 53.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:49 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 68ms (Views: 67.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:50 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 73ms (Views: 65.4ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:51 -0400
+Served asset /application.js - 304 Not Modified (12ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 53ms (Views: 53.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:21:57 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 53ms (Views: 52.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:00 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (1.9ms)
+  Rendered projects/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 72ms (Views: 67.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 14:22:02 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 116ms (Views: 116.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /projects.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:34 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 69ms (Views: 68.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /projects.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:16:36 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 15:18:12 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 59ms (Views: 57.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:12 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:12 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:12 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:12 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 73ms (Views: 72.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /projects.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:18:13 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:14 -0400
+Processing by HomeController#index as HTML
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from _app_views_home_index_html_erb__1703121619900479842_70133531830840 at /Users/dsherk/scigit-rails/app/views/home/index.html.erb:1)
+  Rendered home/index.html.erb within layouts/application (1.5ms)
+Completed 500 Internal Server Error in 3ms
+
+ActionView::Template::Error (Missing partial layouts/application.html with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application.html.erb" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531830840'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:15 -0400
+Processing by HomeController#index as HTML
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from _app_views_home_index_html_erb__1703121619900479842_70133531830840 at /Users/dsherk/scigit-rails/app/views/home/index.html.erb:1)
+  Rendered home/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 2ms
+
+ActionView::Template::Error (Missing partial layouts/application.html with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application.html.erb" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531830840'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:44 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 4ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531858360'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:45 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 2ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531858360'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:45 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.3ms)
+Completed 500 Internal Server Error in 3ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531858360'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:46 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 2ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531858360'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:18:46 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 2ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531858360'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.5ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2013-05-09 15:19:20 -0400
+Processing by ProjectsController#new as HTML
+  Rendered projects/_form.html.erb (1.7ms)
+  Rendered projects/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 84ms (Views: 83.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /projects.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:19:21 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 2ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133531858360'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:19:33 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 3ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render :partial => "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133532515140'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:19:34 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.4ms)
+Completed 500 Internal Server Error in 4ms
+
+ActionView::Template::Error (Missing partial layouts/application with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/Users/dsherk/scigit-rails/app/views"
+  * "/Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/devise-2.2.3/app/views"
+):
+    1: <%= render :partial => "layouts/application" %>
+    2: 
+    3: <h1>LawDoc</h1>
+    4: 
+  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb__1703121619900479842_70133532515140'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Processing by HomeController#index as HTML
+  Rendered layouts/_application.html.erb (70.7ms)
+  Rendered home/index.html.erb (71.5ms)
+Completed 200 OK in 74ms (Views: 73.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Processing by HomeController#index as HTML
+  Rendered layouts/_application.html.erb (75.8ms)
+  Rendered home/index.html.erb (76.7ms)
+Completed 200 OK in 79ms (Views: 78.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /application.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:17 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:20:18 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 54ms (Views: 53.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:21 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 52ms (Views: 51.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 66ms (Views: 65.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 15:22:22 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:57:59 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.2ms)
+Completed 500 Internal Server Error in 54ms
+
+ActionView::Template::Error (Invalid CSS after "...ansition($time ": expected ")", was "= .5s) {"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:23
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:58:28 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 22ms
+
+ActionView::Template::Error (Invalid CSS after "    color #333": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:151
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:58:52 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 21ms
+
+ActionView::Template::Error (Invalid CSS after "      a.disabled": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:187
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:58:53 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 21ms
+
+ActionView::Template::Error (Invalid CSS after "      a.disabled": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:187
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:58:54 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 38ms
+
+ActionView::Template::Error (Invalid CSS after "      a.disabled": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:187
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:59:11 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 39ms
+
+ActionView::Template::Error (Invalid CSS after "        .table": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:301
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:59:12 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (Invalid CSS after "        .table": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:301
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:59:22 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (Invalid CSS after "...    .background": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:309
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:59:38 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 44ms
+
+ActionView::Template::Error (Invalid CSS after "...ble .background": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:331
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 16:59:53 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 64ms
+
+ActionView::Template::Error (Invalid CSS after "      a.rawlink": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:548
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:00:01 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 78ms
+
+ActionView::Template::Error (Invalid CSS after "...dropdown-toggle": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:704
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (14.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (19.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:00:10 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 87ms
+
+ActionView::Template::Error (Invalid CSS after "...   .description": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:953
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:00:11 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 88ms
+
+ActionView::Template::Error (Invalid CSS after "...   .description": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:953
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:00:21 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 87ms
+
+ActionView::Template::Error (Invalid CSS after "      th": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:992
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:00:33 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 183ms
+
+ActionView::Template::Error (Invalid CSS after "...  .search-query": expected "{", was ";"
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:1398
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:00:40 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 216ms
+
+ActionView::Template::Error (An @include loop has been found: box-shadow includes itself
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:46:in `box-shadow'
+  app/assets/stylesheets/home.css.scss:276
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532770980'
+  app/controllers/home_controller.rb:5:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:01:43 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+WARNING on line 327 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 327 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 988 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+Compiled home.css  (587ms)  (pid 32529)
+Compiled application.css  (1ms)  (pid 32529)
+Completed 200 OK in 714ms (Views: 714.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /application.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /home.css - 200 OK (1ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:44 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 54ms (Views: 53.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:01:48 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:02:08 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 55ms (Views: 32.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /projects.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:02:09 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:04:30 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 56ms (Views: 54.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/img/site-logo.png" for 127.0.0.1 at 2013-05-09 17:04:31 -0400
+
+ActionController::RoutingError (No route matches [GET] "/img/site-logo.png"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/auth/login" for 127.0.0.1 at 2013-05-09 17:04:36 -0400
+
+ActionController::RoutingError (No route matches [GET] "/auth/login"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 54ms (Views: 53.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /projects.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:04:51 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:05:41 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 54ms (Views: 53.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 57ms (Views: 56.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:05:42 -0400
+Served asset /application.js - 304 Not Modified (21ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:06:02 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.2ms)
+Completed 500 Internal Server Error in 63ms
+
+ActionView::Template::Error (couldn't find file 'bootstrap'
+  (in /Users/dsherk/scigit-rails/app/assets/javascripts/application.js:15)):
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.3ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:35:14 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 218ms
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap.
+Load path: Sass::Rails::Importer(/Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.3ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:38:38 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 30ms
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap.
+Load path: Sass::Rails::Importer(/Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.2ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:38:38 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 34ms
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap.
+Load path: Sass::Rails::Importer(/Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)
+  (in /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss)):
+    2: <html>
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/home.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.3ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:39:06 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 991 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+Compiled home.css  (467ms)  (pid 32529)
+Compiled application.css  (1ms)  (pid 32529)
+Completed 500 Internal Server Error in 595ms
+
+ActionView::Template::Error (couldn't find file 'twitter/bootstrap'
+  (in /Users/dsherk/scigit-rails/app/assets/javascripts/application.js:15)):
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.1ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:39:08 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.4ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 54ms
+
+ActionView::Template::Error (couldn't find file 'twitter/bootstrap'
+  (in /Users/dsherk/scigit-rails/app/assets/javascripts/application.js:15)):
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.3ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:39:15 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 48ms
+
+ActionView::Template::Error (couldn't find file 'bootstrap'
+  (in /Users/dsherk/scigit-rails/app/assets/javascripts/application.js:15)):
+    3: <head>
+    4:   <title>LawDoc</title>
+    5:   <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___2582574714845474431_70133532797960'
+  app/controllers/projects_controller.rb:7:in `index'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.1ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (1.9ms)[0m  [1mSELECT `projects`.* FROM `projects` [0m
+  Rendered projects/index.html.erb within layouts/application (2.5ms)
+Compiled bootstrap-transition.js  (0ms)  (pid 35769)
+Compiled bootstrap-affix.js  (0ms)  (pid 35769)
+Compiled bootstrap-alert.js  (0ms)  (pid 35769)
+Compiled bootstrap-button.js  (0ms)  (pid 35769)
+Compiled bootstrap-carousel.js  (0ms)  (pid 35769)
+Compiled bootstrap-collapse.js  (0ms)  (pid 35769)
+Compiled bootstrap-dropdown.js  (0ms)  (pid 35769)
+Compiled bootstrap-modal.js  (0ms)  (pid 35769)
+Compiled bootstrap-scrollspy.js  (0ms)  (pid 35769)
+Compiled bootstrap-tab.js  (0ms)  (pid 35769)
+Compiled bootstrap-tooltip.js  (0ms)  (pid 35769)
+Compiled bootstrap-popover.js  (0ms)  (pid 35769)
+Compiled bootstrap-typeahead.js  (0ms)  (pid 35769)
+Compiled bootstrap.js  (140ms)  (pid 35769)
+Compiled application.js  (193ms)  (pid 35769)
+Completed 200 OK in 383ms (Views: 326.1ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /application.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /home.css - 200 OK (2ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /project_changes.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /project_permissions.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-transition.js - 200 OK (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-affix.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-alert.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-button.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-carousel.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-collapse.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-dropdown.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-modal.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-scrollspy.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-tab.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-tooltip.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-popover.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap-typeahead.js - 200 OK (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /bootstrap.js - 200 OK (15ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /home.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /project_changes.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /project_permissions.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /projects.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+Served asset /application.js - 200 OK (19ms)
+
+
+Started GET "/img/site-logo.png" for 127.0.0.1 at 2013-05-09 17:41:16 -0400
+
+ActionController::RoutingError (No route matches [GET] "/img/site-logo.png"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:41:26 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 991 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+Compiled home.css  (3054ms)  (pid 35769)
+Compiled application.css  (1ms)  (pid 35769)
+Completed 200 OK in 3193ms (Views: 3192.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:29 -0400
+Served asset /application.css - 304 Not Modified (42ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:29 -0400
+Served asset /home.css - 200 OK (5ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:29 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:29 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:29 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/img/site-logo.png" for 127.0.0.1 at 2013-05-09 17:41:30 -0400
+
+ActionController::RoutingError (No route matches [GET] "/img/site-logo.png"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/projects/me" for 127.0.0.1 at 2013-05-09 17:41:41 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"me"}
+  [1m[36mProject Load (0.6ms)[0m  [1mSELECT `projects`.* FROM `projects` WHERE `projects`.`id` = ? LIMIT 1[0m  [["id", "me"]]
+Completed 404 Not Found in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Project with id=me):
+  app/controllers/projects_controller.rb:16:in `show'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.1ms)
+
+
+Started GET "/users/profile" for 127.0.0.1 at 2013-05-09 17:41:50 -0400
+
+ActionController::RoutingError (No route matches [GET] "/users/profile"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 91ms (Views: 90.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /home.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:05 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:42:33 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 71ms (Views: 70.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /home.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:34 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 71ms (Views: 71.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /application.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /home.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:42:35 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:42:57 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.2ms)
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+WARNING on line 991 of /Users/dsherk/scigit-rails/app/assets/stylesheets/home.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+Compiled home.css  (2053ms)  (pid 35769)
+Compiled application.css  (1ms)  (pid 35769)
+Completed 200 OK in 2183ms (Views: 2182.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /application.css - 304 Not Modified (20ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /home.css - 200 OK (8ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/images/site-logo.png" for 127.0.0.1 at 2013-05-09 17:43:00 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images/site-logo.png"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-1.9.3-p385/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 67ms (Views: 66.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /home.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:28 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.4ms)[0m  SELECT `projects`.* FROM `projects` 
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 87ms (Views: 86.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /home.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:30 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 87ms (Views: 86.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /project_changes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /home.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /project_permissions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:31 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /project_changes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /project_permissions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-09 17:43:32 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/projects/me" for 127.0.0.1 at 2013-05-09 17:43:40 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"me"}
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects` WHERE `projects`.`id` = ? LIMIT 1[0m  [["id", "me"]]
+Completed 404 Not Found in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Project with id=me):
+  app/controllers/projects_controller.rb:16:in `show'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.4ms)
+
+
+Started GET "/projects/me" for 127.0.0.1 at 2013-05-09 17:43:51 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"me"}
+  [1m[35mProject Load (0.3ms)[0m  SELECT `projects`.* FROM `projects` WHERE `projects`.`id` = ? LIMIT 1  [["id", "me"]]
+Completed 404 Not Found in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Project with id=me):
+  app/controllers/projects_controller.rb:16:in `show'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-1.9.3-p385@mygemset/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.2ms)

@@ -1,14 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ScigitWww</title>
+  <title>LawDoc</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+    <div class="navbar navbar-fixed-top nav-main">
+      <div class="custom-color navbar-inner">
+        <div class="container">
+          <div class="row-fluid navigation">
+            <div class="span2">
+              <a class="scigit-brand brand" href="/"></a>
+            </div>
+            <div class="span10">
+              <div class="dropdown">
+                <a id="label-username" class="dropdown-toggle username" data-toggle="dropdown" href="#">
+                  {{ get_user_username() }}<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="label-username">
+                  <li><a tabindex="-1" href="/users/profile">Settings</a></li>
+                  <li><a tabindex="-1" href="/users/profile/{{ get_user_id() }}">My Profile View</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="/auth/logout">Logout</a></li>
+                </ul>
+              </div>
+              <ul class="navitems fake">
+                <li class="divider"><div class="inner"></div></li>
+              </ul>
+              <div class="dropdown">
+                <a id="label-projects" class="dropdown-toggle username" data-toggle="dropdown" href="#">
+                  My Projects<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
+                  <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create New Project</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="/projects/me">Manage Projects</a></li>
+                  <li><a tabindex="-1" href="/projects/me">Manage Subscriptions</a></li>
+                </ul>
+              </div>
+              <ul class="navitems">
+                <li class="divider"><div class="inner"></div></li>
+                  <li {% if page == 'Explore' %}class="current"{% endif %}><a href="/projects/explore">Public</a></li>
+                  <li class="divider"><div class="inner"></div></li>
+                  <li {% if page == 'Login' %}class="current"{% endif %}><a href="/auth/login">Login</a></li>
+              </ul>
+              <div class='input-append'>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<div class="container">
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <hr class="soften" />
+        <div class="pull-left">
+          Copyright © 2013, SciGit Inc.
+        </div>
+        <div class="company pull-right row-fluid">
+          <div class="span4">
+            <h5>SciGit</h5>
+            <ul>
+              <li>
+              </li>
+              <li>
+              </li>
+              <li>
+              </li>
+              <li>
+              </li>
+              <li>
+                <a href="#disabled" class="disabled" rel="tooltip"
+                   title="{{ get_os() }} is not supported, we'll email you when it is! Thanks for your patience.">Download Desktop Client</a>
+              </li>
+            </ul>
+          </div>
+          <div class="span4">
+            <h5>Help and Support</h5>
+            <ul>
+              <li>
+                <a href="#newUserModal" data-toggle="modal"
+                 rel="tooltip" title="Click here at any time to see a tutorial on how to use SciGit.">
+                  Guide
+                </a>
+              </li>
+              <li></li>
+              <li><a href="#feedbackModal" rel="tooltip" title="We love to hear your feedback! Tell us what you're thinking."
+                     data-toggle="modal">Feedback</a></li>
+              <li><a href="#disabled" class="disabled" rel="tooltip"
+                     title="Please login before submitting feedback.">Feedback</a></li>
+            </ul>
+          </div>
+          <div class="span4">
+            <h5>Legal</h5>
+            <ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>

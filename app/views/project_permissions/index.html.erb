@@ -1,0 +1,27 @@
+<h1>Listing project_permissions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Project</th>
+    <th>Permission</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @project_permissions.each do |project_permission| %>
+  <tr>
+    <td><%= project_permission.user_id %></td>
+    <td><%= project_permission.project_id %></td>
+    <td><%= project_permission.permission %></td>
+    <td><%= link_to 'Show', project_permission %></td>
+    <td><%= link_to 'Edit', edit_project_permission_path(project_permission) %></td>
+    <td><%= link_to 'Destroy', project_permission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project permission', new_project_permission_path %>
