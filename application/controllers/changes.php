@@ -203,12 +203,13 @@ index 995a4b6..0d53ef6 100755
 --- a/Non-disclosure agreement.docx
 +++ b/Non-disclosure agreement.docx
 @@ -1,1 +1,1 @@
--                                                                           <b>MUTUAL NON-DISCLOSURE AGREEMENT</b>
-+                                                                                    <b>NON-DISCLOSURE AGREEMENT</b>
- This Agreement is made and entered into as of the last date signed below (the “Effective Date”) by and
- between Triad Search Marketing, LLC (The Company); an Internet Marketing corporation having its principal place
- of business at 7680 Airline Road Greensboro, NC 27409 and John Smith Inc., a Silicon Valley corporation whose
- principal mailing address is 234 Fake Street, Waterloo, ON (the "Second Party").
+ -                             <b>MUTUAL NON-DISCLOSURE AGREEMENT</b>
+ +                                <b>NON-DISCLOSURE AGREEMENT</b>
+ This Agreement is made and entered into as of the last date signed below (the “Effective Date”)
+ by and between Triad Search Marketing, LLC (The Company); an Internet Marketing corporation
+ having its principal place of business at 7680 Airline Road Greensboro, NC 27409 and John
+ Smith Inc., a Silicon Valley corporation whose principal mailing address is 234 Fake Street,
+ Waterloo, ON (the "Second Party").
 EOF;
         $diff = array(
           array(
