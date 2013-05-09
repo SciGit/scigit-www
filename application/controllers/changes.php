@@ -80,7 +80,7 @@ class Changes extends SciGit_Site_Controller
       $file = $this->change->get_file($id, $path);
       $diff = $this->change->get_diff_set($id, $path);
 
-      if ($diff == null || $diff == "" || $diff == " " || empty($diff)) {
+      if (true || $diff == null || $diff == "" || $diff == " " || empty($diff)) {
         $diff1 =
 <<<EOF
 diff --git a/application/views/projects/changes.twig b/application/views/projects/changestwig
