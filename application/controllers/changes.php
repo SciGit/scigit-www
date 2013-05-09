@@ -211,6 +211,7 @@ index 995a4b6..0d53ef6 100755
  having its principal place of business at 7680 Airline Road Greensboro, NC 27409 and John
  Smith Inc., a Silicon Valley corporation whose principal mailing address is 234 Fake Street,
  Waterloo, ON (the "Second Party").
+ <a href="#">View more ...</a>
 EOF;
         $diff = array(
           array(
