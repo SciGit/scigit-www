@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>User:</b>
+  <strong>User:</strong>
   <%= @project_permission.user_id %>
 </p>
 
 <p>
-  <b>Project:</b>
+  <strong>Project:</strong>
   <%= @project_permission.project_id %>
 </p>
 
 <p>
-  <b>Permission:</b>
+  <strong>Permission:</strong>
   <%= @project_permission.permission %>
 </p>
-
 
 <%= link_to 'Edit', edit_project_permission_path(@project_permission) %> |
 <%= link_to 'Back', project_permissions_path %>
