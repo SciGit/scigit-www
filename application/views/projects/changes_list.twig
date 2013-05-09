@@ -128,8 +128,7 @@
 
       changedFiles.push(fileNameWithoutPath);
 
-      var isDoc = fileExtension.toLowerCase() == 'doc' || 
-                  fileExtension.toLowerCase() == 'docx';
+      var isDoc = false;
       if (diffs[file].diff == null || isDoc) {
         var message = 'This file cannot be viewed as plain-text.';
         if (isDoc) {
@@ -204,12 +203,12 @@
           var changeType = '';
           if (lines[line][0] == '+') {
             changeType = 'change-addition';
-            lines[line] = lines[line].escapeHTML();
+            lines[line] = lines[line];
             curLineNum -= numDeletions;
             numDeletions = 0;
           } else if (lines[line][0] == '-') {
             changeType = 'change-deletion';
-            lines[line] = lines[line].escapeHTML();
+            lines[line] = lines[line];
             numDeletions++;
           } else {
             lines[line] = lines[line].escapeHTML();
