@@ -43,7 +43,11 @@ end
 gem 'bootstrap-sass'
 
 gem 'devise'
+# Including protected_attributes to give support for attr_accessible, despite it being basically removed in
+# Rails 4.0. We need to revisit this at some point and use a newer devise that doesn't have this problem.
 gem 'protected_attributes'
+
+gem 'cancan'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
