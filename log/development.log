@@ -7395,3 +7395,719 @@ Processing by Devise::SessionsController#new as HTML
   Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
   Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.8ms)
 Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:56:44 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:56:45 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:58:25 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:25 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:25 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:25 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:26 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:27 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:37 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:38 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:58:48 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 98ms (Views: 9.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:12:54 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:13:41 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/sessions/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 97ms (Views: 10.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:42 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/sessions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:13:58 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/sessions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:11 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/sessions/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:38 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:39 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:39 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:14:39 -0400
+
+
+Started GET "/users/password/new" for 127.0.0.1 at 2013-05-10 17:14:44 -0400
+Processing by Devise::PasswordsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/passwords/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 12ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/confirmation/new" for 127.0.0.1 at 2013-05-10 17:14:48 -0400
+Processing by Devise::ConfirmationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/confirmations/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 54ms (Views: 51.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/unlock/new" for 127.0.0.1 at 2013-05-10 17:14:50 -0400
+Processing by Devise::UnlocksController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/unlocks/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 13ms (Views: 10.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-10 17:14:57 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/sessions/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 47ms (Views: 45.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:42 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/sessions/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 17:15:47 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 17:15:53 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.6ms)
+  Rendered users/sessions/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-10 17:15:55 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms)
