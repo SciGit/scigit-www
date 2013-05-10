@@ -1,7 +1,7 @@
 LawDoc::Application.routes.draw do
   get "home/index"
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => 'users'}
 
   resources :project_permissions
 

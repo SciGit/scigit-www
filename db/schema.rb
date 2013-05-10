@@ -56,6 +56,11 @@ ActiveRecord::Schema.define(version: 20130510164942) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fullname"
+    t.string   "organization"
+    t.string   "location"
+    t.string   "about"
+    t.boolean  "disable_email"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

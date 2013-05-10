@@ -12,6 +12,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.token_authenticatable
 
       t.timestamps
+
+      t.string :fullname
+      t.string :organization
+      t.string :location
+      t.string :about
+      t.boolean :disable_email
     end
 
     add_index :users, :email,                :unique => true
