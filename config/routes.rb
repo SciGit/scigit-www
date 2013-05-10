@@ -1,6 +1,8 @@
 LawDoc::Application.routes.draw do
   get "home/index"
 
+  devise_for :users
+
   resources :project_permissions
 
   resources :project_changes
