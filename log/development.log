@@ -5927,3 +5927,1471 @@ Processing by Devise::SessionsController#new as HTML
   Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
   Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (4.3ms)
 Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:13 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:14 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:14 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:14 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:14 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:38:14 -0400
+
+
+Started GET "/images/site-logo.png" for 127.0.0.1 at 2013-05-10 16:38:14 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images/site-logo.png"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (32.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:30 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:39:33 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 13ms (Views: 11.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:50 -0400
+
+
+Started POST "/users" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"15ahfvxfnq4mS0GilPE8dlAmvNS479obvYhRY3rr1+0=", "user"=>{"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 17ms (Views: 10.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:39:52 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:40:34 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:35 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:40:36 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (41.4ms)
+Completed 200 OK in 49ms (Views: 47.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:17 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:41:33 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:34 -0400
+
+
+Started POST "/users" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"15ahfvxfnq4mS0GilPE8dlAmvNS479obvYhRY3rr1+0=", "user"=>{"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 14ms (Views: 9.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:41:40 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-10 16:46:16 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+
+WARNING on line 995 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+
+Completed 200 OK in 2684ms (Views: 2682.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+
+Started GET "/images/site-logo.png" for 127.0.0.1 at 2013-05-10 16:46:19 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images/site-logo.png"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (29.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:46:37 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:47:41 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:47:43 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:48:17 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.6ms)
+  Rendered users/registrations/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 14ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:18 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:48:37 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (3.0ms)
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+
+WARNING on line 995 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+
+Completed 200 OK in 1656ms (Views: 1654.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+
+Started GET "/images/site-logo.png" for 127.0.0.1 at 2013-05-10 16:48:39 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images/site-logo.png"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (30.8ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:48:46 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (3.0ms)
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+
+WARNING on line 330 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .blue-well-list .table-condensed th" failed to @extend ".table.background".
+  The selector ".table.background" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend .table.background !optional" if the extend should be able to fail.
+
+
+WARNING on line 995 of /Users/dsherk/scigit-rails/app/assets/stylesheets/bootstrap-overrides.css.scss: "body .diff-text tr:hover th" failed to @extend "tr:hover.th".
+  The selector "tr:hover.th" was not found.
+  This will be an error in future releases of Sass.
+  Use "@extend tr:hover.th !optional" if the extend should be able to fail.
+
+
+Completed 200 OK in 1645ms (Views: 1643.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+
+Started GET "/images/site-logo.png" for 127.0.0.1 at 2013-05-10 16:48:48 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images/site-logo.png"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (31.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:49:23 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (1.1ms)
+  Rendered users/registrations/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 12ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+
+Started GET "/img/illustration.png" for 127.0.0.1 at 2013-05-10 16:49:24 -0400
+
+ActionController::RoutingError (No route matches [GET] "/img/illustration.png"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (39.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (70.4ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:50:02 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+
+Started GET "/images/illustration.png" for 127.0.0.1 at 2013-05-10 16:50:03 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images/illustration.png"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.7ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (28.8ms)
+
+
+Started GET "/images" for 127.0.0.1 at 2013-05-10 16:50:20 -0400
+
+ActionController::RoutingError (No route matches [GET] "/images"):
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/dsherk/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.8ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (29.6ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 17ms (Views: 14.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:52:14 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:53:47 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:30 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.4ms)
+  Rendered users/registrations/new.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 17ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:54:51 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 17ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:02 -0400
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.erb (0.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/bootstrap-overrides.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/project_changes.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/project_permissions.css?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/project_changes.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/project_permissions.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-10 16:55:11 -0400
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-05-10 16:55:31 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /Users/dsherk/.rvm/gems/ruby-2.0.0-p0/gems/devise-1.5.4/app/views/devise/sessions/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.0ms)

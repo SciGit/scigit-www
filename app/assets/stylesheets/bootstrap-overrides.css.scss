@@ -611,6 +611,10 @@ body {
 
   .sign-up-form .sign-up-form-inner {
     margin-top: 45px;
+
+    > form div {
+      margin-top: 10px;
+    }
   }
 
   .sign-up {
