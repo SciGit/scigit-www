@@ -1,0 +1,112 @@
+<% if false %>
+  <div class="hero-unit blue-hero-unit">
+    <button type="button" class="close pull-right" data-dismiss="alert">&times;</button>
+    <h1>
+      Let's get started!
+    </h1>
+    <p>
+      You can manage documents using projects. Let's create your first project.
+    </p>
+    <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">
+      <div class="btn btn-primary btn-xlarge">Create First Project</div>
+    </a>
+  </div>
+{% elseif not activated %}
+  <div class="alert alert-error">
+    <i class="icon-remove-sign"></i>
+    <p>
+      Your email has not been verified; certain features will not be available until you do so. Please check your email for a verification link, or <a href="/auth/send_again">get a new link</a>.
+    </p>
+  </div>
+  <div class="separator-small"></div>
+<% end %>
+
+<div class="page-header">
+  <p class="breadcrumbs">
+    <span class="current">{{ anchor("/", "Home") | raw }}</span>
+  </p>
+</div>
+
+<div class="row-fluid">
+  <div class="span6 well-list">
+    <table class="table table-hover">
+      <tr>
+        <th>
+          <h2>Collaborator Updates</h2>
+        </th>
+      </tr>
+      {% if activities %}
+        {% for activity in activities %}
+          <tr>
+            <td class="project" valign="middle" data-proj_id="{{ activity.proj_id }}">
+              <div class="pull-left">
+                <div class="title pull-left">
+                  {{ anchor("/projects/view/#{activity.proj_id}", activity.proj_name) | raw }}
+                </div>
+                <div class="subtitle">
+                  {{ anchor("/users/profile/#{activity.user_id}", activity.username) | raw }} made change:
+                </div>
+              </div>
+              <div class="date pull-right">{{ time_ago(activity.commit_ts) }}</div>
+              <div class="clearfix"></div>
+              <div class="description">
+                {{ anchor("/changes/view/#{activity.id}", activity.commit_msg) | raw }}
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr class="nohover">
+          <td>
+            <p>You have no recent activity in your social circle. Visit the
+              {{ anchor("/projects/explore", "Public Projects") | raw }} section.</p>
+          </td>
+        </tr>
+      {% endif %}
+    </table>
+  </div>
+  <div class="span6 well-list">
+    <table class="table table-hover">
+      <tr>
+        <th>
+          <h2>My Updates</h2>
+        </th>
+      </tr>
+      {% if projects %}
+        {% for project in projects %}
+          {% if project.my_changes %}
+            <tr>
+              <td class="project" valign="middle" data-proj_id="{{ project.id }}">
+                <div class="title">
+                  {{ anchor("/projects/view/#{project.id}", project.name) | raw }}
+                </div>
+                <ul class="unstyled">
+                  {% for change in project.my_changes %}
+                    <li>
+                      <div class="pull-right date p">
+                        {{ time_ago(change.commit_ts) }}
+                      </div>
+                      <div class="activity-msg">
+                        {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <tr class="nohover">
+          <td>
+            {% if (not just_started) and has_projects %}
+              <p>You have made no changes to any projects recently. Consider {{ anchor("/projects/explore", "finding a project") | raw }} to contribute to.</p>
+            {% else %}
+              <p>You have no projects. <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create a Project</a> to get started! You can also join someone else's project.</p>
+            {% endif %}
+          </td>
+        </tr>
+      {% endif %}
+    </table>
+  </div>
+</div>

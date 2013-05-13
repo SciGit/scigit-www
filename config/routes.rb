@@ -1,5 +1,12 @@
 LawDoc::Application.routes.draw do
-  get "home/index"
+  #get 'home/index'
+  #get 'home/home'
+  resources :home do
+    member do
+      get 'index'
+      get 'home'
+    end
+  end
 
   devise_for :users,
              :controllers => {
