@@ -24,13 +24,13 @@
               <% if user_signed_in? %>
                 <div class="dropdown">
                   <a id="label-username" class="dropdown-toggle username" data-toggle="dropdown" href="#">
-                    <%= @user.email %><b class="caret"></b>
+                    <%= @user.fullname %><b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="label-username">
                     <li><a tabindex="-1" href="/users/profile">Settings</a></li>
                     <li><a tabindex="-1" href="/users/profile/<%= @user.id %>">My Profile View</a></li>
                     <li class="divider"></li>
-                    <li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+                    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
                   </ul>
                 </div>
               <% end %>
@@ -53,7 +53,7 @@
               <% if !user_signed_in? %>
                 <ul class="navitems">
                   <li class="divider"><div class="inner"></div></li>
-                  <li><%= link_to('Login', new_user_session_path) %></li>
+                  <li><%= link_to 'Login', new_user_session_path %></li>
                 </ul>
               <% end %>
               <div class='input-append'>
@@ -80,13 +80,20 @@
             <h5>SciGit</h5>
             <ul>
               <li>
+                <%= link_to 'Home', root_path %>
               </li>
               <li>
+                <% if user_signed_in? %>
+                  <%= link_to 'Logout', destroy_user_session_path %>
+                <% else %>
+                  <%= link_to 'Login', new_user_session_path %>
+                <% end %>
               </li>
-              <li>
-              </li>
-              <li>
-              </li>
+              <% if !user_signed_in? %>
+                <li>
+                  <%= link_to 'Sign Up', new_user_registration_path %>
+                </li>
+              <% end %>
               <li>
                 <a href="#disabled" class="disabled" rel="tooltip"
                    title="{{ get_os() }} is not supported, we'll email you when it is! Thanks for your patience.">Download Desktop Client</a>
@@ -102,11 +109,16 @@
                   Guide
                 </a>
               </li>
-              <li></li>
-              <li><a href="#feedbackModal" rel="tooltip" title="We love to hear your feedback! Tell us what you're thinking."
-                     data-toggle="modal">Feedback</a></li>
-              <li><a href="#disabled" class="disabled" rel="tooltip"
-                     title="Please login before submitting feedback.">Feedback</a></li>
+              <li>
+                <a href="#">Contact Us</a>
+              </li>
+              <% if user_signed_in? %>
+                <li><a href="#feedbackModal" rel="tooltip" title="We love to hear your feedback! Tell us what you're thinking."
+                       data-toggle="modal">Feedback</a></li>
+              <% else %>
+                <li><a href="#disabled" class="disabled" rel="tooltip"
+                       title="Please login before submitting feedback.">Feedback</a></li>
+              <% end %>
             </ul>
           </div>
           <div class="span4">
