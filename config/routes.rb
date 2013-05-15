@@ -1,12 +1,16 @@
 LawDoc::Application.routes.draw do
   #get 'home/index'
   #get 'home/home'
-  resources :home do
-    member do
-      get 'index'
-      get 'home'
-    end
-  end
+  #resources :home do
+  #  member do
+  #    get 'index'
+  #    get 'home'
+  #  end
+  #end
+
+  get 'main/index' => 'main#index', :as => 'main_index'
+  get 'main/home' => 'main#home', :as => 'main_home'
+  get 'users/:id' => 'users/registrations#show', :as => 'user'
 
   devise_for :users,
              :controllers => {
@@ -18,13 +22,17 @@ LawDoc::Application.routes.draw do
 
   resources :project_changes
 
-  resources :projects
+  resources :projects do
+    collection do
+      get 'company'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'main#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

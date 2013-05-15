@@ -40,13 +40,13 @@
                 </ul>
                 <div class="dropdown">
                   <a id="label-projects" class="dropdown-toggle username" data-toggle="dropdown" href="#">
-                    My Projects<b class="caret"></b>
+                    Projects<b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
-                    <li><a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create New Project</a></li>
+                    <li><%= link_to 'Create New Project', '#createProject', :tabindex => -1, :data => {:toggle => 'modal'} %></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="/projects/me">Manage Projects</a></li>
-                    <li><a tabindex="-1" href="/projects/me">Manage Subscriptions</a></li>
+                    <li><%= link_to 'Manage My Projects', projects_path, :tabindex => -1 %></li>
+                    <li><%= link_to 'View Company Projects', company_projects_path, :tabindex => -1 %></li>
                   </ul>
                 </div>
               <% end %>

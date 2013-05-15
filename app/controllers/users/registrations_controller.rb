@@ -1,4 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  def show
+
+  end
+
   def new
     super
   end

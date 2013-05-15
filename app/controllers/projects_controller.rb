@@ -8,6 +8,12 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  # GET /projects/company
+  # GET /projects/company.json
+  def company
+    @projects = Project.all
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show

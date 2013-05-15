@@ -297,7 +297,7 @@ body {
       }
 
       tr {
-        @extend .table;
+        @extend .well-list.table;
 
         td {
           padding: 19px;
