@@ -5,6 +5,12 @@
   <%= @project.name %>
 </p>
 
+<% if can? :manage, @project %>
+  You can manage this.
+<% else %>
+  Can't manage this.
+<% end %>
+
 <p>
   <strong>Description:</strong>
   <%= @project.description %>
