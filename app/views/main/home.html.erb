@@ -75,22 +75,20 @@
       <% if @subscription_updates %>
         <% @subscription_updates.each do |subscription_update| %>
           <tr>
-            <td class="project" valign="middle" data-proj_id="{{ project.id }}">
-              <div class="title">
-                <%= link_to @subscription_update.project_name, view_projects_path, :id => @subscription_update.id %>
+            <td class="project" valign="middle" data-proj_id="<%= subscription_update.project.id %>">
+              <div class="pull-left">
+                <div class="title pull-left">
+                  <%= link_to subscription_update.project.name, project_path(subscription_update.project.id) %>
+                </div>
+                <div class="subtitle">
+                  <%= link_to subscription_update.user.fullname, user_path(subscription_update.user_id) %> made change:
+                </div>
               </div>
-              <ul class="unstyled">
-                {% for change in project.my_changes %}
-                  <li>
-                    <div class="pull-right date p">
-                      {{ time_ago(change.commit_ts) }}
-                    </div>
-                    <div class="activity-msg">
-                      {{ anchor("/changes/view/#{change.id}", change.commit_msg) | raw }}
-                    </div>
-                  </li>
-                {% endfor %}
-              </ul>
+              <div class="date pull-right"><%= distance_of_time_in_words(Time.now, Time.at(subscription_update.commit_timestamp)) %> ago</div>
+              <div class="clearfix"></div>
+              <div class="description">
+                <%= link_to subscription_update.commit_msg, project_change_path(subscription_update.id) %>
+              </div>
             </td>
           </tr>
         <% end %>
