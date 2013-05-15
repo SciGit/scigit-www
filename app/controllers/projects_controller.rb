@@ -1,7 +1,13 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  load_resource
+  load_and_authorize_resource
+
+  rescue_from CanCan::AccessDenied do |exception|
+    @topic = 'Error'
+    @errors = exception.message
+    render 'shared/message'
+  end
 
   # GET /projects
   # GET /projects.json
@@ -18,6 +24,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+
   end
 
   # GET /projects/new

@@ -3,8 +3,8 @@ class Ability
 
   def user_has_permission(user, project, minimum)
     permission = ProjectPermission.get_user_permission(user, project)
-    return false if permission.nil?
-    return true if permission.permission >= minimum
+    return false if permission.nil? or permission.permission < minimum
+    return true
   end
 
   def initialize(user)
