@@ -42,6 +42,7 @@ end
 
 gem 'bootstrap-sass'
 
+# Need GitHub version for this to work. Likely an issue with Rails 4.0.
 gem 'font-awesome-rails', :git => 'https://github.com/bokmann/font-awesome-rails.git'
 
 gem 'devise'

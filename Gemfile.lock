@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/bokmann/font-awesome-rails.git
-  revision: 8587a44a5d4c2b1303f0ff4eb4f8ba1eef32812f
-  specs:
-    font-awesome-rails (3.1.1.1)
-      railties (>= 3.2, < 5.0)
-
-GIT
   remote: https://github.com/ernie/squeel
   revision: e74aa5030a587adb782a816f1eecb1e51afda9d9
   specs:
@@ -62,6 +55,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    font-awesome-rails (3.1.1.1)
+      railties (>= 3.2, < 5.0)
     hike (1.2.2)
     i18n (0.6.4)
     jbuilder (1.0.2)
@@ -145,7 +140,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
-  font-awesome-rails!
+  font-awesome-rails
   jbuilder (~> 1.0.1)
   jquery-rails
   mysql
