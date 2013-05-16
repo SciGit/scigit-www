@@ -1,16 +1,9 @@
 LawDoc::Application.routes.draw do
-  #get 'home/index'
-  #get 'home/home'
-  #resources :home do
-  #  member do
-  #    get 'index'
-  #    get 'home'
-  #  end
-  #end
-
   get 'main/index' => 'main#index', :as => 'main_index'
   get 'main/home' => 'main#home', :as => 'main_home'
-  #get 'users/:id' => 'users/registrations#show', :as => 'view_user'
+  # We have to break the "user" as opposed to "view_user" convention here because of some
+  # error we get in the registration process when in sign_up.
+  get 'users/:id' => 'users/registrations#show', :as => 'view_user'
 
   devise_for :users,
              :controllers => {
