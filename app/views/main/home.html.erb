@@ -35,7 +35,7 @@
           <h2>Coauthor Updates</h2>
         </th>
       </tr>
-      <% if @coauthor_updates %>
+      <% if !@coauthor_updates.empty? %>
         <% @coauthor_updates.each do |coauthor_update| %>
           <tr>
             <td class="project" valign="middle" data-proj_id="<%= coauthor_update.project.id %>">
@@ -72,7 +72,7 @@
           <h2>Subscription Updates</h2>
         </th>
       </tr>
-      <% if @subscription_updates %>
+      <% if !@subscription_updates.empty? %>
         <% @subscription_updates.each do |subscription_update| %>
           <tr>
             <td class="project" valign="middle" data-proj_id="<%= subscription_update.project.id %>">

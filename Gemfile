@@ -49,6 +49,8 @@ gem 'protected_attributes'
 
 gem 'cancan'
 
+gem 'squeel', :git => 'https://github.com/ernie/squeel'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
