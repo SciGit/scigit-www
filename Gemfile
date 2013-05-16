@@ -42,7 +42,7 @@ end
 
 gem 'bootstrap-sass'
 
-gem 'font-awesome-more-sass-rails'
+gem 'font-awesome-rails', :git => 'https://github.com/bokmann/font-awesome-rails.git'
 
 gem 'devise'
 # Including protected_attributes to give support for attr_accessible, despite it being basically removed in
