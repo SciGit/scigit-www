@@ -1,0 +1,36 @@
+<div class="span6 well-list">
+  <table class="table table-hover">
+    <tr>
+      <th>
+        <h2><%= update_type %></h2>
+      </th>
+    </tr>
+    <% if !updates.empty? %>
+      <% updates.each do |update| %>
+        <tr>
+          <td class="project" valign="middle" data-proj_id="<%= update.project.id %>">
+            <div class="pull-left">
+              <div class="title pull-left">
+                <%= link_to update.project.name, project_path(update.project.id) %>
+              </div>
+              <div class="subtitle">
+                <%= link_to update.user.fullname, view_user_path(update.user_id) %> made change:
+              </div>
+            </div>
+            <div class="date pull-right"><%= distance_of_time_in_words(Time.now, Time.at(update.commit_timestamp)) %> ago</div>
+            <div class="clearfix"></div>
+            <div class="description">
+              <%= link_to update.commit_msg, project_change_path(update.id) %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="nohover">
+        <td>
+          <p><%= empty_msg %></p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
