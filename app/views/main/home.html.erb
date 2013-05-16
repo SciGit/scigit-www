@@ -22,9 +22,9 @@
 <% end %>
 
 <div class="page-header">
-  <p class="breadcrumbs">
-    <span class="current"><%= link_to 'Home', root_path %></span>
-  </p>
+  <%= render :partial => 'shared/breadcrumbs', :locals => {:paths => {
+    'Home' => root_path
+  }} %>
 </div>
 
 <div class="row-fluid">
