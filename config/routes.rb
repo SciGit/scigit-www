@@ -10,7 +10,7 @@ LawDoc::Application.routes.draw do
 
   get 'main/index' => 'main#index', :as => 'main_index'
   get 'main/home' => 'main#home', :as => 'main_home'
-  get 'users/:id' => 'users/registrations#show', :as => 'user'
+  #get 'users/:id' => 'users/registrations#show', :as => 'view_user'
 
   devise_for :users,
              :controllers => {
