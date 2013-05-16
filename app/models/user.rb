@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  delegate :can?, :cannot?, :to => :ability
+
   has_many :project, :through => :project_permission
   has_many :project, :through => :project_change
 
@@ -17,4 +19,8 @@ class User < ActiveRecord::Base
   validates :organization, :length => { :maximum => 60 }
   validates :location, :length => { :maximum => 60 }
   validates :about, :length => { :maximum => 255 }
+
+  def ability
+    @ability ||= Ability.new(self)
+  end
 end

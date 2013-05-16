@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def set_constants
     @user = current_user
   end
+
+  def current_ability
+    current_user.ability
+  end
 end

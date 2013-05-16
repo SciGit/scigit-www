@@ -1,23 +1,128 @@
-<% if cannot? :read, @project %>
-<% end %>
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      ((can? :update, @project) ? 'Manage My Projects' : 'View Company Projects') =>  ((can? :update, @project) ? projects_path : company_projects_path),
+      @project.name => project_path(@project.id),
+    }}
+ %>
 
-<p id="notice"><%= notice %></p>
+<div class="separator-xsmall"></div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<div class="page-header">
+  <h1>
+    <div class="pull-right">
+      <% if can? :manage, @project %>
+        <a class="btn btn-large btn-primary" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
+          <i class="icon-wrench icon-white"></i>
+          Settings
+        </a>
+      <% elsif user_signed_in? %>
+        <% if cannot? :read, @project %>
+          <%= link_to 'Subscribe', subscribe_project_path, :class => 'btn btn-large btn-success' %>
+        <% else %>
+          <%= link_to 'Unsubscribe', subscribe_project_path, :class => 'btn btn-large btn-danger' %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= @project.name %>
+  </h1>
+</div>
 
-<% if can? :manage, @project %>
-  You can manage this.
-<% else %>
-  Can't manage this.
-<% end %>
+<div class="row-fluid">
+  <div class="span4">
+    <div class="blue-well-list">
+      <table class="table table-condensed">
+        <tr>
+          <th>
+            <h2>
+              <% if can? :manage, @project %>
+                <div class="pull-right">
+                  <a id="btnEditDescription" class="btn btn-primary btn-valign center" href="#" rel="tooltip" title="Edit description">
+                    <i class="icon-large icon-edit"></i> Edit
+                  </a>
+                </div>
+              <% end %>
+              Description
+            </h2>
+          </th>
+        </tr>
+        <tr>
+          <td class="tabular" valign="middle">
+            <p id="description">
+              <% if @project.description %>
+                <%= word_wrap(@project.description, :line_width => 30) %>
+              <% else %>
+                This project has no description.
+              <% end %>
+            </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+            <% if can? :manage, @project %>
+              <%= form_tag('/projects/edit_description', :method => 'post', :class => 'hide') do %>
+                <%= label_tag(:description, 'Description') %>
+                <%= text_area_tag :description, @project.description, :size => '20x10' %>
+                <%= submit_tag 'Save', :class => 'btn btn-primary pull-right', :onclick => '$(\'#editDescription\').submit();' %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="well-list">
+      <table class="table table-condensed">
+        <tr>
+          <th>
+            <h2>Tools</h2>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <h5>Git Clone Command{% if is_logged_in() %} - {{ anchor("/users/profile#advanced", "Advanced Settings") | raw }}{% endif %}</h5>
+            <p></p>
+            <code
+             rel="tooltip"
+             title="If you're using the client, don't worry about this. Use this command to clone this project in a terminal.">
+              git clone {{ get_git_path() | raw }}:r{{ project.id }}
+            </code>
+          </td>
+        </tr>
+      </table>
+    </div>
+    {% include 'projects/members.twig' with {project: project, perms: perms, admin: admin} %}
+    <div class="well-list">
+      <table class="table table-condensed">
+        <tr>
+          <th colspan="2">
+            <h2>Stats</h2>
+          </th>
+        </tr>
+        <tr>
+          <td class="stats">
+            <div class="row-fluid">
+              <div class="span4">
+                <h3>{{ subscribers }}</h3>
+                <p>Subscribers</p>
+              </div>
+              <div class="span4">
+                <h3>{{ administrators }}</h3>
+                <p>Administrators</p>
+              </div>
+              <div class="span4">
+                <h3>{{ contributors }}</h3>
+                <p>Members</p>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span4">
+                <h3>{{ changes_num }}</h3>
+                <p>Updates</p>
+              </div>
+              <div class="span8">
+                <h3>{{ project.created_ts | date("Y-m-d") }}</h3>
+                <p>Created</p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>

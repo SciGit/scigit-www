@@ -16,6 +16,10 @@ LawDoc::Application.routes.draw do
   resources :project_changes
 
   resources :projects do
+    member do
+      get 'subscribe'
+    end
+
     collection do
       get 'company'
     end
