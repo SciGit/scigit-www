@@ -67,26 +67,13 @@
         </tr>
       </table>
     </div>
-    <div class="well-list">
-      <table class="table table-condensed">
-        <tr>
-          <th>
-            <h2>Tools</h2>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <h5>Git Clone Command{% if is_logged_in() %} - {{ anchor("/users/profile#advanced", "Advanced Settings") | raw }}{% endif %}</h5>
-            <p></p>
-            <code
-             rel="tooltip"
-             title="If you're using the client, don't worry about this. Use this command to clone this project in a terminal.">
-              git clone {{ get_git_path() | raw }}:r{{ project.id }}
-            </code>
-          </td>
-        </tr>
-      </table>
-    </div>
+
+    <%= render :partial => 'projects/members', :locals => {
+          :project => @project,
+          :members => @members,
+        }
+     %>
+
     {% include 'projects/members.twig' with {project: project, perms: perms, admin: admin} %}
     <div class="well-list">
       <table class="table table-condensed">
