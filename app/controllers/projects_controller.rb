@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @members = User.all_members_of_project(@project)
+    @members = ProjectPermission.all_project_managers(@project)
   end
 
   # GET /projects/new

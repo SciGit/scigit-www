@@ -23,8 +23,4 @@ class User < ActiveRecord::Base
   def ability
     @ability ||= Ability.new(self)
   end
-
-  def self.all_members_of_project(project)
-    where{id >> ProjectPermission.where{project_id == project[:id]}.pluck{user_id}}
-  end
 end
