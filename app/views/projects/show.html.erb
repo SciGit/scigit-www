@@ -60,6 +60,7 @@
               <%= form_tag('/projects/edit_description', :method => 'post', :class => 'hide') do %>
                 <%= label_tag(:description, 'Description') %>
                 <%= text_area_tag :description, @project.description, :size => '20x10' %>
+                <%= # XXX: submit() call totally unnecessary, but I don't want to break bcompat yet. %>
                 <%= submit_tag 'Save', :class => 'btn btn-primary pull-right', :onclick => '$(\'#editDescription\').submit();' %>
               <% end %>
             <% end %>
@@ -89,7 +90,7 @@
                 <p>Subscribers</p>
               </div>
               <div class="span4">
-              <h3><%= @numCoauthors %></h3>
+              <h3><%= @members.count %></h3>
                 <p>Coauthors</p>
               </div>
               <div class="span4">
@@ -99,7 +100,7 @@
             </div>
             <div class="row-fluid">
               <div class="span4">
-                <h3><%= @numChanges %></h3>
+                <h3><%= @changes.count %></h3>
                 <p>Updates</p>
               </div>
               <div class="span8">
@@ -112,3 +113,4 @@
       </table>
     </div>
   </div>
+</div>

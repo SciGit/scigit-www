@@ -21,4 +21,8 @@ class ProjectChange < ActiveRecord::Base
   def self.get_subscription_updates(user)
     self.get_member_updates(user, ProjectPermission::SUBSCRIBER)
   end
+
+  def self.all_project_updates(project)
+    where{project_id == project.id}
+  end
 end

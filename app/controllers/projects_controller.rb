@@ -25,6 +25,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @members = ProjectPermission.all_project_managers(@project)
+    @numSubscribers = ProjectPermission.all_project_subscribers(@project).count
+    @numMembers = ProjectPermission.all_project_members(@project).count
+    @changes = ProjectChange.all_project_updates(@project)
   end
 
   # GET /projects/new
