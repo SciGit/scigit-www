@@ -1,0 +1,24 @@
+<% @project_changes.each do |project_change| %>
+  <tr>
+    <td class="change" valign="middle"
+      data-change_id="<%= project_change.id %>" data-commit_hash="<%= project_change.commit_hash %>">
+      <%= link_to user_path(project_change.user_id), project_change.user_fullname %> updated:
+      <div class="buttons shrink">
+        <div class="date">
+          <%= project_change.commit_ts %>
+        </div>
+        <a href="#" class="btnViewChanges btn btn-info btn-small"
+         rel="tooltip" title="View changes">
+          <i class="changes icon-search"></i>
+        </a>
+        <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small"
+         rel="tooltip" title="View changes on client">
+          <i class="icon-copy"></i>
+        </a>
+      </div>
+      <div class="description">
+        <%= link_to change_path(project_change.id), project_change.commit_msg %>
+      </div>
+    </td>
+  </tr>
+<% end %>

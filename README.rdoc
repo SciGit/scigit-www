@@ -1,3 +1,9 @@
+== Stuff that needs updating periodically
+
+* Everything in the Gemfile
+
+* https://github.com/paulirish/infinite-scroll ~> 1.5.100504
+
 == README
 
 This README would normally document whatever steps are necessary to get the
