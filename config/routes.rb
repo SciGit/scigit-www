@@ -10,15 +10,15 @@ LawDoc::Application.routes.draw do
 
   get 'users/:id' => 'users/registrations#show', :as => 'user'
 
-  resources :project_permissions
-
-  resources :project_changes do
-    collection do
-      get 'project/:id/page/:page', :action => 'list'
-    end
-  end
-
   resources :projects do
+    resources :project_changes, :path => 'changes', :as => 'changes' do
+      collection do
+        get 'page/:page', :action => 'list'
+      end
+    end
+
+    resources :project_permissions, :path => 'permissions', :as => 'permissions'
+
     member do
       get 'subscribe'
     end

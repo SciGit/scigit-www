@@ -20,7 +20,7 @@
             <div class="date pull-right"><%= distance_of_time_in_words(Time.now, Time.at(update.commit_timestamp)) %> ago</div>
             <div class="clearfix"></div>
             <div class="description">
-              <%= link_to update.commit_msg, project_change_path(update.id) %>
+              <%= link_to update.commit_msg, project_change_path(update.project.id, update.id) %>
             </div>
           </td>
         </tr>
