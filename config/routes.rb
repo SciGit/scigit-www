@@ -12,7 +12,11 @@ LawDoc::Application.routes.draw do
 
   resources :project_permissions
 
-  resources :project_changes
+  resources :project_changes do
+    collection do
+      get 'project/:id/page/:page', :action => 'list'
+    end
+  end
 
   resources :projects do
     member do

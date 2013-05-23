@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/bokmann/font-awesome-rails.git
-  revision: 8587a44a5d4c2b1303f0ff4eb4f8ba1eef32812f
+  revision: b713de078874965626f50c62ce1956e69e9e4829
   specs:
-    font-awesome-rails (3.1.1.1)
+    font-awesome-rails (3.1.1.2)
       railties (>= 3.2, < 5.0)
 
 GIT
@@ -70,6 +70,9 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -131,7 +134,7 @@ GEM
     turbolinks (1.1.1)
       coffee-rails
     tzinfo (0.3.37)
-    uglifier (2.1.0)
+    uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
@@ -148,6 +151,7 @@ DEPENDENCIES
   font-awesome-rails!
   jbuilder (~> 1.0.1)
   jquery-rails
+  kaminari
   mysql
   pg
   protected_attributes

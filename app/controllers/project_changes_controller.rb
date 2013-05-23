@@ -1,5 +1,6 @@
 class ProjectChangesController < ApplicationController
   before_action :set_project_change, only: [:show, :edit, :update, :destroy]
+  #load_and_authorize_resource
 
   # GET /project_changes
   # GET /project_changes.json
@@ -19,6 +20,11 @@ class ProjectChangesController < ApplicationController
 
   # GET /project_changes/1/edit
   def edit
+  end
+
+  # GET /project_changes/project/1/page/1.json
+  def list
+    @project_changes = ProjectChange.all_project_updates(Project.find(params[:id])).page(params[:page])
   end
 
   # POST /project_changes
