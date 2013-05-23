@@ -26,7 +26,7 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes/project/1/page/1.json
   def list
     @project_changes = ProjectChange.all_project_updates(Project.find(params[:id])).page(params[:page])
-    render :partial => 'project_changes/list'
+    render :layout => false
   end
 
   # POST /project_changes
