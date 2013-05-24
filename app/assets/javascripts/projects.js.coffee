@@ -7,15 +7,8 @@ $(document).ready ->
   alert project_id
   return if !project_id?
 
-  $('.changes').infinitescroll({
-    dataType: 'json',
-    appendCallback: false,
-  }, (json, opts) ->
-    alert 'end'
-    page = opts.state.currPage;
-    $.ajax '/project_changes/project/' + project_id + '/page/' + page,
-      type: 'GET',
-      data: { id: id },
-      success: (data) ->
-        alert data
-  );
+  page = 1
+  $.ajax '/projects/' + project_id + '/changes/page/' + page,
+    type: 'GET',
+    success: (data) ->
+      $('#changes table').append(data)
