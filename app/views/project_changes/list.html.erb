@@ -2,10 +2,10 @@
   <tr>
     <td class="change" valign="middle"
       data-change_id="<%= project_change.id %>" data-commit_hash="<%= project_change.commit_hash %>">
-      <%= link_to user_path(project_change.user_id), project_change.user_fullname %> updated:
+      <%= link_to project_change.user.fullname, user_path(project_change.user.id) %> updated:
       <div class="buttons shrink">
         <div class="date">
-          <%= project_change.commit_ts %>
+          <%= project_change.commit_timestamp %>
         </div>
         <a href="#" class="btnViewChanges btn btn-info btn-small"
          rel="tooltip" title="View changes">
@@ -17,7 +17,7 @@
         </a>
       </div>
       <div class="description">
-        <%= link_to change_path(project_change.id), project_change.commit_msg %>
+        <%= link_to project_change.commit_msg, project_change_path(project_change.project_id, project_change.id) %>
       </div>
     </td>
   </tr>
