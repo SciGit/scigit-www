@@ -378,9 +378,11 @@ $config['proxy_ips'] = '';
 */
 function __autoload($class)
 {
-  if (strpos($class, 'SciGit_') === 0)
-  {
-    @include_once(APPPATH . 'core/' . $class . EXT);
+  if (strpos($class, 'SciGit_') === 0) {
+    $path = APPPATH . 'core/' . $class . EXT;
+    if (file_exists($path)) {
+      @include_once($path);
+    }
   }
 }
 
