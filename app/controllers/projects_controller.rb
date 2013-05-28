@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource :only => [:show]
 
   rescue_from CanCan::AccessDenied do |exception|
     @topic = 'Error'
@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @my_projects = Project.all_manager_of(current_user)
+    @subscriptions = Project.all_subscribed_to(current_user)
   end
 
   # GET /projects/company
