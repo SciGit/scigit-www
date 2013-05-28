@@ -2,12 +2,30 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'ready page:load', () ->
-  project_id = $('#project_id').data('project_id')
-  return if !project_id?
+project_id = null
 
-  page = 1
+fetchingChanges = false
+
+fetchAndAppendChanges = (page) ->
+  fetchingChanges = true
   $.ajax '/projects/' + project_id + '/changes/page/' + page,
     type: 'GET',
     success: (data) ->
-      $('#changes table').append(data)
+      $('body').infiniteScrollHelper 'destroy' if !data
+      $('#changes table').append data
+      fetchingChanges = false
+    failure: ->
+      fetchingChanges = false
+
+$(document).on 'ready page:load', () ->
+  project_id = $('#project_id').data 'project_id'
+  return if !project_id?
+
+  fetchAndAppendChanges 1
+
+  $('body').infiniteScrollHelper
+    loadMore: (page) ->
+      fetchAndAppendChanges page
+    ,
+    doneLoading: ->
+      return !fetchingChanges

@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.infinitescroll
+//= require jquery.infinite-scroll-helper
 //= require_tree .

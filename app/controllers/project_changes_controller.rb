@@ -25,7 +25,8 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes/project/1/page/1
   # GET /project_changes/project/1/page/1.json
   def list
-    @project_changes = ProjectChange.all_project_updates(Project.find(params[:project_id])).page(params[:page])
+    # XXX: per() should use a config parameter instead of static value.
+    @project_changes = ProjectChange.all_project_updates(Project.find(params[:project_id])).page(params[:page]).per(10)
     render :layout => false
   end
 
