@@ -28,23 +28,34 @@
 </div>
 
 <div class="row-fluid">
+  <% @coauthor_updates_empty_msg = capture do %>
+    You have no recent activity in your social circle. Visit the <%= link_to 'Company Projects', company_projects_path %> section.
+  <% end %>
+
   <%= render :partial => 'shared/updates',
              :locals => {
         :update_type => 'Coauthor Updates',
         :updates => @coauthor_updates,
-        :empty_msg =>
-          'You have no recent activity in your social circle. Visit the Company Projects section.',
+        :empty_msg => @coauthor_updates_empty_msg,
       }
    %>
+
+  <% @subscription_updates_empty_msg = capture do %>
+    <% if defined?(@first_time) %>
+      You have made no changes to any projects recently. Consider <%= link_to 'finding a project', company_projects_path %> to contribute to.
+    <% else %>
+      You have no projects.
+      <%= link_to 'Create a project', '#createProject',
+          :data => {:toggle => 'modal'} %> to get started!
+      You can also join someone else's project.
+    <% end %>
+  <% end %>
 
   <%= render :partial => 'shared/updates',
              :locals => {
         :update_type => 'Subscription Updates',
         :updates => @subscription_updates,
-        :empty_msg =>
-          @first_time?
-            'You have made no changes to any projects recently. Consider finding a company project to conbribute to.' :
-            'You have no projects. Create a project to get started! You can also join someone else\'s project.'
+        :empty_msg => @subscription_updates_empty_msg,
       }
    %>
 
