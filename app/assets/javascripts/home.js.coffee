@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$('[data-toggle="tooltip"]').tooltip()
+$('[data-toggle~="tooltip"]').tooltip()
 
 $(document).on 'ready page:load', () ->
   $('#label-projects').click (e) ->

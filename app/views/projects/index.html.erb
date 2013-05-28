@@ -12,112 +12,46 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span6 blue-well-list">
-    <table class="table table-hover">
-      <tr>
-        <th>
-          <h2>
-            My Projects
-            <div class="pull-right">
-              <a href="#createProject" class="btn btn-primary btn-large btn-valign" data-toggle="modal">
-                <i class="icon-plus"></i> Create New
-              </a>
-            </div>
-          </h2>
-        </th>
-      </tr>
-      <% if !@my_projects.empty? %>
-        <% @my_projects.each do |my_project| %>
-          <tr>
-            <td class="project" valign="middle" data-proj_id="<%= my_project.id %>">
-              <div class="title pull-left">
-                <%= link_to my_project.name, project_path(my_project.id) %>
-              </div>
-              <div class="buttons">
-                <div class="button">
-                  <a href="#" data-toggle="tooltip" title="Subscribers" class="rawlink">
-                    <%= my_project.id %>
-                    <i class="icon-star"></i>
-                  </a>
-                </div>
-                <% if can? :admin, my_project %>
-                  <div class="button">
-                    <a href="#" data-toggle="tooltip" title="Administrate" class="rawlink">
-                      <i class="icon-cog icon-large"></i>
-                    </a>
-                  </div>
-                <% end %>
-              </div>
-              <div class="description">
-                <%= my_project.description.or('This project has no description.') %>
-              </div>
-            </td>
-          </tr>
-        <% end %>
-      <% else %>
-        <tr class="nohover">
-          <td valign="middle">
-            <p>You don't have access to any projects.
-            <a href="#createProject" rel="tooltip" title="Create new project" data-toggle="modal">Create a Project</a> or have someone add you to one.</p>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+  <% @my_projects_button = capture do %>
+    <%= link_to raw('<i class="icon-plus"></i> Create Project'),
+        '#createProject',
+        :data => {:toggle => 'modal'},
+        :class => 'btn btn-primary btn-large btn-valign' %>
+  <% end %>
 
-  <div class="span6 well-list">
-    <table class="table table-hover">
-      <tr>
-        <th>
-          <h2>
-            Subscriptions
-            <div class="pull-right">
-              <a href="/projects/explore" class="btn btn-primary btn-large btn-valign">
-                <i class="icon-bookmark"></i> View Public
-              </a>
-            </div>
-          </h2>
-        </th>
-      </tr>
-      {% if subscriptions %}
-        {% for subscription in subscriptions %}
-          <tr>
-            <td class="project" valign="middle" data-proj_id="{{ subscription.id }}">
-              <div class="title pull-left">
-                {{ anchor("/projects/view/#{subscription.id}", subscription.name) | raw }}
-              </div>
-              <div class="buttons">
-                <div class="button">
-                  <a href="#" rel="tooltip" title="Subscribers" class="rawlink">
-                    {{ subscription.subscribers }}
-                    <i class="icon-star"></i>
-                  </a>
-                </div>
-                <div class="button">
-                  <a href="#" onclick="unsubscribe(this)" class="unsubscribe rawlink" data-subid="{{ subscription.id }}" rel="tooltip" title="Cancel Subscription">
-                    <i class="icon-ban-circle icon-large"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="description">
-                {% if project.description %}
-                  {{ project.description | slice(0, 120) }} ...
-                {% else %}
-                  No description.
-                {% endif %}
-              </div>
-            </td>
-          </tr>
-        {% endfor %}
-      {% else %}
-        <tr class="nohover">
-          <td valign="middle">
-            <p>You have no subscriptions. Visit the {{ anchor("/projects/explore", "Explore") | raw }} section for some suggestions!</p>
-          </td>
-        </tr>
-      {% endif %}
-    </table>
-  </div>
+  <% @my_projects_empty_msg = capture do %>
+    You are not a member of any projects. 
+    <%= link_to 'Create a Project', '#createProject',
+        :data => {:toggle => 'tooltip modal'},
+        :title => 'Create new project'
+     %> or have someone add you to one.
+  <% end %>
+
+  <%= render :partial => 'shared/projects',
+             :locals => {
+        :project_type => 'My Projects',
+        :projects => @my_projects,
+        :button => @my_projects_button,
+        :empty_msg => @my_projects_empty_msg,
+      }
+   %>
+
+  <% @subscriptions_button = capture do %>
+    <%= link_to raw('<i class="icon-bookmark"></i> View Public'), company_projects_path, :class => 'btn btn-primary btn-large btn-valign' %>
+  <% end %>
+
+  <% @subscriptions_empty_msg = capture do %>
+    You have no subscriptions. Visit the <%= link_to 'Explore', company_projects_path %> section for some suggestions!
+  <% end %>
+
+  <%= render :partial => 'shared/projects',
+             :locals => {
+        :project_type => 'Subscriptions',
+        :projects => @subscriptions,
+        :button => @subscriptions_button,
+        :empty_msg => @subscriptions_empty_msg,
+      }
+   %>
 </div>
 
 <div class="separator"></div>

@@ -1,0 +1,51 @@
+<div class="span6 blue-well-list">
+  <table class="table table-hover">
+    <tr>
+      <th>
+        <h2>
+          <%= project_type %>
+          <div class="pull-right">
+            <% if defined?(button) %>
+              <%= button %>
+            <% end %>
+          </div>
+        </h2>
+      </th>
+    </tr>
+    <% if !projects.empty? and false %>
+      <% projects.each do |project| %>
+        <tr>
+          <td class="project" valign="middle" data-proj_id="<%= project.id %>">
+            <div class="title pull-left">
+              <%= link_to project.name, project_path(project.id) %>
+            </div>
+            <div class="buttons">
+              <div class="button">
+                <a href="#" data-toggle="tooltip" title="Subscribers" class="rawlink">
+                  <%= project.id %>
+                  <i class="icon-star"></i>
+                </a>
+              </div>
+              <% if can? :admin, project %>
+                <div class="button">
+                  <a href="#" data-toggle="tooltip" title="Administrate" class="rawlink">
+                    <i class="icon-cog icon-large"></i>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+            <div class="description">
+              <%= project.description.or('This project has no description.') %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="nohover">
+        <td valign="middle">
+          <p><%= empty_msg %></p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
