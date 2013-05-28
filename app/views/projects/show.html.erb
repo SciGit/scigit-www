@@ -106,7 +106,7 @@
                 <p>Updates</p>
               </div>
               <div class="span8">
-                <h3><%= @project.created_at %></h3>
+                <h3><%= l @project.created_at, :format => :day %></h3>
                 <p>Created</p>
               </div>
             </div>
