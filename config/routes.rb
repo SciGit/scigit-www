@@ -1,4 +1,4 @@
-LawDoc::Application.routes.draw do
+SciGit::Application.routes.draw do
   get 'main/index' => 'main#index', :as => 'main_index'
   get 'main/home' => 'main#home', :as => 'main_home'
 

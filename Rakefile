@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-LawDoc::Application.load_tasks
+SciGit::Application.load_tasks

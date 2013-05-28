@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-LawDoc::Application.config.secret_key_base = '77418f0195d54260b6f6097fa8872c1f041fa32bd707ba178fd4b593afdbf5672a560bc48df17bc9a41f6714d7149567126d15837ce2573e2becb048d714a6f3'
+SciGit::Application.config.secret_key_base = '77418f0195d54260b6f6097fa8872c1f041fa32bd707ba178fd4b593afdbf5672a560bc48df17bc9a41f6714d7149567126d15837ce2573e2becb048d714a6f3'
