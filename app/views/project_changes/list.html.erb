@@ -1,11 +1,11 @@
 <% @project_changes.each do |project_change| %>
   <tr>
     <td class="change" valign="middle"
-      data-change_id="<%= project_change.id %>" data-commit_hash="<%= project_change.commit_hash %>">
+     data-change_id="<%= project_change.id %>" data-commit_hash="<%= project_change.commit_hash %>">
       <%= link_to project_change.user.fullname, user_path(project_change.user.id) %> updated:
       <div class="buttons shrink">
         <div class="date">
-          <%= project_change.commit_timestamp %>
+          <%= time_ago_in_words(project_change.commit_timestamp) %> ago
         </div>
         <a href="#" class="btnViewChanges btn btn-info btn-small"
          rel="tooltip" title="View changes">

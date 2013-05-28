@@ -2,6 +2,10 @@ class ProjectChange < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 
+  def commit_timestamp
+    Time.at(self[:commit_timestamp])
+  end
+
   def self.get_member_updates(user, flags)
     # Get all projects this user belongs to.
     # XXX: Can't & this for some reason?

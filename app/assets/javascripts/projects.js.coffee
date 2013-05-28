@@ -12,7 +12,7 @@ fetchAndAppendChanges = (page) ->
     type: 'GET',
     success: (data) ->
       $('body').infiniteScrollHelper 'destroy' if !data
-      $('#changes table').append data
+      $('#changes table tbody').append data
       fetchingChanges = false
     failure: ->
       fetchingChanges = false
