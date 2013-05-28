@@ -4,7 +4,7 @@
 
 $(document).ready ->
   project_id = $('#project_id').data('project_id')
-  alert project_id
+  #alert project_id
   return if !project_id?
 
   page = 1
