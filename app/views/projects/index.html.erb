@@ -27,7 +27,7 @@
      %> or have someone add you to one.
   <% end %>
 
-  <%= render :partial => 'shared/projects',
+  <%= render :partial => 'projects/table',
              :locals => {
         :project_type => 'My Projects',
         :projects => @my_projects,
@@ -44,7 +44,7 @@
     You have no subscriptions. Visit the <%= link_to 'Public Projects', public_projects_path %> section for some suggestions!
   <% end %>
 
-  <%= render :partial => 'shared/projects',
+  <%= render :partial => 'projects/table',
              :locals => {
         :project_type => 'Subscriptions',
         :projects => @subscriptions,

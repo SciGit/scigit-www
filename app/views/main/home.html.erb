@@ -32,7 +32,7 @@
     You have no recent activity in your social circle. Visit the <%= link_to 'Public Projects', public_projects_path %> section.
   <% end %>
 
-  <%= render :partial => 'shared/updates',
+  <%= render :partial => 'project_changes/table',
              :locals => {
         :update_type => 'Coauthor Updates',
         :updates => @coauthor_updates,
@@ -51,7 +51,7 @@
     <% end %>
   <% end %>
 
-  <%= render :partial => 'shared/updates',
+  <%= render :partial => 'project_changes/table',
              :locals => {
         :update_type => 'Subscription Updates',
         :updates => @subscription_updates,
