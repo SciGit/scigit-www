@@ -2,6 +2,10 @@ class Project < ActiveRecord::Base
   has_many :user, :through => :project_permission
   has_many :user, :through => :project_change
 
+  def self.all_public(limit = nil)
+    self.all
+  end
+
   def self.all_manager_of(user, limit = nil)
     self.all_member_of(user, [ProjectPermission::OWNER, ProjectPermission::COAUTHOR], limit)
   end

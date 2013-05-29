@@ -3,7 +3,7 @@
 <%= render :partial => 'shared/breadcrumbs',
            :locals => { :paths => {
       'Home' => root_path,
-      ((can? :update, @project) ? 'Manage My Projects' : 'View Company Projects') =>  ((can? :update, @project) ? projects_path : company_projects_path),
+      ((can? :update, @project) ? 'Manage My Projects' : 'View Public Projects') =>  ((can? :update, @project) ? projects_path : public_projects_path),
       @project.name => project_path(@project.id),
     }}
  %>

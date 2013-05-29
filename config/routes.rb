@@ -24,7 +24,7 @@ SciGit::Application.routes.draw do
     end
 
     collection do
-      get 'company'
+      get 'public'
     end
   end
 

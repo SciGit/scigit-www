@@ -16,10 +16,10 @@ class ProjectsController < ApplicationController
     @subscriptions = Project.all_subscribed_to(current_user)
   end
 
-  # GET /projects/company
-  # GET /projects/company.json
-  def company
-    @projects = Project.all
+  # GET /projects/public
+  # GET /projects/public.json
+  def public
+    @projects = Project.all_public
   end
 
   # GET /projects/1

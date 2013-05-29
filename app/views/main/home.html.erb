@@ -29,7 +29,7 @@
 
 <div class="row-fluid">
   <% @coauthor_updates_empty_msg = capture do %>
-    You have no recent activity in your social circle. Visit the <%= link_to 'Company Projects', company_projects_path %> section.
+    You have no recent activity in your social circle. Visit the <%= link_to 'Public Projects', public_projects_path %> section.
   <% end %>
 
   <%= render :partial => 'shared/updates',
@@ -42,7 +42,7 @@
 
   <% @subscription_updates_empty_msg = capture do %>
     <% if defined?(@first_time) %>
-      You have made no changes to any projects recently. Consider <%= link_to 'finding a project', company_projects_path %> to contribute to.
+      You have made no changes to any projects recently. Consider <%= link_to 'finding a project', public_projects_path %> to contribute to.
     <% else %>
       You have no projects.
       <%= link_to 'Create a project', '#createProject',
@@ -61,7 +61,7 @@
 
   <div class="hide">
     <% if @first_time %>
-      <p>You have made no changes to any projects recently. Consider <%= link_to 'finding a project', company_projects_path %> to contribute to.</p>
+      <p>You have made no changes to any projects recently. Consider <%= link_to 'finding a project', public_projects_path %> to contribute to.</p>
     <% else %>
       <p>You have no projects. <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create a Project</a> to get started! You can also join someone else's project.</p>
     <% end %>
