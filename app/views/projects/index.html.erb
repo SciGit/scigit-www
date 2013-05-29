@@ -37,11 +37,11 @@
    %>
 
   <% @subscriptions_button = capture do %>
-    <%= link_to raw('<i class="icon-bookmark"></i> View Public'), company_projects_path, :class => 'btn btn-primary btn-large btn-valign' %>
+    <%= link_to raw('<i class="icon-bookmark"></i> View Public'), public_projects_path, :class => 'btn btn-primary btn-large btn-valign' %>
   <% end %>
 
   <% @subscriptions_empty_msg = capture do %>
-    You have no subscriptions. Visit the <%= link_to 'Explore', company_projects_path %> section for some suggestions!
+    You have no subscriptions. Visit the <%= link_to 'Public Projects', public_projects_path %> section for some suggestions!
   <% end %>
 
   <%= render :partial => 'shared/projects',
