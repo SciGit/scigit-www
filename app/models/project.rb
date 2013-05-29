@@ -3,11 +3,11 @@ class Project < ActiveRecord::Base
   has_many :user, :through => :project_change
 
   def self.all_manager_of(user, limit = nil)
-    self.all_member_of(user, [ProjectPermission::OWNER, ProjectPermission::COAUTHOR])
+    self.all_member_of(user, [ProjectPermission::OWNER, ProjectPermission::COAUTHOR], limit)
   end
 
   def self.all_subscribed_to(user, limit = nil)
-    self.all_member_of(user, ProjectPermission::SUBSCRIBER)
+    self.all_member_of(user, ProjectPermission::SUBSCRIBER, limit)
   end
 
   private
