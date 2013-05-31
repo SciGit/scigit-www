@@ -11,6 +11,8 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<%= render :partial => 'projects/new_modal' %>
+
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
     <div class="navbar navbar-fixed-top nav-main">
@@ -43,7 +45,7 @@
                     Projects<b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
-                    <li><%= link_to 'Create New Project', '#createProject', :tabindex => -1, :data => {:toggle => 'modal'} %></li>
+                    <li><%= link_to 'Create New Project', '', :tabindex => -1, :data => {:toggle => 'modal', :target => '#createNewProjectModal'} %></li>
                     <li class="divider"></li>
                     <li><%= link_to 'Manage My Projects', projects_path, :tabindex => -1 %></li>
                     <li><%= link_to 'View Public Projects', public_projects_path, :tabindex => -1 %></li>

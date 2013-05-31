@@ -35,6 +35,11 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+
+    respond_to do |format|
+      format.html { render action: 'new', :layout => nil }
+      format.json { head :no_content }
+    end
   end
 
   # GET /projects/1/edit

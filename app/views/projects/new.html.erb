@@ -1,5 +1,18 @@
-<h1>New project</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', projects_path %>
+<%= form_for @project do |f| %>
+  <div class="modal-body">
+    <div class="create-project">
+      <div id="createProjectError" class="alert alert-error hide"></div>
+      <div id="createProjectSuccess" class="alert alert-success hide"></div>
+      <div class="name">
+        <%= f.label :name, 'Project Name' %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="grey-separator"></div>
+      <div class="public">
+        <%= f.check_box :public, :class => 'hide' %>
+        <%= f.label :public, 'Private' %>
+        <%= link_to raw('<i id="togglePublicIcon" class="icon-lock icon-2x"></i>'), '#', :class => 'btn btn-primary btn-small', :title => 'Make public', :data => {:toggle => 'tooltip', :placement => 'top'} %>
+      </div>
+    </div>
+  </div>
+<% end %>
