@@ -41,11 +41,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails', :git => 'https://github.com/bokmann/font-awesome-rails.git'
 
 # User authentication and registration.
-gem 'devise'
-
-# Including protected_attributes to give support for attr_accessible, despite it being basically removed in
-# Rails 4.0. We need to revisit this at some point and use a newer devise that doesn't have this problem.
-gem 'protected_attributes'
+gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'rails4'
 
 # User permissions.
 gem 'cancan'

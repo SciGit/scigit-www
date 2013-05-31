@@ -21,5 +21,7 @@ module SciGit
     # config.i18n.default_locale = :de
 	
 		config.autoload_paths += Dir["#{config.root}/lib/"]
+
+    config.active_record.whitelist_attributes = false
   end
 end

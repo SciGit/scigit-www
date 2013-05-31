@@ -14,6 +14,17 @@ GIT
       activesupport (>= 3.0)
       polyamorous (~> 0.6.0)
 
+GIT
+  remote: https://github.com/plataformatec/devise.git
+  revision: 6b5988d756d780903bf8c9ccb3e2b3b724ccebe8
+  branch: rails4
+  specs:
+    devise (2.2.4)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      warden (~> 1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,10 +66,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    devise (1.5.4)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      warden (~> 1.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -81,12 +88,10 @@ GEM
     minitest (4.7.4)
     multi_json (1.7.4)
     mysql (2.9.1)
-    orm_adapter (0.0.7)
+    orm_adapter (0.4.0)
     polyamorous (0.6.3)
       activerecord (>= 3.0)
     polyglot (0.3.3)
-    protected_attributes (1.0.1)
-      activemodel (>= 4.0.0.beta, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -152,14 +157,13 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   coffee-rails (~> 4.0.0)
-  devise
+  devise!
   execjs
   font-awesome-rails!
   jbuilder (~> 1.0.1)
   jquery-rails
   kaminari
   mysql
-  protected_attributes
   rails (= 4.0.0.rc1)
   sass-rails (~> 4.0.0.rc1)
   sdoc
