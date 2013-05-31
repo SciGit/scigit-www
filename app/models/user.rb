@@ -11,10 +11,6 @@ class User < ActiveRecord::Base
          :lockable
          #:confirmable,
 
-  # Setup accessible (or protected) attributes for your model
-  #attr_accessor :email, :password, :password_confirmation, :remember_me,
-  #              :fullname, :organization, :location, :about, :disable_email
-
   validates :fullname, :length => { :in => 6..20 }
   validates :organization, :length => { :maximum => 60 }
   validates :location, :length => { :maximum => 60 }
