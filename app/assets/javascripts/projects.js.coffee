@@ -33,7 +33,10 @@ fetchAndAppendChanges = (page) ->
   $.ajax '/projects/' + project_id + '/changes/page/' + page,
     type: 'GET',
     success: (data) ->
-      $('body').infiniteScrollHelper 'destroy' if !data
+      if !data
+        $('body').infiniteScrollHelper 'destroy'
+        if page == 1
+          $('#changes table tbody').append '<tr><td>No changes have been made yet.</td></tr>'
       $('#changes table tbody').append data
       fetchingChanges = false
       $('#loading-animation').remove()

@@ -56,6 +56,9 @@ gem 'squeel', :git => 'https://github.com/ernie/squeel'
 # Pagination.
 gem 'kaminari'
 
+# Communication with the SciGit daemon
+gem 'thrift'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
