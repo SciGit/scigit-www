@@ -51,11 +51,7 @@
         <tr>
           <td class="tabular" valign="middle">
             <p id="description">
-              <% if @project.description %>
-                <%= word_wrap(@project.description, :line_width => 30) %>
-              <% else %>
-                This project has no description.
-              <% end %>
+              <%= @project.description.or('This project has no description.') %>
             </p>
 
             <% if can? :manage, @project %>
