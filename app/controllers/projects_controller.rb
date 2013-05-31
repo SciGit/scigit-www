@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
   # GET /projects/public.json
   def public
     @public_projects = Project.all_public
+    @featured_projects = []
   end
 
   # GET /projects/1
