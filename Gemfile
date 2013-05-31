@@ -4,15 +4,8 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
 
-# Use pg as the database for Active Record
-group :production, :test do
-  gem 'pg'
-end
-
-group :development do
-  # Use mysql as the database for Active Record
-  gem 'mysql'
-end
+# MySQL wrapper.
+gem 'mysql'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -40,20 +33,26 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Twitter Bootstrap.
 gem 'bootstrap-sass'
 
 # Need GitHub version for this to work. Likely an issue with Rails 4.0.
 gem 'font-awesome-rails', :git => 'https://github.com/bokmann/font-awesome-rails.git'
 
+# User authentication and registration.
 gem 'devise'
+
 # Including protected_attributes to give support for attr_accessible, despite it being basically removed in
 # Rails 4.0. We need to revisit this at some point and use a newer devise that doesn't have this problem.
 gem 'protected_attributes'
 
+# User permissions.
 gem 'cancan'
 
+# More powerful ActiveRecord querying.
 gem 'squeel', :git => 'https://github.com/ernie/squeel'
 
+# Pagination.
 gem 'kaminari'
 
 # Use ActiveModel has_secure_password
