@@ -152,6 +152,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  execjs
   font-awesome-rails!
   jbuilder (~> 1.0.1)
   jquery-rails

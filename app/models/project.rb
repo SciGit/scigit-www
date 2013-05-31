@@ -2,6 +2,10 @@ class Project < ActiveRecord::Base
   has_many :user, :through => :project_permission
   has_many :user, :through => :project_change
 
+  validates :name, :presence => true, :uniqueness => true, :length => {:in => 10..64}
+  validates :description, :length => {:maximum => 255}
+  validates :public, :presence => true
+
   def self.all_public(limit = nil)
     self.all
   end
