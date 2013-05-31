@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
   # GET /projects/public
   # GET /projects/public.json
   def public
-    @projects = Project.all_public
+    @public_projects = Project.all_public
   end
 
   # GET /projects/1

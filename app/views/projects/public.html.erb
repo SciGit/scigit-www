@@ -1,0 +1,23 @@
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      'View Public Projects' => public_projects_path,
+    }}
+ %>
+
+<div class="separator-xsmall"></div>
+
+<div class="page-header">
+  <h1>View Public Projects</h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span6">
+    <%= render :partial => 'projects/table',
+               :locals => {
+          :project_type => 'Public Projects',
+          :projects => @public_projects,
+        }
+     %>
+  </div>
+</div>
