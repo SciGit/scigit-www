@@ -50,9 +50,10 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project_permission = ProjectPermission.new(:user => current_user, :project => @project, :permission => ProjectPermission::OWNER)
 
     respond_to do |format|
-      if @project.save
+      if @project.save and @project_permission.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
