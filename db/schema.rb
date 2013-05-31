@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130531215139) do
+ActiveRecord::Schema.define(version: 20130531235031) do
 
   create_table "project_changes", force: true do |t|
     t.integer  "user_id"
@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 20130531215139) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "key_type"
-    t.string   "public_key"
+    t.string   "public_key", limit: 512
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "enabled"
   end
 
-  add_index "user_public_keys", ["public_key"], name: "index_user_public_keys_on_public_key", unique: true, using: :btree
   add_index "user_public_keys", ["user_id"], name: "index_user_public_keys_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
