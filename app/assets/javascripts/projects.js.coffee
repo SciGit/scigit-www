@@ -6,6 +6,27 @@ project_id = null
 
 fetchingChanges = false
 
+hookCreateNewProject = ->
+  $('#submitCreateNewProject').click (e) ->
+    e.preventDefault()
+
+    form = $('#createProjectForm')
+    formData = $(form).serialize()
+
+    $.ajax
+      url: $(form).attr('action'),
+      type: 'POST',
+      data: formData,
+      dataType: 'json',
+      success: (data) ->
+        alert 'success'
+      ,
+      error: (data) ->
+        alert 'wat'
+      ,
+
+    return false
+
 fetchAndAppendChanges = (page) ->
   fetchingChanges = true
   $('#changes table tbody').append '<tr id="loading-animation"><td><center><i class="icon-spin icon-spinner icon-3x"></i></center></td></tr>'
@@ -20,15 +41,20 @@ fetchAndAppendChanges = (page) ->
       fetchingChanges = false
       $('#loading-animation').remove()
 
-$(document).on 'ready page:load', () ->
+loadProjectId = ->
   project_id = $('#project_id').data 'project_id'
-  return if !project_id?
 
-  fetchAndAppendChanges 1
-
+initInfiniteScrollHelper = ->
   $('body').infiniteScrollHelper
     loadMore: (page) ->
       fetchAndAppendChanges page
     ,
     doneLoading: ->
       return !fetchingChanges
+
+$(document).on 'ready page:load', () ->
+  hookCreateNewProject()
+
+  if loadProjectId()
+    initInfiniteScrollHelper() if project_id
+    fetchAndAppendChanges 1 if project_id
