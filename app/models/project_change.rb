@@ -15,7 +15,7 @@ class ProjectChange < ActiveRecord::Base
   end
 
   def self.all_project_updates(project, limit = nil)
-    where{project_id == project.id}.limit(limit).order{id.desc}
+    where{(project_id == project.id) & (user_id != 0)}.limit(limit).order{id.desc}
   end
 
   private
@@ -29,7 +29,7 @@ class ProjectChange < ActiveRecord::Base
     }.pluck{project_id}
 
     # Get all the changes of these projects not done by this user.
-    where{(project_id >> project_ids) & (user_id != user[:id])}.
+    where{(project_id >> project_ids) & (user_id != user[:id]) & (user_id != 0)}.
       order{commit_timestamp.desc}.limit(limit)
   end
 end
