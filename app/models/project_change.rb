@@ -15,7 +15,7 @@ class ProjectChange < ActiveRecord::Base
   end
 
   def self.all_project_updates(project, limit = nil)
-    where{project_id == project.id}.limit(limit)
+    where{project_id == project.id}.limit(limit).order{id.desc}
   end
 
   private
