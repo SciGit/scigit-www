@@ -45,8 +45,8 @@
       You have made no changes to any projects recently. Consider <%= link_to 'finding a project', public_projects_path %> to contribute to.
     <% else %>
       You have no projects.
-      <%= link_to 'Create a project', '#createProject',
-          :data => {:toggle => 'modal'} %> to get started!
+      <%= link_to 'Create a project', '',
+          :data => {:toggle => 'modal', :target => '#createNewProjectModal'} %> to get started!
       You can also join someone else's project.
     <% end %>
   <% end %>
