@@ -1,8 +1,7 @@
 <%= form_for @project, :html => {:id => 'createProjectForm'} do |f| %>
   <div class="modal-body">
+    <%= render :partial => 'shared/form_alerts' %>
     <div class="create-project">
-      <div id="createProjectError" class="alert alert-error hide"></div>
-      <div id="createProjectSuccess" class="alert alert-success hide"></div>
       <div class="name">
         <%= f.label :name, 'Project Name' %>
         <%= f.text_field :name %>
