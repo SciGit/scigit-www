@@ -1111,7 +1111,7 @@ body {
   }
 
   .create-project {
-    width: 315px;
+    width: 390px;
     height: 100%;
     margin: auto;
 
@@ -1120,19 +1120,20 @@ body {
     }
 
     .public {
-      float: right;
+      margin-top: 8px;
+      float: left;
       text-align: center;
     }
 
     .grey-separator {
       border-right: 1px solid #f0f0f0;
-      margin: 0 5px 0 25px;
+      margin: 0 5px 0 18px;
       float: left;
       height: 60px;
     }
 
     .name {
-      float: left;
+      float: right;
     }
   }
 

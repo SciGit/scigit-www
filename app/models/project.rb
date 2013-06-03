@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true, :length => {:in => 4..64}
   validates :description, :length => {:maximum => 255}
-  validates :public, :inclusion => 0..1, :allow_blank => true
+  validates :public, :inclusion => {:in => [true, false]}, :allow_blank => true
 
   def self.all_public(limit = nil)
     self.all

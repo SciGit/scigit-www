@@ -21,27 +21,33 @@ parseResponseText = (responseText) ->
   return '<strong>' + field + '</strong> ' + error if Object.keys(response).length <= 1
   return list
 
-ajaxFormSubmit = (form) ->
+ajaxFormSubmit = (container, form) ->
   formData = $(form).serialize()
 
-  btnSubmit = form.find('.btnSubmit')
-  btnCancel = form.find('.btnCancel')
-  alertSuccess = form.find('.alert-success')
-  alertError = form.find('.alert-error')
+  btnSubmit = container.find('.btnSubmit')
+  btnCancel = container.find('.btnCancel')
+  alertSuccess = container.find('.alert-success')
+  alertError = container.find('.alert-error')
 
-  btnSubmit.val('Loading')
+  btnSubmitText = btnSubmit.html()
+  btnSubmit.html('<i class="icon-spin icon-spinner"></i> Loading')
   btnSubmit.addClass('disabled')
   btnCancel.addClass('disabled')
 
+  container.on('click', '.btnSubmit, .btnCancel', ->
+    e.preventDefault()
+  )
+
   $.ajax
-    url: $(form).attr('action'),
+    url: $(form).attr('action') + '.json',
     type: 'POST',
     data: formData,
     dataType: 'json',
     complete: (data) ->
-      btnSubmit.val('Create')
+      btnSubmit.html(btnSubmitText)
       btnSubmit.removeClass('disabled')
       btnCancel.removeClass('disabled')
+      container.off('click', '.btnSubmit, .btnCancel')
     ,
     success: (data) ->
       @complete(data)
@@ -59,10 +65,24 @@ ajaxFormSubmit = (form) ->
     ,
 
 hookCreateNewProject = ->
-  $('#submitCreateNewProject').click (e) ->
+  $('#createNewProjectModal .btnSubmit').click (e) ->
     e.preventDefault()
-    ajaxFormSubmit($('#createProjectForm'))
+    ajaxFormSubmit($('#createNewProjectModal'), $('#createProjectForm'))
     return false
+
+hookCreateNewProjectPublicAndPrivateButtons = ->
+  $('#createNewProjectModal').on('click', '#btnPrivate, #btnPublic', (e) ->
+    e.preventDefault()
+
+    projectPublic = $(@).attr('id') == 'btnPublic'
+
+    $('#btnPrivate').addClass('active') if !projectPublic
+    $('#btnPrivate').removeClass('active') if projectPublic
+    $('#btnPublic').addClass('active') if projectPublic
+    $('#btnPublic').removeClass('active') if !projectPublic
+
+    $("input[id='hiddenPublic']").prop('checked', projectPublic)
+  )
 
 fetchAndAppendChanges = (page) ->
   fetchingChanges = true
@@ -94,6 +114,7 @@ initInfiniteScrollHelper = ->
 
 $(document).on 'ready page:load', () ->
   hookCreateNewProject()
+  hookCreateNewProjectPublicAndPrivateButtons()
 
   if loadProjectId()
     initInfiniteScrollHelper() if project_id

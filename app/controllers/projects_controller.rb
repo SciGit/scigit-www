@@ -55,12 +55,16 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save and @project_permission.save
         begin
-          require 'scigit/thrift_client'
-          SciGit::ThriftClient.new.createRepository(@project.id)
+          #require 'scigit/thrift_client'
+          #SciGit::ThriftClient.new.createRepository(@project.id)
 
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @project }
+          #format.json { render action: 'show', status: :created, location: @project }
+          format.json { redirect_to @project, notice: 'Project was successfully created.' }
         rescue
+          @project.destroy
+          @project_permission.destroy
+
           format.html { render action: 'new' }
           format.json { render json: 'Database error. Please try again later.', status: :unprocessable_entity }
         end
