@@ -6,68 +6,16 @@ project_id = null
 
 fetchingChanges = false
 
-parseResponseText = (responseText) ->
-  try
-    response = $.parseJSON(responseText)
-  catch e
-    return responseText
-
-  list = '<ul>'
-  for field, error of response
-    field = field.substr(0, 1).toUpperCase() + field.substr(1)
-    list += '<li><strong>' + field + '</strong> ' + error + '</li>'
-  list += '</ul>'
-
-  return '<strong>' + field + '</strong> ' + error if Object.keys(response).length <= 1
-  return list
-
-ajaxFormSubmit = (container, form) ->
-  formData = $(form).serialize()
-
-  btnSubmit = container.find('.btnSubmit')
-  btnCancel = container.find('.btnCancel')
-  alertSuccess = container.find('.alert-success')
-  alertError = container.find('.alert-error')
-
-  btnSubmitText = btnSubmit.html()
-  btnSubmit.html('<i class="icon-spin icon-spinner"></i> Loading')
-  btnSubmit.addClass('disabled')
-  btnCancel.addClass('disabled')
-
-  container.on('click', '.btnSubmit, .btnCancel', ->
+hookCreateNewProject = ->
+  $('#createNewProjectModal').on('submit', '#createNewProjectForm', (e) ->
     e.preventDefault()
+    window.ajaxFormSubmit($('#createNewProjectModal'), $('#createNewProjectForm'))
+    return false
   )
 
-  $.ajax
-    url: $(form).attr('action') + '.json',
-    type: 'POST',
-    data: formData,
-    dataType: 'json',
-    complete: (data) ->
-      btnSubmit.html(btnSubmitText)
-      btnSubmit.removeClass('disabled')
-      btnCancel.removeClass('disabled')
-      container.off('click', '.btnSubmit, .btnCancel')
-    ,
-    success: (data) ->
-      @complete(data)
-      alertSuccess.find('p').html(data)
-      alertSuccess.show()
-      alertError.hide()
-      alert(JSON.stringify(data))
-    ,
-    error: (data) ->
-      @complete(data)
-      alertSuccess.hide()
-      alertError.find('p').html(parseResponseText(data.responseText))
-      alertError.show()
-      alert(JSON.stringify(data))
-    ,
-
-hookCreateNewProject = ->
   $('#createNewProjectModal .btnSubmit').click (e) ->
     e.preventDefault()
-    ajaxFormSubmit($('#createNewProjectModal'), $('#createProjectForm'))
+    window.ajaxFormSubmit($('#createNewProjectModal'), $('#createNewProjectForm'))
     return false
 
 hookCreateNewProjectPublicAndPrivateButtons = ->

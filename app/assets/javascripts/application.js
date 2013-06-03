@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery.infinite-scroll-helper
 //= require bootstrap
+//= require scigit
 //= require_tree .
