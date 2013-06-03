@@ -14,16 +14,15 @@
 <div class="row-fluid">
   <div class="span6">
     <% @my_projects_button = capture do %>
-      <%= link_to raw('<i class="icon-plus"></i> Create Project'),
-          '#createProject',
-          :data => {:toggle => 'modal'},
+      <%= link_to raw('<i class="icon-plus"></i> Create Project'), '',
+        :data => {:toggle => 'modal', :target => '#createNewProjectModal'},
           :class => 'btn btn-primary btn-large btn-valign' %>
     <% end %>
 
     <% @my_projects_empty_msg = capture do %>
       You are not a member of any projects. 
-      <%= link_to 'Create a Project', '#createProject',
-          :data => {:toggle => 'tooltip modal'},
+      <%= link_to 'Create a Project', '',
+          :data => {:toggle => 'tooltip modal', :target => '#createNewProjectModal'},
           :title => 'Create new project'
        %> or have someone add you to one.
     <% end %>
