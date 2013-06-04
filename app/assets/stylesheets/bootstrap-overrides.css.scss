@@ -988,6 +988,10 @@ body {
       }
     }
 
+    .modal-body {
+      min-height: 300px;
+    }
+
     .files {
       position: fixed;
       padding-right: 14px;
@@ -999,7 +1003,7 @@ body {
     }
 
     .text {
-      margin: 0 0 160px 250px;
+      margin-left: 250px;
     }
   }
 
