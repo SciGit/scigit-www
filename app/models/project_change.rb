@@ -18,6 +18,12 @@ class ProjectChange < ActiveRecord::Base
     where{(project_id == project.id) & (user_id != 0)}.limit(limit).order{id.desc}
   end
 
+  def self.diff(id)
+    change = find(id)
+    require_dependency 'scigit/diff'
+    SciGit::Diff.diff(change.project_id, change.commit_hash + '^', change.commit_hash)
+  end
+
   private
 
   def self.get_member_updates(user, flags, limit)

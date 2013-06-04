@@ -1,6 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+#
+#= require diffviewer
 
 project_id = null
 
@@ -67,3 +69,7 @@ $(document).on 'ready page:load', () ->
   if loadProjectId()
     initInfiniteScrollHelper() if project_id
     fetchAndAppendChanges 1 if project_id
+
+  $('#changes').on 'click', '.btnViewChanges', (e) ->
+    new DiffViewer($(this).data('change-id'), $(this).data('project-id'), $(this).data('commit-msg'), $(this).data('commit-hash'))
+    return false

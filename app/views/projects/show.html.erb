@@ -115,3 +115,24 @@
     <%= render :partial => 'layouts/project_changes' %>
   </div>
 </div>
+
+<div id="diffModal" class="modal modal-responsive-large hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2 id="modal-title">
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="row-fluid">
+      <div class="files">
+        <ul id="changed-files" class="nav nav-list">
+        </ul>
+      </div>
+      <div id="modal-text" class="text">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-primary" data-dismiss="modal">Close</a>
+  </div>
+</div>

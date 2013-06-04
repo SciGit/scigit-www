@@ -15,6 +15,9 @@ SciGit::Application.routes.draw do
       collection do
         get 'page/:page', :action => 'list'
       end
+      member do
+        get 'diff'
+      end
     end
 
     resources :project_permissions, :path => 'permissions', :as => 'permissions'

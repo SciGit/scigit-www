@@ -30,6 +30,14 @@ class ProjectChangesController < ApplicationController
     render :layout => false
   end
 
+  # GET /project_changes/project/1/changes/1/diff.json
+  def diff
+    diff = ProjectChange.diff(params[:id])
+    respond_to do |format|
+      format.json { render json: diff }
+    end
+  end
+
   # POST /project_changes
   # POST /project_changes.json
   def create
