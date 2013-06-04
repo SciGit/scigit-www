@@ -1,3 +1,5 @@
+require 'scigit/diff'
+
 class ProjectChange < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
@@ -20,7 +22,6 @@ class ProjectChange < ActiveRecord::Base
 
   def self.diff(id)
     change = find(id)
-    require_dependency 'scigit/diff'
     SciGit::Diff.diff(change.project_id, change.commit_hash + '^', change.commit_hash)
   end
 

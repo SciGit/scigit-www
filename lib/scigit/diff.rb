@@ -98,7 +98,6 @@ module SciGit
           break
         end
       end
-      p result
       result
     end
   end
