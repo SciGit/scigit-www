@@ -17,5 +17,6 @@
 //= require bootstrap
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
+//= require autocomplete-rails
 //= require scigit
 //= require_tree .
