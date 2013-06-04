@@ -1,8 +1,15 @@
 GIT
-  remote: https://github.com/bokmann/font-awesome-rails.git
-  revision: 8c60b7b54d838e6ea891a65ced1b1d09a2d537a1
+  remote: https://github.com/DouglasSherk/rails3-jquery-autocomplete.git
+  revision: f71a664843d93a846b91339647c54c648952469d
   specs:
-    font-awesome-rails (3.1.1.2)
+    rails3-jquery-autocomplete (1.0.11)
+      rails (= 4.0.0.rc1)
+
+GIT
+  remote: https://github.com/bokmann/font-awesome-rails.git
+  revision: bce13fa0c38e64b405309afa7e56004365293269
+  specs:
+    font-awesome-rails (3.1.1.3)
       railties (>= 3.2, < 5.0)
 
 GIT
@@ -55,7 +62,7 @@ GEM
     arel (4.0.0)
     atomic (1.1.9)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.1.2)
+    bootstrap-sass (2.3.1.3)
       sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.10)
@@ -86,7 +93,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     minitest (4.7.4)
-    multi_json (1.7.4)
+    multi_json (1.7.6)
     mysql (2.9.1)
     orm_adapter (0.4.0)
     polyamorous (0.6.3)
@@ -138,10 +145,10 @@ GEM
       atomic
     thrift (0.9.0)
     tilt (1.4.1)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.1.1)
+    turbolinks (1.2.0)
       coffee-rails
     tzinfo (0.3.37)
     uglifier (2.1.1)
@@ -165,6 +172,7 @@ DEPENDENCIES
   kaminari
   mysql
   rails (= 4.0.0.rc1)
+  rails3-jquery-autocomplete!
   sass-rails (~> 4.0.0.rc1)
   sdoc
   squeel!

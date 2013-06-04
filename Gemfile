@@ -55,6 +55,9 @@ gem 'kaminari'
 # Communication with the SciGit daemon
 gem 'thrift'
 
+# jQuery autocomplete, with ActiveRecord support.
+gem 'rails3-jquery-autocomplete', :git => 'https://github.com/DouglasSherk/rails3-jquery-autocomplete.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
