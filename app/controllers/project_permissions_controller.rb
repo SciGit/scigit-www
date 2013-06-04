@@ -1,5 +1,6 @@
 class ProjectPermissionsController < ApplicationController
   before_action :set_project_permission, only: [:show, :edit, :update, :destroy]
+  before_action :load_project
 
   # GET /project_permissions
   # GET /project_permissions.json
@@ -15,6 +16,7 @@ class ProjectPermissionsController < ApplicationController
   # GET /project_permissions/new
   def new
     @project_permission = ProjectPermission.new
+    render :layout => false
   end
 
   # GET /project_permissions/1/edit
@@ -70,5 +72,9 @@ class ProjectPermissionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_permission_params
       params.require(:project_permission).permit(:user_id, :project_id, :permission)
+    end
+
+    def load_project
+      @project = Project.find(params[:project_id])
     end
 end

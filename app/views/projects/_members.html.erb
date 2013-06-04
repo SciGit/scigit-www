@@ -1,3 +1,5 @@
+<%= render :partial => 'project_permissions/new_modal' %>
+
 <div id="members" class="well-list">
   <table class="table table-hover table-condensed">
     <tr>
@@ -6,9 +8,9 @@
           Members
           <% if can? :manage, project %>
             <div class="pull-right">
-              <a href="#addMember" rel="tooltip" title="Add new member" class="btn btn-primary btn-valign" data-toggle="modal">
-                <i class="icon-plus"></i> Add
-              </a>
+              <%= link_to raw('<i class="icon-plus"></i> Add'), '',
+                  :class => 'btn btn-primary btn-valign',
+                  :data => {:toggle => 'modal', :target => '#addMemberModal'} %>
             </div>
           <% end %>
         </h2>
