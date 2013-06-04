@@ -28,6 +28,7 @@ module SciGit
         if regex = line.match(/^diff --git a\/(.*) b\/(.*)$/)
           file = FileDiff.new(regex[1], regex[2], false, [], [])
           section = :updatedFiles
+          last_from_line = 1
           while i < lines.length
             line = lines[i]
             if line.start_with? 'new file'
@@ -41,6 +42,11 @@ module SciGit
               if regex = line.match(/^@@ -([0-9,]+) \+([0-9,]+) @@/)
                 from_start, from_lines = regex[1].split(',').map(&:to_i)
                 from_lines ||= 1
+                if last_from_line < from_start
+                  file.old_blocks << nil
+                  file.new_blocks << nil
+                end
+                last_from_line = from_start + from_lines
                 to_start, to_lines = regex[2].split(',').map(&:to_i)
                 to_lines ||= 1
                 blocks = []
