@@ -9,6 +9,7 @@
   * assets/javascripts/bootstrap-modal.js
   * assets/javascripts/bootstrap-modalmanager.js
 * https://github.com/DouglasSherk/rails3-jquery-autocomplete
+  * assets/javascripts/autocomplete-rails.js
   * I had to force this to support Rails 4. We should ideally go back to the
     original author's version eventually.
 
