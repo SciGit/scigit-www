@@ -2,12 +2,15 @@
   <div class="center well">
     <h3>Find or Invite Member</h3>
     <p>Search for a member. If they're not already part of SciGit, you can also invite them.</p>
-    <div id="invalidEmailPopover" class="btn-group">
-      <%= f.fields_for :user do |builder| %>
-        <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
-            :data => {:target => autocomplete_user_email_path} %>
-      <% end %>
-      <%= link_to raw('<i class="icon-search icon-large icon-fixed-width"></i>'), '', :id => 'btnFindMember', :class => 'btn btn-info' %>
+    <% # Use a surrounding div to encapsulate a popover, since we can't have multiple popovers attached to a DOM element. %>
+    <div id="findMember" class="inline-block">
+      <div id="invalidEmailPopover" class="btn-group">
+        <%= f.fields_for :user do |builder| %>
+          <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
+              :data => {:target => autocomplete_user_email_path} %>
+        <% end %>
+        <%= link_to raw('<i class="icon-search icon-large icon-fixed-width"></i>'), '', :id => 'btnFindMember', :class => 'btn btn-info' %>
+      </div>
     </div>
   </div>
   <div class="well">

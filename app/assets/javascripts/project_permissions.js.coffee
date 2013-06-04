@@ -10,10 +10,10 @@ hookTypeaheadForMemberAdd = ->
       $('#btnFindMember i').removeClass('icon-search icon-spin icon-spinner icon-remove icon-ok').addClass(iconClass)
 
       if showPopover == true
-        $('#btnFindMember').popover('show')
+        $('#findMember').popover('show')
         $('#project_permission_user_email').focus()
       else if showPopover == false
-        $('#btnFindMember').popover('hide')
+        $('#findMember').popover('hide')
 
     indicateSearch = ->
       indicateButton('btn-info', 'icon-search', false)
@@ -25,7 +25,7 @@ hookTypeaheadForMemberAdd = ->
       indicateButton('btn-success', 'icon-ok', false)
 
     closePopovers = (excludeFindMember = false) ->
-      $('#btnFindMember').popover('hide') if !excludeFindMember
+      $('#findMember').popover('hide') if !excludeFindMember
       $('#invalidEmailPopover').popover('hide')
       $('#permissionHeader').popover('hide')
       $('#addMemberModal .btnSubmit').popover('hide')
@@ -44,7 +44,7 @@ hookTypeaheadForMemberAdd = ->
         if result.label == label
           return result
 
-    $('#btnFindMember').popover
+    $('#findMember').popover
       html: true,
       title: 'Not Found',
       trigger: 'manual',
@@ -72,7 +72,7 @@ hookTypeaheadForMemberAdd = ->
       content: 'Please enter a valid email address (ex. john@gmail.com)'
 
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
-      $('#btnFindMember').popover('hide')
+      $('#findMember').popover('hide')
 
       regex = /\S+@\S+\.\S+/
       return $('#invalidEmailPopover').popover('show') if !regex.test($('#project_permission_user_email').data('typeahead').query)
@@ -97,6 +97,8 @@ hookTypeaheadForMemberAdd = ->
       return if $(@).attr('disabled') == 'disabled'
 
       $('.permission .btn input[type="radio"]').prop('checked', false)
+      $('.permission').addClass('faded')
+      $(@).parent('.permission').removeClass('faded')
       $(@).find('input[type="radio"]').prop('checked', 'checked')
 
     $('#addMemberModal').on('keypress', '#project_permission_user_email', indicateLoading)
