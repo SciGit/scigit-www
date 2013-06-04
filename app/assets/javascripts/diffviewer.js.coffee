@@ -18,7 +18,6 @@ class @DiffViewer
 
     @modalFiles.html 'Loading...'
     @modalText.html '<center><i class="icon-spin icon-spinner icon-3x"></i></center>'
-    @modal.modal('show')
 
   displayDiff: (json) ->
     @modalFiles.html ''
@@ -65,7 +64,10 @@ class @DiffViewer
               "<td class='content #{type}'>#{line}</td></tr>"
       pre.append(table)
       @modalText.append pre
-    @modalBody.scrollspy('refresh')
+
+    @modal.modal('show').on('shown', ->
+      $('.modal-scrollable').scrollspy('refresh')
+    )
 
   displayError: (error) ->
     @modalText.html "<div class='alert alert-error'>Error loading the specified change. Please try again later. (#{error})</div>"
