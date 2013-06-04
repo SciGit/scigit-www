@@ -33,7 +33,6 @@ class @DiffViewer
         @modalFiles.append "<li class='nav-header'>#{name}</li><hr class='soften' />"
         for file in json[type]
           elem = $("<li><a href='#change_file#{fileNum++}'>#{file.name}</a></li>")
-          elem.addClass('active') if fileNum == 1
           @modalFiles.append(elem)
 
     files = json.createdFiles.concat(json.deletedFiles).concat(json.updatedFiles)
@@ -55,8 +54,6 @@ class @DiffViewer
           old_block = file.old_blocks[j]
           new_block = file.new_blocks[j]
           block = old_block ? new_block
-          console.log(old_block)
-          console.log(new_block)
           type = ''
           type = 'change-addition' if block.type == '+'
           type = 'change-deletion' if block.type == '-'
@@ -68,6 +65,7 @@ class @DiffViewer
               "<td class='content #{type}'>#{line}</td></tr>"
       pre.append(table)
       @modalText.append pre
+    @modalBody.scrollspy('refresh')
 
   displayError: (error) ->
     @modalText.html "<div class='alert alert-error'>Error loading the specified change. Please try again later. (#{error})</div>"
