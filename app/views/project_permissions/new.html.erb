@@ -1,7 +1,7 @@
 <%= form_for @project_permission do |f| %>
   <div class="center well">
-    <h3>Find or Invite User</h3>
-    <p>Search for a user. If they're not already part of SciGit, you can also invite them.</p>
+    <h3>Find or Invite Member</h3>
+    <p>Search for a member. If they're not already part of SciGit, you can also invite them.</p>
     <div class="btn-group">
       <%= f.fields_for :user do |builder| %>
         <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
@@ -12,7 +12,7 @@
     <i class="hide"></i>
   </div>
   <div class="well">
-    <h3 class="center">Choose User Permissions</h3>
+    <h3 class="center">Choose Member Permissions</h3>
     <div class="separator-small"></div>
     <div class="permission row-fluid">
       <div class="span3 center">
