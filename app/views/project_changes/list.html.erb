@@ -7,14 +7,23 @@
         <div class="date">
           <%= time_ago_in_words(project_change.commit_timestamp) %> ago
         </div>
-        <a href="#" class="btnViewChanges btn btn-info btn-small"
-         rel="tooltip" title="View changes">
-          <i class="changes icon-search"></i>
-        </a>
-        <a href="scigit://view_change?project_id={{ change.proj_id }}&commit_hash={{ change.commit_hash }}" class="btn btn-small"
-         rel="tooltip" title="View changes on client">
-          <i class="icon-copy"></i>
-        </a>
+        <%= link_to raw('<i class="changes icon-search"></i>'), '#', {
+              :class => 'btnViewChanges btn btn-info btn-small',
+              :rel => 'tooltip',
+              :title => 'View changes',
+              :data => {
+                :project_id => project_change.project_id,
+                :change_id => project_change.id,
+                :commit_msg => project_change.commit_msg,
+                :commit_hash => project_change.commit_hash,
+              }
+            } %>
+        <%= link_to raw('<i class="icon-copy"></i>'),
+              sprintf('scigit://view_change?project_id=%d&commit_hash=%s', project_change.project_id, project_change.commit_hash), {
+                :class => 'btn btn-small',
+                :rel => 'tooltip',
+                :title => 'View changes on client'
+              } %>
       </div>
       <div class="description">
         <%= link_to project_change.commit_msg, project_change_path(project_change.project_id, project_change.id) %>
