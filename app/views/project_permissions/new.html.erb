@@ -7,15 +7,14 @@
         <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
             :data => {:target => autocomplete_user_email_path} %>
       <% end %>
-      <%= link_to raw('<i class="icon-search icon-large"></i>'), '', :class => 'btn btn-info' %>
+      <%= link_to raw('<i class="icon-search icon-large icon-fixed-width"></i>'), '', :id => 'btnFindMember', :class => 'btn btn-info' %>
     </div>
-    <i class="hide"></i>
   </div>
   <div class="well">
-    <h3 class="center">Choose Member Permissions</h3>
+    <h3 class="center">Choose Member Permissions<a id="permissionHeader"></a></h3>
     <div class="separator-small"></div>
-    <div class="permission row-fluid">
-      <div class="span3 center">
+    <div class="row-fluid">
+      <div class="permission span3 center">
         <h4><i class="black icon-wrench"></i> Manager</h4>
         <div class="powers-list">
           <ul>
@@ -26,7 +25,7 @@
         <%= link_to raw(f.radio_button(:permission, '1') + ' Select'), '',
             :class => 'btn btn-large btn-info' %>
       </div>
-      <div class="span3 center">
+      <div class="permission span3 center">
         <h4><i class="black icon-edit"></i> Coauthor</h4>
         <div class="powers-list">
           <ul>
@@ -37,7 +36,7 @@
         <%= link_to raw(f.radio_button(:permission, '2') + ' Select'), '',
             :class => 'btn btn-large btn-info' %>
       </div>
-      <div class="span3 center">
+      <div class="permission span3 center">
         <h4><i class="black icon-eye-open"></i> Reader</h4>
         <div class="powers-list">
           <ul>
@@ -48,7 +47,7 @@
         <%= link_to raw(f.radio_button(:permission, '3') + ' Select'), '',
             :class => 'btn btn-large btn-info' %>
       </div>
-      <div class="span3 center <% if not @project.public %>extra-faded<% end %>" id="option-subscriber"
+      <div class="permission span3 center <% if not @project.public %>extra-faded<% end %>"
        <% if not @project.public %>
        data-toggle="popover" data-content="You cannot add subscribers to private projects." data-original-title="Private Project"
        data-placement="left" data-trigger="hover"
@@ -61,7 +60,7 @@
           </ul>
         </div>
         <%= link_to raw(f.radio_button(:permission, '4') + ' Select'), '',
-            :class => 'btn btn-large btn-info' %>
+            :class => 'btn btn-large btn-info', :disabled => !@project.public %>
       </div>
     </div>
   </div>
