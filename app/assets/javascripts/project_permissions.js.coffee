@@ -11,6 +11,7 @@ hookTypeaheadForMemberAdd = ->
 
       if showPopover == true
         $('#btnFindMember').popover('show')
+        $('#project_permission_user_email').focus()
       else if showPopover == false
         $('#btnFindMember').popover('hide')
 
@@ -22,6 +23,19 @@ hookTypeaheadForMemberAdd = ->
       indicateButton('btn-danger', 'icon-remove', true)
     indicateFound = ->
       indicateButton('btn-success', 'icon-ok', false)
+
+    closePopovers = (excludeFindMember = false) ->
+      $('#btnFindMember').popover('hide') if !excludeFindMember
+      $('#permissionHeader').popover('hide')
+      $('#addMemberModal .btnSubmit').popover('hide')
+
+    styleButtonAsAddMember = ->
+      closePopovers()
+      $('#addMemberModal .btnSubmit').removeClass('btn-success').addClass('btn-primary')
+                                     .html('Add Member')
+    styleButtonAsInvite = ->
+      $('#addMemberModal .btnSubmit').removeClass('btn-primary').addClass('btn-success')
+                                     .html('Invite')
 
     previousResults = []
     findResultWithLabel = (label) ->
@@ -51,6 +65,8 @@ hookTypeaheadForMemberAdd = ->
 
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
       $('#btnFindMember').popover('hide')
+
+      styleButtonAsInvite()
 
       if $('input[name="project_permission[permission]"]:checked').val() > 0
         indicateFound()
@@ -84,6 +100,7 @@ hookTypeaheadForMemberAdd = ->
           dataType: 'json',
           data: { term: @query }
           success: (data) ->
+            closePopovers(true) # exclude the "User Not Found" popover
 
             previousResults = data
 
@@ -91,7 +108,8 @@ hookTypeaheadForMemberAdd = ->
               results.push(result.label)
 
             dataLength = Object.keys(data).length
-            switch Object.keys(data).length
+            styleButtonAsAddMember() if dataLength > 0
+            switch dataLength
               when 0 then indicateNotFound()
               when 1 then indicateFound()
               else indicateSearch()
