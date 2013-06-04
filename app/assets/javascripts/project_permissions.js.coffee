@@ -4,6 +4,10 @@
 
 hookTypeaheadForMemberAdd = ->
   addTypeaheadForMemberAdd = ->
+    # XXX: Hack. We should investigate why modals are being closed on any
+    # button press. It seems that if they don't have an href element,
+    # clicking on them closes any currently active modal.
+    $('#btnFindMember').click (e) -> e.preventDefault()
 
     indicateButton = (btnClass, iconClass, showPopover = null) ->
       $('#btnFindMember').removeClass('btn-info btn-success btn-danger btn-primary').addClass(btnClass)
