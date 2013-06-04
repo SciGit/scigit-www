@@ -2,11 +2,9 @@ SciGit::Application.routes.draw do
   get 'main/index' => 'main#index', :as => 'main_index'
   get 'main/home' => 'main#home', :as => 'main_home'
 
-  devise_for :users,
-             :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions',
-  }
+  devise_for :users, :controllers => { :registrations => 'users/registrations', :sessions => 'users/sessions' } do
+    get :autocomplete_user_fullname, :to => 'users/registrations#autocomplete_user_fullname'
+  end
 
   get 'users/:id' => 'users/registrations#show', :as => 'user'
 

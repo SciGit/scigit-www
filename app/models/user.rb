@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def ability
     @ability ||= Ability.new(self)
   end
+
+  def composite_fullname_email
+    "#{self.fullname}"
+  end
 end
