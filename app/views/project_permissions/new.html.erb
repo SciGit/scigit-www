@@ -2,7 +2,7 @@
   <div class="center well">
     <h3>Find or Invite Member</h3>
     <p>Search for a member. If they're not already part of SciGit, you can also invite them.</p>
-    <div class="btn-group">
+    <div id="invalidEmailPopover" class="btn-group">
       <%= f.fields_for :user do |builder| %>
         <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
             :data => {:target => autocomplete_user_email_path} %>

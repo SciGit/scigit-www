@@ -7,7 +7,7 @@ hookTypeaheadForMemberAdd = ->
 
     indicateButton = (btnClass, iconClass, showPopover = null) ->
       $('#btnFindMember').removeClass('btn-info btn-success btn-danger btn-primary').addClass(btnClass)
-                         .html('<i class="' + iconClass + '"></i>')
+      $('#btnFindMember i').removeClass('icon-search icon-spin icon-spinner icon-remove icon-ok').addClass(iconClass)
 
       if showPopover == true
         $('#btnFindMember').popover('show')
@@ -26,6 +26,7 @@ hookTypeaheadForMemberAdd = ->
 
     closePopovers = (excludeFindMember = false) ->
       $('#btnFindMember').popover('hide') if !excludeFindMember
+      $('#invalidEmailPopover').popover('hide')
       $('#permissionHeader').popover('hide')
       $('#addMemberModal .btnSubmit').popover('hide')
 
@@ -63,13 +64,23 @@ hookTypeaheadForMemberAdd = ->
       placement: 'left',
       content: 'You are ready to invite this person!',
 
+    $('#invalidEmailPopover').popover
+      html: true,
+      title: 'Invalid Email Address',
+      trigger: 'manual',
+      placement: 'right',
+      content: 'Please enter a valid email address (ex. john@gmail.com)'
+
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
       $('#btnFindMember').popover('hide')
 
+      regex = /\S+@\S+\.\S+/
+      return $('#invalidEmailPopover').popover('show') if !regex.test($('#project_permission_user_email').data('typeahead').query)
+
+      indicateFound()
       styleButtonAsInvite()
 
       if $('input[name="project_permission[permission]"]:checked').val() > 0
-        indicateFound()
         $('#new_project_permission').submit()
       else
         $('#permissionHeader').popover('show')
@@ -79,7 +90,6 @@ hookTypeaheadForMemberAdd = ->
 
           $('#permissionHeader').popover('hide')
           $('#addMemberModal .btnSubmit').popover('show')
-          indicateFound()
     )
 
     $('.permission .btn').click (e) ->
