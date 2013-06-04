@@ -4,7 +4,8 @@
     <p>Search for a user. If they're not already part of SciGit, you can also invite them.</p>
     <div class="btn-group">
       <%= f.fields_for :user do |builder| %>
-        <%= builder.autocomplete_field :user_name, autocomplete_user_fullname_path %>
+        <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
+            :data => {:target => autocomplete_user_email_path} %>
       <% end %>
       <%= link_to raw('<i class="icon-search icon-large"></i>'), '', :class => 'btn btn-info' %>
     </div>

@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
-  autocomplete :user, :fullname#, :display_value => :composite_fullname_email
+  autocomplete :user, :email, :extra_data => [:fullname], :display_value => :composite_fullname_email
 
   def show
 
