@@ -75,14 +75,17 @@ hookTypeaheadForMemberAdd = ->
       placement: 'right',
       content: 'Please enter a valid email address (ex. john@gmail.com)'
 
+    checkIfQueryIsValidEmail = ->
+      regex = /\S+@\S+\.\S+/
+      return regex.test($('#project_permission_user_email').data('typeahead').query)
+
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
       $('#findMember').popover('hide')
+      styleButtonAsInvite()
 
-      regex = /\S+@\S+\.\S+/
-      return $('#invalidEmailPopover').popover('show') if !regex.test($('#project_permission_user_email').data('typeahead').query)
+      return $('#invalidEmailPopover').popover('show') if !checkIfQueryIsValidEmail()
 
       indicateFound()
-      styleButtonAsInvite()
 
       if $('input[name="project_permission[permission]"]:checked').val() > 0
         $('#new_project_permission').submit()
@@ -129,6 +132,9 @@ hookTypeaheadForMemberAdd = ->
               when 0 then indicateNotFound()
               when 1 then indicateFound()
               else indicateSearch()
+
+            if $('#addMemberModal .btnSubmit').hasClass('btn-success') && checkIfQueryIsValidEmail()
+              indicateFound()
 
             return process(results)
       ,
