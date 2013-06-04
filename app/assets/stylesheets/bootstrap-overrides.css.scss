@@ -383,17 +383,10 @@ body {
     padding: 0;
   }
 
-  .modal-small {
-    $modal-small-length: 450px;
-    width: $modal-small-length;
-    /* must be half of the width, minus scrollbar on the left (30px) */
-    margin: 0 0 0 -1*$modal-small-length/2;
-  }
-
   .modal-large {
     $modal-large-length: 900px;
     width: $modal-large-length;
-    /* must be half of the width, minus scrollbar on the left (30px) */
+    // must be half of the width, minus scrollbar on the left (30px)
     margin: 0 0 0 -1*$modal-large-length/2;
 
     .modal-header, .modal-body, .modal-footer {
@@ -405,96 +398,6 @@ body {
       padding-top: 10px;
       padding-bottom: 0;
     }
-
-    .modal-body {
-      max-height: $modal-large-length * 0.4;
-    }
-
-    &.fade.in {
-      top: 5%;
-    }
-  }
-
-  $modal-responsive: 900px;
-
-  @media (max-height: 768px) {
-    .modal-responsive {
-      top: 0 !important;
-      height: 70%;
-
-      .carousel-caption {
-        bottom: 100px;
-      }
-
-      .carousel-indicators {
-        bottom: 150px !important;
-      }
-
-      .modal-footer {
-        position: static !important;
-        bottom: 100px !important;
-      }
-    }
-  }
-
-  @media (min-height: 768px) {
-    .modal-responsive {
-      height: 680px;
-    }
-  }
-
-  .modal-responsive {
-    width: $modal-responsive;
-    /* must be half of the width, minus scrollbar on the left (30px) */
-    margin: 0 0 0 -1*$modal-responsive/2;
-
-    &.fade.in {
-      top: 5%;
-    }
-
-    .modal-body {
-      max-height: 100%;
-      overflow: hidden;
-    }
-
-    .modal-footer {
-      height: 60px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      @include box-sizing;
-    }
-  }
-
-  .modal-responsive-large {
-    width: 70%;
-    height: 90%;
-    left: 15%;
-    top: 5% !important;
-    margin: 0;
-    overflow: hidden;
-
-    .modal-body {
-      max-height: 100%;
-    }
-
-    .modal-footer {
-      height: 60px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      @include box-sizing;
-    }
-  }
-
-  .modal-show-only {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
-    background-color: white;
   }
 
   .buttons {

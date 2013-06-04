@@ -2,7 +2,12 @@
 
 * Everything in the Gemfile
 
-* https://github.com/paulirish/infinite-scroll ~> 1.5.100504
+* https://github.com/expandtheroom/jquery-infinite-scroll-helper
+  * assets/javascripts/jquery.infinite-scroll-helper.js
+* https://github.com/jschr/bootstrap-modal ~> 2.1
+  * assets/stylesheets/bootstrap-modal.css
+  * assets/javascripts/bootstrap-modal.js
+  * assets/javascripts/bootstrap-modalmanager.js
 
 == README
 
