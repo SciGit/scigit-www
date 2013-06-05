@@ -18,14 +18,22 @@ $(document).on 'ready page:load', () ->
     loadDiff change
     cl = $('#change-listing')
     if cl.length > 0
-      cl.affix(offset: { top: cl.position().top - 60 })
-      cl.on 'click', 'li.change-item', (e) ->
+      # cl.affix(offset: { top: cl.position().top - 60 })
+      cl.on 'click', 'li.change-list-item', (e) ->
+        if e.target.tagName.toLowerCase() == 'a'
+          return true
         if !$(this).hasClass('active')
           $('#change-listing .active').removeClass 'active'
           $('#change-listing .in').collapse('toggle')
+          $('.action button i').removeClass 'icon-minus'
+          $('.action button i').addClass 'icon-plus'
           $(this).addClass 'active'
-          loadDiff $(this).find('a')
+          loadDiff $(this)
         else
           e.preventDefault()
           return true
         return false
+      cl.on 'click', '.action button', (e) ->
+        icon = $(this).find('i')
+        icon.toggleClass 'icon-plus'
+        icon.toggleClass 'icon-minus'

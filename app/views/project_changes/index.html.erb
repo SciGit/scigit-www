@@ -28,14 +28,16 @@
         </tr>
         <tr>
           <td>
-            <ul class="changes nav nav-list">
+            <ul class="changes">
               <% @project_changes.each do |project_change| %>
-                <% list_item = capture do %>
-                  <div class="list-item">
+                <li class="change-list-item <%= project_change == @selected_change ? 'active' : '' %>"
+                    data-change-id="<%= project_change.id %>"
+                    data-commit-hash="<%= project_change.commit_hash %>">
+                  <div class="change-item">
                     <div class="description">
                       <%= project_change.commit_msg %>
                       <div class="info">
-                        by <%= project_change.user.fullname %>, 
+                        by <%= link_to project_change.user.fullname, user_path(project_change.user) %>, 
                         <%= time_ago_in_words(project_change.commit_timestamp) %> ago
                       </div>
                     </div>
@@ -46,21 +48,8 @@
                       </button>
                     </div>
                   </div>
-                <% end %>
-                <li class="change-item <%= project_change == @selected_change ? 'active' : '' %>">
-                  <%= link_to list_item, '#', {
-                        :class => 'view-changes',
-                        :data => {
-                          :change_id => project_change.id,
-                          :commit_hash => project_change.commit_hash
-                        }
-                  } %>
-                </li>
-                <li>
-                  <div id="file-listing-<%= project_change.id %>" class="file-listing collapse">
-                    <ul class="nav nav-list">
-                    </ul>
-                  </div>
+                  <ul id="file-listing-<%= project_change.id %>" class="file-listing collapse">
+                  </ul>
                 </li>
               <% end %>
             </ul>

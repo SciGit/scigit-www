@@ -955,55 +955,74 @@ body {
       ul.changes {
         height: 500px;
         padding: 0px;
+        margin: 0px;
         overflow-y: auto;
-        .list-item {
-          display: table;
-          .description {
-            display: table-cell;
-            padding-left: 10px;
-            width: 100%;
-            vertical-align: middle;
+        list-style: none;
+        li.change-list-item {
+          .change-item {
+            padding-left: 0px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 10px;
+            .description {
+              display: table-cell;
+              padding-left: 10px;
+              width: 100%;
+              vertical-align: middle;
+            }
+            .action {
+              display: none;
+              padding-left: 5px;
+              vertical-align: middle;
+            }
+            button {
+              i {
+                margin-right: 0;
+              }
+            }
+            .collapsed i {
+              @extend .icon-minus;
+            }
+            .info {
+              font-size: 11px;
+              color: gray;
+            }
           }
-          .action {
-            display: none;
-            padding-left: 5px;
-            vertical-align: middle;
+          .file-listing {
+            background: $sg-gray;
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            li:first-child {
+              margin-top: 5px;
+            }
+            li:last-child {
+              margin-bottom: 10px;
+            }
+            li.nav-header {
+              margin-left: 0px;
+            }
+            li {
+              margin-left: 25px;
+              list-style: none;
+              a {
+                font-size: 11px;
+              }
+            }
           }
         }
-        li a {
-          margin: 0px;
-          padding-left: 0px;
-          padding-top: 5px;
-          padding-bottom: 5px;
-          padding-right: 10px;
-          button {
-            i {
-              margin-right: 0;
-            }
+        li.change-list-item.active {
+          background: $sg-blue;
+          color: white;
+          .action {
+            display: table-cell;
+          }
+          .change-item a {
+            color: white;
           }
           .info {
-            font-size: 11px;
+            color: #ddd;
           }
-        }
-        .file-listing {
-          background: $sg-gray;
-          li.nav-header {
-            padding-bottom: 0px;
-            margin-top: 0px;
-          }
-          li:last-child {
-            margin-bottom: 5px;
-          }
-          li {
-            padding-left: 25px;
-            padding-bottom: 0px;
-            a {
-              font-size: 11px;
-            }
-          }
-        }
-        li.active .action {
-          display: table-cell;
         }
       }
       td {

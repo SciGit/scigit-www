@@ -11,6 +11,8 @@ class @DiffViewer
       error: (a, b, httpError) => @displayError(httpError)
     }
 
+    @files.html '<li class="nav-header">' +
+      '<i class="icon-spin icon-spinner"></i>&nbsp;&nbsp;Loading...</li>'
     @viewerPane.html '<center><i class="icon-spin icon-spinner icon-3x"></i></center>'
 
   displayDiff: (json) ->
@@ -25,12 +27,13 @@ class @DiffViewer
       if json[type]?.length > 0
         @files.append "<li class='nav-header'>#{name}</li>"
         for file in json[type]
-          elem = $("<li><a href='#change_file#{fileNum++}'>#{file.name}</a></li>")
+          elem = $("<li><a class='hash-anchor' href='#change_file#{fileNum++}'>#{file.name}</a></li>")
           @files.append(elem)
 
     files = json.createdFiles.concat(json.deletedFiles).concat(json.updatedFiles)
     if files.length == 0
       # This shouldn't happen normally.
+      @files.html '<li class="nav-header">No files changed</li>'
       @viewerPane.html 'No files were modified in this change.'
 
     for file, i in files
