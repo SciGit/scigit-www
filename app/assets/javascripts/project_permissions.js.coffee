@@ -137,6 +137,11 @@ hookTypeaheadForMemberAdd = ->
               # We can't use indicateSuccess because it will hide the 'Invite' button popover.
               indicateButton('btn-success', 'icon-ok', true)
 
+            # Hack. Focus on the input element after a set of elements is processed.
+            setTimeout( ->
+              $('#project_permission_user_email').focus()
+            , 50)
+
             return process(results)
       ,
       updater: (item) ->
