@@ -36,9 +36,10 @@ class @DiffViewer
       @files.html '<li class="nav-header">No files changed</li>'
       @viewerPane.html 'No files were modified in this change.'
 
+    fileNum = 0
     for type, data of @fileTypes
-      for file, i in json[type]
-        pre = $('<pre>', {id: 'change_file' + i, class: 'diff-file'})
+      for file in json[type]
+        pre = $('<pre>', {id: 'change_file' + fileNum++, class: 'diff-file'})
         table = $('<table>', {class: 'table diff-text'})
         file_type = "<span class='label #{data.label}'>#{data.name}</span>"
         table.append "<tr><th colspan='3'>#{file.name}#{file_type}</th></tr>"
