@@ -134,7 +134,8 @@ hookTypeaheadForMemberAdd = ->
               else indicateSearch()
 
             if $('#addMemberModal .btnSubmit').hasClass('btn-success') && checkIfQueryIsValidEmail()
-              indicateFound()
+              # We can't use indicateSuccess because it will hide the 'Invite' button popover.
+              indicateButton('btn-success', 'icon-ok', true)
 
             return process(results)
       ,
