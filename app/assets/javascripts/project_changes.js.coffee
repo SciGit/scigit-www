@@ -18,7 +18,7 @@ $(document).on 'ready page:load', () ->
     loadDiff change
     cl = $('#change-listing')
     if cl.length > 0
-      # cl.affix(offset: { top: cl.position().top - 60 })
+      cl.affix(offset: { top: cl.position().top - 60 })
       cl.on 'click', 'li.change-list-item', (e) ->
         if e.target.tagName.toLowerCase() == 'a'
           return true
