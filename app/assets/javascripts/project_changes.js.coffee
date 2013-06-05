@@ -23,11 +23,23 @@ $(document).on 'ready page:load', () ->
         if e.target.tagName.toLowerCase() == 'a'
           return true
         if !$(this).hasClass('active')
-          $('#change-listing .active').removeClass 'active'
+          # deactivate previously active element
+          active = $('#change-listing .active')
+          if active.length > 0
+            active.removeClass 'active'
+            message = active.find('.message')
+            full = message.data('full-message')
+            message.data('full-message', message.html())
+            message.html(full)
           $('#change-listing .in').collapse('toggle')
           $('.action button i').removeClass 'icon-minus'
           $('.action button i').addClass 'icon-plus'
+          # activate this element
           $(this).addClass 'active'
+          message = $(this).find('.message')
+          full = message.data('full-message')
+          message.data('full-message', message.html())
+          message.html(full)
           loadDiff $(this)
         else
           e.preventDefault()

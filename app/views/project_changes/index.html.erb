@@ -29,13 +29,20 @@
         <tr>
           <td>
             <ul class="changes">
-              <% @project_changes.each do |project_change| %>
+              <% @project_changes.each do |project_change|
+                   full_text = project_change.commit_msg
+                   visible_text = truncate(project_change.commit_msg)
+                   if project_change == @selected_change
+                     full_text, visible_text = visible_text, full_text
+                   end %>
                 <li class="change-list-item <%= project_change == @selected_change ? 'active' : '' %>"
                     data-change-id="<%= project_change.id %>"
                     data-commit-hash="<%= project_change.commit_hash %>">
                   <div class="change-item">
                     <div class="description">
-                      <%= project_change.commit_msg %>
+                      <div class="message" data-full-message="<%= full_text %>">
+                        <%= visible_text %>
+                      </div>
                       <div class="info">
                         by <%= link_to project_change.user.fullname, user_path(project_change.user) %>, 
                         <%= time_ago_in_words(project_change.commit_timestamp) %> ago

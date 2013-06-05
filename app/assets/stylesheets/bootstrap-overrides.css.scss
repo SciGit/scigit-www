@@ -951,6 +951,24 @@ body {
 
   #change-viewer {
     #change-listing {
+      @media (min-width: 1200px) {
+        width: 258px;
+      }
+
+      @media (max-width: 980px) {
+        width: 218px;
+      }
+
+      @media (min-width: 768px) and (max-width: 979px) {
+        width: 166px;
+      }
+
+      @media (max-width: 767px) {
+        position: static;
+        width: auto;
+        top: 0;
+      }
+
       word-break: break-all;
       ul.changes {
         height: 500px;
@@ -1030,32 +1048,6 @@ body {
       }
       width: 228px;
       background: white;
-    }
-
-    @media (min-width: 1200px) {
-      #change-listing {
-        width: 258px;
-      }
-    }
-
-    @media (max-width: 980px) {
-      #change-listing {
-        width: 218px;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 979px) {
-      #change-listing {
-        width: 166px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      #change-listing {
-        position: static;
-        width: auto;
-        top: 0;
-      }
     }
 
     #change-listing.affix {
