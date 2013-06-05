@@ -5,12 +5,17 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes
   # GET /project_changes.json
   def index
-    @project_changes = ProjectChange.all
+    @project = Project.find(params[:project_id])
+    @project_changes = ProjectChange.all_project_updates(@project)
+    @selected_change = @project_changes.first
   end
 
   # GET /project_changes/1
   # GET /project_changes/1.json
   def show
+    index
+    @selected_change = ProjectChange.find(params[:id])
+    render action: 'index'
   end
 
   # GET /project_changes/new

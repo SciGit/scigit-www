@@ -7,16 +7,11 @@
         <div class="date">
           <%= time_ago_in_words(project_change.commit_timestamp) %> ago
         </div>
-        <%= link_to raw('<i class="changes icon-search"></i>'), '#', {
+        <%= link_to raw('<i class="changes icon-search"></i>'),
+                    project_change_path(project_change.project_id, project_change.id), {
               :class => 'btnViewChanges btn btn-info btn-small',
               :rel => 'tooltip',
               :title => 'View changes',
-              :data => {
-                :project_id => project_change.project_id,
-                :change_id => project_change.id,
-                :commit_msg => project_change.commit_msg,
-                :commit_hash => project_change.commit_hash,
-              }
             } %>
         <%= link_to raw('<i class="icon-copy"></i>'),
               sprintf('scigit://view_change?project_id=%d&commit_hash=%s', project_change.project_id, project_change.commit_hash), {

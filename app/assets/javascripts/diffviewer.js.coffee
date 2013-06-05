@@ -1,12 +1,7 @@
 class @DiffViewer
-  constructor: (@change_id, @project_id, @commit_msg, @commit_hash) ->
-    @modal = $('#diffModal')
-    @modalBody = @modal.find('.modal-body')
-    @modalFiles = @modal.find('#changed-files')
-    @modalText = @modal.find('#modal-text')
-    @modalTitle = @modal.find('#modal-title')
-
-    @modalTitle.html(@commit_msg)
+  constructor: (@change_id, @project_id, @commit_hash) ->
+    @files = $("#file-listing-#{@change_id}")
+    @viewerPane = $('#diff-viewer')
 
     $.ajax {
       url: "/projects/#{@project_id}/changes/#{@change_id}/diff.json",
@@ -16,12 +11,11 @@ class @DiffViewer
       error: (a, b, httpError) => @displayError(httpError)
     }
 
-    @modalFiles.html 'Loading...'
-    @modalText.html '<center><i class="icon-spin icon-spinner icon-3x"></i></center>'
+    @viewerPane.html '<center><i class="icon-spin icon-spinner icon-3x"></i></center>'
 
   displayDiff: (json) ->
-    @modalFiles.html ''
-    @modalText.html ''
+    @files.html ''
+    @viewerPane.html ''
     fileTypes =
       'createdFiles': 'Created Files',
       'deletedFiles': 'Deleted Files',
@@ -29,12 +23,16 @@ class @DiffViewer
     fileNum = 0
     for type, name of fileTypes
       if json[type]?.length > 0
-        @modalFiles.append "<li class='nav-header'>#{name}</li><hr class='soften' />"
+        @files.append "<li class='nav-header'>#{name}</li>"
         for file in json[type]
           elem = $("<li><a href='#change_file#{fileNum++}'>#{file.name}</a></li>")
-          @modalFiles.append(elem)
+          @files.append(elem)
 
     files = json.createdFiles.concat(json.deletedFiles).concat(json.updatedFiles)
+    if files.length == 0
+      # This shouldn't happen normally.
+      @viewerPane.html 'No files were modified in this change.'
+
     for file, i in files
       pre = $('<pre>', {id: 'change_file' + i, class: 'highlight'})
       table = $('<table>', {class: 'table diff-text'})
@@ -70,11 +68,7 @@ class @DiffViewer
               "<td class='linenumber'>#{new_line}</td>" +
               "<td class='content'>#{line}</td></tr>"
       pre.append(table)
-      @modalText.append pre
-
-    @modal.modal('show').on('shown', ->
-      $('.modal-scrollable').scrollspy('refresh')
-    )
+      @viewerPane.append pre
 
   displayError: (error) ->
-    @modalText.html "<div class='alert alert-error'>Error loading the specified change. Please try again later. (#{error})</div>"
+    @viewerPane.html "<div class='alert alert-error'>Error loading the specified change. Please try again later. (#{error})</div>"

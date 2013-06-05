@@ -1,35 +1,75 @@
-<h1>Listing project_changes</h1>
+<div id="selected-change"
+     data-project-id="<%= @project.id %>"
+     data-change-id="<%= @selected_change.id %>"
+     data-commit-hash="<%= @selected_change.commit_hash %>">
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Project</th>
-      <th>Commit msg</th>
-      <th>Commit hash</th>
-      <th>Commit timestamp</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      ((can? :update, @project) ? 'Manage My Projects' : 'View Public Projects') =>  ((can? :update, @project) ? projects_path : public_projects_path),
+      @project.name => project_path(@project.id),
+      'View Changes' => project_change_path(@project.id, nil)
+    }}
+ %>
 
-  <tbody>
-    <% @project_changes.each do |project_change| %>
-      <tr>
-        <td><%= project_change.user_id %></td>
-        <td><%= project_change.project_id %></td>
-        <td><%= project_change.commit_msg %></td>
-        <td><%= project_change.commit_hash %></td>
-        <td><%= project_change.commit_timestamp %></td>
-        <td><%= link_to 'Show', project_change %></td>
-        <td><%= link_to 'Edit', edit_project_change_path(project_change) %></td>
-        <td><%= link_to 'Destroy', project_change, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="separator-xsmall"></div>
 
-<br>
+<div class="page-header">
+  <h1>Changes to <%= @project.name %></h1>
+</div>
 
-<%= link_to 'New Project change', new_project_change_path %>
+<div id="change-viewer" class="row-fluid">
+  <div class="span3">
+    <div id="change-listing" class="well-list">
+      <table class="table table-condensed">
+        <tr>
+          <th>Change History</th>
+        </tr>
+        <tr>
+          <td>
+            <ul class="changes nav nav-list">
+              <% @project_changes.each do |project_change| %>
+                <% list_item = capture do %>
+                  <div class="list-item">
+                    <div class="description">
+                      <%= project_change.commit_msg %>
+                      <div class="info">
+                        by <%= project_change.user.fullname %>, 
+                        <%= time_ago_in_words(project_change.commit_timestamp) %> ago
+                      </div>
+                    </div>
+                    <div class="action">
+                      <button class="btn btn-mini" data-toggle="collapse"
+                              data-target="#file-listing-<%= project_change.id %>">
+                        <i class="icon-plus" data-toggle="collapse"
+                           data-target="#file-listing-<%= project_change.id %>"></i>
+                      </button>
+                    </div>
+                  </div>
+                <% end %>
+                <li class="change-item <%= project_change == @selected_change ? 'active' : '' %>">
+                  <%= link_to list_item, '#', {
+                        :class => 'view-changes',
+                        :data => {
+                          :change_id => project_change.id,
+                          :commit_hash => project_change.commit_hash
+                        }
+                  } %>
+                </li>
+                <li>
+                  <div id="file-listing-<%= project_change.id %>" class="file-listing collapse">
+                    <ul class="nav nav-list">
+                    </ul>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div id="diff-viewer" class="span9">
+  </div>
+</div>
