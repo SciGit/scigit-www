@@ -14,8 +14,9 @@
                      </div>
                    </div>
                    <div class="btn-group">
-                     <div class="btn btn-mini inline active">Inline</div>
-                     <div class="btn btn-mini side">Side-by-side</div>
+                     <% disable = (file.binary || file.old_blocks.length == 0) ? 'disabled' : '' %>
+                     <div class="btn btn-mini inline active <%= disable %>">Inline</div>
+                     <div class="btn btn-mini side <%= disable %>">Side-by-side</div>
                    </div>
                  </div>
                </th>
