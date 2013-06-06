@@ -70,7 +70,7 @@ class @DiffViewer
           if k == 0
             old_type += ' first'
             new_type += ' first'
-          if k == block.lines.length-1
+          else if k == block.lines.length-1
             old_type += ' last'
             new_type += ' last'
           if mode == 'inline'
