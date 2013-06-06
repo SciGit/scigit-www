@@ -107,9 +107,9 @@ class @DiffViewer
         pre = $('<pre>', {id: 'change_file' + fileNum++, class: 'diff-file'})
         table = $('<table>', {class: 'table diff-text'})
         @renderFile(table, file, data)
-        do (table, file, data, fn = @renderFile)  ->
-          table.on 'click', '.inline', -> fn(table, file, data, 'inline')
-          table.on 'click', '.side', -> fn(table, file, data, 'side')
+        do (table, file, data, dv = this)  ->
+          table.on 'click', '.inline', -> dv.renderFile(table, file, data, 'inline')
+          table.on 'click', '.side', -> dv.renderFile(table, file, data, 'side')
         pre.append(table)
         @viewerPane.append pre
 
