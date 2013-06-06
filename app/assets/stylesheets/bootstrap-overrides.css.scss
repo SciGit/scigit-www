@@ -3,7 +3,7 @@ $sg-gray: #f5f5f5;
 
 $diff-green: rgba(124, 252, 0, 0.3);
 $diff-red: rgba(255, 0, 0, 0.1);
-$diff-gray: rgb(235, 235, 235);
+$diff-blue: rgb(203, 194, 247);
 
 $file-changed: $sg-blue;
 $file-deleted: rgb(255, 0, 0);
@@ -39,6 +39,14 @@ $file-created: rgb(0, 255, 0);
     box-shadow:         $style $c;
     -webkit-box-shadow: $style $c;
     -moz-box-shadow:    $style $c;
+  }
+
+  @mixin linear-gradient($from, $start, $end, $endpct: 100%) {
+    background-image: -ms-linear-gradient($from, $start, $end $endpct);
+    background-image: -webkit-linear-gradient($from, $start, $end $endpct);
+    background-image: -o-linear-gradient($from, $start, $end $endpct);
+    background-image: linear-gradient($from, $start, $end $endpct);
+    background-image: -moz-linear-gradient($from, $start, $end $endpct);
   }
 
   @mixin opacity($alpha) {
@@ -878,8 +886,9 @@ body {
     width: 100%;
     font-size: 12px;
 
-    .label {
+    .btn-toolbar {
       float: right;
+      margin: 0px;
     }
 
     td, tr td {
@@ -905,13 +914,22 @@ body {
       text-align: right;
       padding-left: 5px;
       padding-right: 5px;
-      border-right: 1px solid #ccc;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
       white-space: nowrap;
-      color: #999;
+      background-color: $sg-gray;
+      color: #777;
+    }
+
+    .linenumber.second {
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .content {
       padding-left: 10px !important;
+      width: 50%;
+    }
+
+    .content.inline {
       width: 100%;
     }
 
@@ -921,33 +939,54 @@ body {
       }
     }
 
+    .change-null {
+      background-color: $sg-gray;
+      &.first {
+        @include linear-gradient(top, darken($sg-gray, 5%), $sg-gray, 50%);
+      }
+      &.last {
+        @include linear-gradient(bottom, darken($sg-gray, 5%), $sg-gray, 10%);
+      }
+    }
+
     .change-addition {
       background-color: $diff-green;
-
+      &.linenumber {
+        background-color: darken($diff-green, 10%);
+      }
       &:hover {
-        background-color: darken($diff-green, 5%);
+        background-color: darken($diff-green, 10%);
       }
     }
 
     .change-deletion {
       background-color: $diff-red;
-
+      &.linenumber {
+        background-color: darken($diff-red, 30%);
+      }
       &:hover {
-        background-color: darken($diff-red, 20%);
+        background-color: darken($diff-red, 30%);
+      }
+    }
+
+    .change-modify {
+      background-color: $diff-blue;
+      &.linenumber {
+        background-color: darken($diff-blue, 10%);
+        color: white;
+      }
+      &:hover {
+        background-color: darken($diff-blue, 5%);
       }
     }
 
     .change-omission {
-      background-color: #f5f5f5;
-      border-top: 1px solid $diff-gray;
-      border-bottom: 1px solid $diff-gray;
-    }
-
-    .change-line {
-      background-color: $diff-gray;
-
-      &:hover {
-        background-color: darken($diff-gray, 10%);
+      background-color: $sg-gray;
+      border-top: 1px solid darken($sg-gray, 10%);
+      border-bottom: 1px solid darken($sg-gray, 10%);
+      .content {
+        color: #777;
+        font-family: monospace;
       }
     }
   }
@@ -1067,23 +1106,6 @@ body {
       margin: 0 0px 20px 0px;
       border: 1px solid rgba(0, 0, 0, 0.15);
     }
-  }
-
-  /** Special cases that are hard to write out in a nice format */
-  td:hover .diff-text th, tr:hover .diff-text th {
-    background-color: $sg-gray;
-  }
-
-  td:hover .diff-text .change-addition {
-    background-color: $diff-green;
-  }
-
-  td:hover .diff-text .change-deletion {
-    background-color: $diff-red;
-  }
-
-  td:hover .diff-text .change-line {
-    background-color: $sg-gray;
   }
 
   .create-project {
