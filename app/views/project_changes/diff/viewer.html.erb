@@ -14,7 +14,7 @@
                      </div>
                    </div>
                    <div class="btn-group">
-                     <% disable = (file.binary || file.old_blocks.length == 0) ? 'disabled' : '' %>
+                     <% disable = (file.binary || file.changes == 0) ? 'disabled' : '' %>
                      <div class="btn btn-mini inline active <%= disable %>">Inline</div>
                      <div class="btn btn-mini side <%= disable %>">Side-by-side</div>
                    </div>
@@ -29,19 +29,19 @@
                  <%= link_to 'View changes to this file on the SciGit client.',
                        "scigit://view_change?project_id=#{@project_change.project_id}" +
                        "&commit_hash=#{@project_change.commit_hash}" +
-                       "&filename=#{u 'a b c \'.txt'}" %>
+                       "&filename=#{u file.name}" %>
                </td>
              </tr>
-           <% elsif file.old_blocks.length == 0 %>
+           <% elsif file.changes == 0 %>
              <tr class="message">
                <td class="content" colspan="4">
                  This file is empty.
                </td>
              </tr>
            <% else %>
-             <% ['inline', 'side'].each do |mode| %>
-               <tbody class="<%= mode %> <%= mode == 'side' ? 'hidden' : '' %>">
-                 <%= raw format_diff_blocks file.old_blocks, file.new_blocks, mode %>
+             <% [:inline, :side].each do |mode| %>
+               <tbody class="<%= mode %> <%= mode == :side ? 'hidden' : '' %>">
+                 <%= raw format_diff_blocks file.blocks[mode], mode %>
                </tbody>
              <% end %>
            <% end %>

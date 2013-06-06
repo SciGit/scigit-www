@@ -58,6 +58,11 @@ gem 'thrift'
 # jQuery autocomplete, with ActiveRecord support.
 gem 'rails3-jquery-autocomplete', :git => 'https://github.com/DouglasSherk/rails3-jquery-autocomplete.git'
 
+# Diff/LCS algorithm
+gem 'diff-lcs'
+
+gem 'htmlentities'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

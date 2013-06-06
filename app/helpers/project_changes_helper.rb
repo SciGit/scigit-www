@@ -1,9 +1,9 @@
 module ProjectChangesHelper
-  def format_diff_blocks(old_blocks, new_blocks, mode)
+  def format_diff_blocks(blocks, mode = :inline)
     rows = []
-    old_blocks.zip(new_blocks).each do |old_block, new_block|
+    blocks[:old].zip(blocks[:new]).each do |old_block, new_block|
       if old_block.nil? && new_block.nil?
-        if mode == 'inline'
+        if mode == :inline
           rows << '<tr class="change-omission"><td class="linenumber">...</td>' +
             '<td class="linenumber">...</td>' +
             '<td class="content">unchanged text not included</td></tr>'
@@ -31,13 +31,13 @@ module ProjectChangesHelper
             old_type += ' last'
             new_type += ' last'
           end
-          if mode == 'inline'
+          if mode == :inline
             rows << "<tr class='line'><td class='linenumber #{type}'>#{old_line}</td>" +
               "<td class='linenumber #{type}'>#{new_line}</td>" +
               "<td class='content inline #{type}'>#{line}</td></tr>"
           else
-            old_text = old_block ? line : ''
-            new_text = new_block ? line : ''
+            old_text = old_block ? old_block.lines[i] : ''
+            new_text = new_block ? new_block.lines[i] : ''
             rows << "<tr class='line'><td class='linenumber #{old_type}'>#{old_line}</td>" +
               "<td class='content #{old_type}'>#{old_text}</td>" +
               "<td class='linenumber second #{new_type}'>#{new_line}</td>" +
