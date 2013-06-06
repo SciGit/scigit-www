@@ -6,9 +6,25 @@
 
 project_id = null
 
+toggleActive = (active) ->
+  active.toggleClass 'active'
+  message = active.find('.message')
+  full = message.data('full-message')
+  message.data('full-message', message.html())
+  message.html(full)
+
+resetActives = ->
+  active = $('#change-listing .active')
+  if active.length > 0
+    toggleActive active
+  $('#change-listing .in').collapse('toggle')
+  $('.action button i').removeClass 'icon-minus'
+  $('.action button i').addClass 'icon-plus'
+
 loadDiff = (selected) ->
   change_id = selected.data 'change-id'
   commit_hash = selected.data 'commit-hash'
+  history.replaceState null, null, "/projects/#{project_id}/changes/#{change_id}"
   new DiffViewer(change_id, project_id, commit_hash)
 
 $(document).on 'ready page:load', () ->
@@ -23,23 +39,8 @@ $(document).on 'ready page:load', () ->
         if e.target.tagName.toLowerCase() == 'a'
           return true
         if !$(this).hasClass('active')
-          # deactivate previously active element
-          active = $('#change-listing .active')
-          if active.length > 0
-            active.removeClass 'active'
-            message = active.find('.message')
-            full = message.data('full-message')
-            message.data('full-message', message.html())
-            message.html(full)
-          $('#change-listing .in').collapse('toggle')
-          $('.action button i').removeClass 'icon-minus'
-          $('.action button i').addClass 'icon-plus'
-          # activate this element
-          $(this).addClass 'active'
-          message = $(this).find('.message')
-          full = message.data('full-message')
-          message.data('full-message', message.html())
-          message.html(full)
+          resetActives()
+          toggleActive $(this)
           loadDiff $(this)
         else
           e.preventDefault()
