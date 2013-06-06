@@ -39,7 +39,7 @@
              </tr>
            <% else %>
              <% ['inline', 'side'].each do |mode| %>
-               <tbody class="<%= mode %>">
+               <tbody class="<%= mode %> <%= mode == 'side' ? 'hidden' : '' %>">
                  <%= raw format_diff_blocks file.old_blocks, file.new_blocks, mode %>
                </tbody>
              <% end %>
