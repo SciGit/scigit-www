@@ -896,6 +896,13 @@ body {
       margin: 0 !important;
       border-top: 0px;
     }
+    
+    tbody {
+      border-top: 0px !important;
+      &.side {
+        display: none;
+      }
+    }
 
     th {
       background-color: $sg-gray;
@@ -924,13 +931,16 @@ body {
       border-left: 1px solid rgba(0, 0, 0, 0.1);
     }
 
+    .line .content {
+      white-space: pre-wrap;
+    }
+
     .content {
       padding-left: 10px !important;
       width: 50%;
-    }
-
-    .content.inline {
-      width: 100%;
+      &.inline {
+        width: 100%;
+      }
     }
 
     .message {
@@ -1105,6 +1115,7 @@ body {
       padding: 0;
       margin: 0 0px 20px 0px;
       border: 1px solid rgba(0, 0, 0, 0.15);
+      @include border-radius
     }
   }
 

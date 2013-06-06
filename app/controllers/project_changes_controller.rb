@@ -37,9 +37,20 @@ class ProjectChangesController < ApplicationController
 
   # GET /project_changes/project/1/changes/1/diff.json
   def diff
-    diff = ProjectChange.diff(params[:id])
+    @project_change = ProjectChange.find(params[:id])
+    @diff = ProjectChange.diff(params[:id])
+    @fileTypes = {
+      :createdFiles => {:name => 'Created', :label => 'success'},
+      :deletedFiles => {:name => 'Deleted', :label => 'danger'},
+      :updatedFiles => {:name => 'Updated', :label => 'primary'},
+    }
     respond_to do |format|
-      format.json { render json: diff }
+      format.json {
+        render json: {
+          :files_html => (render_to_string action: 'diff/files.html', :layout => false),
+          :diff_viewer_html => (render_to_string action: 'diff/viewer.html', :layout => false),
+        }
+      }
     end
   end
 

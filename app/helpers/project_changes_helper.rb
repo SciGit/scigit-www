@@ -1,2 +1,51 @@
 module ProjectChangesHelper
+  def format_diff_blocks(old_blocks, new_blocks, mode)
+    rows = []
+    old_blocks.zip(new_blocks).each do |old_block, new_block|
+      if old_block.nil? && new_block.nil?
+        if mode == 'inline'
+          rows << '<tr class="change-omission"><td class="linenumber">...</td>' +
+            '<td class="linenumber">...</td>' +
+            '<td class="content">unchanged text not included</td></tr>'
+        else
+          rows << '<tr class="change-omission"><td class="linenumber">...</td>' +
+            '<td class="content">Unchanged text not included</td>' +
+            '<td class="linenumber second">...</td>' +
+            '<td class="content">Unchanged text not included</td></tr>'
+        end
+      else
+        block = old_block || new_block
+        type = ''
+        type = 'change-modify'   if block.type == '!'
+        type = 'change-addition' if block.type == '+'
+        type = 'change-deletion' if block.type == '-'
+        block.lines.each_with_index do |line, i|
+          old_line = old_block ? old_block.start_line + i : ''
+          new_line = new_block ? new_block.start_line + i : ''
+          old_type = old_block ? type : 'change-null'
+          new_type = new_block ? type : 'change-null'
+          if i == 0
+            old_type += ' first'
+            new_type += ' first'
+          elsif i == block.lines.length-1
+            old_type += ' last'
+            new_type += ' last'
+          end
+          if mode == 'inline'
+            rows << "<tr><td class='linenumber #{type}'>#{old_line}</td>" +
+              "<td class='linenumber #{type}'>#{new_line}</td>" +
+              "<td class='content inline #{type}'>#{line}</td></tr>"
+          else
+            old_text = old_block ? line : ''
+            new_text = new_block ? line : ''
+            rows << "<tr><td class='linenumber #{old_type}'>#{old_line}</td>" +
+              "<td class='content #{old_type}'>#{old_text}</td>" +
+              "<td class='linenumber second #{new_type}'>#{new_line}</td>" +
+              "<td class='content #{new_type}'>#{new_text}</td></tr>"
+          end
+        end
+      end
+    end
+    rows.join('')
+  end
 end

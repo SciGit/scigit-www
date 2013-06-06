@@ -1,0 +1,50 @@
+<% fileNum = 0
+   @fileTypes.each do |type, type_data|
+     @diff[type].each do |file| %>
+       <div id="change-file-<%= fileNum += 1 %>" class="diff-file">
+         <table class="table diff-text">
+           <thead>
+             <tr>
+               <th colspan="4">
+                 <%= file.name %>
+                 <div class="btn-toolbar">
+                   <div class="btn-group">
+                     <div class="btn btn-mini btn-<%= type_data[:label] %> disabled">
+                       <%= type_data[:name] %>
+                     </div>
+                   </div>
+                   <div class="btn-group">
+                     <div class="btn btn-mini inline active">Inline</div>
+                     <div class="btn btn-mini side">Side-by-side</div>
+                   </div>
+                 </div>
+               </th>
+             </tr>
+           </thead>
+           <% if file.binary %>
+             <tr class="message">
+               <td class="content" colspan="4">
+                 This file cannot be viewed as plain-text.
+                 <%= link_to 'View changes to this file on the SciGit client.',
+                       "scigit://view_change?project_id=#{@project_change.project_id}" +
+                       "&commit_hash=#{@project_change.commit_hash}" +
+                       "&filename=#{u 'a b c \'.txt'}" %>
+               </td>
+             </tr>
+           <% elsif file.old_blocks.length == 0 %>
+             <tr class="message">
+               <td class="content" colspan="4">
+                 This file is empty.
+               </td>
+             </tr>
+           <% else %>
+             <% ['inline', 'side'].each do |mode| %>
+               <tbody class="<%= mode %>">
+                 <%= raw format_diff_blocks file.old_blocks, file.new_blocks, mode %>
+               </tbody>
+             <% end %>
+           <% end %>
+         </table>
+       </div>
+  <% end %>
+<% end %>
