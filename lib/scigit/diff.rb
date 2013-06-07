@@ -7,7 +7,7 @@ module SciGit
     @@scigit_dir = '/var/scigit'
     @@scigit_repo_dir = '/var/scigit/repos'
     Block = Struct.new(:start_line, :type, :lines)
-    FileDiff = Struct.new(:name, :new_name, :changes, :binary, :blocks)
+    FileDiff = Struct.new(:name, :new_name, :lines_removed, :lines_added, :binary, :blocks)
     def initialize
       @cur_change_id = 1
     end
@@ -205,9 +205,9 @@ module SciGit
         line = lines[i]
         i += 1
         if regex = line.match(/^diff --git a\/(.*) b\/(.*)$/)
-          file = FileDiff.new(regex[1], regex[2], 0, false, {
-              :inline => {:old => [], :new => []},
-              :side => {:old => [], :new => []},
+          file = FileDiff.new(regex[1], regex[2], 0, 0, false, {
+            :inline => {:old => [], :new => []},
+            :side => {:old => [], :new => []},
           })
           section = :updatedFiles
           last_from_line = 1
@@ -251,7 +251,6 @@ module SciGit
                   end
                   if !prev_type.nil? && prev_type != type
                     add_blocks prev_type, cur_lines, start, file.blocks[:inline]
-                    file.changes += cur_lines.length
                     cur_lines = []
                   end
                   cur_lines << HTMLEntities.new.encode(line[1..-1])
@@ -259,7 +258,6 @@ module SciGit
                 end
                 unless cur_lines.empty?
                   add_blocks prev_type, cur_lines, start, file.blocks[:inline]
-                  file.changes += cur_lines.length
                 end
                 file.blocks[:side] = generate_side_blocks(file.blocks[:inline])
               end
@@ -269,6 +267,13 @@ module SciGit
             end
             i += 1
           end
+          file.lines_removed = file.blocks[:inline][:old].map { |b|
+            (b.nil? || b.type != '-') ? 0 : b.lines.length
+          }.reduce(0, :+)
+          p file.blocks[:inline][:old]
+          file.lines_added = file.blocks[:inline][:new].map { |b|
+            (b.nil? || b.type != '+') ? 0 : b.lines.length
+          }.reduce(0, :+)
           result[section] << file
         else
           break

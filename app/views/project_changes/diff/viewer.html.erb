@@ -1,23 +1,29 @@
 <% fileNum = 0
    @fileTypes.each do |type, type_data|
-     @diff[type].each do |file| %>
+     @diff[type].each do |file|
+       changes = file.lines_removed + file.lines_added %>
        <div id="change-file-<%= fileNum += 1 %>" class="diff-file">
          <table class="table diff-text">
            <thead>
              <tr>
                <th colspan="4">
+                 <div class="diff-type btn btn-mini btn-<%= type_data[:label] %> disabled">
+                   <%= type_data[:name] %>
+                 </div>
                  <%= file.name %>
                  <div class="btn-toolbar">
-                   <div class="btn-group">
-                     <div class="btn btn-mini btn-<%= type_data[:label] %> disabled">
-                       <%= type_data[:name] %>
+                   <% if !file.binary && changes > 0 %>
+                     <div class="btn-group">
+                       <div class="btn btn-mini disabled">
+                         <%= file.lines_removed %> deletions,
+                         <%= file.lines_added %> additions
+                       </div>
                      </div>
-                   </div>
-                   <div class="btn-group">
-                     <% disable = (file.binary || file.changes == 0) ? 'disabled' : '' %>
-                     <div class="btn btn-mini inline active <%= disable %>">Inline</div>
-                     <div class="btn btn-mini side <%= disable %>">Side-by-side</div>
-                   </div>
+                     <div class="btn-group">
+                       <div class="btn btn-mini inline active">Inline</div>
+                       <div class="btn btn-mini side">Side-by-side</div>
+                     </div>
+                   <% end %>
                  </div>
                </th>
              </tr>
@@ -32,7 +38,7 @@
                        "&filename=#{u file.name}" %>
                </td>
              </tr>
-           <% elsif file.changes == 0 %>
+           <% elsif changes == 0 %>
              <tr class="message">
                <td class="content" colspan="4">
                  This file is empty.
