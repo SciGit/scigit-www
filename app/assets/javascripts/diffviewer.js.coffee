@@ -25,6 +25,12 @@ class @DiffViewer
 
     for div in @viewerPane.find('.diff-file')
       do (elem = $(div)) ->
+        elem.on 'mouseover', 'span.modify', ->
+          match = $(this).attr('class').match(/modify-[0-9]+/)
+          match? && $('.' + match[0]).addClass('hover')
+        elem.on 'mouseout', 'span.modify', ->
+          match = $(this).attr('class').match(/modify-[0-9]+/)
+          match? && $('.' + match[0]).removeClass('hover')
         elem.on 'click', '.btn.inline', ->
           elem.find('tbody.inline').removeClass('hidden')
           elem.find('tbody.side').addClass('hidden')

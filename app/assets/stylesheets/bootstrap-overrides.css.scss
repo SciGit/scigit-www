@@ -41,12 +41,12 @@ $file-created: rgb(0, 255, 0);
     -moz-box-shadow:    $style $c;
   }
 
-  @mixin linear-gradient($from, $start, $end, $endpct: 100%) {
-    background-image: -ms-linear-gradient($from, $start, $end $endpct);
-    background-image: -webkit-linear-gradient($from, $start, $end $endpct);
-    background-image: -o-linear-gradient($from, $start, $end $endpct);
-    background-image: linear-gradient($from, $start, $end $endpct);
-    background-image: -moz-linear-gradient($from, $start, $end $endpct);
+  @mixin linear-gradient($style...) {
+    background-image: -ms-linear-gradient($style);
+    background-image: -webkit-linear-gradient($style);
+    background-image: -o-linear-gradient($style);
+    background-image: linear-gradient($style);
+    background-image: -moz-linear-gradient($style);
   }
 
   @mixin opacity($alpha) {
@@ -889,6 +889,9 @@ body {
     .btn-toolbar {
       float: right;
       margin: 0px;
+      .btn.active {
+        z-index: 1;
+      }
     }
 
     td, tr td {
@@ -939,13 +942,16 @@ body {
         width: 100%;
       }
       span.add {
-        background: rgb(124, 255, 0);
+        background: rgba(0, 255, 0, 0.5);
       }
       span.delete {
-        background: rgb(255, 124, 124);
+        background: rgba(255, 0, 0, 0.3);
       }
       span.modify {
-        background: darken($diff-blue, 10%);
+        background: rgba(0, 0, 255, 0.2);
+        &.hover {
+          @include box-shadow(0px 0px 5px 2px, rgba(0, 0, 255, 0.5));
+        }
       }
     }
 
@@ -958,10 +964,20 @@ body {
     .change-null {
       background-color: $sg-gray;
       &.first {
-        @include linear-gradient(top, darken($sg-gray, 5%), $sg-gray, 50%);
+        @include linear-gradient(top, darken($sg-gray, 5%), $sg-gray 50%);
       }
       &.last {
-        @include linear-gradient(bottom, darken($sg-gray, 5%), $sg-gray, 10%);
+        @include linear-gradient(bottom, darken($sg-gray, 10%), $sg-gray 5%);
+      }
+      &.first.last {
+        @include linear-gradient(bottom, darken($sg-gray, 10%), $sg-gray 5%,
+            $sg-gray 50%, darken($sg-gray, 5%) 100%);
+      }
+      &.linenumber {
+        border-right: 0px;
+      }
+      &.content {
+        border-left: 0px;
       }
     }
 

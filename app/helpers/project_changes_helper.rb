@@ -27,7 +27,8 @@ module ProjectChangesHelper
           if i == 0
             old_type += ' first'
             new_type += ' first'
-          elsif i == block.lines.length-1
+          end
+          if i == block.lines.length-1
             old_type += ' last'
             new_type += ' last'
           end
