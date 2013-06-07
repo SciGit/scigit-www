@@ -26,13 +26,13 @@ class @DiffViewer
     for div in @viewerPane.find('.diff-file')
       do (elem = $(div)) ->
         elem.on 'click', '.btn.inline', ->
-          elem.find('tbody.inline').toggleClass('hidden')
-          elem.find('tbody.side').toggleClass('hidden')
+          elem.find('tbody.inline').removeClass('hidden')
+          elem.find('tbody.side').addClass('hidden')
           elem.find('.btn.inline').addClass('active')
           elem.find('.btn.side').removeClass('active')
         elem.on 'click', '.btn.side', ->
-          elem.find('tbody.inline').toggleClass('hidden')
-          elem.find('tbody.side').toggleClass('hidden')
+          elem.find('tbody.inline').addClass('hidden')
+          elem.find('tbody.side').removeClass('hidden')
           elem.find('.btn.inline').removeClass('active')
           elem.find('.btn.side').addClass('active')
 
