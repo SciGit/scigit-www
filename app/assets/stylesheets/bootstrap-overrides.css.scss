@@ -938,6 +938,15 @@ body {
       &.inline {
         width: 100%;
       }
+      span.add {
+        background: rgb(124, 255, 0);
+      }
+      span.delete {
+        background: rgb(255, 124, 124);
+      }
+      span.modify {
+        background: darken($diff-blue, 10%);
+      }
     }
 
     .message {

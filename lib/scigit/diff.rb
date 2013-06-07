@@ -8,8 +8,11 @@ module SciGit
     @@scigit_repo_dir = '/var/scigit/repos'
     Block = Struct.new(:start_line, :type, :lines)
     FileDiff = Struct.new(:name, :new_name, :changes, :binary, :blocks)
+    def initialize
+      @cur_change_id = 1
+    end
 
-    def self.add_blocks(type, lines, start, blocks)
+    def add_blocks(type, lines, start, blocks)
       if type == '-' || type == '='
         blocks[:old] << Block.new(start[:old], type, lines)
         blocks[:new] << nil unless type == '='
@@ -22,7 +25,7 @@ module SciGit
       end
     end
 
-    def self.str_similarity(str1, str2)
+    def str_similarity(str1, str2)
       if str1.length + str2.length == 0
         return 1
       end
@@ -30,7 +33,7 @@ module SciGit
       return 2.0 * l.length / (str1.length + str2.length)
     end
 
-    def self.get_detail_blocks(blocks1, blocks2, text_similarity, text_fn = lambda { |x| x })
+    def get_detail_blocks(blocks1, blocks2, text_similarity, text_fn = lambda { |x| x })
       n = blocks1.length
       m = blocks2.length
       if n == 0 || m == 0
@@ -103,7 +106,24 @@ module SciGit
       diff_blocks
     end
 
-    def self.generate_side_blocks(blocks)
+    def get_diff_change_array(list1, list2)
+      change_id = [Array.new(list1.length), Array.new(list2.length)]
+      ::Diff::LCS.diff(list1, list2).each do |diff|
+        count = diff.map { |c| c.action }.uniq.length
+        if count == 1
+          cid = -1
+        else
+          cid = @cur_change_id
+          @cur_change_id += 1
+        end
+        diff.each do |change|
+          change_id[change.action == '-' ? 0 : 1][change.position] = cid
+        end
+      end
+      change_id
+    end
+
+    def generate_side_blocks(blocks)
       ret = {:old => [], :new => []}
       # Try to split up remove/add blocks
       i = 0
@@ -120,9 +140,38 @@ module SciGit
             elsif block[0].empty?
               ret[:old] << nil
               ret[:new] << Block.new(new_start, '+', block[1])
-            else
-              ret[:old] << Block.new(old_start, '!', block[0])
-              ret[:new] << Block.new(new_start, '!', block[1])
+            else # both blocks will have one line each.
+              words = block.map { |b| b.first.scan(/\w+|[^\w+]/) }
+              change_id = get_diff_change_array(words[0], words[1])
+              lines = ['', '']
+              for side in 0..1
+                cur_text = ''
+                cur_class = ''
+                words[side].each_with_index do |word, j|
+                  if change_id[side][j]
+                    if change_id[side][j] >= 1
+                      cur_class = (sprintf 'modify modify-%d', change_id[side][j])
+                    elsif side == 0
+                      cur_class = 'delete'
+                    else
+                      cur_class = 'add'
+                    end
+                    cur_text += word
+                  else
+                    unless cur_text.empty?
+                      lines[side] += "<span class='#{cur_class}'>#{cur_text}</span>"
+                      cur_text = ''
+                    end
+                    lines[side] += word
+                  end
+                end
+                unless cur_text.empty?
+                  lines[side] += "<span class='#{cur_class}'>#{cur_text}</span>"
+                end
+              end
+
+              ret[:old] << Block.new(old_start, '!', [lines[0]])
+              ret[:new] << Block.new(new_start, '!', [lines[1]])
             end
             old_start += block[0].length
             new_start += block[1].length
@@ -137,7 +186,7 @@ module SciGit
       ret
     end
 
-    def self.diff(project_id, old_hash, new_hash, path = '')
+    def diff(project_id, old_hash, new_hash, path = '')
       dir = File.join(@@scigit_repo_dir, "r#{project_id}")
       old_hash = Shellwords.escape(old_hash)
       new_hash = Shellwords.escape(new_hash)
