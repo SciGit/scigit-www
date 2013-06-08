@@ -157,6 +157,7 @@ module YDocx
           end
         end
         p.runs << group unless group.runs.empty?
+        p.merge_runs
         result[i] << p
       end
     end
