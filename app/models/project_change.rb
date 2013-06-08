@@ -1,4 +1,5 @@
 require_dependency 'scigit/diff'
+require_dependency 'scigit/git'
 
 class ProjectChange < ActiveRecord::Base
   belongs_to :user
@@ -23,6 +24,11 @@ class ProjectChange < ActiveRecord::Base
   def self.diff(id)
     change = find(id)
     SciGit::Diff.new.diff(change.project_id, change.commit_hash + '^', change.commit_hash)
+  end
+  
+  def self.get_file(id, file)
+    change = find(id)
+    SciGit::Git.show(change.project_id, change.commit_hash, file)
   end
 
   private

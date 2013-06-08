@@ -24,6 +24,20 @@
                        <div class="btn btn-mini side">Side-by-side</div>
                      </div>
                    <% end %>
+                   <div class="btn-group">
+                     <%= link_to 'View in client',
+                           sprintf('scigit://view_change?project_id=%d&commit_hash=%s&filename=%s', @project_change.project_id, @project_change.commit_hash, u(file.name)), {
+                             :class => 'btn btn-mini btn-primary',
+                         } %>
+                   </div>
+                   <% if type != :deletedFiles %>
+                     <div class="btn-group">
+                       <%= link_to 'Download',
+                             project_change_path(@project_change.project_id, @project_change) +
+                               '/file/' + u(file.name),
+                             :class => 'btn btn-mini btn-success' %>
+                     </div>
+                   <% end %>
                  </div>
                </th>
              </tr>

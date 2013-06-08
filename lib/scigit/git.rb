@@ -15,7 +15,7 @@ module SciGit
       if $?.to_i == 0
         return out
       else
-        return ''
+        return nil
       end
     end
 
@@ -24,17 +24,27 @@ module SciGit
       old_hash = Shellwords.escape(old_hash)
       new_hash = Shellwords.escape(new_hash)
       path = Shellwords.escape(path)
-      `cd #{dir}; git diff #{old_hash} #{new_hash} -- #{path}`
+      result = `cd #{dir}; git diff #{old_hash} #{new_hash} -- #{path}`
+      if $?.to_i == 0
+        return result
+      else
+        return nil
+      end
     end
 
     def self.show(project_id, commit_hash, path, out = '')
       dir = File.join(@@scigit_repo_dir, "r#{project_id}")
       commit_hash = Shellwords.escape(commit_hash)
       path = Shellwords.escape(path)
-      if out
+      unless out.empty?
         out = ' > ' + Shellwords.escape(out)
       end
-      `cd #{dir}; git show #{commit_hash}:#{path} #{out}`
+      result = `cd #{dir}; git show #{commit_hash}:#{path} #{out}`
+      if $?.to_i == 0
+        return result
+      else
+        return nil
+      end
     end
   end
 end

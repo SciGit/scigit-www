@@ -15,6 +15,7 @@ SciGit::Application.routes.draw do
       end
       member do
         get 'diff'
+        get 'file/*file', :action => 'file'
       end
     end
 

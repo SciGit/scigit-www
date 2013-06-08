@@ -54,6 +54,20 @@ class ProjectChangesController < ApplicationController
     end
   end
 
+  # GET /project_changes/project/1/changes/1/file/:filename
+  def file
+    filename = params[:file]
+    unless params[:format].nil?
+      filename += '.' + params[:format]
+    end
+    file = ProjectChange.get_file(params[:id], filename)
+    if file.nil?
+      render :text => 'Not found', :status => :not_found
+    else
+      send_data(file, :filename => filename)
+    end
+  end
+
   # POST /project_changes
   # POST /project_changes.json
   def create

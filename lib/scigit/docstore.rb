@@ -9,7 +9,7 @@ module SciGit
     @@store_dir = SCIGIT_DIR + '/docstore'
     def self.retrieve(project_id, commit_hash, file)
       hash = Git.get_hash(project_id, commit_hash, file)
-      if hash == ''
+      if hash.nil?
         return YDocx::ParsedDocument.new
       end
       commit_hash = Git.get_hash(project_id, commit_hash)
