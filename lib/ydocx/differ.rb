@@ -219,6 +219,8 @@ module YDocx
         if blocks[0] == blocks[1]
           result[:inline][0] << Block.new(pg[0], '=', html_blocks[0])
           result[:inline][1] << Block.new(pg[1], '=', html_blocks[1])
+          pg[0] += html_blocks[0].length
+          pg[1] += html_blocks[1].length
         else
           unless blocks[0].empty?
             result[:inline][0] << Block.new(pg[0], '-', html_blocks[0])
