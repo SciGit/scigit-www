@@ -2,6 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+hookSubmitAddMember = ->
+  submitAddMemberForm = (e) ->
+    e.preventDefault()
+    window.ajaxFormSubmit($('#addMemberModal'), $('#addMemberForm'))
+    return false
+
+  $('#addMemberModal').on('submit', '#addMemberForm', submitAddMemberForm)
+  $('#addMemberModal .btnSubmit').click submitAddMemberForm
+
 hookTypeaheadForMemberAdd = ->
   addTypeaheadForMemberAdd = ->
     # XXX: Hack. We should investigate why modals are being closed on any
@@ -15,7 +24,7 @@ hookTypeaheadForMemberAdd = ->
 
       if showPopover == true
         $('#findMember').popover('show')
-        $('#project_permission_user_email').focus()
+        $('#project_permission_user_attributes_email').focus()
       else if showPopover == false
         $('#findMember').popover('hide')
 
@@ -77,7 +86,7 @@ hookTypeaheadForMemberAdd = ->
 
     checkIfQueryIsValidEmail = ->
       regex = /\S+@\S+\.\S+/
-      return regex.test($('#project_permission_user_email').data('typeahead').query)
+      return regex.test($('#project_permission_user_attributes_email').data('typeahead').query)
 
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
       $('#findMember').popover('hide')
@@ -108,9 +117,9 @@ hookTypeaheadForMemberAdd = ->
       $(@).parent('.permission').removeClass('faded')
       $(@).find('input[type="radio"]').prop('checked', 'checked')
 
-    $('#addMemberModal').on('keypress', '#project_permission_user_email', indicateLoading)
+    $('#addMemberModal').on('keypress', '#project_permission_user_attributes_email', indicateLoading)
 
-    $('#project_permission_user_email').typeahead(
+    $('#project_permission_user_attributes_email').typeahead(
       source: (query, process) ->
         results = []
         $.ajax
@@ -139,7 +148,7 @@ hookTypeaheadForMemberAdd = ->
 
             # Hack. Focus on the input element after a set of elements is processed.
             setTimeout( ->
-              $('#project_permission_user_email').focus()
+              $('#project_permission_user_attributes_email').focus()
             , 50)
 
             return process(results)
@@ -156,3 +165,4 @@ hookTypeaheadForMemberAdd = ->
 
 $(document).on 'ready page:load', () ->
   hookTypeaheadForMemberAdd()
+  hookSubmitAddMember()

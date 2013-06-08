@@ -1,4 +1,5 @@
-<%= form_for @project_permission do |f| %>
+<%= form_for @project_permission, :html => {:id => 'addMemberForm'} do |f| %>
+  <%= render :partial => 'shared/form_alerts' %>
   <div class="center well">
     <h3>Find or Invite Member</h3>
     <p>Search for a member. If they're not already part of SciGit, you can also invite them.</p>

@@ -16,6 +16,8 @@ class ProjectPermissionsController < ApplicationController
   # GET /project_permissions/new
   def new
     @project_permission = ProjectPermission.new
+    @project_permission.build_user
+    @project_permission.build_project
     render :layout => false
   end
 
@@ -26,12 +28,17 @@ class ProjectPermissionsController < ApplicationController
   # POST /project_permissions
   # POST /project_permissions.json
   def create
-    @project_permission = ProjectPermission.new(project_permission_params)
+    email = project_permission_params[:user_attributes][:email]
+    user = User.find_by(:email => email)
+    project = Project.find(params[:project_id])
+    @project_permission = ProjectPermission.new(:user => user, :project => project,
+                                                :permission => project_permission_params[:permission])
 
     respond_to do |format|
       if @project_permission.save
+        @notice = "Member #{@project_permission.user[:name]} added successfully."
         format.html { redirect_to @project_permission, notice: 'Project permission was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project_permission }
+        format.json { render }
       else
         format.html { render action: 'new' }
         format.json { render json: @project_permission.errors, status: :unprocessable_entity }
@@ -71,7 +78,7 @@ class ProjectPermissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_permission_params
-      params.require(:project_permission).permit(:user_id, :project_id, :permission)
+      params.require(:project_permission).permit(:permission, user_attributes: [:composite_fullname_email, :email], project_attributes: [:id])
     end
 
     def load_project

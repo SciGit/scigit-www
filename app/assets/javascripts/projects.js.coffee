@@ -6,17 +6,14 @@ project_id = null
 
 fetchingChanges = false
 
-hookCreateNewProject = ->
-  $('#createNewProjectModal').on('submit', '#createNewProjectForm', (e) ->
+hookSubmitCreateNewProject = ->
+  submitCreateNewProject = (e) ->
     e.preventDefault()
     window.ajaxFormSubmit($('#createNewProjectModal'), $('#createNewProjectForm'))
     return false
-  )
 
-  $('#createNewProjectModal .btnSubmit').click (e) ->
-    e.preventDefault()
-    window.ajaxFormSubmit($('#createNewProjectModal'), $('#createNewProjectForm'))
-    return false
+  $('#createNewProjectModal').on('submit', '#createNewProjectForm', submitCreateNewProject)
+  $('#createNewProjectModal .btnSubmit').click submitCreateNewProject
 
 hookCreateNewProjectPublicAndPrivateButtons = ->
   $('#createNewProjectModal').on('click', '#btnPrivate, #btnPublic', (e) ->
@@ -61,7 +58,7 @@ initInfiniteScrollHelper = ->
       return !fetchingChanges
 
 $(document).on 'ready page:load', () ->
-  hookCreateNewProject()
+  hookSubmitCreateNewProject()
   hookCreateNewProjectPublicAndPrivateButtons()
 
   if loadProjectId()
