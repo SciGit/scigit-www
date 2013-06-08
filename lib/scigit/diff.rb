@@ -1,27 +1,29 @@
-require 'shellwords'
 require 'diff-lcs'
 require 'htmlentities'
+require 'scigit/git'
+require 'tempfile'
+require_dependency 'ydocx/document'
+require_dependency 'ydocx/differ'
 
 module SciGit
   class Diff
-    @@scigit_dir = '/var/scigit'
-    @@scigit_repo_dir = '/var/scigit/repos'
     Block = Struct.new(:start_line, :type, :lines)
-    FileDiff = Struct.new(:name, :new_name, :lines_removed, :lines_added, :binary, :blocks)
+    FileDiff = Struct.new(:name, :new_name, :lines_changed, :binary, :blocks)
+
     def initialize
       @cur_change_id = 1
     end
 
     def add_blocks(type, lines, start, blocks)
       if type == '-' || type == '='
-        blocks[:old] << Block.new(start[:old], type, lines)
-        blocks[:new] << nil unless type == '='
-        start[:old] += lines.length
+        blocks[0] << Block.new(start[0], type, lines)
+        blocks[1] << nil unless type == '='
+        start[0] += lines.length
       end
       if type == '+' || type == '='
-        blocks[:old] << nil unless type == '='
-        blocks[:new] << Block.new(start[:new], type, lines)
-        start[:new] += lines.length
+        blocks[0] << nil unless type == '='
+        blocks[1] << Block.new(start[1], type, lines)
+        start[1] += lines.length
       end
     end
 
@@ -124,22 +126,22 @@ module SciGit
     end
 
     def generate_side_blocks(blocks)
-      ret = {:old => [], :new => []}
+      ret = [[], []]
       # Try to split up remove/add blocks
       i = 0
-      while i < blocks[:old].length
-        ba = blocks[:old][i]
-        bb = blocks[:new][i+1]
+      while i < blocks[0].length
+        ba = blocks[0][i]
+        bb = blocks[1][i+1]
         if !ba.nil? && ba.type == '-' && !bb.nil? && bb.type == '+'
           old_start = ba.start_line
           new_start = bb.start_line
           get_detail_blocks(ba.lines, bb.lines, method(:str_similarity)).each do |block|
             if block[1].empty?
-              ret[:old] << Block.new(old_start, '-', block[0])
-              ret[:new] << nil
+              ret[0] << Block.new(old_start, '-', block[0])
+              ret[1] << nil
             elsif block[0].empty?
-              ret[:old] << nil
-              ret[:new] << Block.new(new_start, '+', block[1])
+              ret[0] << nil
+              ret[1] << Block.new(new_start, '+', block[1])
             else # both blocks will have one line each.
               words = block.map { |b| b.first.scan(/\w+|[^\w+]/) }
               change_id = get_diff_change_array(words[0], words[1])
@@ -170,16 +172,16 @@ module SciGit
                 end
               end
 
-              ret[:old] << Block.new(old_start, '!', [lines[0]])
-              ret[:new] << Block.new(new_start, '!', [lines[1]])
+              ret[0] << Block.new(old_start, '!', [lines[0]])
+              ret[1] << Block.new(new_start, '!', [lines[1]])
             end
             old_start += block[0].length
             new_start += block[1].length
           end
           i += 1
         else
-          ret[:old] << blocks[:old][i]
-          ret[:new] << blocks[:new][i]
+          ret[0] << blocks[0][i]
+          ret[1] << blocks[1][i]
         end
         i += 1
       end
@@ -187,27 +189,21 @@ module SciGit
     end
 
     def diff(project_id, old_hash, new_hash, path = '')
-      dir = File.join(@@scigit_repo_dir, "r#{project_id}")
-      old_hash = Shellwords.escape(old_hash)
-      new_hash = Shellwords.escape(new_hash)
-      path = Shellwords.escape(path)
-
       result = {
         :createdFiles => [],
         :deletedFiles => [],
         :updatedFiles => []
       }
 
-      output = `cd #{dir}; git diff #{old_hash} #{new_hash} -- #{path}`
-      lines = output.each_line.map(&:chomp)
+      lines = Git.diff(project_id, old_hash, new_hash, path).each_line.map(&:chomp)
       i = 0
       while i < lines.length
         line = lines[i]
         i += 1
         if regex = line.match(/^diff --git a\/(.*) b\/(.*)$/)
-          file = FileDiff.new(regex[1], regex[2], 0, 0, false, {
-            :inline => {:old => [], :new => []},
-            :side => {:old => [], :new => []},
+          file = FileDiff.new(regex[1], regex[2], [0, 0], false, {
+            :inline => [[], []],
+            :side => [[], []],
           })
           section = :updatedFiles
           last_from_line = 1
@@ -225,8 +221,8 @@ module SciGit
                 from_start, from_lines = regex[1].split(',').map(&:to_i)
                 from_lines ||= 1
                 if last_from_line < from_start
-                  file.blocks[:inline][:old] << nil
-                  file.blocks[:inline][:new] << nil
+                  file.blocks[:inline][0] << nil
+                  file.blocks[:inline][1] << nil
                 end
                 last_from_line = from_start + from_lines
                 to_start, to_lines = regex[2].split(',').map(&:to_i)
@@ -234,7 +230,7 @@ module SciGit
                 blocks = []
                 cur_lines = []
                 prev_type = nil
-                start = {:old => from_start, :new => to_start}
+                start = [from_start, to_start]
                 while from_lines > 0 || to_lines > 0
                   i += 1
                   line = lines[i]
@@ -259,7 +255,6 @@ module SciGit
                 unless cur_lines.empty?
                   add_blocks prev_type, cur_lines, start, file.blocks[:inline]
                 end
-                file.blocks[:side] = generate_side_blocks(file.blocks[:inline])
               end
             elsif line.start_with? 'diff --git'
               break
@@ -267,13 +262,21 @@ module SciGit
             end
             i += 1
           end
-          file.lines_removed = file.blocks[:inline][:old].map { |b|
-            (b.nil? || b.type != '-') ? 0 : b.lines.length
-          }.reduce(0, :+)
-          p file.blocks[:inline][:old]
-          file.lines_added = file.blocks[:inline][:new].map { |b|
-            (b.nil? || b.type != '+') ? 0 : b.lines.length
-          }.reduce(0, :+)
+
+          if file.binary && file.name.end_with?('docx')
+            tmp = Array.new(2) { Tempfile.new(file.name) }
+            Git.show(project_id, old_hash, file.name, tmp[0].path)
+            Git.show(project_id, new_hash, file.name, tmp[1].path)
+            doc = tmp.map { |t| YDocx::Document.open(t.path) }
+            file.blocks = YDocx::Differ.new.diff(*doc)
+            file.binary = false
+          elsif !file.binary
+            file.blocks[:side] = generate_side_blocks(file.blocks[:inline])
+          end
+
+          file.lines_changed = file.blocks[:inline].map do |blocks|
+            blocks.map { |b| (b.nil? || b.type == '=') ? 0 : b.lines.length }.reduce(0, :+)
+          end
           result[section] << file
         else
           break

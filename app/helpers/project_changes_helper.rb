@@ -1,7 +1,7 @@
 module ProjectChangesHelper
   def format_diff_blocks(blocks, mode = :inline)
     rows = []
-    blocks[:old].zip(blocks[:new]).each do |old_block, new_block|
+    blocks[0].zip(blocks[1]).each do |old_block, new_block|
       if old_block.nil? && new_block.nil?
         if mode == :inline
           rows << '<tr class="change-omission"><td class="linenumber">...</td>' +

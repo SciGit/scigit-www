@@ -1,7 +1,7 @@
 <% fileNum = 0
    @fileTypes.each do |type, type_data|
      @diff[type].each do |file|
-       changes = file.lines_removed + file.lines_added %>
+       changes = file.lines_changed.reduce(:+) %>
        <div id="change-file-<%= fileNum += 1 %>" class="diff-file">
          <table class="table diff-text">
            <thead>
@@ -15,8 +15,8 @@
                    <% if !file.binary && changes > 0 %>
                      <div class="btn-group">
                        <div class="btn btn-mini disabled">
-                         <%= file.lines_removed %> deletions,
-                         <%= file.lines_added %> additions
+                         <%= file.lines_changed[0] %> deletions,
+                         <%= file.lines_changed[1] %> additions
                        </div>
                      </div>
                      <div class="btn-group">

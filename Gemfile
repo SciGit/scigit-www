@@ -61,7 +61,12 @@ gem 'rails3-jquery-autocomplete', :git => 'https://github.com/DouglasSherk/rails
 # Diff/LCS algorithm
 gem 'diff-lcs'
 
+# Required for docx parsing
+gem 'nokogiri'
+gem 'rubyzip'
 gem 'htmlentities'
+gem 'roman-numerals'
+gem 'rmagick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
