@@ -193,8 +193,8 @@ module YDocx
       result[1] << tables[1]
     end
     def diff(doc1, doc2)
-      blocks1 = doc1.contents.blocks
-      blocks2 = doc2.contents.blocks
+      blocks1 = doc1.blocks
+      blocks2 = doc2.blocks
       result = {:inline => [[], []], :side => [[], []]}
 
       pg = [1, 1]
@@ -292,12 +292,6 @@ module YDocx
         end
       end
       
-      [doc1, doc2].each do |doc|
-        if !doc.images.empty?
-          doc.create_files
-        end
-      end
-    
       result 
     end
   end

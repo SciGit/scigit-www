@@ -1,8 +1,8 @@
 require 'diff-lcs'
 require 'htmlentities'
-require 'scigit/git'
-require 'tempfile'
-require_dependency 'ydocx/document'
+require_dependency 'scigit'
+require_dependency 'scigit/git'
+require_dependency 'scigit/docstore'
 require_dependency 'ydocx/differ'
 
 module SciGit
@@ -264,11 +264,9 @@ module SciGit
           end
 
           if file.binary && file.name.end_with?('docx')
-            tmp = Array.new(2) { Tempfile.new(file.name) }
-            Git.show(project_id, old_hash, file.name, tmp[0].path)
-            Git.show(project_id, new_hash, file.name, tmp[1].path)
-            doc = tmp.map { |t| YDocx::Document.open(t.path) }
-            file.blocks = YDocx::Differ.new.diff(*doc)
+            doc1 = DocStore.retrieve(project_id, old_hash, file.name)
+            doc2 = DocStore.retrieve(project_id, new_hash, file.name)
+            file.blocks = YDocx::Differ.new.diff(doc1, doc2)
             file.binary = false
           elsif !file.binary
             file.blocks[:side] = generate_side_blocks(file.blocks[:inline])

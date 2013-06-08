@@ -293,7 +293,7 @@ module YDocx
   
   class Parser
     attr_accessor :images, :result, :space
-    def initialize(doc, rel, rel_files, output_dir)
+    def initialize(doc, rel, rel_files)
       @doc = Nokogiri::XML.parse(doc)
       @rel = Nokogiri::XML.parse(rel)
       @rel_files = rel_files
@@ -308,7 +308,6 @@ module YDocx
       @endnote_fmt = 'lowerRoman'
       @coder = HTMLEntities.new
       @images = []
-      @output_dir = output_dir
       @result = ParsedDocument.new
       @image_path = 'images'
       @image_style = ''
@@ -581,7 +580,7 @@ module YDocx
                 :source => source,
                 :data => data,
               }
-              img.src = @output_dir.join(source)
+              img.src = source
               img.img_hash = data.hash
             end
           else

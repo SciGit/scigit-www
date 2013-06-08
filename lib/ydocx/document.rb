@@ -19,7 +19,7 @@ module YDocx
       @contents = nil
       @images = []
       @path = Pathname.new('.')
-      @files = nil
+      @files = Pathname.new(file).dirname
       @zip = nil
       init
       read(file)
@@ -27,7 +27,7 @@ module YDocx
     def init
     end
     def output_directory
-      @files ||= @path.dirname.join(@path.basename('.docx').to_s + '_files')
+      @files
     end
     def output_file(ext)
       @path.sub_ext(".#{ext.to_s}")
@@ -105,7 +105,7 @@ module YDocx
         end
       end
       rel = @zip.find_entry('word/_rels/document.xml.rels').get_input_stream
-      @parser = Parser.new(doc, rel, rel_files, output_directory) do |parser|
+      @parser = Parser.new(doc, rel, rel_files) do |parser|
         @contents = parser.parse
         @images = parser.images
       end

@@ -1,9 +1,16 @@
+require_dependency'scigit'
 require 'shellwords'
 
 module SciGit
   class Git
-    @@scigit_dir = '/var/scigit'
-    @@scigit_repo_dir = '/var/scigit/repos'
+    @@scigit_repo_dir = SCIGIT_DIR + '/repos'
+
+    def self.get_hash(project_id, commit_hash, path = '')
+      dir = File.join(@@scigit_repo_dir, "r#{project_id}")
+      commit_hash = Shellwords.escape(commit_hash)
+      path = Shellwords.escape(path)
+      `cd #{dir}; git rev-parse #{commit_hash}#{path ? ':'+path : ''}`.chomp
+    end
 
     def self.diff(project_id, old_hash, new_hash, path = '')
       dir = File.join(@@scigit_repo_dir, "r#{project_id}")
