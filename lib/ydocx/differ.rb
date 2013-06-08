@@ -139,7 +139,7 @@ module YDocx
         chunks[i].each_with_index do |chunk, j|
           if change_id[i][j]
             if change_id[i][j] >= 1
-              group.css_class = (sprintf 'modify modify%d', change_id[i][j])
+              group.css_class = (sprintf 'modify modify-%d', change_id[i][j])
             elsif i == 0
               group.css_class = 'delete'
             else
@@ -175,7 +175,7 @@ module YDocx
             rblock[i].first.cells.each_with_index do |cell, j|
               if change_id[i][j]
                 if change_id[i][j] >= 1
-                  cell.css_class = (sprintf 'modify modify%d', change_id[i][j])
+                  cell.css_class = (sprintf 'modify modify-%d', change_id[i][j])
                 elsif i == 0
                   cell.css_class = 'delete'
                 else

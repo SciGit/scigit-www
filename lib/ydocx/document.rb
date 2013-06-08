@@ -4,7 +4,7 @@
 require 'pathname'
 require 'zip/zip'
 require 'RMagick'
-require 'ydocx/parser'
+require_dependency 'ydocx/parser'
 require_dependency 'ydocx/builder'
 
 module YDocx

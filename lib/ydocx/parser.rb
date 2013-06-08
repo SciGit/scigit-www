@@ -237,10 +237,10 @@ module YDocx
       end
       css = ["vertical-align: #{@valign}"]
       if height
-        css << "height: #{@height}"
+        css << "height: #{@height}px"
       end
       if width
-        css << "width: #{@width}"
+        css << "width: #{@width}px"
       end
       markup :td, contents, {
         :class => @css_class,
@@ -270,7 +270,7 @@ module YDocx
       @rows = []
     end
     def to_markup
-      markup :table, @rows.map { |r| r.to_markup }
+      markup :p, (markup :table, @rows.map { |r| r.to_markup }, :class => 'docx')
     end
     def get_chunks
       @rows.map { |c| c.get_chunks }.reduce(:+)

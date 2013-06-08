@@ -899,6 +899,16 @@ body {
       }
     }
 
+    .docx {
+      table {
+        margin: 5px 0 5px 0;
+      }
+      td {
+        border: 1px solid #777;
+        padding: 5px 10px;
+      }
+    }
+
     td, tr td {
       padding: 0px 2px 0px 2px;
       margin: 0 !important;
@@ -946,13 +956,13 @@ body {
       &.inline {
         width: 100%;
       }
-      span.add {
+      .add {
         background: rgba(0, 255, 0, 0.5);
       }
-      span.delete {
+      .delete {
         background: rgba(255, 0, 0, 0.3);
       }
-      span.modify {
+      .modify {
         background: rgba(0, 0, 255, 0.2);
         &.hover {
           @include box-shadow(0px 0px 5px 2px, rgba(0, 0, 255, 0.5));
@@ -1014,6 +1024,9 @@ body {
       }
       &:hover {
         background-color: darken($diff-blue, 5%);
+        &.linenumber {
+          background-color: darken($diff-blue, 10%);
+        }
       }
     }
 
