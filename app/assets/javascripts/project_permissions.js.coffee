@@ -13,6 +13,10 @@ hookSubmitAddMember = ->
 
 hookTypeaheadForMemberAdd = ->
   addTypeaheadForMemberAdd = ->
+    checkIfQueryIsValidEmail = ->
+      regex = /\S+@\S+\.\S+/
+      return regex.test($('#project_permission_user_attributes_email').data('typeahead').query)
+
     # XXX: Hack. We should investigate why modals are being closed on any
     # button press. It seems that if they don't have an href element,
     # clicking on them closes any currently active modal.
@@ -45,11 +49,19 @@ hookTypeaheadForMemberAdd = ->
 
     styleButtonAsAddMember = ->
       closePopovers()
-      $('#addMemberModal .btnSubmit').removeClass('btn-success').addClass('btn-primary')
-                                     .html('Add Member')
+      $('#addMemberModal .btnSubmit').removeClass('btn-success disabled').addClass('btn-primary')
+                                     .html('Add Member').prop('disabled', false)
+                                     .data('invite', false)
     styleButtonAsInvite = ->
-      $('#addMemberModal .btnSubmit').removeClass('btn-primary').addClass('btn-success')
-                                     .html('Invite')
+      button = $('#addMemberModal .btnSubmit')
+      button.removeClass('btn-primary').data('invite', true)
+
+      if checkIfQueryIsValidEmail()
+        button.removeClass('disabled').addClass('btn-success')
+              .html('Invite').prop('disabled', false)
+      else
+        button.addClass('btn-danger disabled')
+              .html('<i class="icon-remove"></i> Invite').prop('disabled', 'disabled')
 
     previousResults = []
     findResultWithLabel = (label) ->
@@ -83,10 +95,6 @@ hookTypeaheadForMemberAdd = ->
       trigger: 'manual',
       placement: 'right',
       content: 'Please enter a valid email address (ex. john@gmail.com)'
-
-    checkIfQueryIsValidEmail = ->
-      regex = /\S+@\S+\.\S+/
-      return regex.test($('#project_permission_user_attributes_email').data('typeahead').query)
 
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
       $('#findMember').popover('hide')
@@ -142,9 +150,10 @@ hookTypeaheadForMemberAdd = ->
               when 1 then indicateFound()
               else indicateSearch()
 
-            if $('#addMemberModal .btnSubmit').hasClass('btn-success') && checkIfQueryIsValidEmail()
+            if $('#addMemberModal .btnSubmit').data('invite')? && checkIfQueryIsValidEmail()
               # We can't use indicateSuccess because it will hide the 'Invite' button popover.
               indicateButton('btn-success', 'icon-ok', true)
+              styleButtonAsInvite()
 
             # Hack. Focus on the input element after a set of elements is processed.
             setTimeout( ->
