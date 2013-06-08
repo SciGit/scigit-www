@@ -49,7 +49,7 @@ hookTypeaheadForMemberAdd = ->
 
     styleButtonAsAddMember = ->
       closePopovers()
-      $('#addMemberModal .btnSubmit').removeClass('btn-success disabled').addClass('btn-primary')
+      $('#addMemberModal .btnSubmit').removeClass('btn-success btn-danger disabled').addClass('btn-primary')
                                      .html('Add Member').prop('disabled', false)
                                      .data('invite', false)
     styleButtonAsInvite = ->
@@ -115,6 +115,8 @@ hookTypeaheadForMemberAdd = ->
     $('#addMemberModal').on('click', '#btnInviteMember', (e) ->
       $('#findMember').popover('hide')
       styleButtonAsInvite()
+
+      $('#project_permission_user_attributes_email').focus()
 
       return $('#invalidEmailPopover').popover('show') if !checkIfQueryIsValidEmail()
 
