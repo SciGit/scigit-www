@@ -899,10 +899,11 @@ body {
       }
     }
 
+    table.docx {
+      margin: 5px 5px 5px 0;
+    }
+
     .docx {
-      table {
-        margin: 5px 0 5px 0;
-      }
       td {
         border: 1px solid #777;
         padding: 5px 10px;
@@ -996,12 +997,24 @@ body {
       }
     }
 
+    tr:hover {
+      .change-addition {
+        background-color: darken($diff-green, 10%);
+      }
+      .change-deletion {
+        background-color: darken($diff-red, 30%);
+      }
+      .change-modify {
+        background-color: darken($diff-blue, 5%);
+        &.linenumber {
+          background-color: darken($diff-blue, 10%);
+        }
+      }
+    }
+
     .change-addition {
       background-color: $diff-green;
       &.linenumber {
-        background-color: darken($diff-green, 10%);
-      }
-      &:hover {
         background-color: darken($diff-green, 10%);
       }
     }
@@ -1011,9 +1024,6 @@ body {
       &.linenumber {
         background-color: darken($diff-red, 30%);
       }
-      &:hover {
-        background-color: darken($diff-red, 30%);
-      }
     }
 
     .change-modify {
@@ -1021,12 +1031,6 @@ body {
       &.linenumber {
         background-color: darken($diff-blue, 10%);
         color: white;
-      }
-      &:hover {
-        background-color: darken($diff-blue, 5%);
-        &.linenumber {
-          background-color: darken($diff-blue, 10%);
-        }
       }
     }
 
