@@ -9,6 +9,9 @@ module SciGit
     @@store_dir = SCIGIT_DIR + '/docstore'
     def self.retrieve(project_id, commit_hash, file)
       hash = Git.get_hash(project_id, commit_hash, file)
+      if hash == ''
+        return YDocx::ParsedDocument.new
+      end
       commit_hash = Git.get_hash(project_id, commit_hash)
       store_path = File.join(@@store_dir, "r#{project_id}", commit_hash, hash)
       parse_path = File.join(store_path, 'parse.yaml')

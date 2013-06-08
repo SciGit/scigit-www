@@ -889,6 +889,7 @@ body {
     .diff-type {
       margin-top: -7px;
       margin-right: 5px;
+      margin-bottom: -5px;
     }
 
     .btn-toolbar {
@@ -1427,9 +1428,11 @@ body {
     padding: 9px 25px;
   }
 
-  .btn-mini {
-    margin-top: -5px;
-    margin-bottom: -5px;
+  #members {
+    .btn-mini {
+      margin-top: -5px;
+      margin-bottom: -5px;
+    }
   }
 
   .dropdown-menu  {

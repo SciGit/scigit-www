@@ -8,8 +8,15 @@ module SciGit
     def self.get_hash(project_id, commit_hash, path = '')
       dir = File.join(@@scigit_repo_dir, "r#{project_id}")
       commit_hash = Shellwords.escape(commit_hash)
-      path = Shellwords.escape(path)
-      `cd #{dir}; git rev-parse #{commit_hash}#{path ? ':'+path : ''}`.chomp
+      unless path.empty?
+        path = ':' + Shellwords.escape(path)
+      end
+      out = `cd #{dir}; git rev-parse #{commit_hash}#{path}`.chomp
+      if $?.to_i == 0
+        return out
+      else
+        return ''
+      end
     end
 
     def self.diff(project_id, old_hash, new_hash, path = '')
