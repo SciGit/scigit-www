@@ -9,6 +9,14 @@ class ProjectChange < ActiveRecord::Base
     Time.at(self[:commit_timestamp])
   end
 
+  def diff
+    SciGit::Diff.new.diff(project_id, id, commit_hash + '^', commit_hash)
+  end
+  
+  def get_file(file)
+    SciGit::Git.show(project_id, commit_hash, file)
+  end
+
   def self.get_coauthor_updates(user, limit = nil)
     self.get_member_updates(user, [ProjectPermission::OWNER, ProjectPermission::COAUTHOR], limit)
   end
@@ -19,16 +27,6 @@ class ProjectChange < ActiveRecord::Base
 
   def self.all_project_updates(project, limit = nil)
     where{(project_id == project.id) & (user_id != 0)}.limit(limit).order{id.desc}
-  end
-
-  def self.diff(id)
-    change = find(id)
-    SciGit::Diff.new.diff(change.project_id, change.commit_hash + '^', change.commit_hash)
-  end
-  
-  def self.get_file(id, file)
-    change = find(id)
-    SciGit::Git.show(change.project_id, change.commit_hash, file)
   end
 
   private

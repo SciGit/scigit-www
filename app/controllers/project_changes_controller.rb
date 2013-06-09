@@ -38,7 +38,7 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes/project/1/changes/1/diff.json
   def diff
     @project_change = ProjectChange.find(params[:id])
-    @diff = ProjectChange.diff(params[:id])
+    @diff = @project_change.diff
     @fileTypes = {
       :createdFiles => {:name => 'Created', :label => 'success'},
       :deletedFiles => {:name => 'Deleted', :label => 'danger'},
@@ -56,11 +56,12 @@ class ProjectChangesController < ApplicationController
 
   # GET /project_changes/project/1/changes/1/file/:filename
   def file
+    @project_change = ProjectChange.find(params[:id])
     filename = params[:file]
     unless params[:format].nil?
       filename += '.' + params[:format]
     end
-    file = ProjectChange.get_file(params[:id], filename)
+    file = @project_change.get_file(filename)
     if file.nil?
       render :text => 'Not found', :status => :not_found
     else

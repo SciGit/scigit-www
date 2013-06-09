@@ -54,8 +54,8 @@ module YDocx
       attributes = {}
       style = ['display: ' + @wrap]
       if @height
-        style << "height: #{@height}"
-        style << "width: #{@width}"
+        style << "height: #{@height}px"
+        style << "width: #{@width}px"
       end
       attributes[:style] = style.join('; ')
       if @src
@@ -293,7 +293,7 @@ module YDocx
   
   class Parser
     attr_accessor :images, :result, :space
-    def initialize(doc, rel, rel_files)
+    def initialize(doc, rel, rel_files, image_url = '')
       @doc = Nokogiri::XML.parse(doc)
       @rel = Nokogiri::XML.parse(rel)
       @rel_files = rel_files
@@ -310,6 +310,7 @@ module YDocx
       @images = []
       @result = ParsedDocument.new
       @image_path = 'images'
+      @image_url = image_url
       @image_style = ''
       init
       if block_given?
@@ -580,7 +581,7 @@ module YDocx
                 :source => source,
                 :data => data,
               }
-              img.src = source
+              img.src = @image_url + source
               img.img_hash = data.hash
             end
           else

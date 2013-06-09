@@ -958,6 +958,9 @@ body {
       &.inline {
         width: 100%;
       }
+      p {
+        margin-bottom: 3px;
+      }
       span.add, span.delete, span.modify {
         display: inline-block;
       }

@@ -10,16 +10,17 @@ require_dependency 'ydocx/builder'
 module YDocx
   class Document
     attr_reader :builder, :contents, :images, :parser, :path
-    def self.open(file)
-      self.new(file)
+    def self.open(file, image_url = '')
+      self.new(file, image_url)
     end
-    def initialize(file)
+    def initialize(file, image_url = '')
       @parser = nil
       @builder = nil
       @contents = nil
       @images = []
       @path = Pathname.new('.')
       @files = Pathname.new(file).dirname
+      @image_url = image_url
       @zip = nil
       init
       read(file)
@@ -105,7 +106,7 @@ module YDocx
         end
       end
       rel = @zip.find_entry('word/_rels/document.xml.rels').get_input_stream
-      @parser = Parser.new(doc, rel, rel_files) do |parser|
+      @parser = Parser.new(doc, rel, rel_files, @image_url) do |parser|
         @contents = parser.parse
         @images = parser.images
       end

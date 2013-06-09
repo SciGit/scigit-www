@@ -46,6 +46,22 @@ class ProjectsController < ApplicationController
   def edit
   end
 
+  # GET /project_changes/project/1/doc/:doc_hash/path
+  # Gets a file contained inside a word document.
+  def doc
+    @project = Project.find(params[:id])
+    filename = params[:file]
+    unless params[:format].nil?
+      filename += '.' + params[:format]
+    end
+    file = @project.get_doc_file(params[:doc_hash], filename)
+    if file.nil?
+      render :text => 'Not found', :status => :not_found
+    else
+      send_data file, :type => Mime::Type.lookup_by_extension(params[:format]), :disposition => 'inline'
+    end
+  end
+
   # POST /projects
   # POST /projects.json
   def create

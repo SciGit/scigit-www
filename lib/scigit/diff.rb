@@ -188,7 +188,7 @@ module SciGit
       ret
     end
 
-    def diff(project_id, old_hash, new_hash, path = '')
+    def diff(project_id, change_id, old_hash, new_hash, path = '')
       result = {
         :createdFiles => [],
         :deletedFiles => [],

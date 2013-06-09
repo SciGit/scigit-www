@@ -1,3 +1,5 @@
+require_dependency 'scigit/docstore'
+
 class Project < ActiveRecord::Base
   has_many :user, :through => :project_permission
   has_many :user, :through => :project_change
@@ -5,6 +7,10 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true, :length => {:in => 4..64}
   validates :description, :length => {:maximum => 255}
   validates :public, :inclusion => {:in => [true, false]}, :allow_blank => true
+
+  def get_doc_file(doc_hash, file)
+    SciGit::DocStore.get_file(id, doc_hash, file)
+  end
 
   def self.all_public(limit = nil)
     self.all

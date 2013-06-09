@@ -32,7 +32,7 @@
                    </div>
                    <% if type != :deletedFiles %>
                      <div class="btn-group">
-                       <%= link_to 'Download',
+                       <%= link_to 'Download this version',
                              project_change_path(@project_change.project_id, @project_change) +
                                '/file/' + u(file.name),
                              :class => 'btn btn-mini btn-success' %>

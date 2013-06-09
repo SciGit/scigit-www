@@ -23,6 +23,7 @@ SciGit::Application.routes.draw do
 
     member do
       get 'subscribe'
+      get 'doc/:doc_hash/*file', :action => 'doc'
     end
 
     collection do
