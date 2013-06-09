@@ -51,6 +51,11 @@ class ProjectsController < ApplicationController
   def doc
     @project = Project.find(params[:id])
     filename = params[:file]
+    # Only allow access to images for now.
+    if !filename.starts_with?('images/')
+      render :text => 'Not found', :status => :not_found
+      return
+    end
     unless params[:format].nil?
       filename += '.' + params[:format]
     end
