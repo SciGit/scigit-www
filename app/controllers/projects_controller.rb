@@ -58,7 +58,11 @@ class ProjectsController < ApplicationController
     if file.nil?
       render :text => 'Not found', :status => :not_found
     else
-      send_data file, :type => Mime::Type.lookup_by_extension(params[:format]), :disposition => 'inline'
+      options = {:disposition => 'inline'}
+      if type = Mime::Type.lookup_by_extension(params[:format])
+        options[:type] = type
+      end
+      send_data file, options
     end
   end
 
