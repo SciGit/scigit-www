@@ -36,7 +36,6 @@ module SciGit
 
     def self.get_file(project_id, doc_hash, file)
       path = File.join(@@store_dir, "r#{project_id}", doc_hash, file)
-      p path
       if File.exists?(path)
         File.open(path, 'r').read
       else
