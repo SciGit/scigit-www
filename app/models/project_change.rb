@@ -1,5 +1,5 @@
-require_dependency 'scigit/diff'
-require_dependency 'scigit/git'
+require 'scigit/diff'
+require 'scigit/git'
 
 class ProjectChange < ActiveRecord::Base
   belongs_to :user

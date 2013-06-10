@@ -1,6 +1,6 @@
-require_dependency 'scigit'
-require_dependency 'scigit/git'
-require_dependency 'ydocx/document'
+require 'scigit'
+require 'scigit/git'
+require 'ydocx/document'
 require 'fileutils'
 require 'tempfile'
 

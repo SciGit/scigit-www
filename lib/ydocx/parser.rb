@@ -132,7 +132,10 @@ module YDocx
       @runs = []
     end
     def to_markup
-      markup :span, @runs.map { |r| r.to_markup }, {:class => @css_class }
+      classes = []
+      classes << @css_class if @css_class
+      classes << 'block' unless @runs.find_index{ |r| r.is_a?(Image) }.nil?
+      markup :span, @runs.map { |r| r.to_markup }, {:class => classes.join(' ') }
     end
   end
   

@@ -1,9 +1,9 @@
 require 'diff-lcs'
 require 'htmlentities'
-require_dependency 'scigit'
-require_dependency 'scigit/git'
-require_dependency 'scigit/docstore'
-require_dependency 'ydocx/differ'
+require 'scigit'
+require 'scigit/git'
+require 'scigit/docstore'
+require 'ydocx/differ'
 
 module SciGit
   class Diff

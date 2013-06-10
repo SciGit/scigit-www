@@ -4,8 +4,8 @@
 require 'pathname'
 require 'zip/zip'
 require 'RMagick'
-require_dependency 'ydocx/parser'
-require_dependency 'ydocx/builder'
+require 'ydocx/parser'
+require 'ydocx/builder'
 
 module YDocx
   class Document
@@ -35,8 +35,10 @@ module YDocx
     end
     def to_html(output=false)
       html = ''
+      @files = Pathname.new(@image_url.empty? ? '.' : @image_url)
+      @path = Pathname.new(@path.basename)
       files = output_directory
-      html = Builder.build_html(@contents)
+      html = Builder.build_page(@contents)
       if output
         create_files if has_image?
         html_file = output_file(:html)

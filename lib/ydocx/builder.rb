@@ -11,31 +11,28 @@ module YDocx
     def self.build_html(node)
       compile(node, :html)
     end
+    def self.build_page(contents)
+      body = ''
+      contents.to_markup.each do |element|
+        body << build_tag(element[:tag], element[:content], element[:attributes], :html)
+      end
+      builder = Nokogiri::HTML::Builder.new do |doc|
+        doc.html {
+          doc.head {
+            doc.meta :charset => 'utf-8'
+            doc.title @title
+            doc.link :rel => 'stylesheet', :type => 'text/css', :href => 'assets/style.css'
+            doc.script :src => 'assets/script.js'
+          }
+          doc.body { doc << body }
+        }
+      end
+      builder.to_html
+    end
    private
     def self.compile(node, mode)
       element = node.to_markup
       build_tag(element[:tag], element[:content], element[:attributes], mode)
-    end
-    def self.escape_whitespace(text)
-      prev_ws = false
-      new_text = ''
-      text.each_char do |c|
-        if c == "\n"
-          new_text += "<br />"
-          prev_ws = true
-        elsif c =~ /[[:space:]]/
-          if prev_ws
-            new_text += "&nbsp;"
-          else
-            new_text += c
-          end
-          prev_ws = true
-        else  
-          new_text += c
-          prev_ws = false
-        end
-      end
-      new_text
     end
     def self.build_tag(tag, content, attributes, mode=:html)
       if tag == :br and mode != :xml
@@ -50,13 +47,13 @@ module YDocx
           if c.is_a? Hash
             _content << build_tag(c[:tag], c[:content], c[:attributes], mode)
           elsif c.is_a? String
-            _content << (mode == :html ? escape_whitespace(c) : c.chomp.to_s)
+            _content << (mode == :html ? c : c.chomp.to_s)
           end
         end
       elsif content.is_a? Hash
         _content = build_tag(content[:tag], content[:content], content[:attributes], mode)
       elsif content.is_a? String        
-        _content = (mode == :html ? escape_whitespace(content) : content)
+        _content = content
       end
       _tag = tag.to_s
       _attributes = ''
