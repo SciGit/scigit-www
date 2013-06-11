@@ -1,10 +1,15 @@
 class @DiffViewer
-  constructor: (@change_id, @project_id, @commit_hash) ->
-    @files = $("#file-listing-#{@change_id}")
+  constructor: (change_id, project_id, commit_hash) ->
     @viewerPane = $('#diff-viewer')
+    @req = null
+    @load(change_id, project_id, commit_hash)
 
-    $.ajax {
-      url: "/projects/#{@project_id}/changes/#{@change_id}/diff.json",
+  load: (change_id, project_id, commit_hash) ->
+    @files = $("#file-listing-#{change_id}")
+    if @req != null
+      @req.abort()
+    @req = $.ajax {
+      url: "/projects/#{project_id}/changes/#{change_id}/diff.json",
       type: "GET",
       cache: false, # PLS DISABLE FOR PRODUCTION
       success: (json) => @displayDiff(json)

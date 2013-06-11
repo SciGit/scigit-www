@@ -5,6 +5,7 @@
 #= require diffviewer
 
 project_id = null
+diff_viewer = null
 
 toggleActive = (active) ->
   active.toggleClass 'active'
@@ -25,7 +26,10 @@ loadDiff = (selected) ->
   change_id = selected.data 'change-id'
   commit_hash = selected.data 'commit-hash'
   history.replaceState null, null, "/projects/#{project_id}/changes/#{change_id}"
-  new DiffViewer(change_id, project_id, commit_hash)
+  if diff_viewer == null
+    diff_viewer = new DiffViewer(change_id, project_id, commit_hash)
+  else
+    diff_viewer.load(change_id, project_id, commit_hash)
 
 $(document).on 'ready page:load', () ->
   change = $('#selected-change')
