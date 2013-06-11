@@ -45,6 +45,13 @@ task :uname do
   run "uname -a"
 end
 
+task :deploy_scripts do
+  run "sudo /etc/init.d/scigit stop &&
+       cd /var/scigit &&
+       git pull &&
+       sudo /etc/init.d/scigit start"
+end
+
 after "deploy", "deploy:migrate"
 
 # These must be at the end of the file.
