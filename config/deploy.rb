@@ -1,10 +1,13 @@
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 set :application, "scigit-www"
 set :repository,  "git@github.com:hansonw/scigit-www"
 set :user, "deploy"
 set :scm_passphrase, "RgnWvOwP2lP"
 set :branch, "rails"
 set :scm, :git
-set :rails_env, "production"
 
 set :ssh_options, { :forward_agent => true }
 set :deploy_to, "/var/www/#{application}"
@@ -14,14 +17,12 @@ set :use_sudo, false
 
 set :normalize_asset_timestamps, false
 
-set :production, "ec2-107-22-121-32.compute-1.amazonaws.com"
-
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, production # Your HTTP server, Apache/etc
-role :app, production # This may be the same as your `Web` server
-role :db,  production, :primary => true # This is where Rails migrations will run
+#role :web, production # Your HTTP server, Apache/etc
+#role :app, production # This may be the same as your `Web` server
+#role :db,  production, :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
@@ -39,6 +40,10 @@ role :db,  production, :primary => true # This is where Rails migrations will ru
 #   end
 # end
 #
+
+task :uname do
+  run "uname -a"
+end
 
 after "deploy", "deploy:migrate"
 
