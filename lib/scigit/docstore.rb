@@ -3,6 +3,7 @@ require 'scigit/git'
 require 'ydocx/document'
 require 'fileutils'
 require 'tempfile'
+require 'digest'
 
 module SciGit
   class DocStore
@@ -37,6 +38,29 @@ module SciGit
         Marshal.dump(doc.contents, parse)
       end
       doc.contents
+    end
+
+    def self.retrieve_diff(project_id, old_hash, new_hash, file)
+      hash1 = Git.get_hash(project_id, old_hash, file)
+      hash2 = Git.get_hash(project_id, new_hash, file)
+      store_path = File.join(@@store_dir, "r#{project_id}", hash1 || 'dev_null', 'diff')
+      diff_path = File.join(store_path, (hash2 || 'dev_null') + '.bin')
+      if File.exists?(diff_path)
+        begin
+          return Marshal.load(File.open(diff_path, 'r'))
+        rescue
+          # continue and re-diff
+        end
+      end
+
+      FileUtils.mkdir_p(store_path)
+      doc1 = DocStore.retrieve(project_id, old_hash, file)
+      doc2 = DocStore.retrieve(project_id, new_hash, file)
+      diff = YDocx::Differ.new.diff(doc1, doc2)
+      File.open(diff_path, 'w') do |diff_file|
+        Marshal.dump(diff, diff_file)
+      end
+      diff
     end
 
     def self.get_file(project_id, doc_hash, file)

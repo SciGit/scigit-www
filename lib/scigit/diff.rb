@@ -264,9 +264,7 @@ module SciGit
           end
 
           if file.binary && file.name.end_with?('docx')
-            doc1 = DocStore.retrieve(project_id, old_hash, file.name)
-            doc2 = DocStore.retrieve(project_id, new_hash, file.name)
-            file.blocks = YDocx::Differ.new.diff(doc1, doc2)
+            file.blocks = DocStore.retrieve_diff(project_id, old_hash, new_hash, file.name)
             file.binary = false
           elsif !file.binary
             file.blocks[:side] = generate_side_blocks(file.blocks[:inline])
