@@ -71,6 +71,7 @@ gem 'rmagick'
 
 # Use Capistrano for deployment
 gem 'capistrano', group: :development
+gem 'rvm-capistrano', group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
