@@ -28,6 +28,8 @@ module SciGit
       Git.show(project_id, commit_hash, file, docx.path)
       doc = YDocx::Document.open(docx.path,
         "/projects/#{project_id}/doc/#{hash}/")
+      # Pre-compute hashes for faster diffing
+      doc.contents.hash
       unless doc.images.empty?
         doc.create_files
       end

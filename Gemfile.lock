@@ -23,11 +23,12 @@ GIT
 
 GIT
   remote: https://github.com/hansonw/ydocx
-  revision: 21bfcd33383b056b4fa7cf87ac10d401df169986
+  revision: 12ca43de0fe06534f431ce296b26935b8a3d3aa5
   specs:
     ydocx (1.2.3)
       diff-lcs
       htmlentities
+      murmurhash3
       nokogiri
       rmagick
       roman-numerals
@@ -65,7 +66,7 @@ GEM
       activerecord-deprecated_finders (~> 1.0.2)
       activesupport (= 4.0.0.rc1)
       arel (~> 4.0.0)
-    activerecord-deprecated_finders (1.0.2)
+    activerecord-deprecated_finders (1.0.3)
     activesupport (4.0.0.rc1)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -117,6 +118,7 @@ GEM
     mini_portile (0.5.0)
     minitest (4.7.4)
     multi_json (1.7.6)
+    murmurhash3 (0.1.3)
     mysql (2.9.1)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
