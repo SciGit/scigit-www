@@ -1006,6 +1006,24 @@ body {
       }
     }
 
+    .change-omission {
+      td {
+        height: 25px;
+        vertical-align: middle;
+        @include linear-gradient(bottom, darken($sg-gray, 10%), $sg-gray 5%,
+            $sg-gray 50%, darken($sg-gray, 5%) 100%);
+      }
+      .linenumber {
+        border-left: 0px;
+        border-right: 0px;
+      }
+      .content {
+        border-left: 0px;
+        color: #777;
+        font-family: monospace;
+      }
+    }
+
     tr:hover {
       .change-addition {
         background-color: darken($diff-green, 10%);
@@ -1040,16 +1058,6 @@ body {
       &.linenumber {
         background-color: darken($diff-blue, 10%);
         color: white;
-      }
-    }
-
-    .change-omission {
-      background-color: $sg-gray;
-      border-top: 1px solid darken($sg-gray, 10%);
-      border-bottom: 1px solid darken($sg-gray, 10%);
-      .content {
-        color: #777;
-        font-family: monospace;
       }
     }
   }
