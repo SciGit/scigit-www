@@ -22,6 +22,19 @@ GIT
       polyamorous (~> 0.6.0)
 
 GIT
+  remote: https://github.com/hansonw/ydocx
+  revision: dca3b9bc38d45fe7876f277fbbe45b539e7d3601
+  specs:
+    ydocx (1.2.3)
+      diff-lcs
+      htmlentities
+      nokogiri
+      rmagick
+      roman-numerals
+      ruby-prof
+      rubyzip
+
+GIT
   remote: https://github.com/plataformatec/devise.git
   revision: 6b5988d756d780903bf8c9ccb3e2b3b724ccebe8
   branch: rails4
@@ -126,6 +139,7 @@ GEM
     ref (1.0.5)
     rmagick (2.13.2)
     roman-numerals (0.3.0)
+    ruby-prof (0.13.0)
     rubyzip (0.9.9)
     sass (3.2.9)
     sass-rails (4.0.0.rc1)
@@ -194,3 +208,4 @@ DEPENDENCIES
   thrift
   turbolinks
   uglifier (>= 1.3.0)
+  ydocx!

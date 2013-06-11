@@ -1,4 +1,4 @@
-require_dependency 'scigit/docstore'
+require 'scigit/docstore'
 
 class Project < ActiveRecord::Base
   has_many :user, :through => :project_permission

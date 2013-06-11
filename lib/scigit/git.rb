@@ -1,4 +1,4 @@
-require_dependency'scigit'
+require 'scigit'
 require 'shellwords'
 
 module SciGit
