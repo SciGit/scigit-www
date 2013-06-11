@@ -32,7 +32,7 @@ production:
   #timeout: 5000
   adapter: mysql
   encoding: utf8
-  database: rails
+  database: scigit
   username: root
   password: RgnWvOwP2lP
   host: 127.0.0.1
