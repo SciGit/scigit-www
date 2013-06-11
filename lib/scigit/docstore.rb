@@ -6,6 +6,17 @@ require 'tempfile'
 require 'digest'
 
 module SciGit
+  class StoredObject
+    attr_accessor :version, :object
+    def initialize(obj)
+      @version = YDocx::VERSION
+      @object = obj
+    end
+    def up_to_date?
+      @version == YDocx::VERSION
+    end
+  end
+
   class DocStore
     @@store_dir = SCIGIT_DIR + '/docstore'
     def self.retrieve(project_id, commit_hash, file)
@@ -17,7 +28,10 @@ module SciGit
       parse_path = File.join(store_path, 'parse.bin')
       if File.exists?(parse_path)
         begin
-          return Marshal.load(File.open(parse_path, 'r'))
+          store = Marshal.load(File.open(parse_path, 'r'))
+          if store.is_a?(StoredObject) && store.up_to_date?
+            return store.object
+          end
         rescue
           # continue to reparsing
         end
@@ -35,7 +49,7 @@ module SciGit
         doc.create_files
       end
       File.open(parse_path, 'w') do |parse|
-        Marshal.dump(doc.contents, parse)
+        Marshal.dump(StoredObject.new(doc.contents), parse)
       end
       doc.contents
     end
@@ -47,7 +61,10 @@ module SciGit
       diff_path = File.join(store_path, (hash2 || 'dev_null') + '.bin')
       if File.exists?(diff_path)
         begin
-          return Marshal.load(File.open(diff_path, 'r'))
+          store = Marshal.load(File.open(diff_path, 'r'))
+          if store.is_a?(StoredObject) && store.up_to_date?
+            return store.contents
+          end
         rescue
           # continue and re-diff
         end
@@ -58,7 +75,7 @@ module SciGit
       doc2 = DocStore.retrieve(project_id, new_hash, file)
       diff = YDocx::Differ.new.diff(doc1, doc2)
       File.open(diff_path, 'w') do |diff_file|
-        Marshal.dump(diff, diff_file)
+        Marshal.dump(StoredObject.new(diff), diff_file)
       end
       diff
     end
