@@ -13,25 +13,28 @@ module SciGit
         return YDocx::ParsedDocument.new
       end
       store_path = File.join(@@store_dir, "r#{project_id}", hash)
-      parse_path = File.join(store_path, 'parse.yaml')
+      parse_path = File.join(store_path, 'parse.bin')
       if File.exists?(parse_path)
-        YAML::load(File.open(parse_path, 'r'))
-      else
-        FileUtils.mkdir_p(store_path)
-        # Write out the docx file (so ydocx can open it)
-        docx = File.open(File.join(store_path, file), 'w')
-        docx.close
-        Git.show(project_id, commit_hash, file, docx.path)
-        doc = YDocx::Document.open(docx.path,
-          "/projects/#{project_id}/doc/#{hash}/")
-        unless doc.images.empty?
-          doc.create_files
+        begin
+          return Marshal.load(File.open(parse_path, 'r'))
+        rescue
+          # continue to reparsing
         end
-        File.open(parse_path, 'w') do |parse|
-          parse.write(doc.contents.to_yaml) 
-        end
-        doc.contents
       end
+      FileUtils.mkdir_p(store_path)
+      # Write out the docx file (so ydocx can open it)
+      docx = File.open(File.join(store_path, file), 'w')
+      docx.close
+      Git.show(project_id, commit_hash, file, docx.path)
+      doc = YDocx::Document.open(docx.path,
+        "/projects/#{project_id}/doc/#{hash}/")
+      unless doc.images.empty?
+        doc.create_files
+      end
+      File.open(parse_path, 'w') do |parse|
+        Marshal.dump(doc.contents, parse)
+      end
+      doc.contents
     end
 
     def self.get_file(project_id, doc_hash, file)
