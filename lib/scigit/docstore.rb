@@ -63,7 +63,7 @@ module SciGit
         begin
           store = Marshal.load(File.open(diff_path, 'r'))
           if store.is_a?(StoredObject) && store.up_to_date?
-            return store.contents
+            return store.object
           end
         rescue
           # continue and re-diff
