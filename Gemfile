@@ -53,7 +53,7 @@ gem 'squeel', :git => 'https://github.com/ernie/squeel'
 gem 'kaminari'
 
 # Communication with the SciGit daemon
-gem 'thrift'
+gem 'thrift', :git => 'https://github.com/hansonw/thrift-0.9.0'
 
 # jQuery autocomplete, with ActiveRecord support.
 gem 'rails3-jquery-autocomplete', :git => 'https://github.com/DouglasSherk/rails3-jquery-autocomplete.git'
