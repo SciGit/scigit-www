@@ -25,6 +25,14 @@ task :deploy_scripts do
        sudo /etc/init.d/scigit start"
 end
 
+task :nginx_logs do
+  run "tail -50 /etc/nginx/logs/error.log"
+end
+
+task :rails_logs do
+  run "tail -50 #{current_path}/log/#{rails_env}.log"
+end
+
 after "deploy", "deploy:migrate"
 
 # These must be at the end of the file.
