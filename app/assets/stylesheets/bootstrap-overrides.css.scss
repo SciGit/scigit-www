@@ -904,16 +904,16 @@ body {
       margin: 0px;
     }
 
-    table.docx {
+    &.docx {
       table {
         margin: 5px 5px 5px 0px;
+        td {
+          border: 1px solid #777;
+          padding: 5px 10px;
+        }
       }
       p {
         margin: 0px 3px 3px 0px;
-      }
-      td {
-        border: 1px solid #777;
-        padding: 5px 10px;
       }
     }
 
