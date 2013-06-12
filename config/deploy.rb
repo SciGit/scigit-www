@@ -20,6 +20,7 @@ set :normalize_asset_timestamps, false
 task :deploy_scripts do
   run "sudo /etc/init.d/scigit stop;
        cd /var/scigit &&
+       sudo chown -hR git:deploy /var/scigit &&
        git pull &&
        sudo chown -hR git:deploy /var/scigit &&
        sudo /etc/init.d/scigit start &&
