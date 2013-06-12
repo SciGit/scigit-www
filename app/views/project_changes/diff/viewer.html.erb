@@ -3,7 +3,7 @@
      @diff[type].each do |file|
        changes = file.lines_changed.reduce(:+) %>
        <div id="change-file-<%= fileNum += 1 %>" class="diff-file">
-         <table class="table diff-text">
+         <table class="table diff-text <%= file.name.ends_with?('.docx') && 'docx' %>">
            <thead>
              <tr>
                <th colspan="4">

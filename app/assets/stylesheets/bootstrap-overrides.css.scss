@@ -900,11 +900,17 @@ body {
       }
     }
 
-    table.docx {
-      margin: 5px 5px 5px 0px;
+    p {
+      margin: 0px;
     }
 
-    .docx {
+    table.docx {
+      table {
+        margin: 5px 5px 5px 0px;
+      }
+      p {
+        margin: 0px 3px 3px 0px;
+      }
       td {
         border: 1px solid #777;
         padding: 5px 10px;
@@ -958,9 +964,6 @@ body {
       width: 50%;
       &.inline {
         width: 100%;
-      }
-      p {
-        margin: 0px 3px 3px 0px;
       }
       span.block {
         display: inline-block;
