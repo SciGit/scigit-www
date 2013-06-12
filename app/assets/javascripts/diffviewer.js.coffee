@@ -1,10 +1,10 @@
 class @DiffViewer
   constructor: (change_id, project_id, commit_hash) ->
-    @viewerPane = $('#diff-viewer')
     @req = null
     @load(change_id, project_id, commit_hash)
 
   load: (change_id, project_id, commit_hash) ->
+    @viewerPane = $('#diff-viewer')
     @files = $("#file-listing-#{change_id}")
     if @req != null
       @req.abort()
