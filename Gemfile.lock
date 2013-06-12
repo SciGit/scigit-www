@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/hansonw/ydocx
-  revision: 24268c9bcf5315ae2b5b398e52ae6656dbe165f6
+  revision: 41ffc8b5d2c83bc126d7d98c3e1f49328693a3c7
   specs:
     ydocx (1.2.3)
       diff-lcs
