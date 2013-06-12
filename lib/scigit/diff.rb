@@ -11,7 +11,6 @@ module SciGit
     FileDiff = Struct.new(:name, :new_name, :lines_changed, :binary, :blocks)
 
     def initialize
-      @cur_change_id = 1
       @context = 3
     end
 
@@ -26,167 +25,6 @@ module SciGit
         blocks[1] << Block.new(start[1], type, lines)
         start[1] += lines.length
       end
-    end
-
-    def str_similarity(str1, str2)
-      if str1.length + str2.length == 0
-        return 1
-      end
-      l = ::Diff::LCS.lcs(str1, str2)
-      return 2.0 * l.length / (str1.length + str2.length)
-    end
-
-    def get_detail_blocks(blocks1, blocks2, text_similarity, text_fn = lambda { |x| x })
-      n = blocks1.length
-      m = blocks2.length
-      if n == 0 || m == 0
-        return [[blocks1, blocks2]]
-      end
-      if n*m > 10000
-        # assume it's all different QQ
-        return [[blocks1, []], [[], blocks2]]
-      end
-      lcs = Array.new(n+1) { Array.new(m+1, 0) }
-      action = Array.new(n+1) { Array.new(m+1, -1) }
-      text1 = blocks1.map { |b| text_fn.call(b) }
-      text2 = blocks2.map { |b| text_fn.call(b) }
-        
-      blocks1.reverse.each_with_index do |a, ii|
-        blocks2.reverse.each_with_index do |b, jj|
-          i = n-1-ii
-          j = m-1-jj
-          sim = (a.class == b.class ? text_similarity.call(text1[i], text2[j]) : 0)
-          # printf "%d %d = %d\n", i, j, sim
-          lcs[i][j] = lcs[i+1][j]
-          action[i][j] = 0
-          if lcs[i][j+1] > lcs[i][j]
-            lcs[i][j] = lcs[i][j+1]
-            action[i][j] = 1
-          end
-          if sim >= 0.5 && lcs[i+1][j+1] + sim > lcs[i][j]
-            lcs[i][j] = lcs[i+1][j+1] + sim
-            action[i][j] = 2
-          end
-        end
-      end
-      
-      i = 0
-      j = 0
-      lblocks = []
-      rblocks = []
-      diff_blocks = []
-      while i < n || j < m        
-        if j == m || action[i][j] == 0
-          lblocks << blocks1[i]
-          i += 1
-        elsif i == n || action[i][j] == 1
-          rblocks << blocks2[j]
-          j += 1
-        else
-          unless lblocks.empty? && rblocks.empty?
-            if lblocks.empty? || rblocks.empty?
-              diff_blocks << [lblocks.dup, rblocks.dup]
-            else
-              diff_blocks << [lblocks.dup, []]
-              diff_blocks << [[], rblocks.dup]
-            end
-            lblocks = []
-            rblocks = []
-          end
-          diff_blocks << [[blocks1[i]], [blocks2[j]]]
-          i += 1
-          j += 1
-        end
-      end
-      unless lblocks.empty? && rblocks.empty?
-        if lblocks.empty? || rblocks.empty?
-          diff_blocks << [lblocks.dup, rblocks.dup]
-        else
-          diff_blocks << [lblocks.dup, []]
-          diff_blocks << [[], rblocks.dup]
-        end
-      end
-      diff_blocks
-    end
-
-    def get_diff_change_array(list1, list2)
-      change_id = [Array.new(list1.length), Array.new(list2.length)]
-      ::Diff::LCS.diff(list1, list2).each do |diff|
-        count = diff.map { |c| c.action }.uniq.length
-        if count == 1
-          cid = -1
-        else
-          cid = @cur_change_id
-          @cur_change_id += 1
-        end
-        diff.each do |change|
-          change_id[change.action == '-' ? 0 : 1][change.position] = cid
-        end
-      end
-      change_id
-    end
-
-    def generate_side_blocks(blocks)
-      ret = [[], []]
-      # Try to split up remove/add blocks
-      i = 0
-      while i < blocks[0].length
-        ba = blocks[0][i]
-        bb = blocks[1][i+1]
-        if !ba.nil? && ba.type == '-' && !bb.nil? && bb.type == '+'
-          old_start = ba.start_line
-          new_start = bb.start_line
-          get_detail_blocks(ba.lines, bb.lines, method(:str_similarity)).each do |block|
-            if block[1].empty?
-              ret[0] << Block.new(old_start, '-', block[0])
-              ret[1] << nil
-            elsif block[0].empty?
-              ret[0] << nil
-              ret[1] << Block.new(new_start, '+', block[1])
-            else # both blocks will have one line each.
-              words = block.map { |b| b.first.scan(/\w+|[^\w+]/) }
-              change_id = get_diff_change_array(words[0], words[1])
-              lines = ['', '']
-              for side in 0..1
-                cur_text = ''
-                cur_class = ''
-                words[side].each_with_index do |word, j|
-                  if change_id[side][j]
-                    if change_id[side][j] >= 1
-                      cur_class = (sprintf 'modify modify-%d', change_id[side][j])
-                    elsif side == 0
-                      cur_class = 'delete'
-                    else
-                      cur_class = 'add'
-                    end
-                    cur_text += word
-                  else
-                    unless cur_text.empty?
-                      lines[side] += "<span class='#{cur_class}'>#{cur_text}</span>"
-                      cur_text = ''
-                    end
-                    lines[side] += word
-                  end
-                end
-                unless cur_text.empty?
-                  lines[side] += "<span class='#{cur_class}'>#{cur_text}</span>"
-                end
-              end
-
-              ret[0] << Block.new(old_start, '!', [lines[0]])
-              ret[1] << Block.new(new_start, '!', [lines[1]])
-            end
-            old_start += block[0].length
-            new_start += block[1].length
-          end
-          i += 1
-        else
-          ret[0] << blocks[0][i]
-          ret[1] << blocks[1][i]
-        end
-        i += 1
-      end
-      ret
     end
 
     def trim_context(blocks)
@@ -331,7 +169,7 @@ module SciGit
             end
             file.binary = false
           elsif !file.binary
-            file.blocks[:side] = generate_side_blocks(file.blocks[:inline])
+            file.blocks[:side] = YDocx::Differ.new.diff_text(file.blocks[:inline])
           end
 
           file.lines_changed = file.blocks[:inline].map do |blocks|
