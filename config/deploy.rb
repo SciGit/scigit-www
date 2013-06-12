@@ -23,6 +23,10 @@ task :deploy_scripts do
        git pull &&
        sudo chown -hR git:deploy /var/scigit &&
        sudo /etc/init.d/scigit start"
+  if !File.exists('/usr/lib/python2.7/scigitconfig.py')
+    run 'sudo ln -s /usr/lib/python2.7/scigitconfig.py
+                    /var/scigit/config/config.py'
+  end
 end
 
 task :nginx_logs do
