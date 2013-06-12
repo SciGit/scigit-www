@@ -18,15 +18,18 @@ set :use_sudo, false
 set :normalize_asset_timestamps, false
 
 task :deploy_scripts do
-  run "sudo /etc/init.d/scigit stop &&
+  run "sudo /etc/init.d/scigit stop;
        cd /var/scigit &&
        git pull &&
        sudo chown -hR git:deploy /var/scigit &&
-       sudo /etc/init.d/scigit start"
-  if !File.exists?('/usr/lib/python2.7/scigitconfig.py')
-    run 'sudo ln -s /usr/lib/python2.7/scigitconfig.py
-                    /var/scigit/config/config.py'
-  end
+       sudo /etc/init.d/scigit start &&
+       if [ ! -e /usr/lib/python2.7/scigitconfig.py ] ;
+       then
+         echo 'Creating symlink for scigitconfig.py...';
+         sudo ln -s /var/scigit/config/config.py /usr/lib/python2.7/scigitconfig.py;
+       else
+         echo 'scigitconfig.py already exists.';
+       fi"
 end
 
 task :nginx_logs do
