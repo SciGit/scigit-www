@@ -12,6 +12,8 @@
   * assets/javascripts/autocomplete-rails.js
   * I had to force this to support Rails 4. We should ideally go back to the
     original author's version eventually.
+* https://github.com/hansonw/thrift-0.9.0
+  * Fork of thrift gem to silence annoying warnings.
 
 == README
 
