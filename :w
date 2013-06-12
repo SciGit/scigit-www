@@ -128,26 +128,19 @@ hookTypeaheadForMemberAdd = ->
         hookPermissionButtonClick()
     )
 
-    # XXX: Temporarily fix radio buttons. When you click on the surrounding button,
-    # the radio works ok. But if you click on the radio itself, something in the
-    # prop('checked') code is fucking up and it's not getting set.
-    setPermissionButtonFading = (button) ->
-      $('.permission').addClass('faded')
-      $(button).parents('.permission').removeClass('faded')
-
-    $('.permission .btn input[type="radio"]').click (e) ->
-      e.stopPropagation()
-      return e.preventDefault() if $(@).parents('.btn').attr('disabled') == 'disabled'
-
-      setPermissionButtonFading(@)
-
-    $('.permission .btn').click (e) ->
+    setPermissionCheckbox = (e, elem) ->
       e.preventDefault()
-      return if $(@).attr('disabled') == 'disabled'
+      return if elem.attr('disabled') == 'disabled'
 
-      setPermissionButtonFading(@)
       $('.permission .btn input[type="radio"]').prop('checked', false)
-      $(@).find('input[type="radio"]').prop('checked', 'checked')
+      $('.permission').addClass('faded')
+      elem.parent('.permission').removeClass('faded')
+      elem.find('input[type="radio"]').prop('checked', 'checked')
+
+    $('.permission .btn').click (e) -> setPermissionCheckbox(e, @)
+    $('.permission .btn input').click (e) ->
+      e.stopPropogation()
+      setPermissionCheckbox(e, $(@).parent)
 
     $('#addMemberModal').on('keypress', '#project_permission_user_attributes_email', indicateLoading)
 
