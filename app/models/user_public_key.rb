@@ -43,8 +43,8 @@ class UserPublicKey < ActiveRecord::Base
   end
 
   def disable!
-    enabled = 0
-    if save!
+    self.enabled = 0
+    if save
       begin
         SciGit::ThriftClient.new.deletePublicKey(id, user.id, public_key)
       rescue
@@ -56,7 +56,7 @@ class UserPublicKey < ActiveRecord::Base
  private
   def notify_thrift_add
     begin
-      SciGit::ThriftClient.new.addPublicKey(id, user.id, public_key)
+      SciGit::ThriftClient.new.addPublicKey(id, user.id, key_type + ' ' + public_key)
     rescue
       return false
     end
