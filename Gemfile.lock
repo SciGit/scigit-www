@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/bokmann/font-awesome-rails.git
-  revision: b5532dc4eb9f2463cf1dfe989244b3295bcde0c4
+  revision: 80078b3d484d10eaab4905fe3f4a251b8eb8f2a5
   specs:
-    font-awesome-rails (3.1.1.3)
+    font-awesome-rails (3.2.0.0)
       railties (>= 3.2, < 5.0)
 
 GIT
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://github.com/hansonw/ydocx
-  revision: 41ffc8b5d2c83bc126d7d98c3e1f49328693a3c7
+  revision: 54de5a2efa4d832e0581af1f96a1ab8b8f99e14d
   specs:
     ydocx (1.2.3)
       diff-lcs

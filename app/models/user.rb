@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable
+         :lockable, :token_authenticatable
          #:confirmable,
 
   validates :fullname, :length => { :in => 6..20 }

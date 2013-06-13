@@ -31,6 +31,15 @@ SciGit::Application.routes.draw do
     end
   end
 
+  resources :api do
+    collection do
+      post 'auth/login', :action => 'login'
+      get 'projects'
+      get 'client_version'
+      put 'users/public_keys', :action => 'public_keys'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
