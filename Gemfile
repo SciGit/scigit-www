@@ -62,7 +62,7 @@ gem 'rails3-jquery-autocomplete', :git => 'https://github.com/DouglasSherk/rails
 gem 'diff-lcs'
 
 # Required for docx parsing
-gem 'ydocx', :git => 'https://github.com/hansonw/ydocx'
+gem 'ydocx', :git => 'https://github.com/DouglasSherk/ydocx'
 gem 'nokogiri'
 gem 'rubyzip'
 gem 'htmlentities'

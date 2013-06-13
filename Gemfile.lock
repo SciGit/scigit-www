@@ -6,6 +6,20 @@ GIT
       rails (= 4.0.0.rc1)
 
 GIT
+  remote: https://github.com/DouglasSherk/ydocx
+  revision: 54de5a2efa4d832e0581af1f96a1ab8b8f99e14d
+  specs:
+    ydocx (1.2.3)
+      diff-lcs
+      htmlentities
+      murmurhash3
+      nokogiri
+      rmagick
+      roman-numerals
+      ruby-prof
+      rubyzip
+
+GIT
   remote: https://github.com/bokmann/font-awesome-rails.git
   revision: 80078b3d484d10eaab4905fe3f4a251b8eb8f2a5
   specs:
@@ -26,20 +40,6 @@ GIT
   revision: c5ef0b899bbf0e92a9ec111e935a783712ac2508
   specs:
     thrift (0.9.0.1)
-
-GIT
-  remote: https://github.com/hansonw/ydocx
-  revision: 54de5a2efa4d832e0581af1f96a1ab8b8f99e14d
-  specs:
-    ydocx (1.2.3)
-      diff-lcs
-      htmlentities
-      murmurhash3
-      nokogiri
-      rmagick
-      roman-numerals
-      ruby-prof
-      rubyzip
 
 GIT
   remote: https://github.com/plataformatec/devise.git
