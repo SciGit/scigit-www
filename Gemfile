@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails'
 
 # MySQL wrapper.
 gem 'mysql'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -27,7 +27,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.1'
+gem 'jbuilder', '~> 1.2.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -38,16 +38,16 @@ end
 gem 'bootstrap-sass'
 
 # Need GitHub version for this to work. Likely an issue with Rails 4.0.
-gem 'font-awesome-rails', :git => 'https://github.com/bokmann/font-awesome-rails.git'
+gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 
 # User authentication and registration.
-gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'rails4'
+gem 'devise'
 
 # User permissions.
 gem 'cancan'
 
 # More powerful ActiveRecord querying.
-gem 'squeel', :git => 'https://github.com/ernie/squeel'
+gem 'squeel'
 
 # Pagination.
 gem 'kaminari'
@@ -69,9 +69,15 @@ gem 'htmlentities'
 gem 'roman-numerals'
 gem 'rmagick'
 
+gem 'hipchat', github: 'DouglasSherk/hipchat'
+
 # Use Capistrano for deployment
-gem 'capistrano', group: :development
-gem 'rvm-capistrano', group: :development
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,50 +1,51 @@
-set :stages, %w(production staging development)
-set :default_stage, "staging"
-require 'capistrano/ext/multistage'
+# Include HipChat notifications
+require 'hipchat/capistrano'
 
-set :application, "scigit-www"
-set :repository,  "git@github.com:hansonw/scigit-www"
-set :user, "deploy"
-set :scm_passphrase, "RgnWvOwP2lP"
-set :branch, "rails"
-set :scm, :git
-
+set :application, 'scigit-www'
+set :repo_url, 'git@github.com:SciGit/scigit-www.git'
+set :deploy_to, '/var/www/scigit-www'
 set :ssh_options, { :forward_agent => true }
-set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :remote_cache
 
-set :use_sudo, false
+set :hipchat_token, "bd9b46d4ed59c6589d40188658cdb6"
+set :hipchat_room_name, "SciGit"
+set :hipchat_announce, true
 
-set :normalize_asset_timestamps, false
+set :format, :pretty
+set :keep_releases, 5
 
-task :deploy_scripts do
-  run "sudo /etc/init.d/scigit stop;
-       cd /var/scigit &&
-       sudo chown -hR git:deploy /var/scigit &&
-       git pull &&
-       sudo chown -hR git:deploy /var/scigit &&
-       sudo /etc/init.d/scigit start &&
-       if [ ! -e /usr/lib/python2.7/scigitconfig.py ] ;
-       then
-         echo 'Creating symlink for scigitconfig.py...';
-         sudo ln -s /var/scigit/config/config.py /usr/lib/python2.7/scigitconfig.py;
-       else
-         echo 'scigitconfig.py already exists.';
-       fi"
-end
-
-task :nginx_logs do
-  run "tail -50 /etc/nginx/logs/error.log"
-end
-
-task :rails_logs do
-  run "tail -50 #{current_path}/log/#{rails_env}.log"
-end
-
-after "deploy", "deploy:migrate"
-
-# These must be at the end of the file.
-set :rvm_ruby_string, '2.0.0-p195'
 set :rvm_type, :system
-require "bundler/capistrano"
-require "rvm/capistrano"
+set :rvm_bin_path, "/usr/local/rvm/bin/rvm"
+
+# set :use_sudo, true
+
+# set :log_level, :debug
+# set :pty, true
+
+# set :linked_files, %w{config/database.yml}
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+  after :finishing, 'deploy:cleanup'
+  after :finishing, 'deploy:restart'
+
+end
