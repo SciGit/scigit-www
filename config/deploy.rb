@@ -15,7 +15,6 @@ set :format, :pretty
 set :keep_releases, 5
 
 set :rvm_type, :system
-set :rvm_bin_path, "/usr/local/rvm/bin/rvm"
 
 # set :use_sudo, true
 
