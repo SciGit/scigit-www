@@ -7,7 +7,7 @@ set :branch, 'rails'
 set :deploy_to, '/var/www/scigit-www'
 set :ssh_options, { :forward_agent => true }
 set :deploy_via, :remote_cache
-set :git_enable_submodules, 1
+set :scm, 'gitsubmodules'
 
 set :hipchat_token, "bd9b46d4ed59c6589d40188658cdb6"
 set :hipchat_room_name, "SciGit"
