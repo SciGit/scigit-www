@@ -8,6 +8,7 @@ set :deploy_to, '/var/www/scigit-www'
 set :ssh_options, { :forward_agent => true }
 set :deploy_via, :remote_cache
 set :scm, 'gitsubmodules'
+set :tmp_dir, '/tmp'
 
 set :hipchat_token, "bd9b46d4ed59c6589d40188658cdb6"
 set :hipchat_room_name, "SciGit"
