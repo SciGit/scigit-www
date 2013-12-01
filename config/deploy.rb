@@ -7,8 +7,6 @@ set :branch, 'rails'
 set :deploy_to, '/var/www/scigit-www'
 set :ssh_options, { :forward_agent => true }
 set :deploy_via, :remote_cache
-set :scm, 'gitsubmodules'
-set :tmp_dir, '/tmp'
 
 set :hipchat_token, "bd9b46d4ed59c6589d40188658cdb6"
 set :hipchat_room_name, "SciGit"
@@ -44,6 +42,16 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
+    end
+  end
+
+  before 'assets:precompile', :no do
+    on roles(:all) do
+      within repo_path do
+        execute :git, :clone, "-b #{fetch :branch}", '--single-branch', '--recursive', '.', "#{fetch :tmp_dir}/#{fetch :application}-clone"
+        execute :cp, '--recursive', '--update', "#{fetch :tmp_dir}/#{fetch :application}-clone/scripts/*", "#{release_path}/scripts/"
+        execute :rm, '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone"
+      end
     end
   end
 

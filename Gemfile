@@ -77,7 +77,6 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-rails'
-  gem 'capistrano-scm-gitsubmodules'
 end
 
 # Use ActiveModel has_secure_password
