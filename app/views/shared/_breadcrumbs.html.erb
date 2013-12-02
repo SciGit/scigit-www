@@ -1,0 +1,15 @@
+<p class="breadcrumbs">
+  <% paths.each_with_index do |path, index| %>
+    <% if index == paths.length - 1 %>
+      <span class="current">
+    <% end %>
+
+    <%= link_to path[0], path[1] %>
+
+    <% if index == paths.length - 1 %>
+      </span>
+    <% else %>
+      <span class="divider">&gt;</span>
+    <% end %>
+  <% end %>
+</p>

@@ -1,0 +1,60 @@
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      'Manage My Projects' => projects_path,
+    }}
+ %>
+
+<div class="separator-xsmall"></div>
+
+<div class="page-header">
+  <h1>Manage Projects</h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span6">
+    <% @my_projects_button = capture do %>
+      <%= link_to raw('<i class="icon-plus"></i> Create Project'), '',
+          :data => {:toggle => 'modal', :target => '#createNewProjectModal'},
+          :class => 'btn btn-primary btn-large btn-valign' %>
+    <% end %>
+
+    <% @my_projects_empty_msg = capture do %>
+      You are not a member of any projects. 
+      <%= link_to 'Create a Project', '',
+          :data => {:toggle => 'tooltip modal', :target => '#createNewProjectModal'},
+          :title => 'Create new project'
+       %> or have someone add you to one.
+    <% end %>
+
+    <%= render :partial => 'projects/table',
+               :locals => {
+          :project_type => 'My Projects',
+          :projects => @my_projects,
+          :button => @my_projects_button,
+          :empty_msg => @my_projects_empty_msg,
+        }
+     %>
+  </div>
+
+  <div class="span6">
+    <% @subscriptions_button = capture do %>
+      <%= link_to raw('<i class="icon-bookmark"></i> View Public'), public_projects_path, :class => 'btn btn-primary btn-large btn-valign' %>
+    <% end %>
+
+    <% @subscriptions_empty_msg = capture do %>
+      You have no subscriptions. Visit the <%= link_to 'Public Projects', public_projects_path %> section for some suggestions!
+    <% end %>
+
+    <%= render :partial => 'projects/table',
+               :locals => {
+          :project_type => 'Subscriptions',
+          :projects => @subscriptions,
+          :button => @subscriptions_button,
+          :empty_msg => @subscriptions_empty_msg,
+        }
+     %>
+  </div>
+</div>
+
+<div class="separator"></div>

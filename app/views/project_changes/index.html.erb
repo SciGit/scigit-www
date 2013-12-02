@@ -1,0 +1,70 @@
+<div id="selected-change"
+     data-project-id="<%= @project.id %>"
+     data-change-id="<%= @selected_change.id %>"
+     data-commit-hash="<%= @selected_change.commit_hash %>">
+</div>
+
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      ((can? :update, @project) ? 'Manage My Projects' : 'View Public Projects') =>  ((can? :update, @project) ? projects_path : public_projects_path),
+      @project.name => project_path(@project.id),
+      'View Changes' => project_change_path(@project.id, nil)
+    }}
+ %>
+
+<div class="separator-xsmall"></div>
+
+<div class="page-header">
+  <h1>Changes to <%= @project.name %></h1>
+</div>
+
+<div id="change-viewer" class="row-fluid">
+  <div class="span3">
+    <div id="change-listing" class="well-list">
+      <table class="table table-condensed">
+        <tr>
+          <th>Change History</th>
+        </tr>
+        <tr>
+          <td>
+            <ul class="changes">
+              <% @project_changes.each do |project_change|
+                   full_text = project_change.commit_msg
+                   visible_text = truncate(project_change.commit_msg)
+                   if project_change == @selected_change
+                     full_text, visible_text = visible_text, full_text
+                   end %>
+                <li class="change-list-item <%= project_change == @selected_change ? 'active' : '' %>"
+                    data-change-id="<%= project_change.id %>"
+                    data-commit-hash="<%= project_change.commit_hash %>">
+                  <div class="change-item">
+                    <div class="description">
+                      <div class="message" data-full-message="<%= full_text %>">
+                        <%= visible_text %>
+                      </div>
+                      <div class="info">
+                        by <%= link_to project_change.user.fullname, user_path(project_change.user) %>, 
+                        <%= time_ago_in_words(project_change.commit_timestamp) %> ago
+                      </div>
+                    </div>
+                    <div class="action">
+                      <button class="btn btn-mini" data-toggle="collapse"
+                              data-target="#file-listing-<%= project_change.id %>">
+                        <i class="icon-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <ul id="file-listing-<%= project_change.id %>" class="file-listing collapse">
+                  </ul>
+                </li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div id="diff-viewer" class="span9">
+  </div>
+</div>

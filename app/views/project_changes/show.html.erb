@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_change.user_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_change.project_id %>
+</p>
+
+<p>
+  <strong>Commit msg:</strong>
+  <%= @project_change.commit_msg %>
+</p>
+
+<p>
+  <strong>Commit hash:</strong>
+  <%= @project_change.commit_hash %>
+</p>
+
+<p>
+  <strong>Commit timestamp:</strong>
+  <%= @project_change.commit_timestamp %>
+</p>
+
+<%= link_to 'Edit', edit_project_change_path(@project_change) %> |
+<%= link_to 'Back', project_changes_path %>

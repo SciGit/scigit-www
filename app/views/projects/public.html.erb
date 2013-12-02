@@ -1,0 +1,42 @@
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      'View Public Projects' => public_projects_path,
+    }}
+ %>
+
+<div class="separator-xsmall"></div>
+
+<div class="page-header">
+  <h1>View Public Projects</h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span6">
+    <% @public_projects_empty_msg = capture do %>
+      There are currently no public projects for viewing.
+    <% end %>
+
+    <%= render :partial => 'projects/table',
+               :locals => {
+          :project_type => 'Public Projects',
+          :projects => @public_projects,
+          :empty_msg => @public_projects_empty_msg,
+        }
+     %>
+  </div>
+
+  <div class="span6">
+    <% @featured_projects_empty_msg = capture do %>
+      There are currently no featured projects for viewing.
+    <% end %>
+
+    <%= render :partial => 'projects/table',
+               :locals => {
+          :project_type => 'Featured Projects',
+          :projects => @featured_projects,
+          :empty_msg => @featured_projects_empty_msg,
+        }
+     %>
+  </div>
+</div>

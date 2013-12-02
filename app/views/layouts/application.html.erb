@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SciGit</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= render :partial => 'projects/new_modal' %>
+
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+    <div class="navbar navbar-fixed-top nav-main">
+      <div class="custom-color navbar-inner">
+        <div class="container">
+          <div class="row-fluid navigation">
+            <div class="span2">
+              <a class="scigit-brand brand" href="/"></a>
+            </div>
+            <div class="span10">
+              <% if user_signed_in? %>
+                <div class="dropdown">
+                  <a id="label-username" class="dropdown-toggle username" data-toggle="dropdown" href="#">
+                    <%= @user.fullname %><b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="label-username">
+                    <li><a tabindex="-1" href="/users/profile">Settings</a></li>
+                    <li><a tabindex="-1" href="/users/profile/<%= @user.id %>">My Profile View</a></li>
+                    <li class="divider"></li>
+                    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+                  </ul>
+                </div>
+              <% end %>
+              <% if user_signed_in? %>
+                <ul class="navitems fake">
+                  <li class="divider"><div class="inner"></div></li>
+                </ul>
+                <div class="dropdown">
+                  <a id="label-projects" class="dropdown-toggle username" data-toggle="dropdown" href="<%= projects_path %>">
+                    Projects<b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
+                    <li><%= link_to 'Create New Project', '', :tabindex => -1, :data => {:toggle => 'modal', :target => '#createNewProjectModal'} %></li>
+                    <li class="divider"></li>
+                    <li><%= link_to 'Manage My Projects', projects_path, :tabindex => -1 %></li>
+                    <li><%= link_to 'View Public Projects', public_projects_path, :tabindex => -1 %></li>
+                  </ul>
+                </div>
+              <% end %>
+              <% if !user_signed_in? %>
+                <ul class="navitems">
+                  <li class="divider"><div class="inner"></div></li>
+                  <li><%= link_to 'Login', new_user_session_path %></li>
+                </ul>
+              <% end %>
+              <div class='input-append'>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<div class="container">
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <hr class="soften" />
+        <div class="pull-left">
+          Copyright © 2013, SciGit Inc.
+        </div>
+        <div class="company pull-right row-fluid">
+          <div class="span4">
+            <h5>SciGit</h5>
+            <ul>
+              <li>
+                <%= link_to 'Home', root_path %>
+              </li>
+              <li>
+                <% if user_signed_in? %>
+                  <%= link_to 'Logout', destroy_user_session_path %>
+                <% else %>
+                  <%= link_to 'Login', new_user_session_path %>
+                <% end %>
+              </li>
+              <% if !user_signed_in? %>
+                <li>
+                  <%= link_to 'Sign Up', new_user_registration_path %>
+                </li>
+              <% end %>
+              <li>
+                <a href="#disabled" class="disabled" rel="tooltip"
+                   title="{{ get_os() }} is not supported, we'll email you when it is! Thanks for your patience.">Download Desktop Client</a>
+              </li>
+            </ul>
+          </div>
+          <div class="span4">
+            <h5>Help and Support</h5>
+            <ul>
+              <li>
+                <a href="#newUserModal" data-toggle="modal"
+                 rel="tooltip" title="Click here at any time to see a tutorial on how to use SciGit.">
+                  Guide
+                </a>
+              </li>
+              <li>
+                <a href="#">Contact Us</a>
+              </li>
+              <% if user_signed_in? %>
+                <li><a href="#feedbackModal" rel="tooltip" title="We love to hear your feedback! Tell us what you're thinking."
+                       data-toggle="modal">Feedback</a></li>
+              <% else %>
+                <li><a href="#disabled" class="disabled" rel="tooltip"
+                       title="Please login before submitting feedback.">Feedback</a></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="span4">
+            <h5>Legal</h5>
+            <ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

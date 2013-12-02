@@ -1,0 +1,16 @@
+<h2><%= @topic %></h2>
+<hr class="soften" />
+
+<div class="alert alert-error">
+  <% if @errors.kind_of?(Array) %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= @errors %>
+  <% end %>
+</div>
+
+<form><input class="btn btn-primary" type="button" value="Go Back" onClick="history.go(-1);return true;"></form>

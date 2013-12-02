@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  project_id: 1
+  commit_msg: MyString
+  commit_hash: MyString
+  commit_timestamp: 1
+
+two:
+  user_id: 1
+  project_id: 1
+  commit_msg: MyString
+  commit_hash: MyString
+  commit_timestamp: 1

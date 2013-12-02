@@ -1,0 +1,45 @@
+== Stuff that needs updating periodically
+
+* Everything in the Gemfile
+
+* https://github.com/expandtheroom/jquery-infinite-scroll-helper
+  * assets/javascripts/jquery.infinite-scroll-helper.js
+* https://github.com/jschr/bootstrap-modal ~> 2.1
+  * assets/stylesheets/bootstrap-modal.css
+  * assets/javascripts/bootstrap-modal.js
+  * assets/javascripts/bootstrap-modalmanager.js
+* https://github.com/DouglasSherk/rails3-jquery-autocomplete
+  * assets/javascripts/autocomplete-rails.js
+  * I had to force this to support Rails 4. We should ideally go back to the
+    original author's version eventually.
+* https://github.com/hansonw/thrift-0.9.0
+  * Fork of thrift gem to silence annoying warnings.
+
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

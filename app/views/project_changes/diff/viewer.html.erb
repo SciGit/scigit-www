@@ -1,0 +1,75 @@
+<% fileNum = 0
+   @fileTypes.each do |type, type_data|
+     @diff[type].each do |file|
+       changes = file.lines_changed.reduce(:+) %>
+       <div id="change-file-<%= fileNum += 1 %>" class="diff-file">
+         <table class="table diff-text <%= file.name.ends_with?('.docx') && 'docx' %>">
+           <thead>
+             <tr>
+               <th colspan="4">
+                 <div class="diff-type btn btn-mini btn-<%= type_data[:label] %> disabled">
+                   <%= type_data[:name] %>
+                 </div>
+                 <%= file.name %>
+                 <div class="btn-toolbar">
+                   <% if !file.binary && changes > 0 %>
+                     <div class="btn-group">
+                       <div class="btn btn-mini disabled">
+                         <%= file.lines_changed[0] %> deletions,
+                         <%= file.lines_changed[1] %> additions
+                       </div>
+                     </div>
+                     <div class="btn-group" data-toggle="buttons-radio">
+                       <div class="btn btn-mini inline active">Inline</div>
+                       <div class="btn btn-mini side">Side-by-side</div>
+                     </div>
+                   <% end %>
+                   <div class="btn-group">
+                     <%= link_to 'View in client',
+                           sprintf('scigit://view_change?project_id=%d&commit_hash=%s&filename=%s', @project_change.project_id, @project_change.commit_hash, u(file.name)), {
+                             :class => 'btn btn-mini btn-primary',
+                         } %>
+                   </div>
+                   <% if type != :deletedFiles %>
+                     <div class="btn-group">
+                       <%= link_to 'Download this version',
+                             project_change_path(@project_change.project_id, @project_change) +
+                               '/file/' + u(file.name),
+                             :class => 'btn btn-mini btn-success' %>
+                     </div>
+                   <% end %>
+                 </div>
+               </th>
+             </tr>
+           </thead>
+           <% if file.binary %>
+             <tr class="message">
+               <td class="content" colspan="4">
+                 This file cannot be viewed as plain-text.
+                 <%= link_to 'View changes to this file on the SciGit client.',
+                       "scigit://view_change?project_id=#{@project_change.project_id}" +
+                       "&commit_hash=#{@project_change.commit_hash}" +
+                       "&filename=#{u file.name}" %>
+               </td>
+             </tr>
+           <% elsif changes == 0 %>
+             <tr class="message">
+               <td class="content" colspan="4">
+                 This file is empty.
+               </td>
+             </tr>
+           <% else %>
+             <% [:inline, :side].each do |mode| %>
+               <tbody class="<%= mode %> <%= mode == :side ? 'hidden' : '' %>">
+                 <%= raw format_diff_blocks file.blocks[mode], mode %>
+               </tbody>
+             <% end %>
+           <% end %>
+         </table>
+       </div>
+  <% end %>
+<% end %>
+
+<% if fileNum == 0 %>
+  No files were modified in this change.
+<% end %>
