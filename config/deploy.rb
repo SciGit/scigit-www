@@ -3,7 +3,7 @@ require 'hipchat/capistrano'
 
 set :application, 'scigit-www'
 set :repo_url, 'git@github.com:SciGit/scigit-www.git'
-set :branch, 'rails'
+set :branch, 'master'
 set :deploy_to, '/var/www/scigit-www'
 set :ssh_options, { :forward_agent => true }
 set :deploy_via, :remote_cache
