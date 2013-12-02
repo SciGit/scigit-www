@@ -36,6 +36,24 @@ namespace :deploy do
     end
   end
 
+  task :cleanup_submodules do
+    on roles(:app) do
+      execute :rm, '--force', '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone"
+    end
+  end
+
+  task :update_submodules do
+    on roles(:app) do
+      within repo_path do
+        execute :git, :clone, "-b #{fetch :branch}", '--single-branch', '--recursive', '.', "#{fetch :tmp_dir}/#{fetch :application}-clone"
+      end
+      within "#{fetch :tmp_dir}/#{fetch :application}-clone" do
+        execute :git, :submodule, :foreach, 'git pull origin master'
+      end
+      execute :cp, '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone/scripts/*", "#{release_path}/scripts/"
+    end
+  end
+
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -45,17 +63,9 @@ namespace :deploy do
     end
   end
 
-  before 'assets:precompile', :no do
-    on roles(:all) do
-      within repo_path do
-        execute :git, :clone, "-b #{fetch :branch}", '--single-branch', '--recursive', '.', "#{fetch :tmp_dir}/#{fetch :application}-clone"
-        execute :git, :submodule, :foreach, 'git pull origin master'
-        execute :cp, '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone/scripts/*", "#{release_path}/scripts/"
-        execute :rm, '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone"
-      end
-    end
-  end
-
+  before :starting, 'deploy:cleanup_submodules'
+  before 'assets:precompile', 'deploy:update_submodules'
+  after :finishing, 'deploy:cleanup_submodules'
   after :finishing, 'deploy:cleanup'
   after :finishing, 'deploy:restart'
 
