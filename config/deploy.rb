@@ -49,6 +49,7 @@ namespace :deploy do
     on roles(:all) do
       within repo_path do
         execute :git, :clone, "-b #{fetch :branch}", '--single-branch', '--recursive', '.', "#{fetch :tmp_dir}/#{fetch :application}-clone"
+        execute :git, :submodule, :foreach, 'git pull origin master'
         execute :cp, '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone/scripts/*", "#{release_path}/scripts/"
         execute :rm, '--recursive', "#{fetch :tmp_dir}/#{fetch :application}-clone"
       end
