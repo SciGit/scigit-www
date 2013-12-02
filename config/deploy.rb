@@ -33,6 +33,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       execute :touch, release_path.join('tmp/restart.txt')
+      execute :touch, '/tmp/voror/scigit'
     end
   end
 
