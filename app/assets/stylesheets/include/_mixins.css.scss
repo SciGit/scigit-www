@@ -1,0 +1,52 @@
+$sg-blue: rgb(74, 91, 118);
+$sg-gray: #f5f5f5;
+
+$diff-green: rgba(124, 252, 0, 0.3);
+$diff-red: rgba(255, 0, 0, 0.1);
+$diff-blue: rgb(203, 194, 247);
+
+$file-changed: $sg-blue;
+$file-deleted: rgb(255, 0, 0);
+$file-created: rgb(0, 255, 0);
+
+@mixin box-sizing() {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin transition($time: .5s) {
+  -o-transition: $time;
+  -ms-transition: $time;
+  -moz-transition: $time;
+  -webkit-transition: $time;
+  transition: $time;
+}
+
+@mixin border-radius($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($style, $c) {
+  box-shadow:         $style $c;
+  -webkit-box-shadow: $style $c;
+  -moz-box-shadow:    $style $c;
+}
+
+@mixin linear-gradient($style...) {
+  background-image: -ms-linear-gradient($style);
+  background-image: -webkit-linear-gradient($style);
+  background-image: -o-linear-gradient($style);
+  background-image: linear-gradient($style);
+  background-image: -moz-linear-gradient($style);
+}
+
+@mixin opacity($alpha) {
+  opacity: $alpha;
+  /*filter: alpha(opacity=@alpha*100);
+  filter: "alpha(opacity=$alpha*100)";*/
+}

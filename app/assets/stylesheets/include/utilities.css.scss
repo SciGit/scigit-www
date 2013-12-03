@@ -1,0 +1,19 @@
+@import 'mixins';
+
+.transition-paused {
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  -moz-transition: none !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.faded {
+  @include opacity(0.6);
+  @include transition(1.0s);
+}
+
+.extra-faded {
+  @include opacity(0.15);
+  @include transition(1.0s);
+}
