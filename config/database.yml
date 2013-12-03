@@ -2,7 +2,7 @@ development:
   adapter: mysql
   encoding: utf8
   database: scigit
-  username: root
+  username: scigit
   password: RgnWvOwP2lP
   host: 127.0.0.1
   port: 3306
