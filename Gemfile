@@ -2,19 +2,19 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+gem 'rails', '~> 4.0.1'
 
 # MySQL wrapper.
 gem 'mysql'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'execjs'
@@ -35,7 +35,7 @@ group :doc do
 end
 
 # Twitter Bootstrap.
-gem 'bootstrap-sass'
+gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails'
 
 # Need GitHub version for this to work. Likely an issue with Rails 4.0.
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
@@ -53,16 +53,17 @@ gem 'squeel'
 gem 'kaminari'
 
 # Communication with the SciGit daemon
-gem 'thrift', :git => 'https://github.com/hansonw/thrift-0.9.0'
+gem 'thin'
+gem 'thrift'
 
 # jQuery autocomplete, with ActiveRecord support.
-gem 'rails3-jquery-autocomplete', :git => 'https://github.com/DouglasSherk/rails3-jquery-autocomplete.git'
+gem 'rails3-jquery-autocomplete'
 
 # Diff/LCS algorithm
 gem 'diff-lcs'
 
 # Required for docx parsing
-gem 'ydocx', :git => 'https://github.com/DouglasSherk/ydocx'
+gem 'ydocx', github:  'SciGit/scigit-ydocx'
 gem 'nokogiri'
 gem 'rubyzip'
 gem 'htmlentities'

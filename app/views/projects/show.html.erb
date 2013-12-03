@@ -31,7 +31,7 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span4">
+  <div class="col-md-4">
     <div class="blue-well-list">
       <table class="table table-condensed">
         <tr>
@@ -83,25 +83,25 @@
         <tr>
           <td class="stats">
             <div class="row-fluid">
-              <div class="span4">
+              <div class="col-md-4">
                 <h3><%= @numSubscribers %></h3>
                 <p>Subscribers</p>
               </div>
-              <div class="span4">
+              <div class="col-md-4">
               <h3><%= @members.count %></h3>
                 <p>Coauthors</p>
               </div>
-              <div class="span4">
+              <div class="col-md-4">
                 <h3><%= @numMembers %></h3>
                 <p>Total Members</p>
               </div>
             </div>
             <div class="row-fluid">
-              <div class="span4">
+              <div class="col-md-4">
                 <h3><%= @changes.count %></h3>
                 <p>Updates</p>
               </div>
-              <div class="span8">
+              <div class="col-md-4">
                 <h3><%= l @project.created_at, :format => :day %></h3>
                 <p>Created</p>
               </div>
@@ -111,7 +111,7 @@
       </table>
     </div>
   </div>
-  <div class="span8">
+  <div class="col-md-4">
     <%= render :partial => 'layouts/project_changes' %>
   </div>
 </div>

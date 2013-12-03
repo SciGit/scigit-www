@@ -14,9 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.infinite-scroll-helper
-//= require bootstrap
-//= require bootstrap-modal
-//= require bootstrap-modalmanager
+//= require twitter/bootstrap
 //= require autocomplete-rails
 //= require scigit
 //= require_tree .
