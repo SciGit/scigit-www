@@ -1,36 +1,34 @@
 <div class="col-md-6 well-list">
-  <table class="table table-hover">
-    <tr>
-      <th>
-        <h2><%= update_type %></h2>
-      </th>
-    </tr>
-    <% if !updates.empty? %>
-      <% updates.each do |update| %>
-        <tr>
-          <td class="project" valign="middle" data-proj_id="<%= update.project.id %>">
-            <div class="pull-left">
-              <div class="title pull-left">
-                <%= link_to update.project.name, project_path(update.project.id) %>
-              </div>
-              <div class="subtitle">
-                <%= link_to update.user.fullname, user_path(update.user_id) %> made change:
-              </div>
+  <div class="well-list-header">
+    <div class="well-list-header-inner">
+      <h3><%= update_type %></h3>
+    </div>
+  </div>
+  <% if !updates.empty? %>
+    <% updates.each do |update| %>
+      <div class="well-list-item">
+        <div class="well-list-item-inner">
+          <div class="pull-left">
+            <div class="title pull-left">
+              <%= link_to update.project.name, project_path(update.project.id) %>
             </div>
-            <div class="date pull-right"><%= distance_of_time_in_words(Time.now, Time.at(update.commit_timestamp)) %> ago</div>
-            <div class="clearfix"></div>
-            <div class="description">
-              <%= link_to update.commit_msg, project_change_path(update.project.id, update.id) %>
+            <div class="subtitle">
+              <%= link_to update.user.fullname, user_path(update.user_id) %> made change:
             </div>
-          </td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr class="nohover">
-        <td>
-          <p><%= empty_msg %></p>
-        </td>
-      </tr>
+          </div>
+          <div class="date pull-right"><%= distance_of_time_in_words(Time.now, Time.at(update.commit_timestamp)) %> ago</div>
+          <div class="clearfix"></div>
+          <div class="description">
+            <%= link_to update.commit_msg, project_change_path(update.project.id, update.id) %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </table>
+  <% else %>
+    <div class="well-list-item">
+      <div class="well-list-item-inner well-list-item-empty">
+        <p><%= empty_msg %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

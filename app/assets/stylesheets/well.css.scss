@@ -2,77 +2,53 @@
 
 body {
   .well-list, .blue-well-list {
-    //min-height: 20px;
-    //margin-bottom: 20px;
+    $well-list-border: 1px solid darken($sg-gray, 5%);
+    $well-list-padding: 15px 20px;
 
-    .table {
-      @include box-shadow(inset 0 1px 1px, rgba(0, 0, 0, 0.15));
+    display: table;
 
-      border: 1px solid #eee;
-      border: 1px solid rgba(0, 0, 0, 0.15);
+    .well-list-header {
+      display: table-row;
 
-      padding-bottom: 0px;
-      margin-bottom: 0px;
+      .well-list-header-inner {
+        background: $sg-gray;
 
-      .background {
-        background-color: $sg-gray;
+        border-top: $well-list-border;
+        border-left: $well-list-border;
+        border-right: $well-list-border;
+
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        display: table-cell;
+        padding: $well-list-padding;
       }
+    }
 
-      tr {
-        @extend .well-list.table;
+    .well-list-item {
+      display: table-row;
 
-        td {
-          padding: 19px;
+      .well-list-item-inner {
+        display: table-cell;
+
+        padding: $well-list-padding;
+
+        border-left: $well-list-border;
+        border-right: $well-list-border;
+
+        &:last-child {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          border-bottom: $well-list-border;
         }
-      }
 
-      th {
-        @extend .background;
-        padding: 19px;
-      }
-    }
-
-    .blue-well-list {
-      .table, .table-condensed {
-        th, tr th:hover {
-          background-color: rgba(0, 0, 255, 0.035);
+        &:hover {
+          background: rgba(0, 0, 255, 0.035);
         }
-      }
-    }
 
-    .table-condensed {
-      tr {
-        td {
-          // Override .table's padding.
-          padding: 10px;
+        &.well-list-item-empty:hover {
+          background: inherit;
         }
-      }
-
-      th {
-        @extend .table.background;
-        // Override .table's padding.
-        padding: 10px !important;
-      }
-    }
-
-    .table.table-white {
-      background-color: white;
-      th {
-        background-color: lighten($sg-gray, 2%);
-      }
-    }
-
-    tr.alwayshover td {
-      background-color: $sg-gray;
-
-      &:hover {
-        background-color: $sg-gray;
-      }
-    }
-
-    tr.nohover, tr.nohover:hover {
-      td, td:hover {
-        background-color: inherit;
       }
     }
   }
