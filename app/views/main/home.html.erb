@@ -21,10 +21,12 @@
   <div class="separator-small"></div>
 <% end %>
 
+<%= render :partial => 'shared/breadcrumbs', :locals => {:paths => {
+  'Home' => root_path,
+}} %>
+
 <div class="page-header">
-  <%= render :partial => 'shared/breadcrumbs', :locals => {:paths => {
-    'Home' => root_path,
-  }} %>
+  <h1>Home</h1>
 </div>
 
 <div class="row-fluid">
