@@ -1,12 +1,2 @@
-<div id="createNewProjectModal" class="modal modal-small fade hide" data-remote="<%= new_project_path %>">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h2>Create New Project</h2>
-  </div>
-  <div class="modal-body">
-  </div>
-  <div class="modal-footer">
-    <%= link_to 'Create', '', :class => 'btn btn-primary btnSubmit' %>
-    <%= link_to 'Cancel', '', :class => 'btn btnCancel', :data => {:dismiss => 'modal'} %>
-  </div>
+<div id="createNewProjectModal" role="dialog" class="modal fade" data-remote="<%= new_project_path %>" aria-labelledby="createNewProjectLabel" aria-hidden="true">
 </div>
