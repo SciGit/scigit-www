@@ -25,7 +25,6 @@
           <a class="navbar-brand" href="/">SciGit</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
@@ -56,62 +55,9 @@
               <li><%= link_to "Login", new_user_session_path %></li>
             <% end %>
           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div>
-    </nav>
-
-    <!--
-    <div class="navbar navbar-fixed-top nav-main">
-      <div class="custom-color navbar-inner">
-        <div class="container">
-          <div class="row-fluid navigation">
-            <div class="col-md-2">
-              <a class="scigit-brand brand" href="/"></a>
-            </div>
-            <div class="col-md-10">
-              <% if user_signed_in? %>
-                <div class="dropdown">
-                  <a id="label-username" class="dropdown-toggle username" data-toggle="dropdown" href="#">
-                    <%= @user.fullname %><b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="label-username">
-                    <li><a tabindex="-1" href="/users/profile">Settings</a></li>
-                    <li><a tabindex="-1" href="/users/profile/<%= @user.id %>">My Profile View</a></li>
-                    <li class="divider"></li>
-                    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-                  </ul>
-                </div>
-              <% end %>
-              <% if user_signed_in? %>
-                <ul class="navitems fake">
-                  <li class="divider"><div class="inner"></div></li>
-                </ul>
-                <div class="dropdown">
-                  <a id="label-projects" class="dropdown-toggle username" data-toggle="dropdown" href="<%= projects_path %>">
-                    Projects<b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="label-projects">
-                    <li><%= link_to 'Create New Project', '', :tabindex => -1, :data => {:toggle => 'modal', :target => '#createNewProjectModal'} %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to 'Manage My Projects', projects_path, :tabindex => -1 %></li>
-                    <li><%= link_to 'View Public Projects', public_projects_path, :tabindex => -1 %></li>
-                  </ul>
-                </div>
-              <% end %>
-              <% if !user_signed_in? %>
-                <ul class="navitems">
-                  <li class="divider"><div class="inner"></div></li>
-                  <li><%= link_to 'Login', new_user_session_path %></li>
-                </ul>
-              <% end %>
-              <div class='input-append'>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-    -->
+    </nav>
 
 		<div class="container">
       <% if notice %>
@@ -129,11 +75,11 @@
     <footer>
       <div class="container">
         <hr class="soften" />
-        <div class="pull-left">
-          Copyright © 2013, SciGit Inc.
-        </div>
-        <div class="company pull-right row-fluid">
-          <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-3">
+            Copyright © 2013, SciGit Inc.
+          </div>
+          <div class="col-md-3">
             <h5>SciGit</h5>
             <ul>
               <li>
@@ -157,7 +103,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <h5>Help and Support</h5>
             <ul>
               <li>
@@ -178,7 +124,7 @@
               <% end %>
             </ul>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <h5>Legal</h5>
             <ul>
             </ul>

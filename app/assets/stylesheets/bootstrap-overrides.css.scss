@@ -1,12 +1,19 @@
+@import 'include/mixins';
+
 body {
   .row, .row-fluid {
-    div[class*="col-"] {
-      &:first-child {
-        padding-left: 0;
-      }
+    margin-left: 0;
+    margin-right: 0;
 
-      &:last-child {
-        padding-right: 0;
+    @include respond-to(desktops, widescreens) {
+      div[class*="col-"] {
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
       }
     }
   }
