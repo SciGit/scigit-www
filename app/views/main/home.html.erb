@@ -28,34 +28,38 @@
 </div>
 
 <div class="row-fluid">
-  <% @coauthor_updates_empty_msg = capture do %>
-    You have no recent activity in your social circle. Visit the <%= link_to 'Public Projects', public_projects_path %> section.
-  <% end %>
-
-  <%= render :partial => 'project_changes/table',
-             :locals => {
-        :update_type => 'Coauthor Updates',
-        :updates => @coauthor_updates,
-        :empty_msg => @coauthor_updates_empty_msg,
-      }
-   %>
-
-  <% @subscription_updates_empty_msg = capture do %>
-    <% if defined?(@first_time) %>
-      You have made no changes to any projects recently. Consider <%= link_to 'finding a project', public_projects_path %> to contribute to.
-    <% else %>
-      You have no projects.
-      <%= link_to 'Create a project', '',
-          :data => {:toggle => 'modal', :target => '#createNewProjectModal'} %> to get started!
-      You can also join someone else's project.
+  <div class="col-md-6">
+    <% @coauthor_updates_empty_msg = capture do %>
+      You have no recent activity in your social circle. Visit the <%= link_to 'Public Projects', public_projects_path %> section.
     <% end %>
-  <% end %>
 
-  <%= render :partial => 'project_changes/table',
-             :locals => {
-        :update_type => 'Subscription Updates',
-        :updates => @subscription_updates,
-        :empty_msg => @subscription_updates_empty_msg,
-      }
-   %>
+    <%= render :partial => 'project_changes/table',
+               :locals => {
+          :update_type => 'Coauthor Updates',
+          :updates => @coauthor_updates,
+          :empty_msg => @coauthor_updates_empty_msg,
+        }
+     %>
+  </div>
+
+  <div class="col-md-6">
+    <% @subscription_updates_empty_msg = capture do %>
+      <% if defined?(@first_time) %>
+        You have made no changes to any projects recently. Consider <%= link_to 'finding a project', public_projects_path %> to contribute to.
+      <% else %>
+        You have no projects.
+        <%= link_to 'Create a project', '',
+            :data => {:toggle => 'modal', :target => '#createNewProjectModal'} %> to get started!
+        You can also join someone else's project.
+      <% end %>
+    <% end %>
+
+    <%= render :partial => 'project_changes/table',
+               :locals => {
+          :update_type => 'Subscription Updates',
+          :updates => @subscription_updates,
+          :empty_msg => @subscription_updates_empty_msg,
+        }
+     %>
+  </div>
 </div>
