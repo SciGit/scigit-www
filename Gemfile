@@ -5,7 +5,7 @@ ruby '2.0.0'
 gem 'rails', '~> 4.0.1'
 
 # MySQL wrapper.
-gem 'mysql'
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
@@ -64,11 +64,6 @@ gem 'diff-lcs'
 
 # Required for docx parsing
 gem 'ydocx', github:  'SciGit/scigit-ydocx'
-gem 'nokogiri'
-gem 'rubyzip'
-gem 'htmlentities'
-gem 'roman-numerals'
-gem 'rmagick'
 
 gem 'hipchat', github: 'DouglasSherk/hipchat'
 
