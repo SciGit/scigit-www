@@ -9,10 +9,34 @@ $file-changed: $sg-blue;
 $file-deleted: rgb(255, 0, 0);
 $file-created: rgb(0, 255, 0);
 
+$break-small: 768px;
+$break-large: 992px;
+$break-xlarge: 1200px;
+
+@mixin respond-to($media...) {
+  @if index($media, handhelds) {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @if index($media, tablets) {
+    @media only screen and (min-width: $break-small+1) and (max-width: $break-large) { @content; }
+  }
+  @if index($media, desktops) {
+    @media only screen and (min-width: $break-large+1) and (max-width: $break-xlarge) { @content; }
+  }
+  @if index($media, widescreens) {
+    @media only screen and (min-width: $break-xlarge+1) { @content; }
+  }
+}
+
 @mixin box-sizing() {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+@mixin transform($x, $y) {
+  -webkit-transform: translate3d($x, $y, 0);
+  transform: translate3d($x, $y, 0);
 }
 
 @mixin transition($time: .5s) {
@@ -45,8 +69,28 @@ $file-created: rgb(0, 255, 0);
   background-image: -moz-linear-gradient($style);
 }
 
+@mixin gradient($rgb-start, $rgb-finish, $occupancy, $location-start, $location-finish) {
+  $hex-start: rgb($rgb-start, $rgb-start, $rgb-start);
+  $hex-finish: rgb($rgb-finish, $rgb-finish, $rgb-finish);
+  background: rgb($rgb-start,$rgb-start,$rgb-start); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba($rgb-start,$rgb-start,$rgb-start,$occupancy) $location-start, rgba($rgb-finish,$rgb-finish,$rgb-finish,$occupancy) $location-finish); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop($location-start,rgba($rgb-start,$rgb-start,$rgb-start,$occupancy)), color-stop($location-finish,rgba($rgb-finish,$rgb-finish,$rgb-finish,$occupancy))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba($rgb-start,$rgb-start,$rgb-start,$occupancy) $location-start,rgba($rgb-finish,$rgb-finish,$rgb-finish,$occupancy) $location-finish); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba($rgb-start,$rgb-start,$rgb-start,$occupancy) $location-start,rgba($rgb-finish,$rgb-finish,$rgb-finish,$occupancy) $location-finish); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba($rgb-start,$rgb-start,$rgb-start,$occupancy) $location-start,rgba($rgb-finish,$rgb-finish,$rgb-finish,$occupancy) $location-finish); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba($rgb-start,$rgb-start,$rgb-start,$occupancy) $location-start,rgba($rgb-finish,$rgb-finish,$rgb-finish,$occupancy) $location-finish); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$hex-start', endColorstr='$hex-finish',GradientType=0 ); /* IE6-9 */
+}
+
 @mixin opacity($alpha) {
   opacity: $alpha;
   /*filter: alpha(opacity=@alpha*100);
   filter: "alpha(opacity=$alpha*100)";*/
+}
+
+@mixin background-cover() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
