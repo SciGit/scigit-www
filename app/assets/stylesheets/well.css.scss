@@ -1,0 +1,80 @@
+@import 'include/mixins';
+
+body {
+  .well-list, .blue-well-list {
+    //min-height: 20px;
+    //margin-bottom: 20px;
+
+    .table {
+      @include table-border-radius(5px);
+      @include box-shadow(inset 0 1px 1px, rgba(0, 0, 0, 0.15));
+
+      border: 1px solid #eee;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+
+      .background {
+        background-color: $sg-gray;
+      }
+
+      tr {
+        @extend .well-list.table;
+
+        td {
+          padding: 19px;
+        }
+      }
+
+      th {
+        @extend .background;
+        padding: 19px;
+      }
+    }
+
+    .blue-well-list {
+      .table, .table-condensed {
+        th, tr th:hover {
+          background-color: rgba(0, 0, 255, 0.035);
+        }
+      }
+    }
+
+    .table-condensed {
+      tr {
+        td {
+          // Override .table's padding.
+          padding: 10px;
+        }
+      }
+
+      th {
+        @extend .table.background;
+        // Override .table's padding.
+        padding: 10px !important;
+      }
+    }
+
+    .table.table-white {
+      background-color: white;
+      th {
+        background-color: lighten($sg-gray, 2%);
+      }
+    }
+
+    tr.alwayshover td {
+      background-color: $sg-gray;
+
+      &:hover {
+        background-color: $sg-gray;
+      }
+    }
+
+    tr.nohover, tr.nohover:hover {
+      td, td:hover {
+        background-color: inherit;
+      }
+    }
+  }
+}

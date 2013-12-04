@@ -58,12 +58,4 @@
         :empty_msg => @subscription_updates_empty_msg,
       }
    %>
-
-  <div class="hide">
-    <% if @first_time %>
-      <p>You have made no changes to any projects recently. Consider <%= link_to 'finding a project', public_projects_path %> to contribute to.</p>
-    <% else %>
-      <p>You have no projects. <a tabindex="-1" href="#createProject" data-toggle="modal" href="#">Create a Project</a> to get started! You can also join someone else's project.</p>
-    <% end %>
-  </div>
 </div>
