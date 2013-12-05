@@ -9,7 +9,7 @@
       'Home' => root_path,
       ((can? :update, @project) ? 'Manage My Projects' : 'View Public Projects') =>  ((can? :update, @project) ? projects_path : public_projects_path),
       @project.name => project_path(@project.id),
-      'View Changes' => project_change_path(@project.id, nil)
+      'View Changes' => project_changes_path(@project.id)
     }}
  %>
 

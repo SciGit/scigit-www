@@ -56,14 +56,12 @@ module SciGit
           from_end = lines_till_change[i] > @context ? 0 : @context - lines_till_change[i]
           if from_start + from_end >= m
             result[0] << block
-            result[1] << block
+            result[1] << blocks[1][i]
             last_nil = false
           else
             if from_start > 0
-              cut_block = Block.new(block.start_line, '=', block.lines[0, from_start])
-              p cut_block
-              result[0] << cut_block
-              result[1] << cut_block
+              result[0] << Block.new(block.start_line, '=', block.lines[0, from_start])
+              result[1] << Block.new(blocks[1][i].start_line, '=', block.lines[0, from_start])
               last_nil = false
             end
             if !last_nil
@@ -72,12 +70,8 @@ module SciGit
               last_nil = true
             end
             if from_end > 0
-              cut_block = Block.new(block.start_line+m-from_end, '=', block.lines[m-from_end..m-1])
-              p block.lines
-              p m-from_end
-              p m-1
-              result[0] << cut_block
-              result[1] << cut_block
+              result[0] << Block.new(block.start_line+m-from_end, '=', block.lines[m-from_end..m-1])
+              result[1] << Block.new(blocks[1][i].start_line+m-from_end, '=', block.lines[m-from_end..m-1])
               last_nil = false
             end
           end
