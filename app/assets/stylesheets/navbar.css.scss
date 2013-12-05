@@ -1,2 +1,18 @@
+@import 'include/mixins';
+
 body {
+  .navbar.navbar-default {
+    background: $sg-blue;
+    border: none;
+    border-radius: 0;
+
+    a.dropdown-toggle {
+      color: #eee;
+
+      &:active, &:hover, &:focus, &:visited {
+        color: white;
+        background: darken($sg-blue, 5%);
+      }
+    }
+  }
 }
