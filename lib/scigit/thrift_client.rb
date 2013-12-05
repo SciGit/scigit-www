@@ -4,7 +4,7 @@ require 'scigit/repository_manager'
 module SciGit
 	class ThriftClient
 		def initialize
-			transport = Thrift::BufferedTransport.new(Thrift::Socket.new('localhost', 9090))
+			transport = Thrift::BufferedTransport.new(Thrift::Socket.new('', 9090))
 			protocol = Thrift::BinaryProtocol.new(transport)
 			@client = RepositoryManager::Client.new(protocol)
 			transport.open()

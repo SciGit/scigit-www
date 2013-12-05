@@ -13,7 +13,7 @@ hookSubmitCreateNewProject = ->
     return false
 
   $('#createNewProjectModal').on('submit', '#createNewProjectForm', submitCreateNewProject)
-  $('#createNewProjectModal .btnSubmit').click submitCreateNewProject
+  $('#createNewProjectModal').on('click', '.btnSubmit', submitCreateNewProject)
 
 hookCreateNewProjectPublicAndPrivateButtons = ->
   $('#createNewProjectModal').on('click', '#btnPrivate, #btnPublic', (e) ->
