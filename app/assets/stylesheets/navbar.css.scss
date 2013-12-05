@@ -2,9 +2,21 @@
 
 body {
   .navbar.navbar-default {
+    font-size: 18px;
     background: $sg-blue;
     border: none;
     border-radius: 0;
+
+    .navbar-toggle {
+      margin-top: 13px;
+      margin-bottom: 13px;
+    }
+
+    .navbar-nav > li > a {
+      display: table-cell;
+      height: 60px;
+      vertical-align: middle;
+    }
 
     a.dropdown-toggle {
       color: #eee;
