@@ -7,27 +7,31 @@
            <thead>
              <tr>
                <th colspan="4">
-                 <div class="diff-type btn btn-mini btn-<%= type_data[:label] %> disabled">
+                 <div class="diff-type btn btn-xs btn-<%= type_data[:label] %> disabled">
                    <%= type_data[:name] %>
                  </div>
                  <%= file.name %>
                  <div class="btn-toolbar">
                    <% if !file.binary && changes > 0 %>
                      <div class="btn-group">
-                       <div class="btn btn-mini disabled">
+                       <div class="btn btn-default btn-xs disabled">
                          <%= file.lines_changed[0] %> deletions,
                          <%= file.lines_changed[1] %> additions
                        </div>
                      </div>
-                     <div class="btn-group" data-toggle="buttons-radio">
-                       <div class="btn btn-mini inline active">Inline</div>
-                       <div class="btn btn-mini side">Side-by-side</div>
+                     <div class="btn-group" data-toggle="buttons">
+                       <label class="btn btn-default btn-xs inline active">
+                         <input type="radio">Inline</input>
+                       </label>
+                       <label class="btn btn-default btn-xs side">
+                         <input type="radio">Side-by-side</input>
+                       </label>
                      </div>
                    <% end %>
                    <div class="btn-group">
                      <%= link_to 'View in client',
                            sprintf('scigit://view_change?project_id=%d&commit_hash=%s&filename=%s', @project_change.project_id, @project_change.commit_hash, u(file.name)), {
-                             :class => 'btn btn-mini btn-primary',
+                             :class => 'btn btn-xs btn-primary',
                          } %>
                    </div>
                    <% if type != :deletedFiles %>
@@ -35,7 +39,7 @@
                        <%= link_to 'Download this version',
                              project_change_path(@project_change.project_id, @project_change) +
                                '/file/' + u(file.name),
-                             :class => 'btn btn-mini btn-success' %>
+                             :class => 'btn btn-xs btn-success' %>
                      </div>
                    <% end %>
                  </div>

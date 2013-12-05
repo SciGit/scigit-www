@@ -1,0 +1,311 @@
+@import 'include/mixins';
+
+.diff-text {
+  margin: 0 !important;
+  width: 100%;
+  font-size: 12px;
+
+  .diff-type {
+    margin-top: -7px;
+    margin-right: 5px;
+    margin-bottom: -5px;
+  }
+
+  .btn-toolbar {
+    float: right;
+    margin: 0px;
+    .btn.active {
+      z-index: 1;
+    }
+  }
+
+  p {
+    margin: 0px;
+  }
+
+  &.docx {
+    table {
+      margin: 5px 5px 5px 0px;
+      td {
+        border: 1px solid #777;
+        padding: 5px 10px;
+      }
+    }
+    p {
+      margin: 0px 3px 3px 0px;
+    }
+  }
+
+  td, tr td {
+    padding: 0px 2px 0px 2px;
+    margin: 0 !important;
+    border-top: 0px !important;
+  }
+  
+  tbody {
+    border-top: 0px !important;
+  }
+
+  th {
+    background-color: $sg-gray;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  tr:hover th {
+    @extend tr:hover.th;
+  }
+
+  .linenumber {
+    min-width: 20px;
+    font-family: monospace;
+    text-align: right;
+    padding: 2px 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    background-color: $sg-gray;
+    color: #777;
+  }
+
+  .linenumber.second {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .line .content {
+    white-space: pre-wrap;
+  }
+
+  .content {
+    padding: 2px 5px 2px 10px;
+    width: 50%;
+    &.inline {
+      width: 100%;
+    }
+    span.block {
+      display: inline-block;
+      padding: 2px;
+    }
+    .add {
+      background: rgba(0, 255, 0, 0.5);
+    }
+    .delete {
+      background: rgba(255, 0, 0, 0.3);
+    }
+    .modify {
+      background: rgba(0, 0, 255, 0.2);
+      &.hover {
+        @include box-shadow(0px 0px 5px 2px, rgba(0, 0, 255, 0.5));
+      }
+    }
+  }
+
+  .message {
+    .content {
+      padding: 5px;
+    }
+  }
+
+  .change-null {
+    background-color: $sg-gray;
+    &.first {
+      @include linear-gradient(top, darken($sg-gray, 5%), $sg-gray 50%);
+    }
+    &.last {
+      @include linear-gradient(bottom, darken($sg-gray, 10%), $sg-gray 5%);
+    }
+    &.first.last {
+      @include linear-gradient(bottom, darken($sg-gray, 10%), $sg-gray 5%,
+          $sg-gray 50%, darken($sg-gray, 5%) 100%);
+    }
+    &.linenumber {
+      border-right: 0px;
+    }
+    &.content {
+      border-left: 0px;
+    }
+  }
+
+  .change-omission {
+    td {
+      height: 25px;
+      vertical-align: middle;
+      @include linear-gradient(bottom, darken($sg-gray, 10%), $sg-gray 5%,
+          $sg-gray 50%, darken($sg-gray, 5%) 100%);
+    }
+    .linenumber {
+      border-left: 0px;
+      border-right: 0px;
+    }
+    .content {
+      border-left: 0px;
+      color: #777;
+      font-family: monospace;
+    }
+  }
+
+  tr:hover {
+    .change-addition {
+      background-color: darken($diff-green, 10%);
+    }
+    .change-deletion {
+      background-color: darken($diff-red, 30%);
+    }
+    .change-modify {
+      background-color: darken($diff-blue, 5%);
+      &.linenumber {
+        background-color: darken($diff-blue, 10%);
+      }
+    }
+  }
+
+  .change-addition {
+    background-color: $diff-green;
+    &.linenumber {
+      background-color: darken($diff-green, 10%);
+    }
+  }
+
+  .change-deletion {
+    background-color: $diff-red;
+    &.linenumber {
+      background-color: darken($diff-red, 30%);
+    }
+  }
+
+  .change-modify {
+    background-color: $diff-blue;
+    &.linenumber {
+      background-color: darken($diff-blue, 10%);
+      color: white;
+    }
+  }
+}
+
+#change-viewer {
+  #change-listing {
+    margin-bottom: 0px;
+    @media (min-width: 1200px) {
+      width: 258px;
+    }
+
+    @media (max-width: 980px) {
+      width: 218px;
+    }
+
+    @media (min-width: 768px) and (max-width: 979px) {
+      width: 166px;
+    }
+
+    @media (max-width: 767px) {
+      position: static;
+      width: auto;
+      top: 0;
+    }
+
+    .well-list-header-inner {
+      padding: 10px;
+    }
+
+    .well-list-item-inner {
+      padding: 0;
+      &:hover {
+        background: white;
+      }
+    }
+
+    word-break: break-all;
+    ul.changes {
+      height: 450px;
+      padding: 0px;
+      margin: 0px;
+      overflow-y: auto;
+      list-style: none;
+      li.change-list-item {
+        .change-item {
+          padding-left: 0px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-right: 10px;
+          .description {
+            display: table-cell;
+            padding-left: 10px;
+            width: 100%;
+            vertical-align: middle;
+          }
+          .action {
+            display: none;
+            padding-left: 5px;
+            vertical-align: middle;
+          }
+          button {
+            i {
+              margin-right: 0;
+            }
+          }
+          .collapsed i {
+            @extend .icon-minus;
+          }
+          .info {
+            font-size: 11px;
+            color: gray;
+          }
+        }
+        .file-listing {
+          background: $sg-gray;
+          padding: 0px;
+          margin: 0px;
+          font-size: 90%;
+
+          .change-type-header {
+            color: #777;
+            padding: 5px 10px 5px 10px;
+          }
+
+          ul {
+            list-style: none;
+            padding-bottom: 5px;
+            padding-left: 25px;
+          }
+        }
+      }
+      li.change-list-item.active {
+        background: $sg-blue;
+        color: white;
+        .action {
+          display: table-cell;
+        }
+        .change-item a {
+          color: white;
+        }
+        .info {
+          color: #ddd;
+        }
+      }
+    }
+    td {
+      padding: 0px;
+    }
+    width: 228px;
+    background: white;
+  }
+
+  #change-listing.affix {
+    top: 60px;
+  }
+
+  #diff-viewer {
+    min-height: 500px;
+  }
+
+  .diff-file {
+    padding: 0;
+    margin: 0 0px 20px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    @include border-radius(5px 5px 0px 0px);
+    th {
+      @include border-radius(5px 5px 0px 0px);
+    }
+  }
+}
+

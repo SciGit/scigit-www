@@ -1,10 +1,12 @@
 <% fileNum = 0
    @fileTypes.each do |type, type_data|
      unless @diff[type].empty? %>
-       <li class="nav-header"><%= type_data[:name] %> Files</li>
-       <% @diff[type].each do |file| %>
-         <li><a class="hash-anchor" href="#change-file-<%= fileNum += 1 %>"><%= file.name %></a></li>
-       <% end %>
+       <div class="change-type-header"><%= type_data[:name] %> Files</div>
+       <ul class="file-list">
+         <% @diff[type].each do |file| %>
+           <li><a class="hash-anchor" href="#change-file-<%= fileNum += 1 %>"><%= file.name %></a></li>
+         <% end %>
+       </ul>
   <% end %>
 <% end %>
 

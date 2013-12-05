@@ -22,47 +22,47 @@
 <div id="change-viewer" class="row-fluid">
   <div class="col-md-3">
     <div id="change-listing" class="well-list">
-      <table class="table table-condensed">
-        <tr>
-          <th>Change History</th>
-        </tr>
-        <tr>
-          <td>
-            <ul class="changes">
-              <% @project_changes.each do |project_change|
-                   full_text = project_change.commit_msg
-                   visible_text = truncate(project_change.commit_msg)
-                   if project_change == @selected_change
-                     full_text, visible_text = visible_text, full_text
-                   end %>
-                <li class="change-list-item <%= project_change == @selected_change ? 'active' : '' %>"
-                    data-change-id="<%= project_change.id %>"
-                    data-commit-hash="<%= project_change.commit_hash %>">
-                  <div class="change-item">
-                    <div class="description">
-                      <div class="message" data-full-message="<%= full_text %>">
-                        <%= visible_text %>
-                      </div>
-                      <div class="info">
-                        by <%= link_to project_change.user.fullname, user_path(project_change.user) %>, 
-                        <%= time_ago_in_words(project_change.commit_timestamp) %> ago
-                      </div>
+      <div class="well-list-header">
+        <div class="well-list-header-inner">
+          <b>Change History</b>
+        </div>
+      </div>
+      <div class="well-list-item">
+        <div class="well-list-item-inner">
+          <ul class="changes">
+            <% @project_changes.each do |project_change|
+                 full_text = project_change.commit_msg
+                 visible_text = truncate(project_change.commit_msg)
+                 if project_change == @selected_change
+                   full_text, visible_text = visible_text, full_text
+                 end %>
+              <li class="change-list-item <%= project_change == @selected_change ? 'active' : '' %>"
+                  data-change-id="<%= project_change.id %>"
+                  data-commit-hash="<%= project_change.commit_hash %>">
+                <div class="change-item">
+                  <div class="description">
+                    <div class="message" data-full-message="<%= full_text %>">
+                      <%= visible_text %>
                     </div>
-                    <div class="action">
-                      <button class="btn btn-mini" data-toggle="collapse"
-                              data-target="#file-listing-<%= project_change.id %>">
-                        <i class="icon-plus"></i>
-                      </button>
+                    <div class="info">
+                      by <%= link_to project_change.user.fullname, user_path(project_change.user) %>, 
+                      <%= time_ago_in_words(project_change.commit_timestamp) %> ago
                     </div>
                   </div>
-                  <ul id="file-listing-<%= project_change.id %>" class="file-listing collapse">
-                  </ul>
-                </li>
-              <% end %>
-            </ul>
-          </td>
-        </tr>
-      </table>
+                  <div class="action">
+                    <button class="btn btn-xs" data-toggle="collapse"
+                            data-target="#file-listing-<%= project_change.id %>">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="file-listing-<%= project_change.id %>" class="file-listing collapse">
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
   <div id="diff-viewer" class="col-md-9">
