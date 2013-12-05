@@ -19,8 +19,8 @@ resetActives = ->
   if active.length > 0
     toggleActive active
   $('#change-listing .in').collapse('toggle')
-  $('.action button i').removeClass 'icon-minus'
-  $('.action button i').addClass 'icon-plus'
+  $('.action button i').removeClass 'fa-minus'
+  $('.action button i').addClass 'fa-plus'
 
 loadDiff = (selected) ->
   change_id = selected.data 'change-id'
@@ -52,5 +52,5 @@ $(document).on 'ready page:load', () ->
         return false
       cl.on 'click', '.action button', (e) ->
         icon = $(this).find('i')
-        icon.toggleClass 'icon-plus'
-        icon.toggleClass 'icon-minus'
+        icon.toggleClass 'fa-plus'
+        icon.toggleClass 'fa-minus'

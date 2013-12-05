@@ -16,9 +16,9 @@ class @DiffViewer
       error: (a, b, httpError) => @displayError(httpError)
     }
 
-    @files.html '<li class="nav-header">' +
-      '<i class="icon-spin icon-spinner"></i>&nbsp;&nbsp;Loading...</li>'
-    @viewerPane.html '<center><i class="icon-spin icon-spinner icon-3x"></i></center>'
+    @files.html '<div class="change-type-header">' +
+      '<i class="fa fa-spin fa-spinner"></i>&nbsp;&nbsp;Loading...</div>'
+    @viewerPane.html '<center><i class="fa fa-spin fa-spinner fa-3x"></i></center>'
 
   displayDiff: (json) ->
     if !json.files_html? || !json.diff_viewer_html?
