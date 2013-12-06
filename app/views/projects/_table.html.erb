@@ -1,14 +1,14 @@
 <div class="well-list">
   <div class="well-list-header">
     <div class="well-list-header-inner">
-      <h3>
-        <%= project_type %>
-        <div class="pull-right">
-          <% if defined?(button) %>
-            <%= button %>
-          <% end %>
-        </div>
-      </h3>
+      <div class="well-list-header-buttons">
+        <h3>
+          <%= project_type %>
+        </h3>
+        <% if defined?(button) %>
+          <%= button %>
+        <% end %>
+      </div>
     </div>
   </div>
   <% if !projects.empty? %>

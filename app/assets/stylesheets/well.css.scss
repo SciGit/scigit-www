@@ -23,6 +23,23 @@ body {
 
         display: table-cell;
         padding: $well-list-padding;
+
+        .well-list-header-buttons {
+          display: table;
+
+          & > * {
+            display: table-cell;
+            vertical-align: middle;
+          }
+
+          h1, h2, h3, h4, h5 {
+            width: 100%;
+          }
+
+          .btn {
+            width: 200px;
+          }
+        }
       }
     }
 
