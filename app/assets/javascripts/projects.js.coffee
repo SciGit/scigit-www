@@ -21,10 +21,10 @@ hookCreateNewProjectPublicAndPrivateButtons = ->
 
     projectPublic = $(@).attr('id') == 'btnPublic'
 
-    $('#btnPrivate').addClass('active') if !projectPublic
-    $('#btnPrivate').removeClass('active') if projectPublic
-    $('#btnPublic').addClass('active') if projectPublic
-    $('#btnPublic').removeClass('active') if !projectPublic
+    $('#projectPrivate').addClass('hide') if projectPublic
+    $('#projectPrivate').removeClass('hide') if !projectPublic
+    $('#projectPublic').addClass('hide') if !projectPublic
+    $('#projectPublic').removeClass('hide') if projectPublic
 
     $("input[id='hiddenPublic']").prop('checked', projectPublic)
   )
