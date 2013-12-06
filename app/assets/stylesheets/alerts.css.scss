@@ -1,0 +1,18 @@
+body {
+  .alert {
+    display: table;
+    width: 100%;
+
+    i {
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    p {
+      display: table-cell;
+      width: 100%;
+    }
+  }
+}

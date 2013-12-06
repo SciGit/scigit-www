@@ -40,7 +40,7 @@ window.ajaxFormSubmit = (container, form) ->
   btnSubmit = container.find('.btnSubmit')
   btnCancel = container.find('.btnCancel')
   alertSuccess = container.find('.alert-success')
-  alertError = container.find('.alert-error')
+  alertError = container.find('.alert-danger')
 
   btnSubmitText = btnSubmit.html()
   btnSubmit.html('<i class="icon-spin icon-spinner"></i> Loading')
@@ -65,12 +65,12 @@ window.ajaxFormSubmit = (container, form) ->
     success: (data, response) ->
       @complete(data)
       alertSuccess.find('p').html(parseResponseText(data, response))
-      alertSuccess.show()
-      alertError.hide()
+      alertSuccess.removeClass('hide')
+      alertError.addClass('hide')
     ,
     error: (data, response) ->
       @complete(data)
-      alertSuccess.hide()
+      alertSuccess.addClass('hide')
       alertError.find('p').html(parseResponseText(data, response))
-      alertError.show()
+      alertError.removeClass('hide')
     ,

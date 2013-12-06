@@ -1,5 +1,9 @@
 body {
   .modal-dialog.modal-dialog-small {
-    width: 400px;
+    width: 500px;
+
+    .modal-footer {
+      margin-top: 0;
+    }
   }
 }
