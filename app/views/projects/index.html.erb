@@ -16,7 +16,7 @@
     <% @my_projects_button = capture do %>
       <%= link_to raw('<i class="fa fa-plus"></i> Create Project'), '',
           :data => {:toggle => 'modal', :target => '#createNewProjectModal'},
-          :class => 'btn btn-primary btn-large btn-valign' %>
+          :class => 'btn btn-success btn-large' %>
     <% end %>
 
     <% @my_projects_empty_msg = capture do %>
@@ -39,7 +39,7 @@
 
   <div class="col-md-6">
     <% @subscriptions_button = capture do %>
-      <%= link_to raw('<i class="icon-bookmark"></i> View Public'), public_projects_path, :class => 'btn btn-primary btn-large btn-valign' %>
+      <%= link_to raw('<i class="icon-bookmark"></i> View Public'), public_projects_path, :class => 'btn btn-primary btn-large' %>
     <% end %>
 
     <% @subscriptions_empty_msg = capture do %>

@@ -10,7 +10,7 @@
         <%= f.check_box :public, :id => 'hiddenPublic', :class => 'hide' %>
         <div class="input-group">
           <div class="input-group-btn">
-            <%= button_tag :class => "btn btn-default dropdown-toggle", :data => {:toggle => "dropdown"} do %>
+            <%= button_tag :class => "btn btn-primary dropdown-toggle", :data => {:toggle => "dropdown"} do %>
               <span id="projectPublic">
                 <%= fa_icon "globe", :class => "fa-fixed-width" %> Public <span class="caret"></span>
               </span>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <%= link_to 'Create', '', :class => 'btn btn-primary btnSubmit' %>
+        <%= link_to 'Create', '', :class => 'btn btn-success btnSubmit' %>
         <%= link_to 'Cancel', '', :class => 'btn btn-default btnCancel', :data => {:dismiss => 'modal'} %>
       </div>
     <% end %>
