@@ -31,15 +31,15 @@ hookCreateNewProjectPublicAndPrivateButtons = ->
 
 fetchAndAppendChanges = (page) ->
   fetchingChanges = true
-  $('#changes table tbody').append '<tr id="loading-animation"><td><center><i class="icon-spin icon-spinner icon-3x"></i></center></td></tr>'
+  $('#changes table tbody').append '<div class="well-list-item"><div class="well-list-item-inner well-list-item-empty"><center><i class="fa fa-spin fa-spinner fa-3x"></i></center></div></div>'
   $.ajax '/projects/' + project_id + '/changes/page/' + page,
     type: 'GET',
     success: (data) ->
       if !data
         $('body').infiniteScrollHelper 'destroy'
         if page == 1
-          $('#changes table tbody').append '<tr><td>No changes have been made yet.</td></tr>'
-      $('#changes table tbody').append data
+          $('#changes').append '<div class="well-list-item"><div class="well-list-item-inner well-list-item-empty">No changes have been made yet.</div></div>'
+      $('#changes').append data
       fetchingChanges = false
       $('#loading-animation').remove()
     failure: ->
