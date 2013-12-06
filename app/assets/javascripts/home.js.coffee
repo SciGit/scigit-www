@@ -2,10 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$('[data-toggle~="tooltip"]').tooltip()
-$('[data-toggle~="popover"]').popover()
-
 $(document).on 'ready page:load', () ->
+  $('[data-toggle~="tooltip"]').tooltip()
+  $('[data-toggle~="popover"]').popover()
+
   $('#label-projects').click (e) ->
     if e.target == this or e.target.tagName.toLowerCase == 'div'
       Turbolinks.visit this.href

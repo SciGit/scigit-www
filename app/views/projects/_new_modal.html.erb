@@ -1,2 +1,40 @@
-<div id="createNewProjectModal" role="dialog" class="modal fade" data-remote="<%= new_project_path %>" aria-labelledby="createNewProjectLabel" aria-hidden="true">
+<div id="createNewProjectModal" role="dialog" class="modal fade" aria-labelledby="createNewProjectLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-small">
+    <div class="modal-content">
+      <%= form_for Project.new, :html => {:role => "form", :id => 'createNewProjectForm'} do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Create New Project</h4>
+        </div>
+        <div class="modal-body">
+          <%= render :partial => 'shared/form_alerts' %>
+          <%= f.check_box :public, :id => 'hiddenPublic', :class => 'hide' %>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <%= button_tag :class => "btn btn-primary dropdown-toggle", :data => {:toggle => "dropdown"} do %>
+                <span id="projectPublic" data-toggle="tooltip" data-placement="top" data-trigger="hover"
+                 data-original-title="Anyone can view your project">
+                  <%= fa_icon "globe", :class => "fa-fixed-width" %> Public <span class="caret"></span>
+                </span>
+                <span id="projectPrivate" class="hide" data-toggle="tooltip" data-placement="top" data-trigger="hover"
+                 data-original-title="Only accessible to people you add">
+                  <%= fa_icon "lock", :class => "fa-fixed-width" %> Private <span class="caret"></span>
+                </span>
+              <% end %>
+              <ul class="dropdown-menu">
+                <li><%= link_to "", :id => "btnPublic" do %><%= fa_icon "globe" %> Public<% end %></li>
+                <li><%= link_to "", :id => "btnPrivate" do %><%= fa_icon "lock" %> Private<% end %></li>
+              </ul>
+            </div>
+            <%= f.label :name, "Project name", :class => "sr-only" %>
+            <%= f.text_field :name, :class => "form-control", :placeholder => "Project name" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= link_to 'Create', '', :class => 'btn btn-success btnSubmit' %>
+          <%= link_to 'Cancel', '', :class => 'btn btn-default btnCancel', :data => {:dismiss => 'modal'} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
