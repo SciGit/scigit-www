@@ -1,31 +1,27 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= form_for @project, :html => {:id => 'createNewProjectForm'} do |f| %>
+    <%= form_for @project, :html => {:role => "form", :id => 'createNewProjectForm'} do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Create New Project</h4>
       </div>
       <div class="modal-body">
-        <div class="create-project">
-          <%= render :partial => 'shared/form_alerts' %>
-          <div class="public">
-            <%= f.check_box :public, :id => 'hiddenPublic', :class => 'hide' %>
-            <div class="btn-group">
-              <%= link_to raw('<div>Private</div><i class="icon-lock icon-large icon-fixed-width"></i>'), '', :id => 'btnPrivate', :class => 'btn active' %>
-              <%= link_to raw('<div>Public</div><i class="icon-globe icon-large icon-fixed-width"></i>'), '', :id => 'btnPublic', :class => 'btn' %>
-            </div>
+        <%= render :partial => 'shared/form_alerts' %>
+        <div class="public">
+          <%= f.check_box :public, :id => 'hiddenPublic', :class => 'hide' %>
+          <div class="btn-group">
+            <%= link_to raw('<div>Private</div><i class="fa fa-lock fa-large fa-fixed-width"></i>'), '', :id => 'btnPrivate', :class => 'btn btn-default active' %>
+            <%= link_to raw('<div>Public</div><i class="fa fa-globe fa-large fa-fixed-width"></i>'), '', :id => 'btnPublic', :class => 'btn btn-default' %>
           </div>
-          <div class="grey-separator"></div>
-          <div class="name">
-            <%= f.label :name, 'Project Name' %>
-            <%= f.text_field :name %>
-          </div>
-          <div class="clearfix"></div>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "Project Name", :class => "sr-only" %>
+          <%= f.text_field :name, :class => "form-control", :placeholder => "Project Name" %>
         </div>
       </div>
       <div class="modal-footer">
         <%= link_to 'Create', '', :class => 'btn btn-primary btnSubmit' %>
-        <%= link_to 'Cancel', '', :class => 'btn btnCancel', :data => {:dismiss => 'modal'} %>
+        <%= link_to 'Cancel', '', :class => 'btn btn-default btnCancel', :data => {:dismiss => 'modal'} %>
       </div>
     <% end %>
   </div>
