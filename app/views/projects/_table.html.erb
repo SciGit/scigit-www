@@ -25,7 +25,7 @@
                 <i class="fa fa-star"></i>
               </span>
               <% if can? :admin, project %>
-                <%= link_to "", :class => "btn btn-primary", :data => {:toggle => "tooltip", "original-title" => "Settings", :container => "body"} do %>
+                <%= link_to "", :class => "btn btn-default", :data => {:toggle => "tooltip", "original-title" => "Settings", :container => "body"} do %>
                   <%= fa_icon "cog", :class => "fa-lg" %>
                 <% end %>
               <% end %>

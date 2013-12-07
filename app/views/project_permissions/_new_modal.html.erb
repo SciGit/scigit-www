@@ -1,12 +1,2 @@
-<div id="addMemberModal" class="modal modal-large hide fade" data-remote="<%= new_project_permission_path(@project.id) %>">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h1>Add Member</h1>
-  </div>
-  <div class="modal-body">
-  </div>
-  <div class="modal-footer">
-    <%= link_to 'Add Member', '', :class => 'btn btn-primary btnSubmit' %>
-    <%= link_to 'Cancel', '', :class => 'btn btnCancel', :data => {:dismiss => 'modal'} %>
-  </div>
+<div id="addMemberModal" role="dialog" class="modal fade" data-remote="<%= new_project_permission_path(@project.id) %>">
 </div>
