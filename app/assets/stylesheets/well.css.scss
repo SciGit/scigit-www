@@ -68,6 +68,38 @@ body {
         &.well-list-item-empty:hover {
           background: inherit;
         }
+
+        .well-list-item-grid {
+          display: table;
+
+          .well-list-item-title {
+            display: table-cell;
+            width: 100%;
+          }
+
+          .well-list-item-buttons {
+            display: table-cell;
+            min-width: 100px;
+            text-align: right;
+
+            & > * {
+              margin-left: 5px;
+              margin-right: 5px;
+
+              &:first-child {
+                margin-left: 0;
+              }
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+
+          .well-list-item-description {
+            display: table-row;
+          }
+        }
       }
     }
   }

@@ -16,6 +16,13 @@ body {
         }
       }
     }
+
+    @include respond-to(handhelds, tablets) {
+      div[class*="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 }
 

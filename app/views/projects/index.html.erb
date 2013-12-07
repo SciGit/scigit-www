@@ -22,8 +22,7 @@
     <% @my_projects_empty_msg = capture do %>
       You are not a member of any projects. 
       <%= link_to 'Create a Project', '',
-          :data => {:toggle => 'tooltip modal', :target => '#createNewProjectModal'},
-          :title => 'Create new project'
+          :data => {:toggle => 'modal', :target => '#createNewProjectModal'}
        %> or have someone add you to one.
     <% end %>
 

@@ -15,26 +15,24 @@
     <% projects.each do |project| %>
       <div class="well-list-item">
         <div class="well-list-item-inner">
-          <div class="title pull-left">
-            <%= link_to project.name, project_path(project.id) %>
-          </div>
-          <div class="buttons">
-            <div class="button">
-              <a href="#" data-toggle="tooltip" title="Subscribers" class="rawlink">
+          <div class="well-list-item-grid">
+            <div class="well-list-item-title">
+              <h4><%= link_to project.name, project_path(project.id) %></h4>
+            </div>
+            <div class="well-list-item-buttons">
+              <span data-toggle="tooltip" data-original-title="Subscribers" data-container="body">
                 <%= project.id %>
                 <i class="fa fa-star"></i>
-              </a>
+              </span>
+              <% if can? :admin, project %>
+                <%= link_to "", :class => "btn btn-primary", :data => {:toggle => "tooltip", "original-title" => "Settings", :container => "body"} do %>
+                  <%= fa_icon "cog", :class => "fa-lg" %>
+                <% end %>
+              <% end %>
             </div>
-            <% if can? :admin, project %>
-              <div class="button">
-                <a href="#" data-toggle="tooltip" title="Administrate" class="rawlink">
-                  <i class="fa fa-cog fa-lg"></i>
-                </a>
-              </div>
-            <% end %>
-          </div>
-          <div class="description">
-            <%= project.description.or('This project has no description.') %>
+            <div class="well-list-item-description">
+              <%= project.description.or('This project has no description.') %>
+            </div>
           </div>
         </div>
       </div>
