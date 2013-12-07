@@ -1,7 +1,7 @@
 @import 'include/mixins';
 
 body {
-  .well-list, .blue-well-list {
+  .well-list {
     $well-list-border: 1px solid darken($sg-gray, 5%);
     $well-list-padding: 15px 20px;
 
@@ -100,6 +100,22 @@ body {
             display: table-row;
           }
         }
+      }
+    }
+  }
+
+  .well-list-condensed {
+    $well-list-condensed-padding: 10px 15px;
+
+    .well-list-header {
+      .well-list-header-inner {
+        padding: $well-list-condensed-padding;
+      }
+    }
+
+    .well-list-item {
+      .well-list-item-inner {
+        padding: $well-list-condensed-padding;
       }
     }
   }
