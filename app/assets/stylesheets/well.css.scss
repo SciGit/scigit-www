@@ -47,6 +47,11 @@ body {
     .well-list-item {
       display: table-row;
 
+      &:last-child .well-list-item-inner {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
       .well-list-item-inner {
         display: table-cell;
 
@@ -54,12 +59,7 @@ body {
 
         border-left: $well-list-border;
         border-right: $well-list-border;
-
-        &:last-child {
-          border-bottom-left-radius: 5px;
-          border-bottom-right-radius: 5px;
-          border-bottom: $well-list-border;
-        }
+        border-bottom: $well-list-border;
 
         &:hover {
           background: lighten($sg-gray, 7%);
