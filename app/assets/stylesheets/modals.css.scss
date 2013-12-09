@@ -1,9 +1,21 @@
+@import 'include/mixins';
+
 body {
   .modal-dialog.modal-dialog-small {
     width: 500px;
 
     .modal-footer {
       margin-top: 0;
+    }
+  }
+
+  .modal-dialog.modal-dialog-large {
+    @include respond-to(handhelds, tablets) {
+      width: 90%;
+    }
+
+    @include respond-to(desktops, widescreens) {
+      width: 800px;
     }
   }
 }
