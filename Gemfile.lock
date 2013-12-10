@@ -27,13 +27,6 @@ GIT
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
 
-GIT
-  remote: git://github.com/crowdint/rails3-jquery-autocomplete.git
-  revision: 1cbad00025647e4ed9d50bf59e4c722bf57615b3
-  specs:
-    rails3-jquery-autocomplete (1.0.11)
-      rails (>= 3.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -156,6 +149,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.2)
       sprockets-rails (~> 2.0.0)
+    rails3-jquery-autocomplete (0.6.0)
     railties (4.0.2)
       actionpack (= 4.0.2)
       activesupport (= 4.0.2)
@@ -243,7 +237,7 @@ DEPENDENCIES
   kaminari
   mysql2
   rails (~> 4.0.1)
-  rails3-jquery-autocomplete!
+  rails3-jquery-autocomplete
   sass-rails (~> 4.0.1)
   sdoc
   squeel
