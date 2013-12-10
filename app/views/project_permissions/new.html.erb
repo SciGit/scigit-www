@@ -13,15 +13,15 @@
           <% # Use a surrounding div to encapsulate a popover, since we can't have multiple popovers attached to a DOM element. %>
           <div id="findMember">
             <div id="invalidEmailPopover" class="input-group">
-              <%#= f.fields_for :user do |builder| %>
-                <%#= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
-                    :data => {:target => autocomplete_user_email_path}, :class => "form-control" %>
-              <%# end %>
               <%= f.fields_for :user do |builder| %>
-                <%= builder.autocomplete_field :email, autocomplete_user_email_path, :class => "form-control" %>
+                <%= builder.text_field :email, :placeholder => "Name or Email", :class => "form-control",
+                  :data => {:target => autocomplete_user_email_path, "update-elements" => "{'id': '#lolidontexist', 'slogan': 'lol'}"} %>
               <% end %>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">hi</a></li>
+              </ul>
               <span class="input-group-btn">
-                <%= link_to '', :id => 'btnFindMember', :class => 'btn btn-info' do %>
+                <%= link_to '#', :id => 'btnFindMember', :class => 'btn btn-primary' do %>
                   <%= fa_icon "search", :class => "fa-fw" %>
                 <% end %>
               </span>
@@ -78,7 +78,7 @@
     </div>
     <div class="modal-footer">
       <%= link_to 'Add Member', '', :class => 'btn btn-primary btnSubmit' %>
-      <%= link_to 'Cancel', '', :class => 'btn btnCancel', :data => {:dismiss => 'modal'} %>
+      <%= link_to 'Cancel', '', :class => 'btn btn-default btnCancel', :data => {:dismiss => 'modal'} %>
     </div>
   </div>
 </div>

@@ -23,8 +23,8 @@ hookTypeaheadForMemberAdd = ->
     $('#btnFindMember').click (e) -> e.preventDefault()
 
     indicateButton = (btnClass, iconClass, showPopover = null) ->
-      $('#btnFindMember').removeClass('btn-info btn-success btn-danger btn-primary').addClass(btnClass)
-      $('#btnFindMember i').removeClass('fa-search fa-spin fa-spinner fa-cross-circle fa-check-circle').addClass(iconClass)
+      $('#btnFindMember').removeClass('btn-primary btn-success btn-danger btn-primary').addClass(btnClass)
+      $('#btnFindMember i').removeClass('fa-search fa-spin fa-spinner fa-times fa-check').addClass(iconClass)
 
       if showPopover == true
         $('#findMember').popover('show')
@@ -33,13 +33,13 @@ hookTypeaheadForMemberAdd = ->
         $('#findMember').popover('hide')
 
     indicateSearch = ->
-      indicateButton('btn-info', 'fa-search', false)
+      indicateButton('btn-primary', 'fa-search', false)
     indicateLoading = ->
       indicateButton('btn-primary', 'fa-spin fa-spinner')
     indicateNotFound = (showPopover) ->
-      indicateButton('btn-danger', 'fa-cross-circle', showPopover)
+      indicateButton('btn-danger', 'fa-times', showPopover)
     indicateFound = ->
-      indicateButton('btn-success', 'fa-check-circle', false)
+      indicateButton('btn-success', 'fa-check', false)
 
     closePopovers = (excludeFindMember = false) ->
       $('#findMember').popover('hide') if !excludeFindMember
@@ -151,52 +151,52 @@ hookTypeaheadForMemberAdd = ->
 
     $('#addMemberModal').on('keypress', '#project_permission_user_attributes_email', indicateLoading)
 
-#   $('#project_permission_user_attributes_email').typeahead(
-#     source: (query, process) ->
-#       results = []
-#       $.ajax
-#         url: $(@$element[0]).data('target')
-#         type: 'GET',
-#         dataType: 'json',
-#         data: { term: @query }
-#         success: (data) ->
-#           previousResults = data
+    $('#project_permission_user_attributes_email').autocomplete(
+      source: (query, process) =>
+        results = []
+        $.ajax
+          url: $('#project_permission_user_attributes_email').data('target')
+          type: 'GET',
+          dataType: 'json',
+          data: { term: query.term }
+          success: (data) ->
+            previousResults = data
 
-#           for _, result of data
-#             results.push(result.label)
+            for _, result of data
+              results.push(result.label)
 
-#           dataLength = Object.keys(data).length
+            dataLength = Object.keys(data).length
 
-#           if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
-#             styleButtonAsInvite()
-#             if checkIfQueryIsValidEmail()
-#               indicateFound()
-#               hookPermissionButtonClick()
-#             else
-#               indicateNotFound(false) # don't show the "Not Found, Invite" popover
-#               $('#addMemberModal .btnSubmit').popover('hide')
-#               $('#permissionHeader').popover('hide')
-#               $('#invalidEmailPopover').popover('show')
-#           else
-#             closePopovers(true) # exclude the "User Not Found" popover
-#             styleButtonAsAddMember() if dataLength > 0
-#             switch dataLength
-#               when 0 then indicateNotFound(true) # show the "Not Found, Invite" popover
-#               when 1 then indicateFound()
-#               else indicateSearch()
+            if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
+              styleButtonAsInvite()
+              if checkIfQueryIsValidEmail()
+                indicateFound()
+                hookPermissionButtonClick()
+              else
+                indicateNotFound(false) # don't show the "Not Found, Invite" popover
+                $('#addMemberModal .btnSubmit').popover('hide')
+                $('#permissionHeader').popover('hide')
+                $('#invalidEmailPopover').popover('show')
+            else
+              closePopovers(true) # exclude the "User Not Found" popover
+              styleButtonAsAddMember() if dataLength > 0
+              switch dataLength
+                when 0 then indicateNotFound(true) # show the "Not Found, Invite" popover
+                when 1 then indicateFound()
+                else indicateSearch()
 
-#           # Hack. Focus on the input element after a set of elements is processed.
-#           setTimeout( ->
-#             $('#project_permission_user_attributes_email').focus()
-#           , 50)
+            # Hack. Focus on the input element after a set of elements is processed.
+            setTimeout( ->
+              $('#project_permission_user_attributes_email').focus()
+            , 50)
 
-#           return process(results)
-#     ,
-#     updater: (item) ->
-#       indicateFound()
-#       return findResultWithLabel(item).email
-#     ,
-#   )
+            return process(results)
+      ,
+      select: (item) ->
+        indicateFound()
+        return findResultWithLabel(item).email
+      ,
+    )
 
 $(document).on 'ready page:load', () ->
   hookTypeaheadForMemberAdd()
