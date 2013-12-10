@@ -78,10 +78,9 @@ window.ajaxFormSubmit = (container, form) ->
 $(document).on 'ready page:load', ->
   # Find all buttons with ajax-submit on them; automatically trigger the ajaxSubmit function.
   $('[ajax-submit]').each ->
-    self = $(@)
-    self.click (e) ->
-      selector = self.attr('ajax-submit')
-      container = self.parents(selector)
-      form = self.parents('form')
+    selector = $(@).attr('ajax-submit')
+    container = $(@).parents(selector)
+    form = $(@).parents('form')
+    $(@).click (e) ->
       window.ajaxFormSubmit(container, form)
       e.preventDefault()
