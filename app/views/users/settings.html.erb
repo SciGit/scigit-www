@@ -1,0 +1,141 @@
+<div id="settings-page">
+  <%= render :partial => 'shared/breadcrumbs',
+             :locals => { :paths => {
+               'Home' => root_path,
+               'User Settings' => users_settings_path,
+             }}
+   %>
+
+  <div class="separator-xsmall"></div>
+
+  <div class="page-header">
+    <h1>User Settings</h1>
+  </div>
+
+  <div class="row">
+    <ul class="col-xs-3 nav nav-pills nav-stacked">
+      <li class="active"><a href="#general" data-toggle="tab">General Preferences</a></li>
+      <li><a href="#profile" data-toggle="tab">Edit Profile</a></li>
+      <li><a href="#password" data-toggle="tab">Change Password</a></li>
+      <li><a href="#ssh" data-toggle="tab">SSH Keys</a></li>
+    </ul>
+
+    <div class="col-xs-9 tab-content">
+      <div class="tab-pane active" id="general">
+        <h3>General Preferences</h3>
+        <%= form_for @user, :url => '' do |f| %>
+          <h4>Email Notifications</h4>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :id %> Send me notifications for projects I am a member of
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :id %> Send me notifications for public projects I am subscribed to
+            </label>
+          </div>
+
+          <h4>Account Privacy</h4>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :id %> Make my profile publically visible
+            </label>
+          </div>
+
+          <input class="btn btn-primary" type="submit" value="Save" />
+        <% end %>
+      </div>
+      <div class="tab-pane" id="profile">
+        <h3>Profile</h3>
+        <br />
+        <%= form_for @user, :url => '', :html => {:class => 'form-horizontal'} do |f| %>
+          <div class="form-group">
+            <label for="username" class="col-md-2 control-label">Email</label>
+            <div class="col-md-10"><%= f.text_field :email, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label for="fullname" class="col-md-2 control-label">Full Name</label>
+            <div class="col-md-10"><%= f.text_field :fullname, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label for="organization" class="col-md-2 control-label">Organization</label>
+            <div class="col-md-10"><%= f.text_field :organization, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label for="location" class="col-md-2 control-label">Location</label>
+            <div class="col-md-10"><%= f.text_field :location, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label for="about" class="col-md-2 control-label">About</label>
+            <div class="col-md-10"><%= f.text_area :about, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label visible-md visible-lg"></label>
+            <div class="col-md-10">
+              <input class="btn btn-primary" type="submit" value="Save Profile" />
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="password">
+        <h3>Change Password</h3>
+        <br />
+        <%= form_for @user, :url => '', :html => {:class => 'form-horizontal'} do |f| %>
+          <div class="form-group">
+            <label for="current_password" class="col-xs-3 control-label">Current password</label>
+            <div class="col-xs-9"><%= f.password_field :current_password, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-xs-3 control-label">New password</label>
+            <div class="col-xs-9"><%= f.password_field :password, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label for="password_confirmation" class="col-xs-3 control-label">Confirm new password</label>
+            <div class="col-xs-9"><%= f.password_field :password_confirmation, :class => 'form-control' %></div>
+          </div>
+          <div class="form-group">
+            <label class="col-xs-3 control-label"></label>
+            <div class="col-xs-9">
+              <input class="btn btn-primary" type="submit" value="Change Password" />
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="ssh">
+        <h3>SSH Keys</h3>
+        <br />
+        These are required to read and modify your SciGit projects using the command-line Git tool.<br />
+        You can find your public key in <code>~/.ssh/id_rsa.pub</code> - if it does not exist, you'll have to generate it
+        using <code>ssh-keygen</code>. <br />
+        <br />
+
+        <%= form_tag do %>
+          <table class="table table-bordered">
+            <tr>
+              <th>Name</th>
+              <th>Public Key</th>
+              <th>Actions</th>
+            </tr>
+            <% if @public_keys.empty? %>
+            <% else %>
+              <% @public_keys.each do |key| %>
+                <tr>
+                  <td><%= key.name %></td>
+                  <td><%= key.key_type %> <%= truncate key.public_key, :length => 15 %> <%= key.comment %></td>
+                  <td>
+                    <button type="submit" name="delete_public_key" value="<%= key.id %>" class="btn btn-danger btn-xs pull-right">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        <% end %>
+
+        <button type="button" class="btn btn-success">Add Public Key</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,10 @@ SciGit::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => 'users/registrations', :sessions => 'users/sessions' }
 
-  devise_scope :users do
-    get 'users/autocomplete_user_email', :to => 'users/registrations#autocomplete_user_email', :as => 'autocomplete_user_email'
-    get 'users/:id' => 'users/registrations#show', :as => 'user'
-  end
+  get 'users/autocomplete_user_email' => 'users#autocomplete_user_email'
+  get 'users/:id' => 'users#show'
+  get 'users/settings' => 'users#settings'
+  post 'users/settings' => 'users#update_settings'
 
   resources :projects do
     resources :project_changes, :path => 'changes', :as => 'changes' do
