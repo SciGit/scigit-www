@@ -12,7 +12,7 @@ hookSubmitAddMember = ->
   $('#addMemberModal .btnSubmit').click submitAddMemberForm
 
 hookTypeaheadForMemberAdd = ->
-  $('#addMemberModal').on 'shown', ->
+  $('#addMemberModal').on 'shown.bs.modal', ->
     checkIfQueryIsValidEmail = ->
       regex = /\S+@\S+\.\S+/
       return regex.test($('#project_permission_user_attributes_email').data('typeahead').query)
@@ -24,7 +24,7 @@ hookTypeaheadForMemberAdd = ->
 
     indicateButton = (btnClass, iconClass, showPopover = null) ->
       $('#btnFindMember').removeClass('btn-info btn-success btn-danger btn-primary').addClass(btnClass)
-      $('#btnFindMember i').removeClass('icon-search icon-spin icon-spinner icon-remove icon-ok').addClass(iconClass)
+      $('#btnFindMember i').removeClass('fa-search fa-spin fa-spinner fa-cross-circle fa-check-circle').addClass(iconClass)
 
       if showPopover == true
         $('#findMember').popover('show')
@@ -33,13 +33,13 @@ hookTypeaheadForMemberAdd = ->
         $('#findMember').popover('hide')
 
     indicateSearch = ->
-      indicateButton('btn-info', 'icon-search', false)
+      indicateButton('btn-info', 'fa-search', false)
     indicateLoading = ->
-      indicateButton('btn-primary', 'icon-spin icon-spinner')
+      indicateButton('btn-primary', 'fa-spin fa-spinner')
     indicateNotFound = (showPopover) ->
-      indicateButton('btn-danger', 'icon-remove', showPopover)
+      indicateButton('btn-danger', 'fa-cross-circle', showPopover)
     indicateFound = ->
-      indicateButton('btn-success', 'icon-ok', false)
+      indicateButton('btn-success', 'fa-check-circle', false)
 
     closePopovers = (excludeFindMember = false) ->
       $('#findMember').popover('hide') if !excludeFindMember

@@ -11,69 +11,65 @@
           <h3>Find or Invite Member</h3>
           <p>Search for a member. If they're not already part of SciGit, you can also invite them.</p>
           <% # Use a surrounding div to encapsulate a popover, since we can't have multiple popovers attached to a DOM element. %>
-          <div id="findMember" class="inline-block">
-            <div id="invalidEmailPopover" class="btn-group">
+          <div id="findMember">
+            <div id="invalidEmailPopover" class="input-group">
               <%= f.fields_for :user do |builder| %>
                 <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
-                    :data => {:target => ''} %>
+                    :data => {:target => autocomplete_user_email_path}, :class => "form-control" %>
               <% end %>
-              <%= link_to raw('<i class="icon-search icon-large icon-fixed-width"></i>'), '', :id => 'btnFindMember', :class => 'btn btn-info' %>
+              <span class="input-group-btn">
+                <%= link_to '', :id => 'btnFindMember', :class => 'btn btn-info' do %>
+                  <%= fa_icon "search", :class => "fa-fw" %>
+                <% end %>
+              </span>
             </div>
           </div>
         </div>
         <div class="well">
-          <h3 class="center">Choose Member Permissions<a id="permissionHeader"></a></h3>
-          <div class="separator-small"></div>
+          <h3 id="permissionHeader">Choose Member Permissions</h3>
           <div class="row-fluid">
-            <div class="permission span3 center">
-              <h4><i class="black icon-wrench"></i> Manager</h4>
-              <div class="powers-list">
-                <ul>
-                  <li>Edit project settings.</li>
-                  <li>Add/remove members.</li>
-                </ul>
-              </div>
+            <div class="col-md-3">
+              <h4><%= fa_icon "wrench" %> Manager</h4>
+              <ul>
+                <li>Edit project settings.</li>
+                <li>Add/remove members.</li>
+              </ul>
               <%= link_to raw(f.radio_button(:permission, '1') + ' Select'), '',
-                  :class => 'btn btn-large btn-info' %>
+                  :class => 'btn btn-default' %>
             </div>
-            <div class="permission span3 center">
-              <h4><i class="black icon-edit"></i> Coauthor</h4>
-              <div class="powers-list">
-                <ul>
-                  <li>Make changes to files.</li>
-                  <li>Invite subscribers.</li>
-                </ul>
-              </div>
+            <div class="col-md-3">
+              <h4><%= fa_icon "pencil" %> Coauthor</h4>
+              <ul>
+                <li>Make changes to files.</li>
+                <li>Invite subscribers.</li>
+              </ul>
               <%= link_to raw(f.radio_button(:permission, '2') + ' Select'), '',
-                  :class => 'btn btn-large btn-info' %>
+                  :class => 'btn btn-default' %>
             </div>
-            <div class="permission span3 center">
-              <h4><i class="black icon-eye-open"></i> Reader</h4>
-              <div class="powers-list">
-                <ul>
-                  <li>See private projects.</li>
-                  <li>Member on project page.</li>
-                </ul>
-              </div>
+            <div class="col-md-3">
+              <h4><%= fa_icon "eye-o" %> Reader</h4>
+              <ul>
+                <li>See private projects.</li>
+                <li>Member on project page.</li>
+              </ul>
               <%= link_to raw(f.radio_button(:permission, '3') + ' Select'), '',
-                  :class => 'btn btn-large btn-info' %>
+                  :class => 'btn btn-default' %>
             </div>
-            <div class="permission span3 center <% if not @project.public %>extra-faded<% end %>"
+            <div class="col-md-3 <% if not @project.public %>extra-faded<% end %>"
              <% if not @project.public %>
              data-toggle="popover" data-content="You cannot add subscribers to private projects." data-original-title="Private Project"
              data-placement="left" data-trigger="hover"
              <% end %> >
-              <h4><i class="black icon-bookmark-empty"></i> Subscriber</h4>
-              <div class="powers-list">
-                <ul>
-                  <li>Track project updates.</li>
-                  <li>Notified for activity.</li>
-                </ul>
-              </div>
+              <h4><%= fa_icon "bookmark-empty" %> Subscriber</h4>
+              <ul>
+                <li>Track project updates.</li>
+                <li>Notified for activity.</li>
+              </ul>
               <%= link_to raw(f.radio_button(:permission, '4') + ' Select'), '',
-                  :class => 'btn btn-large btn-info', :disabled => !@project.public %>
+                  :class => 'btn btn-default', :disabled => !@project.public %>
             </div>
           </div>
+          <div style="clear: both;"></div>
         </div>
       <% end %>
     </div>
