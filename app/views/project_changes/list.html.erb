@@ -2,7 +2,7 @@
   <div class="well-list-item">
     <div class="well-list-item-inner"
      data-change_id="<%= project_change.id %>" data-proj_id="<%= project_change.project_id %>">
-      <%= link_to project_change.user.fullname, user_path(project_change.user.id) %> updated:
+      <%= link_to project_change.user.fullname, users_path(project_change.user.id) %> updated:
       <div class="buttons shrink">
         <div class="date">
           <%= time_ago_in_words(project_change.commit_timestamp) %> ago

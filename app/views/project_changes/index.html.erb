@@ -45,7 +45,7 @@
                       <%= visible_text %>
                     </div>
                     <div class="info">
-                      by <%= link_to project_change.user.fullname, user_path(project_change.user) %>, 
+                      by <%= link_to project_change.user.fullname, users_path(project_change.user) %>, 
                       <%= time_ago_in_words(project_change.commit_timestamp) %> ago
                     </div>
                   </div>

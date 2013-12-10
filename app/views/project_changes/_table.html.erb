@@ -13,7 +13,7 @@
               <%= link_to update.project.name, project_path(update.project.id) %>
             </div>
             <div class="subtitle">
-              <%= link_to update.user.fullname, user_path(update.user_id) %> made change:
+              <%= link_to update.user.fullname, users_path(update.user_id) %> made change:
             </div>
           </div>
           <div class="date pull-right"><%= distance_of_time_in_words(Time.now, Time.at(update.commit_timestamp)) %> ago</div>

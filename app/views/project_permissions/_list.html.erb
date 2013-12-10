@@ -31,7 +31,7 @@
                 <%= fa_icon "eye", :class => "fa-fw" %>
               </span>
             <% end %>
-            &nbsp;&nbsp;<%= link_to member.fullname, user_path(member.id) %>
+            &nbsp;&nbsp;<%= link_to member.fullname, users_path(member.id) %>
           </div>
           <% if can? :manage, @project %>
             <div class="well-list-item-buttons">
