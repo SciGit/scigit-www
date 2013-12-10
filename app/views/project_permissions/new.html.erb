@@ -13,9 +13,12 @@
           <% # Use a surrounding div to encapsulate a popover, since we can't have multiple popovers attached to a DOM element. %>
           <div id="findMember">
             <div id="invalidEmailPopover" class="input-group">
-              <%= f.fields_for :user do |builder| %>
-                <%= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
+              <%#= f.fields_for :user do |builder| %>
+                <%#= builder.text_field :email, :placeholder => 'Name or Email', :maxlength => 40, :autocomplete => 'off',
                     :data => {:target => autocomplete_user_email_path}, :class => "form-control" %>
+              <%# end %>
+              <%= f.fields_for :user do |builder| %>
+                <%= builder.autocomplete_field :email, autocomplete_user_email_path, :class => "form-control" %>
               <% end %>
               <span class="input-group-btn">
                 <%= link_to '', :id => 'btnFindMember', :class => 'btn btn-info' do %>

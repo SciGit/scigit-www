@@ -22,6 +22,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jQuery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -57,7 +58,7 @@ gem 'thin'
 gem 'thrift'
 
 # jQuery autocomplete, with ActiveRecord support.
-gem 'rails3-jquery-autocomplete'
+gem 'rails3-jquery-autocomplete', github: 'crowdint/rails3-jquery-autocomplete'
 
 # Diff/LCS algorithm
 gem 'diff-lcs'
