@@ -25,12 +25,12 @@ window.ajaxFormSubmit = (container, form) ->
 
     list = '<ul>'
     for field, error of response
-      field = field.substr(0, 1).toUpperCase() + field.substr(1)
+      field = field.substr(0, 1).toUpperCase() + field.substr(1).replace(/_/g, ' ')
       list += '<li><strong>' + field + '</strong> ' + error + '</li>'
     list += '</ul>'
 
     return '<strong>' + field + '</strong> ' + error if Object.keys(response).length <= 1
-    return list
+    return 'Please fix the following errors:' + list
 
   parseResponseText = (data, response) ->
     if response == 'success' then parseSuccessResponseText(data) else parseErrorResponseText(data)
@@ -47,7 +47,7 @@ window.ajaxFormSubmit = (container, form) ->
   btnSubmit.addClass('disabled')
   btnCancel.addClass('disabled')
 
-  container.on('click', '.btnSubmit, .btnCancel', ->
+  container.on('click', '.btnSubmit, .btnCancel', (e) ->
     e.preventDefault()
   )
 
@@ -74,3 +74,14 @@ window.ajaxFormSubmit = (container, form) ->
       alertError.find('p').html(parseResponseText(data, response))
       alertError.removeClass('hide')
     ,
+
+$(document).on 'ready page:load', ->
+  # Find all buttons with ajax-submit on them; automatically trigger the ajaxSubmit function.
+  $('[ajax-submit]').each ->
+    self = $(@)
+    self.click (e) ->
+      selector = self.attr('ajax-submit')
+      container = self.parents(selector)
+      form = self.parents('form')
+      window.ajaxFormSubmit(container, form)
+      e.preventDefault()

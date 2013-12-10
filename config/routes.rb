@@ -5,9 +5,13 @@ SciGit::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => 'users/registrations', :sessions => 'users/sessions' }
 
   get 'users/autocomplete_user_email' => 'users#autocomplete_user_email', :as => 'autocomplete_user_email'
+  get 'users/settings' => 'users#settings'
+  patch 'users/settings' => 'users#update_settings'
+  patch 'users/settings/profile' => 'users#update_profile'
+  patch 'users/settings/change_password' => 'users#change_password'
+  delete 'users/settings/public_keys' => 'users#delete_public_key'
+  put 'users/settings/public_keys' => 'users#add_public_key'
   get 'users/:id' => 'users#show', :as => 'users'
-  get 'users/settings' => 'users#settings', :as => 'users_settings'
-  post 'users/settings' => 'users#update_settings', :as => 'users_update_settings'
 
   resources :projects do
     resources :project_changes, :path => 'changes', :as => 'changes' do

@@ -5,10 +5,22 @@
     margin-bottom: 0px;
   }
 
+  h1 {
+    // XXX: this can be changed when the other page headers are changed
+    margin-bottom: 15px;
+  }
+
   .nav {
-    padding-top: 15px;
+    padding-right: 0px;
     border-right: 1px solid #eee;
     height: 400px;
+
+    li {
+      margin-top: 0px;
+      a {
+        border-radius: 0;
+      }
+    }
   }
 
   .tab-content {
