@@ -58,7 +58,7 @@ gem 'thin'
 gem 'thrift'
 
 # jQuery autocomplete, with ActiveRecord support.
-gem 'rails3-jquery-autocomplete', github: 'crowdint/rails3-jquery-autocomplete'
+gem 'rails3-jquery-autocomplete'
 
 # Diff/LCS algorithm
 gem 'diff-lcs'
