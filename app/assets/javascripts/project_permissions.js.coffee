@@ -15,7 +15,7 @@ hookTypeaheadForMemberAdd = ->
   $('#addMemberModal').on 'shown.bs.modal', ->
     checkIfQueryIsValidEmail = ->
       regex = /\S+@\S+\.\S+/
-      return regex.test($('#project_permission_user_attributes_email').data('typeahead').query)
+      return regex.test($('#project_permission_user_attributes_email').val())
 
     # XXX: Hack. We should investigate why modals are being closed on any
     # button press. It seems that if they don't have an href element,
@@ -49,8 +49,8 @@ hookTypeaheadForMemberAdd = ->
 
     styleButtonAsAddMember = ->
       closePopovers()
-      $('#addMemberModal .btnSubmit').removeClass('btn-success btn-danger disabled').addClass('btn-primary')
-                                     .html('Add Member').prop('disabled', false)
+      $('#addMemberModal .btnSubmit').removeClass('btn-danger disabled').addClass('btn-success')
+                                     .html('Add Member')
                                      .data('invite', false)
     styleButtonAsInvite = ->
       button = $('#addMemberModal .btnSubmit')
@@ -73,14 +73,15 @@ hookTypeaheadForMemberAdd = ->
       html: true,
       title: 'Not Found',
       trigger: 'manual',
+      placement: 'left',
       content: '<div class="text-center"><p>You can invite this person to SciGit</p><a id="btnInviteMember" class="btn btn-success">Invite</a></div>',
 
     $('#permissionHeader').popover
       html: true,
       title: 'Choose a Permission',
       trigger: 'manual',
-      placement: 'right',
-      content: '<h6>Please choose a permission for this person when they join</h6>',
+      placement: 'top',
+      content: 'Please choose a permission for this person that they will get when they join.',
 
     $('#addMemberModal .btnSubmit').popover
       html: true,
@@ -93,7 +94,7 @@ hookTypeaheadForMemberAdd = ->
       html: true,
       title: 'Invalid Email Address',
       trigger: 'manual',
-      placement: 'right',
+      placement: 'left',
       content: 'Please enter a valid email address (ex. john@gmail.com)'
 
     hookPermissionButtonClick = ->
@@ -151,52 +152,89 @@ hookTypeaheadForMemberAdd = ->
 
     $('#addMemberModal').on('keypress', '#project_permission_user_attributes_email', indicateLoading)
 
-    $('#project_permission_user_attributes_email').autocomplete(
-      source: (query, process) =>
-        results = []
-        $.ajax
-          url: $('#project_permission_user_attributes_email').data('target')
-          type: 'GET',
-          dataType: 'json',
-          data: { term: query.term }
-          success: (data) ->
-            previousResults = data
+    $('#project_permission_user_attributes_email').typeahead(
+      name: 'user',
+      remote:
+        url: $('#project_permission_user_attributes_email').data('target') + '?term=%QUERY',
+        filter: (parsedResponse) ->
+          console.log parsedResponse
 
-            for _, result of data
-              results.push(result.label)
+          dataLength = Object.keys(parsedResponse).length
 
-            dataLength = Object.keys(data).length
-
-            if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
-              styleButtonAsInvite()
-              if checkIfQueryIsValidEmail()
-                indicateFound()
-                hookPermissionButtonClick()
-              else
-                indicateNotFound(false) # don't show the "Not Found, Invite" popover
-                $('#addMemberModal .btnSubmit').popover('hide')
-                $('#permissionHeader').popover('hide')
-                $('#invalidEmailPopover').popover('show')
+          if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
+            styleButtonAsInvite()
+            if checkIfQueryIsValidEmail()
+              indicateFound()
+              hookPermissionButtonClick()
             else
-              closePopovers(true) # exclude the "User Not Found" popover
-              styleButtonAsAddMember() if dataLength > 0
-              switch dataLength
-                when 0 then indicateNotFound(true) # show the "Not Found, Invite" popover
-                when 1 then indicateFound()
-                else indicateSearch()
+              indicateNotFound(false) # don't show the "Not Found, Invite" popover
+              $('#addMemberModal .btnSubmit').popover('hide')
+              $('#permissionHeader').popover('hide')
+              $('#invalidEmailPopover').popover('show')
+          else
+            closePopovers(true) # exclude the "User Not Found" popover
+            styleButtonAsAddMember() if dataLength > 0
+            switch dataLength
+              when 0 then indicateNotFound(true) # show the "Not Found, Invite" popover
+              when 1 then indicateFound()
+              else indicateSearch()
 
-            # Hack. Focus on the input element after a set of elements is processed.
-            setTimeout( ->
-              $('#project_permission_user_attributes_email').focus()
-            , 50)
+          # Hack. Focus on the input element after a set of elements is processed.
+          setTimeout( ->
+            $('#project_permission_user_attributes_email').focus()
+          , 50)
 
-            return process(results)
-      ,
-      select: (item) ->
-        indicateFound()
-        return findResultWithLabel(item).email
-      ,
+          parsedResponse
+    ).on('typeahead:selected', (item, items) ->
+      indicateFound()
     )
+#     source: (query, process) =>
+#       results = []
+#       $.ajax
+#         url: $('#project_permission_user_attributes_email').data('target')
+#         type: 'GET',
+#         dataType: 'json',
+#         data: { term: query.term }
+#         success: (data) ->
+#           previousResults = data
+
+#           for _, result of data
+#             results.push(result.label)
+
+#           dataLength = Object.keys(data).length
+
+#           if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
+#             styleButtonAsInvite()
+#             if checkIfQueryIsValidEmail()
+#               indicateFound()
+#               hookPermissionButtonClick()
+#             else
+#               indicateNotFound(false) # don't show the "Not Found, Invite" popover
+#               $('#addMemberModal .btnSubmit').popover('hide')
+#               $('#permissionHeader').popover('hide')
+#               $('#invalidEmailPopover').popover('show')
+#           else
+#             closePopovers(true) # exclude the "User Not Found" popover
+#             styleButtonAsAddMember() if dataLength > 0
+#             switch dataLength
+#               when 0 then indicateNotFound(true) # show the "Not Found, Invite" popover
+#               when 1 then indicateFound()
+#               else indicateSearch()
+
+#           # Hack. Focus on the input element after a set of elements is processed.
+#           setTimeout( ->
+#             $('#project_permission_user_attributes_email').focus()
+#           , 50)
+
+#           return process(results)
+#     ,
+#     select: (item) ->
+#       indicateFound()
+#       return findResultWithLabel(item).email
+#     ,
+#     change: (event, ui) ->
+#       console.log event
+#   )
 
 $(document).on 'ready page:load', () ->
   hookTypeaheadForMemberAdd()

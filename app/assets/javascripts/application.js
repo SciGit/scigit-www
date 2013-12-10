@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require jquery.infinite-scroll-helper
 //= require twitter/bootstrap
+//= require twitter/typeahead
 //= require autocomplete-rails
 //= require scigit
 //= require_tree .

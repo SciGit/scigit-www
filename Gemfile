@@ -41,6 +41,9 @@ gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails'
 # Need GitHub version for this to work. Likely an issue with Rails 4.0.
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 
+# Typeahead module replacing Bootstrap 2's typeahead.
+gem 'twitter-typeahead-rails'
+
 # User authentication and registration.
 gem 'devise'
 

@@ -2,33 +2,35 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3>Add Member</h3>
+      <h2>Add Member</h2>
     </div>
     <div class="modal-body">
       <%= form_for @project_permission, :html => {:id => 'addMemberForm'} do |f| %>
         <%= render :partial => 'shared/form_alerts' %>
-        <div class="center well">
+        <div class="well">
           <h3>Find or Invite Member</h3>
           <p>Search for a member. If they're not already part of SciGit, you can also invite them.</p>
-          <% # Use a surrounding div to encapsulate a popover, since we can't have multiple popovers attached to a DOM element. %>
-          <div id="findMember">
-            <div id="invalidEmailPopover" class="input-group">
-              <%= f.fields_for :user do |builder| %>
-                <%= builder.text_field :email, :placeholder => "Name or Email", :class => "form-control",
-                  :data => {:target => autocomplete_user_email_path, "update-elements" => "{'id': '#lolidontexist', 'slogan': 'lol'}"} %>
-              <% end %>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">hi</a></li>
-              </ul>
-              <span class="input-group-btn">
-                <%= link_to '#', :id => 'btnFindMember', :class => 'btn btn-primary' do %>
-                  <%= fa_icon "search", :class => "fa-fw" %>
-                <% end %>
-              </span>
+          <div class="row-fluid">
+            <div class="col-md-6 col-md-offset-3">
+              <% # Use a surrounding div to encapsulate a popover, since we can't have multiple popovers attached to a DOM element. %>
+              <div id="findMember">
+                <div id="invalidEmailPopover" class="input-group">
+                  <%= f.fields_for :user do |builder| %>
+                    <%= builder.text_field :email, :placeholder => "Name or Email", :class => "form-control",
+                        :data => {:target => autocomplete_user_email_path} %>
+                  <% end %>
+                  <span class="input-group-btn">
+                    <%= link_to '#', :id => 'btnFindMember', :class => 'btn btn-primary' do %>
+                      <%= fa_icon "search", :class => "fa-fw" %>
+                    <% end %>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
+          <div class="row-clear"></div>
         </div>
-        <div class="well">
+        <div id="addMemberPermissions" class="well">
           <h3 id="permissionHeader">Choose Member Permissions</h3>
           <div class="row-fluid">
             <div class="col-md-3">
@@ -77,7 +79,7 @@
       <% end %>
     </div>
     <div class="modal-footer">
-      <%= link_to 'Add Member', '', :class => 'btn btn-primary btnSubmit' %>
+      <%= link_to 'Add Member', '', :class => 'btn btn-success btnSubmit disabled' %>
       <%= link_to 'Cancel', '', :class => 'btn btn-default btnCancel', :data => {:dismiss => 'modal'} %>
     </div>
   </div>

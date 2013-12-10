@@ -15,7 +15,7 @@ body {
     }
 
     @include respond-to(desktops, widescreens) {
-      width: 800px;
+      width: 900px;
     }
   }
 }
