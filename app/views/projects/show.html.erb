@@ -63,7 +63,7 @@
 
     <%= render :partial => 'project_permissions/list', :locals => {
           :project => @project,
-          :members => @members,
+          :permissions => @permissions,
         }
      %>
 
@@ -77,15 +77,15 @@
         <div class="well-list-item-inner well-list-item-empty">
           <div class="row-fluid">
             <div class="col-md-4">
-              <h3><%= @numSubscribers %></h3>
+              <h3><%= @subscribers.count %></h3>
               <p>Subscribers</p>
             </div>
             <div class="col-md-4">
-            <h3><%= @members.count %></h3>
+            <h3><%= @permissions.count %></h3>
               <p>Coauthors</p>
             </div>
             <div class="col-md-4">
-              <h3><%= @numMembers %></h3>
+              <h3><%= @members.count %></h3>
               <p>Total Members</p>
             </div>
           </div>

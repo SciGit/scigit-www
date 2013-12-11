@@ -1,12 +1,6 @@
 class Ability
   include CanCan::Ability
 
-  def user_has_permission(user, project, minimum)
-    permission = ProjectPermission.get_user_permission(user, project)
-    return false if permission.nil? or permission.permission < minimum
-    return true
-  end
-
   def initialize(user)
     user ||= User.new
 
@@ -18,15 +12,29 @@ class Ability
     end
 
     can :manage, Project, Project do |project|
-      user_has_permission(user, project, ProjectPermission::OWNER)
+      permission = ProjectPermission.get_user_permission(user, project)
+      permission.permission == ProjectPermission::OWNER
     end
 
     can :update, Project, Project do |project|
-      user_has_permission(user, project, ProjectPermission::COAUTHOR)
+      permission = ProjectPermission.get_user_permission(user, project)
+      permission.permission == ProjectPermission::OWNER ||
+        permission.permission == ProjectPermission::COAUTHOR
     end
 
     can :read, Project, Project do |project|
-      user_has_permission(user, project, ProjectPermission::SUBSCRIBER)
+      permission = ProjectPermission.get_user_permission(user, project)
+      permission.permission == ProjectPermission::SUBSCRIBER || project.public
+    end
+
+    can :subscribe, Project, Project do |project|
+      permission = ProjectPermission.get_user_permission(user, project)
+      permission.nil? && project.public
+    end
+
+    can :subscribed, Project, Project do |project|
+      permission = ProjectPermission.get_user_permission(user, project)
+      permission == ProjectPermission::SUBSCRIBER && project.public
     end
 
     # Define abilities for the passed in user here. For example:

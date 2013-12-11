@@ -13,7 +13,8 @@
       </div>
     </div>
   </div>
-  <% members.each do |member| %>
+  <% permissions.each do |permission| %>
+    <% member = permission.user %>
     <div class="well-list-item">
       <div class="well-list-item-inner">
         <div class="well-list-item-grid">
@@ -39,13 +40,13 @@
                data-user_id="<%= member.id %>" data-user_name="<%= member.email %>"
                data-original-title="Edit <%= member.email %>'s permissions"
                data-toggle="modal tooltip"
-               <% if cannot? :manage, member %>disabled="disabled"<% end %>>
+               <% if cannot? :manage, permission %>disabled="disabled"<% end %>>
                 <%= fa_icon "pencil" %>
               </a>
               <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="<%= member.id %>"
                data-original-title="Remove <%= member.email %> from project"
                data-toggle="tooltip"
-               <% if cannot? :manage, member %>disabled="disabled"<% end %>>
+               <% if cannot? :manage, permission %>disabled="disabled"<% end %>>
                 <%= fa_icon "trash-o" %>
               </a>
             </div>

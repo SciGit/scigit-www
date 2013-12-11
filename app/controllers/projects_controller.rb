@@ -12,23 +12,25 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @my_projects = Project.all_manager_of(current_user)
-    @subscriptions = Project.all_subscribed_to(current_user)
+    project_permissions = ProjectPermission.where(:user => current_user)
+    @my_projects = project_permissions.select{ |pp| pp.user.can? :manage, pp.project }.map(&:project)
+    @subscriptions = project_permissions.select{ |pp| pp.user.can?([:subscribed, :update], pp.project) }.map(&:project)
   end
 
   # GET /projects/public
   # GET /projects/public.json
   def public
-    @public_projects = Project.all_public
+    @public_projects = Project.where(:public => true)
     @featured_projects = []
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @members = ProjectPermission.all_project_managers(@project)
-    @numSubscribers = ProjectPermission.all_project_subscribers(@project).count
-    @numMembers = ProjectPermission.all_project_members(@project).count
+    project_permissions = ProjectPermission.where(:project => @project)
+    @permissions = project_permissions.select{ |pp| pp.user.can? :read, pp.project }
+    @subscribers = project_permissions.select{ |pp| pp.user.can? :subscribed, pp.project }
+    @members = project_permissions.select{ |pp| pp.user.can? :update, pp.project }
     @changes = ProjectChange.all_project_updates(@project)
   end
 
