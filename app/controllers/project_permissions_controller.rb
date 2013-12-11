@@ -36,9 +36,11 @@ class ProjectPermissionsController < ApplicationController
 
     respond_to do |format|
       if @project_permission.save
-        @notice = "Member #{@project_permission.user[:name]} added successfully."
         format.html { redirect_to @project_permission, notice: 'Project permission was successfully created.' }
-        format.json { render }
+        format.json { render json: {
+          :redirect => project_path(project.id),
+          :notice => "#{user.email} has been added to #{project.name}.",
+        } }
       else
         format.html { render action: 'new' }
         format.json { render json: @project_permission.errors, status: :unprocessable_entity }

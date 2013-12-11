@@ -7,9 +7,9 @@
 window.ajaxFormSubmit = (container, form) ->
   parseSuccessResponseText = (data) ->
     spinner = '<i class="fa fa-spin fa-spinner"></i>'
-    if data.url?
+    if data.redirect?
       setTimeout( ->
-        Turbolinks.visit(data.url)
+        Turbolinks.visit(data.redirect)
       , 2000)
       return data.notice + ' Loading. ' + spinner
     else
