@@ -8,8 +8,8 @@ hookSubmitAddMember = ->
     window.ajaxFormSubmit($('#addMemberModal'), $('#addMemberForm'))
     return false
 
-  $('#addMemberModal').on('submit', '#addMemberForm', submitAddMemberForm)
-  $('#addMemberModal .btnSubmit').click submitAddMemberForm
+  $('#addMemberModal').on 'submit', '#addMemberForm', submitAddMemberForm
+  $('#addMemberModal').on 'click', '.btnSubmit', submitAddMemberForm
 
 hookTypeaheadForMemberAdd = ->
   $('#addMemberModal').on 'shown.bs.modal', ->
@@ -80,7 +80,7 @@ hookTypeaheadForMemberAdd = ->
       html: true,
       title: 'Choose a Permission',
       trigger: 'manual',
-      placement: 'top',
+      placement: 'left',
       content: 'Please choose a permission for this person that they will get when they join.',
 
     $('#addMemberModal .btnSubmit').popover
@@ -186,55 +186,12 @@ hookTypeaheadForMemberAdd = ->
 
           parsedResponse
     ).on('typeahead:selected', (item, items) ->
+      $('#project_permission_user_attributes_email').typeahead(
+        'setQuery',
+        $('#project_permission_user_attributes_email').val().match(/\(([^\)]+)\)/)[1]
+      )
       indicateFound()
     )
-#     source: (query, process) =>
-#       results = []
-#       $.ajax
-#         url: $('#project_permission_user_attributes_email').data('target')
-#         type: 'GET',
-#         dataType: 'json',
-#         data: { term: query.term }
-#         success: (data) ->
-#           previousResults = data
-
-#           for _, result of data
-#             results.push(result.label)
-
-#           dataLength = Object.keys(data).length
-
-#           if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
-#             styleButtonAsInvite()
-#             if checkIfQueryIsValidEmail()
-#               indicateFound()
-#               hookPermissionButtonClick()
-#             else
-#               indicateNotFound(false) # don't show the "Not Found, Invite" popover
-#               $('#addMemberModal .btnSubmit').popover('hide')
-#               $('#permissionHeader').popover('hide')
-#               $('#invalidEmailPopover').popover('show')
-#           else
-#             closePopovers(true) # exclude the "User Not Found" popover
-#             styleButtonAsAddMember() if dataLength > 0
-#             switch dataLength
-#               when 0 then indicateNotFound(true) # show the "Not Found, Invite" popover
-#               when 1 then indicateFound()
-#               else indicateSearch()
-
-#           # Hack. Focus on the input element after a set of elements is processed.
-#           setTimeout( ->
-#             $('#project_permission_user_attributes_email').focus()
-#           , 50)
-
-#           return process(results)
-#     ,
-#     select: (item) ->
-#       indicateFound()
-#       return findResultWithLabel(item).email
-#     ,
-#     change: (event, ui) ->
-#       console.log event
-#   )
 
 $(document).on 'ready page:load', () ->
   hookTypeaheadForMemberAdd()

@@ -6,7 +6,7 @@
 #  param @form         the form to be submitted via AJAX
 window.ajaxFormSubmit = (container, form) ->
   parseSuccessResponseText = (data) ->
-    spinner = '<i class="icon-spin icon-spinner"></i>'
+    spinner = '<i class="fa fa-spin fa-spinner"></i>'
     if data.url?
       setTimeout( ->
         Turbolinks.visit(data.url)
@@ -43,7 +43,7 @@ window.ajaxFormSubmit = (container, form) ->
   alertError = container.find('.alert-danger')
 
   btnSubmitText = btnSubmit.html()
-  btnSubmit.html('<i class="icon-spin icon-spinner"></i> Loading')
+  btnSubmit.html('<i class="fa fa-spin fa-spinner"></i> Loading')
   btnSubmit.addClass('disabled')
   btnCancel.addClass('disabled')
 

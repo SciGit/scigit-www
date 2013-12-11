@@ -21,6 +21,6 @@ class User < ActiveRecord::Base
   end
 
   def composite_fullname_email
-    "#{self.fullname} <#{self.email}>"
+    "#{self.fullname} (#{self.email})"
   end
 end
