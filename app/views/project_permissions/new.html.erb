@@ -17,7 +17,7 @@
                 <div id="invalidEmailPopover" class="input-group">
                   <%= f.fields_for :user do |builder| %>
                     <%= builder.text_field :email, :placeholder => "Name or Email", :class => "form-control",
-                        :data => {:target => autocomplete_user_email_path} %>
+                        :data => {:target => autocomplete_user_path} %>
                   <% end %>
                   <span class="input-group-btn">
                     <%= link_to '#', :id => 'btnFindMember', :class => 'btn btn-primary' do %>

@@ -157,8 +157,6 @@ hookTypeaheadForMemberAdd = ->
       remote:
         url: $('#project_permission_user_attributes_email').data('target') + '?term=%QUERY',
         filter: (parsedResponse) ->
-          console.log parsedResponse
-
           dataLength = Object.keys(parsedResponse).length
 
           if dataLength == 0 && $('#addMemberModal .btnSubmit').data('invite')
@@ -186,10 +184,6 @@ hookTypeaheadForMemberAdd = ->
 
           parsedResponse
     ).on('typeahead:selected', (item, items) ->
-      $('#project_permission_user_attributes_email').typeahead(
-        'setQuery',
-        $('#project_permission_user_attributes_email').val().match(/\(([^\)]+)\)/)[1]
-      )
       indicateFound()
     )
 

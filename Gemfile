@@ -60,9 +60,6 @@ gem 'kaminari'
 gem 'thin'
 gem 'thrift'
 
-# jQuery autocomplete, with ActiveRecord support.
-gem 'rails3-jquery-autocomplete'
-
 # Diff/LCS algorithm
 gem 'diff-lcs'
 

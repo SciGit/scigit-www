@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  autocomplete :user, :email, :extra_data => [:email, :fullname], :display_value => :composite_fullname_email
+
+  # TODO: This is really bad for perf.
+  def autocomplete_composite_fullname_email
+    term = params[:term]
+    @users = User.select("fullname, email").select{ |u| u.composite_fullname_email.include?(term) }.map(&:composite_fullname_email)
+    render json: @users
+  end
 
   def show
   end
