@@ -109,9 +109,11 @@
         <div class="well-list-header-inner">
           <div class="well-list-header-buttons">
             <h3>Last Change</h3>
-            <a class="btn btn-primary btn-valign center" href="<%= project_changes_path(@project) %>">
-              View all
-            </a>
+            <% if @last_change %>
+              <a class="btn btn-primary btn-valign center" href="<%= project_changes_path(@project) %>">
+                View all
+              </a>
+            <% end %>
           </div>
         </div>
       </div>
