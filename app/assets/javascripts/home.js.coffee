@@ -3,12 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', () ->
-  $('[data-toggle~="tooltip"]').tooltip()
-  $('[data-toggle~="popover"]').popover()
+  $('[data-toggle*="tooltip"]').tooltip()
+  $('[data-toggle*="popover"]').popover()
 
   $('.modal').on 'shown.bs.modal', (e) ->
-    $(@).find('[data-toggle~="tooltip"]').tooltip()
-    $(@).find('[data-toggle~="popover"]').popover()
+    $(@).find('[data-toggle*="tooltip"]').tooltip()
+    $(@).find('[data-toggle*="popover"]').popover()
 
   $('#label-projects').click (e) ->
     if e.target == this or e.target.tagName.toLowerCase == 'div'

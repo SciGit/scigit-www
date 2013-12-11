@@ -10,16 +10,23 @@ class Ability
   def initialize(user)
     user ||= User.new
 
+    can :manage, ProjectPermission, ProjectPermission do |pp|
+      permission = ProjectPermission.get_user_permission(user, pp.project)
+      permission.permission == ProjectPermission::OWNER ||
+        (permission.permission > ProjectPermission::SUBSCRIBER &&
+         permission.permission > pp.permission)
+    end
+
     can :manage, Project, Project do |project|
-      user_has_permission(user, project, 3)
+      user_has_permission(user, project, ProjectPermission::OWNER)
     end
 
     can :update, Project, Project do |project|
-      user_has_permission(user, project, 2)
+      user_has_permission(user, project, ProjectPermission::COAUTHOR)
     end
 
     can :read, Project, Project do |project|
-      user_has_permission(user, project, 1)
+      user_has_permission(user, project, ProjectPermission::SUBSCRIBER)
     end
 
     # Define abilities for the passed in user here. For example:
