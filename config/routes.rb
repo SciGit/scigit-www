@@ -20,7 +20,7 @@ SciGit::Application.routes.draw do
       end
       member do
         get 'diff'
-        get 'file/*file', :action => 'file'
+        get 'file/*file', :action => 'file', :as => 'file'
       end
     end
 
@@ -29,6 +29,7 @@ SciGit::Application.routes.draw do
     member do
       get 'subscribe'
       get 'doc/:doc_hash/*file', :action => 'doc'
+      get 'files'
     end
 
     collection do

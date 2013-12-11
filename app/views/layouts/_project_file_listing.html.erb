@@ -1,0 +1,37 @@
+<div id="file-listing" class="well-list well-list-condensed">
+  <div class="well-list-header">
+    <div class="well-list-header-inner">
+      <h3>Project Files<%= !@path.blank? ? ': /' + @path : '' %></h3>
+    </div>
+  </div>
+  <div class="well-list-item">
+    <div class="well-list-item-inner">
+      <table class="table table-hover">
+        <% if !@path.blank? %>
+          <tr>
+            <td colspan="2">
+              <%= fa_icon('fw level-up') %>&nbsp;
+              <%= link_to 'Up one folder..', files_project_path(@project, {:path => @prev_path}) %>
+            </td>
+        <% end %>
+        <% if @file_listing.empty? %>
+          <tr>
+            <td colspan="2">This folder is currently empty.</td>
+          </tr>
+        <% else %>
+          <% @file_listing.each do |file| %>
+          <tr>
+            <td>
+              <%= fa_icon('fw ' + (file.type == 'tree' ? 'folder' : 'file-text-o')) %>&nbsp;
+              <%= link_to file.name, files_project_path(@project, {:path => file.path}) %>
+            </td>
+            <td class="file-size">
+              <%= file.type == 'tree' ? '-' : number_to_human_size(file.size) %>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

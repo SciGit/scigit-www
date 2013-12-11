@@ -1,4 +1,4 @@
-<div id="project_id" data-project_id="<%= @project.id %>"></div>
+<!-- <div id="project_id" data-project_id="<%= @project.id %>"></div> -->
 
 <%= render :partial => 'shared/breadcrumbs',
            :locals => { :paths => {
@@ -104,6 +104,37 @@
     </div>
   </div>
   <div class="col-md-8">
-    <%= render :partial => 'layouts/project_changes' %>
+    <div id="last-change" class="well-list well-list-condensed">
+      <div class="well-list-header">
+        <div class="well-list-header-inner">
+          <div class="well-list-header-buttons">
+            <h3>Last Change</h3>
+            <a class="btn btn-primary btn-valign center" href="<%= project_changes_path(@project) %>">
+              View all
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="well-list-item">
+        <div class="well-list-item-inner">
+          <% if @last_change.nil? %>
+            No changes have been made to this project.
+          <% else %>
+            <div class="pull-right">
+              <a class="btn btn-default" data-toggle="tooltip" title="View&nbsp;change"
+                 href="<%= project_change_path(@project, @last_change) %>">
+                <%= fa_icon 'search' %>
+              </a>
+            </div>
+            <%= link_to @last_change.user.fullname, users_path(@last_change.user) %> made the following change
+            <%= time_ago_in_words @last_change.commit_timestamp %> ago:
+            <div class="change-message">
+              <%= link_to @last_change.commit_msg, project_change_path(@project, @last_change) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => 'layouts/project_file_listing' %>
   </div>
 </div>

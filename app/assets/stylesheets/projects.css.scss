@@ -1,0 +1,50 @@
+@import 'include/mixins';
+
+#last-change {
+  .change-message {
+    a {
+      color: #999;
+    }
+  }
+}
+
+#file-display {
+  .well-list-item-inner {
+    padding: 0;
+  }
+
+  table {
+    margin-bottom: 0;
+
+    .line-number {
+      border-right: 1px solid #ddd;
+    }
+
+    .line-content {
+      width: 100%;
+    }
+
+    .line-number, .line-content {
+      padding: 2px 8px;
+      border-top: 0;
+    }
+  }
+}
+
+#file-listing {
+  .well-list-item-inner {
+    padding: 0;
+  }
+
+  table {
+    margin-bottom: 0;
+    i.fa {
+      color: #428bca; // same color as link
+    }
+
+    .file-size {
+      border-left: 1px solid #ddd;
+      width: 150px;
+    }
+  }
+}

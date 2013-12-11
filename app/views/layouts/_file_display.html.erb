@@ -1,0 +1,39 @@
+<% file_url = file_project_change_path(@project, @change, {:file => u(@path)}) %>
+<div id="file-display" class="well-list well-list-condensed">
+  <div class="well-list-header">
+    <div class="well-list-header-inner">
+      <div class="well-list-header-buttons">
+        <h3>View File: /<%= @path %></h3>
+        <a class="btn btn-primary btn-valign center" href="<%= file_url %>">
+          <%= fa_icon 'download' %>&nbsp;
+          Download file
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="well-list-item">
+    <div class="well-list-item-inner">
+      <table class="table table-hover">
+        <% if @file_data == 0 %>
+          <tr>
+            <td colspan="2">This is a binary file. Please <%= link_to 'download', file_url %> it to view it locally.</td>
+          </tr>
+        <% else %>
+          <% lines = @file_data.split("\n") %>
+          <% if lines.empty? %>
+            <tr>
+              <td colspan="2">This file is empty.</td>
+            </tr>
+          <% else %>
+            <% lines.each_with_index do |line, i| %>
+              <tr>
+                <td class="line-number"><%= i+1 %></td>
+                <td class="line-content"><%= line %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 require 'scigit/docstore'
+require_dependency 'scigit/git'
 
 class Project < ActiveRecord::Base
   has_many :user, :through => :project_permission
@@ -10,6 +11,21 @@ class Project < ActiveRecord::Base
 
   def get_doc_file(doc_hash, file)
     SciGit::DocStore.get_file(id, doc_hash, file)
+  end
+  
+  def get_file(path = '', change = nil)
+    commit_hash = change && change.commit_hash || 'HEAD'
+    return SciGit::Git.show(id, commit_hash, path)
+  end
+
+  def get_file_type(path = '', change = nil)
+    commit_hash = change && change.commit_hash || 'HEAD'
+    return SciGit::Git.file_type(id, commit_hash, path)
+  end
+
+  def get_file_listing(path = '', change = nil)
+    commit_hash = change && change.commit_hash || 'HEAD'
+    return SciGit::Git.file_listing(id, commit_hash, path)
   end
 
   def self.all_public(limit = nil)

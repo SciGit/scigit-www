@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :files, :update, :destroy]
   before_filter :authenticate_user!
   load_and_authorize_resource :only => [:show]
 
@@ -32,6 +32,8 @@ class ProjectsController < ApplicationController
     @subscribers = project_permissions.select{ |pp| pp.user.can? :subscribed, pp.project }
     @members = project_permissions.select{ |pp| pp.user.can? :update, pp.project }
     @changes = ProjectChange.all_project_updates(@project)
+    @last_change = @changes.first
+    @file_listing = @project.get_file_listing
   end
 
   # GET /projects/new
@@ -70,6 +72,24 @@ class ProjectsController < ApplicationController
         options[:type] = type
       end
       send_data file, options
+    end
+  end
+
+  # GET /projects/:id/files?path=..
+  def files
+    @change = ProjectChange.all_project_updates(@project).first
+    @path = params[:path] || ''
+    @prev_path = @path.split('/')[0..-2].join('/')
+    type = @project.get_file_type(@path)
+    if type.nil?
+      return head :not_found
+    elsif type == 'blob'
+      @file_data = @project.get_file(@path)
+      if @file_data.index("\0")
+        @file_data = 0
+      end
+    else
+      @file_listing = @project.get_file_listing(@path)
     end
   end
 
