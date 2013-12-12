@@ -45,9 +45,9 @@
       </div>
       <div class="well-list-item">
         <div class="well-list-item-inner well-list-item-empty">
-          <p id="description">
+          <span id="description">
             <%= @project.description.or('This project has no description.') %>
-          </p>
+          </span>
 
           <% if can? :manage, @project %>
             <%= form_tag('/projects/edit_description', :method => 'post', :class => 'hide') do %>
