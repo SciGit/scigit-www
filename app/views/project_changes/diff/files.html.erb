@@ -3,18 +3,20 @@
                                                                         :change => @project_change.id) %>
 </div>
 
-<% fileNum = 0
-   @fileTypes.each do |type, type_data|
-     unless @diff[type].empty? %>
-       <div class="change-type-header"><%= type_data[:name] %> Files</div>
-       <ul class="file-list">
-         <% @diff[type].each do |file| %>
-           <li><a class="hash-anchor" href="#change-file-<%= fileNum += 1 %>"><%= file.name %></a></li>
-         <% end %>
-       </ul>
+<% if @file.blank? %>
+  <% fileNum = 0
+     @fileTypes.each do |type, type_data|
+       unless @diff[type].empty? %>
+         <div class="change-type-header"><%= type_data[:name] %> Files</div>
+         <ul class="file-list">
+           <% @diff[type].each do |file| %>
+             <li><a class="hash-anchor" href="#change-file-<%= fileNum += 1 %>"><%= file.name %></a></li>
+           <% end %>
+         </ul>
+    <% end %>
   <% end %>
-<% end %>
 
-<% if fileNum == 0 %>
-  <div class="change-type-header">No files changed.</div>
+  <% if fileNum == 0 %>
+    <div class="change-type-header">No files changed.</div>
+  <% end %>
 <% end %>

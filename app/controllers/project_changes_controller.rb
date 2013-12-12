@@ -50,9 +50,10 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes/project/1/changes/1/diff.json
   def diff
     @project_change = ProjectChange.find(params[:id])
+    @file = params[:file]
     authorize! :read, @project_change
 
-    @diff = @project_change.diff(params[:file] || '')
+    @diff = @project_change.diff(@file || '')
     @fileTypes = {
       :createdFiles => {:name => 'Created', :label => 'success'},
       :deletedFiles => {:name => 'Deleted', :label => 'danger'},
