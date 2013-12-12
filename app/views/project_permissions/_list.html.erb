@@ -36,15 +36,14 @@
           </div>
           <% if can? :manage, @project %>
             <div class="well-list-item-buttons">
-              <a class="editMember btn btn-default" href="#editMember"
-               data-user_id="<%= member.id %>" data-user_name="<%= member.email %>"
-               data-original-title="Edit <%= member.email %>'s permissions"
-               data-toggle="modal tooltip"
+              <a class="btn btn-default" href="<%= edit_project_permission_path(project, permission) %>"
+               data-original-title="Edit <%= member.fullname %>'s permissions"
+               data-toggle="modal" rel="tooltip" data-target="#addMemberModal"
                <% if cannot? :manage, permission %>disabled="disabled"<% end %>>
                 <%= fa_icon "pencil" %>
               </a>
-              <a class="deleteMember btn-danger btn btn-small"
-               data-original-title="Remove <%= member.email %> from project" data-toggle="tooltip"
+              <a class="btn btn-danger"
+               data-original-title="Remove <%= member.fullname %> from project" data-toggle="tooltip"
                data-method="delete" href="<%= project_permission_path(project, permission) %>"
                data-confirm="Are you sure?"
                <% if cannot? :manage, permission %>disabled="disabled"<% end %>>

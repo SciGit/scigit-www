@@ -3,11 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', () ->
-  $('[data-toggle*="tooltip"]').tooltip(container: 'body')
+  $('[data-toggle*="tooltip"], [rel="tooltip"]').tooltip(container: 'body')
   $('[data-toggle*="popover"]').popover(container: 'body')
 
   $('.modal').on 'shown.bs.modal', (e) ->
-    $(@).find('[data-toggle*="tooltip"]').tooltip(container: '#' + $(@).attr('id') + ' .modal-content')
+    $(@).find('[data-toggle*="tooltip"], [rel="tooltip"]').tooltip(container: '#' + $(@).attr('id') + ' .modal-content')
     $(@).find('[data-toggle*="popover"]').popover(container: '#' + $(@).attr('id') + ' .modal-content')
 
   $('#label-projects').click (e) ->
@@ -34,3 +34,14 @@ $(document).on 'ready page:load', () ->
     window.location.hash = ''
     window.location.hash = $(this).prop('href').split('#')[1] || ''
     return false
+
+  # Force reloads of modals where the button clicked to trigger them specifies
+  # its own custom remote URL.
+  $('[data-toggle="modal"]').click (e) ->
+    href = $(@).attr("href")
+    target = $($(@).data("target"))
+    if href? && href != '#' && href != ''
+      target.load(href, -> target.modal("show"))
+    else
+      target.load(target.data("remote"), -> target.modal("show"))
+    e.preventDefault()

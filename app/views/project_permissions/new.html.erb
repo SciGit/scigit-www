@@ -5,7 +5,7 @@
       <h2>Add Member</h2>
     </div>
     <div class="modal-body">
-      <%= form_for @project_permission, :html => {:id => 'addMemberForm'} do |f| %>
+      <%= form_for @project_permission_tuple, :url => @project_permission_path, :html => {:id => 'addMemberForm'} do |f| %>
         <%= f.hidden_field :project_id, :value => @project.id %>
         <%= render :partial => 'shared/form_alerts' %>
         <div class="well">
@@ -40,7 +40,7 @@
                 <li>Edit project settings.</li>
                 <li>Add/remove members.</li>
               </ul>
-              <%= link_to raw(f.radio_button(:permission, '1') + ' Select'), '',
+              <%= link_to raw(f.radio_button(:permission, ProjectPermission::OWNER) + ' Select'), '',
                   :class => 'btn btn-default' %>
             </div>
             <div class="col-md-3 permission">
@@ -49,7 +49,7 @@
                 <li>Make changes to files.</li>
                 <li>Invite subscribers.</li>
               </ul>
-              <%= link_to raw(f.radio_button(:permission, '2') + ' Select'), '',
+              <%= link_to raw(f.radio_button(:permission, ProjectPermission::COAUTHOR) + ' Select'), '',
                   :class => 'btn btn-default' %>
             </div>
             <div class="col-md-3 permission <% if @project.public %>extra-faded<% end %>"
@@ -62,7 +62,7 @@
                 <li>See private projects.</li>
                 <li>Member on project page.</li>
               </ul>
-              <%= link_to raw(f.radio_button(:permission, '3') + ' Select'), '',
+              <%= link_to raw(f.radio_button(:permission, ProjectPermission::SUBSCRIBER) + ' Select'), '',
                 :class => 'btn btn-default', :disabled => @project.public %>
             </div>
             <div class="col-md-3 permission <% unless @project.public %>extra-faded<% end %>"
@@ -75,7 +75,7 @@
                 <li>Track project updates.</li>
                 <li>Notified for activity.</li>
               </ul>
-              <%= link_to raw(f.radio_button(:permission, '4') + ' Select'), '',
+              <%= link_to raw(f.radio_button(:permission, ProjectPermission::SUBSCRIBER) + ' Select'), '',
                   :class => 'btn btn-default', :disabled => !@project.public %>
             </div>
           </div>
