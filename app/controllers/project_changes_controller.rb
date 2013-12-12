@@ -6,6 +6,8 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes.json
   def index
     @project = Project.find(params[:project_id])
+    authorize! :read, @project
+
     @project_changes = ProjectChange.all_project_updates(@project)
     @selected_change = @project_changes.first
   end
@@ -13,31 +15,33 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes/1
   # GET /project_changes/1.json
   def show
-    index
+    @project = Project.find(params[:project_id])
+    @project_changes = ProjectChange.all_project_updates(@project)
     @selected_change = ProjectChange.find(params[:id])
+    if @project.id != @selected_change.project_id
+      return head :bad_request
+    end
+
+    authorize! :read, @selected_change
     render action: 'index'
-  end
-
-  # GET /project_changes/new
-  def new
-    @project_change = ProjectChange.new
-  end
-
-  # GET /project_changes/1/edit
-  def edit
   end
 
   # GET /project_changes/project/1/page/1
   # GET /project_changes/project/1/page/1.json
   def list
+    @project = Project.find(params[:project_id])
+    authorize! :read, @project
+
     # XXX: per() should use a config parameter instead of static value.
-    @project_changes = ProjectChange.all_project_updates(Project.find(params[:project_id]), nil).page(params[:page]).per(10)
+    @project_changes = ProjectChange.all_project_updates(@project, nil).page(params[:page]).per(10)
     render :layout => false
   end
 
   # GET /project_changes/project/1/changes/1/diff.json
   def diff
     @project_change = ProjectChange.find(params[:id])
+    authorize! :read, @project_change
+
     @diff = @project_change.diff
     @fileTypes = {
       :createdFiles => {:name => 'Created', :label => 'success'},
@@ -57,6 +61,8 @@ class ProjectChangesController < ApplicationController
   # GET /project_changes/project/1/changes/1/file/:filename
   def file
     @project_change = ProjectChange.find(params[:id])
+    authorize! :read, @project_change
+
     filename = params[:file]
     unless params[:format].nil?
       filename += '.' + params[:format]
@@ -66,46 +72,6 @@ class ProjectChangesController < ApplicationController
       render :text => 'Not found', :status => :not_found
     else
       send_data(file, :filename => filename)
-    end
-  end
-
-  # POST /project_changes
-  # POST /project_changes.json
-  def create
-    @project_change = ProjectChange.new(project_change_params)
-
-    respond_to do |format|
-      if @project_change.save
-        format.html { redirect_to @project_change, notice: 'Project change was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project_change }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project_change.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /project_changes/1
-  # PATCH/PUT /project_changes/1.json
-  def update
-    respond_to do |format|
-      if @project_change.update(project_change_params)
-        format.html { redirect_to @project_change, notice: 'Project change was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @project_change.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /project_changes/1
-  # DELETE /project_changes/1.json
-  def destroy
-    @project_change.destroy
-    respond_to do |format|
-      format.html { redirect_to project_changes_url }
-      format.json { head :no_content }
     end
   end
 

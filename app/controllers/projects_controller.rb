@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :files, :update, :destroy]
   before_filter :authenticate_user!
-  load_and_authorize_resource :only => [:show]
+  load_and_authorize_resource :only => [:show, :edit, :files, :update, :destroy]
 
   rescue_from CanCan::AccessDenied do |exception|
     @topic = 'Error'
@@ -53,7 +52,6 @@ class ProjectsController < ApplicationController
   # GET /project_changes/project/1/doc/:doc_hash/path
   # Gets a file contained inside a word document.
   def doc
-    @project = Project.find(params[:id])
     filename = params[:file]
     # Only allow access to images for now.
     if !filename.starts_with?('images/')
@@ -153,11 +151,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description, :public)
