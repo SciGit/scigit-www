@@ -6,9 +6,10 @@ class Ability
 
     can :manage, ProjectPermission, ProjectPermission do |pp|
       permission = ProjectPermission.get_user_permission(user, pp.project)
-      permission.permission == ProjectPermission::OWNER ||
+      user != pp.user &&
+        (permission.permission == ProjectPermission::OWNER ||
         (permission.permission > ProjectPermission::SUBSCRIBER &&
-         permission.permission > pp.permission)
+         permission.permission > pp.permission))
     end
 
     can :manage, Project, Project do |project|
