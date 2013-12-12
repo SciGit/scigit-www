@@ -18,20 +18,24 @@
 
     tr:first-child td {
       border-top: 1px solid #ddd;
-      padding-top: 4px;
     }
 
     .line-number {
+      color: #777;
+      font-family: consolas, courier, monospace;
+      font-size: 13px;
       border-right: 1px solid #ddd;
       text-align: right;
+      padding: 2px 5px 2px 8px;
     }
 
     .line-content {
+      white-space: pre;
       width: 100%;
+      padding: 2px 8px;
     }
 
-    .line-number, .line-content {
-      padding: 2px 8px;
+    td {
       border-top: 0;
     }
   }

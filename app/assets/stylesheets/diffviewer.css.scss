@@ -59,9 +59,9 @@
 
   .linenumber {
     min-width: 20px;
-    font-family: monospace;
+    font-family: consolas, courier, monospace;
     text-align: right;
-    padding: 2px 5px;
+    padding: 2px 5px 2px 8px;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     white-space: nowrap;
     background-color: $sg-gray;
