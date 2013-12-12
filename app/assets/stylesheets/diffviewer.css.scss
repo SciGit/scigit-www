@@ -58,6 +58,8 @@
   }
 
   .linenumber {
+    @include user-select(none);
+
     min-width: 20px;
     font-family: consolas, courier, monospace;
     text-align: right;
@@ -66,6 +68,10 @@
     white-space: nowrap;
     background-color: $sg-gray;
     color: #777;
+
+    &:before {
+      content: attr(data-content);
+    }
   }
 
   .linenumber.second {

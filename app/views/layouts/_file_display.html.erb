@@ -27,8 +27,8 @@
           <% else %>
             <% lines.each_with_index do |line, i| %>
               <tr>
-                <td class="line-number"><%= i+1 %></td>
-                <td class="line-content"><%= line %></td>
+                <td data-content="<%= i+1 %>" class="line-number"></td>
+                <td class="line-content"><%= line.blank? ? raw('<br />') : line %></td>
               </tr>
             <% end %>
           <% end %>

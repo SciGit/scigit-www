@@ -33,15 +33,15 @@ module ProjectChangesHelper
             new_type += ' last'
           end
           if mode == :inline
-            rows << "<tr class='line'><td class='linenumber #{type}'>#{old_line}</td>" +
-              "<td class='linenumber #{type}'>#{new_line}</td>" +
+            rows << "<tr class='line'><td class='linenumber #{type}' data-content='#{old_line}'></td>" +
+              "<td class='linenumber #{type}' data-content='#{new_line}'></td>" +
               "<td class='content inline #{type}'>#{line}</td></tr>"
           else
             old_text = old_block ? old_block.lines[i] : ''
             new_text = new_block ? new_block.lines[i] : ''
-            rows << "<tr class='line'><td class='linenumber #{old_type}'>#{old_line}</td>" +
+            rows << "<tr class='line'><td class='linenumber #{old_type}' data-content='#{old_line}'></td>" +
               "<td class='content #{old_type}'>#{old_text}</td>" +
-              "<td class='linenumber second #{new_type}'>#{new_line}</td>" +
+              "<td class='linenumber second #{new_type}' data-content='#{new_line}'></td>" +
               "<td class='content #{new_type}'>#{new_text}</td></tr>"
           end
         end

@@ -21,12 +21,18 @@
     }
 
     .line-number {
+      @include user-select(none);
+
       color: #777;
       font-family: consolas, courier, monospace;
       font-size: 13px;
       border-right: 1px solid #ddd;
       text-align: right;
       padding: 2px 5px 2px 8px;
+      
+      &:before {
+        content: attr(data-content);
+      }
     }
 
     .line-content {
