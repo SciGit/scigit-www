@@ -25,7 +25,7 @@ class Ability
 
     can :read, Project, Project do |project|
       permission = ProjectPermission.get_user_permission(user, project)
-      permission.permission == ProjectPermission::SUBSCRIBER || project.public
+      permission.permission >= ProjectPermission::SUBSCRIBER || project.public
     end
 
     can :subscribe, Project, Project do |project|

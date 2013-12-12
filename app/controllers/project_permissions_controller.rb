@@ -39,7 +39,6 @@ class ProjectPermissionsController < ApplicationController
     if user
       @project_permission = ProjectPermission.new(:user => user, :project => project,
                                                   :permission => project_permission_params[:permission])
-    else
     end
 
     respond_to do |format|
@@ -59,10 +58,14 @@ class ProjectPermissionsController < ApplicationController
   # PATCH/PUT /project_permissions/1
   # PATCH/PUT /project_permissions/1.json
   def update
+    @project_permission.permission = project_permission_params[:permission]
     respond_to do |format|
-      if @project_permission.update(project_permission_params)
+      if @project_permission.save
         format.html { redirect_to @project_permission, notice: 'Project permission was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: {
+          :redirect => project_path(@project_permission.project),
+          :notice => "#{@project_permission.user.fullname}'s permission has been updated.",
+        } }
       else
         format.html { render action: 'edit' }
         format.json { render json: @project_permission.errors, status: :unprocessable_entity }
@@ -87,7 +90,7 @@ class ProjectPermissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_permission_params
-      params.require(:project_permission).permit(:permission, user_attributes: [:composite_fullname_email, :email], project_attributes: [:id])
+      params.require(:project_permission).permit(:id, :permission, user_attributes: [:composite_fullname_email, :email], project_attributes: [:id])
     end
 
     def load_project
