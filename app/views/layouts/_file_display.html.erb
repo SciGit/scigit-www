@@ -4,7 +4,12 @@
     <div class="well-list-header-inner">
       <div class="well-list-header-buttons">
         <h3><%= raw path_breadcrumb(@path, @project, @change) %></h3>
-        <a class="btn btn-primary btn-valign center" href="<%= file_url %>">
+        <a class="btn btn-primary btn-valign center" href="<%= project_change_url(@project, @change, :file => u(@path)) %>">
+          <%= fa_icon 'undo' %>&nbsp;
+          View file history
+        </a>
+        &nbsp;
+        <a class="btn btn-success btn-valign center" href="<%= file_url %>">
           <%= fa_icon 'download' %>&nbsp;
           Download file
         </a>

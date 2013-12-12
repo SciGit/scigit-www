@@ -10,13 +10,16 @@
       ((can? :update, @project) ? 'Manage My Projects' : 'View Public Projects') =>  ((can? :update, @project) ? projects_path : public_projects_path),
       @project.name => project_path(@project.id),
       'View Changes' => project_changes_path(@project.id)
-    }}
+    }.merge(@file ? {'File: ' + @file => project_changes_path(@project.id, :file => @file)} : {})}
  %>
 
 <div class="separator-xsmall"></div>
 
 <div class="page-header">
-  <h1>Changes to <%= @project.name %></h1>
+  <h1>
+    Changes to <%= @project.name %>
+    <% if @file %><small><%= @file %></small><% end %>
+  </h1>
 </div>
 
 <div id="change-viewer" class="row-fluid">

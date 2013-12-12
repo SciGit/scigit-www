@@ -97,5 +97,12 @@ module SciGit
         return nil
       end
     end
+
+    def self.file_history(project_id, path)
+      dir = File.join(@@scigit_repo_dir, "r#{project_id}")
+      path = Shellwords.escape(path)
+      output = `cd #{dir} && git log --format=%H -- #{path}`
+      return $?.to_i == 0 ? output.split("\n") : nil
+    end
   end
 end

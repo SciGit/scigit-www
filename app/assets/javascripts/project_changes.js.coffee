@@ -25,11 +25,15 @@ resetActives = ->
 loadDiff = (selected) ->
   change_id = selected.data 'change-id'
   commit_hash = selected.data 'commit-hash'
-  history.replaceState null, null, "/projects/#{project_id}/changes/#{change_id}"
+  match = location.search.match /\?file=(.*)/
+  file = if match then match[1] else ''
+
+  url = "/projects/#{project_id}/changes/#{change_id}" + location.search
+  history.replaceState null, null, url
   if diff_viewer == null
-    diff_viewer = new DiffViewer(change_id, project_id, commit_hash)
+    diff_viewer = new DiffViewer(change_id, project_id, commit_hash, file)
   else
-    diff_viewer.load(change_id, project_id, commit_hash)
+    diff_viewer.load(change_id, project_id, commit_hash, file)
 
 $(document).on 'ready page:load', () ->
   change = $('#selected-change')

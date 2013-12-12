@@ -28,6 +28,13 @@ class Project < ActiveRecord::Base
     return SciGit::Git.file_listing(id, commit_hash, path)
   end
 
+  def get_file_changes(path = '')
+    hashes = SciGit::Git.file_history(id, path)
+    return hashes.map do |hash|
+      ProjectChange.where{project_id == id && user_id != 0 && commit_hash == hash}.first
+    end
+  end
+
   def self.all_public(limit = nil)
     self.all
   end

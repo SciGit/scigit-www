@@ -8,17 +8,27 @@ class ProjectChangesController < ApplicationController
     @project = Project.find(params[:project_id])
     authorize! :read, @project
 
-    @project_changes = ProjectChange.all_project_updates(@project)
+    @file = params[:file]
+    if @file
+      @project_changes = @project.get_file_changes(@file)
+    else
+      @project_changes = ProjectChange.all_project_updates(@project)
+    end
     @selected_change = @project_changes.first
   end
 
   # GET /project_changes/1
   # GET /project_changes/1.json
   def show
-    @project = Project.find(params[:project_id])
-    @project_changes = ProjectChange.all_project_updates(@project)
-    @selected_change = ProjectChange.find(params[:id])
-    if @project.id != @selected_change.project_id
+    index
+
+    if @file
+      @selected_change = @project_changes.bsearch { |change| change.id <= params[:id].to_i }
+    else
+      @selected_change = ProjectChange.find(params[:id])
+    end
+
+    if !@selected_change || @project.id != @selected_change.project_id
       return head :bad_request
     end
 
@@ -42,7 +52,7 @@ class ProjectChangesController < ApplicationController
     @project_change = ProjectChange.find(params[:id])
     authorize! :read, @project_change
 
-    @diff = @project_change.diff
+    @diff = @project_change.diff(params[:file] || '')
     @fileTypes = {
       :createdFiles => {:name => 'Created', :label => 'success'},
       :deletedFiles => {:name => 'Deleted', :label => 'danger'},

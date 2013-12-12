@@ -9,8 +9,8 @@ class ProjectChange < ActiveRecord::Base
     Time.at(self[:commit_timestamp])
   end
 
-  def diff
-    SciGit::Diff.new.diff(project_id, id, commit_hash + '^', commit_hash)
+  def diff(file)
+    SciGit::Diff.new.diff(project_id, id, commit_hash + '^', commit_hash, file)
   end
   
   def get_file(file)
