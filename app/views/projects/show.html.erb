@@ -109,7 +109,7 @@
         <div class="well-list-header-inner">
           <div class="well-list-header-buttons">
             <h3>Last Change</h3>
-            <% if @last_change %>
+            <% if @change %>
               <a class="btn btn-primary btn-valign center" href="<%= project_changes_path(@project) %>">
                 View all
               </a>
@@ -119,19 +119,19 @@
       </div>
       <div class="well-list-item">
         <div class="well-list-item-inner">
-          <% if @last_change.nil? %>
+          <% if @change.nil? %>
             No changes have been made to this project.
           <% else %>
             <div class="pull-right">
               <a class="btn btn-default" data-toggle="tooltip" title="View&nbsp;change"
-                 href="<%= project_change_path(@project, @last_change) %>">
+                 href="<%= project_change_path(@project, @change) %>">
                 <%= fa_icon 'search' %>
               </a>
             </div>
-            <%= link_to @last_change.user.fullname, users_path(@last_change.user) %> made the following change
-            <%= time_ago_in_words @last_change.commit_timestamp %> ago:
+            <%= link_to @change.user.fullname, users_path(@change.user) %> made the following change
+            <%= time_ago_in_words @change.commit_timestamp %> ago:
             <div class="change-message">
-              <%= link_to @last_change.commit_msg, project_change_path(@project, @last_change) %>
+              <%= link_to @change.commit_msg, project_change_path(@project, @change) %>
             </div>
           <% end %>
         </div>

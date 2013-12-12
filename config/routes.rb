@@ -29,6 +29,7 @@ SciGit::Application.routes.draw do
     member do
       get 'subscribe'
       get 'doc/:doc_hash/*file', :action => 'doc'
+      get 'changes/:change_id/files', :action => 'files', :as => 'change_files'
       get 'files'
     end
 

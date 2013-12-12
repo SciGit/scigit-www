@@ -1,3 +1,8 @@
+<div class="change-type-header">
+  <%= link_to 'View all files after this change...', files_project_path(:id => @project_change.project_id,
+                                                                        :change => @project_change.id) %>
+</div>
+
 <% fileNum = 0
    @fileTypes.each do |type, type_data|
      unless @diff[type].empty? %>
@@ -11,5 +16,5 @@
 <% end %>
 
 <% if fileNum == 0 %>
-  <li class="nav-header">No files changed</li>
+  <div class="change-type-header">No files changed.</div>
 <% end %>

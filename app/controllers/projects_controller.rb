@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
     @subscribers = project_permissions.select{ |pp| pp.user.can? :subscribed, pp.project }
     @members = project_permissions.select{ |pp| pp.user.can? :update, pp.project }
     @changes = ProjectChange.all_project_updates(@project)
-    @last_change = @changes.first
+    @change = @changes.first
     @file_listing = @project.get_file_listing
   end
 
@@ -77,19 +77,23 @@ class ProjectsController < ApplicationController
 
   # GET /projects/:id/files?path=..
   def files
-    @change = ProjectChange.all_project_updates(@project).first
+    if params[:change]
+      @change = ProjectChange.find(params[:change])
+    else
+      @change = ProjectChange.all_project_updates(@project).first
+    end
     @path = params[:path] || ''
     @prev_path = @path.split('/')[0..-2].join('/')
-    type = @project.get_file_type(@path)
+    type = @project.get_file_type(@path, @change)
     if type.nil?
       return head :not_found
     elsif type == 'blob'
-      @file_data = @project.get_file(@path)
+      @file_data = @project.get_file(@path, @change)
       if @file_data.index("\0")
         @file_data = 0
       end
     else
-      @file_listing = @project.get_file_listing(@path)
+      @file_listing = @project.get_file_listing(@path, @change)
     end
   end
 

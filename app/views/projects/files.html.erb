@@ -16,6 +16,14 @@
 </div>
 
 <div class="row-fluid">
+  <div class="alert alert-info">
+    Showing project after <%= link_to @change.user.fullname, users_path(@change.user) %> made the following change
+    <%= time_ago_in_words @change.commit_timestamp %> ago:
+    <div class="change-message">
+      <%= link_to @change.commit_msg, project_change_path(@project, @change) %>
+    </div>
+  </div>
+
   <% if @file_data %>
     <%= render :partial => 'layouts/file_display' %>
   <% else %>
