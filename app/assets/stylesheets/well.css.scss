@@ -82,10 +82,17 @@ body {
             min-width: 100px;
             text-align: right;
 
-            & > * {
-              margin-left: 4px;
-              margin-right: 4px;
+            > span {
+              margin-left: 10px;
+              margin-right: 10px;
+            }
 
+            > .btn {
+              margin-left: 2px;
+              margin-right: 2px;
+            }
+
+            & > * {
               &:first-child {
                 margin-left: 0;
               }
