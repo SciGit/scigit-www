@@ -17,6 +17,10 @@
 
 <div class="row-fluid">
   <div class="alert alert-info">
+    <a class="btn btn-primary pull-right" href="<%= project_change_path(@project, @change) %>">
+      View change details
+    </a>
+
     Showing project after <%= link_to @change.user.fullname, users_path(@change.user) %> made the following change
     <%= time_ago_in_words @change.commit_timestamp %> ago:
     <div class="change-message">
