@@ -14,7 +14,11 @@
               <%= link_to 'Up one folder..', files_project_path(@project, {:path => @prev_path}) %>
             </td>
         <% end %>
-        <% if @file_listing.empty? %>
+        <% if @file_listing.nil? %>
+          <tr>
+            <td colspan="2">Invalid path provided.</td>
+          </tr>
+        <% elsif @file_listing.empty? %>
           <tr>
             <td colspan="2">This folder is currently empty.</td>
           </tr>

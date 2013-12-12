@@ -22,7 +22,7 @@ module SciGit
       unless path.empty?
         path = ':' + Shellwords.escape(path)
       end
-      out = `cd #{dir}; git rev-parse #{commit_hash}#{path}`.chomp
+      out = `cd #{dir} && git rev-parse #{commit_hash}#{path}`.chomp
       if $?.to_i == 0
         return out
       else
@@ -35,7 +35,7 @@ module SciGit
       old_hash = Shellwords.escape(old_hash)
       new_hash = Shellwords.escape(new_hash)
       path = Shellwords.escape(path)
-      result = `cd #{dir}; git diff #{old_hash} #{new_hash} -- #{path}`
+      result = `cd #{dir} && git diff #{old_hash} #{new_hash} -- #{path}`
       if $?.to_i == 0
         return result
       else
@@ -50,7 +50,7 @@ module SciGit
       unless out.empty?
         out = ' > ' + Shellwords.escape(out)
       end
-      result = `cd #{dir}; git show #{commit_hash}:#{path} #{out}`
+      result = `cd #{dir} && git show #{commit_hash}:#{path} #{out}`
       if $?.to_i == 0
         return result
       else
@@ -66,7 +66,7 @@ module SciGit
       dir = File.join(@@scigit_repo_dir, "r#{project_id}")
       commit_hash = Shellwords.escape(commit_hash)
       path = Shellwords.escape(path)
-      output = `cd #{dir}; git ls-tree -l #{commit_hash} #{path}`
+      output = `cd #{dir} && git ls-tree -l #{commit_hash} #{path}`
       if $?.to_i == 0
         # Sample line: 100644 blob 7a2a4e9ee60421ff5ef64731d06573316bf35e17      25    README
         lines = output.split("\n")
@@ -86,7 +86,7 @@ module SciGit
         path += '/'
       end
       path = Shellwords.escape(path)
-      output = `cd #{dir}; git ls-tree -l #{commit_hash} #{path}`
+      output = `cd #{dir} && git ls-tree -l #{commit_hash} #{path}`
       if $?.to_i == 0
         # Sample line: 100644 blob 7a2a4e9ee60421ff5ef64731d06573316bf35e17      25    README
         return output.split("\n").map { |line|
