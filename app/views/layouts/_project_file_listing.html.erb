@@ -1,7 +1,14 @@
 <div id="file-listing" class="well-list well-list-condensed">
   <div class="well-list-header">
     <div class="well-list-header-inner">
-      <h3>Project Files<%= !@path.blank? ? ': /' + @path : '' %></h3>
+      <div class="well-list-header-buttons">
+        <h3><%= raw path_breadcrumb(@path, @project, @change) %></h3>
+        <% if @prev_path %>
+          <a class="btn btn-default disabled btn-valign center">
+            Directory
+          </a>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="well-list-item">

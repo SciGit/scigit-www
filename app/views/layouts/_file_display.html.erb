@@ -3,7 +3,7 @@
   <div class="well-list-header">
     <div class="well-list-header-inner">
       <div class="well-list-header-buttons">
-        <h3>View File: /<%= @path %></h3>
+        <h3><%= raw path_breadcrumb(@path, @project, @change) %></h3>
         <a class="btn btn-primary btn-valign center" href="<%= file_url %>">
           <%= fa_icon 'download' %>&nbsp;
           Download file

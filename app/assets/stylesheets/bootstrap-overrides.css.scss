@@ -1,6 +1,8 @@
 @import 'include/mixins';
 
 body {
+  overflow-y: scroll;
+
   .row, .row-fluid {
     margin-left: 0;
     margin-right: 0;
