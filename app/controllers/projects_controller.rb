@@ -109,9 +109,11 @@ class ProjectsController < ApplicationController
           require 'scigit/thrift_client'
           SciGit::ThriftClient.new.createRepository(@project.id)
 
-          @notice = "Project #{@project.name} was created successfully."
           format.html { redirect_to @project, notice: @notice }
-          format.json { render }
+          format.json { render json: {
+            :redirect => project_path(@project.id),
+            :notice => "Project #{@project.name} was created successfully.",
+          } }
         rescue
           @project.destroy
           @project_permission.destroy

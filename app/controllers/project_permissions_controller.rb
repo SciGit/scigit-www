@@ -71,13 +71,7 @@ class ProjectPermissionsController < ApplicationController
     project = @project_permission.project
     user = @project_permission.user
     @project_permission.destroy
-    respond_to do |format|
-      format.html { redirect_to project_permissions_url }
-      format.json { render json: {
-        :redirect => projects_path(project.id),
-        :notice => "#{user.fullname} has been removed from #{project.name}.",
-      } }
-    end
+    redirect_to project, notice: "#{user.fullname} has been removed from #{project.name}."
   end
 
   private

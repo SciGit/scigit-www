@@ -61,11 +61,11 @@
 
 		<div class="container">
       <% if notice %>
-        <p class="notice"><%= notice %></p>
+        <div class="alert alert-success"><%= fa_icon "check-circle" %> <p><%= notice %></p></div>
       <% end %>
 
       <% if alert %>
-        <p class="alert"><%= alert %></p>
+        <div class="alert alert-danger"><%= fa_icon "times-circle" %> <p><%= notice %></p></div>
       <% end %>
 
       <div class="content">
