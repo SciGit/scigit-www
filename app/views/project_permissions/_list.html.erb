@@ -43,9 +43,9 @@
                <% if cannot? :manage, permission %>disabled="disabled"<% end %>>
                 <%= fa_icon "pencil" %>
               </a>
-              <a class="deleteMember btn-danger btn btn-small" href="#" data-user_id="<%= member.id %>"
-               data-original-title="Remove <%= member.email %> from project"
-               data-toggle="tooltip"
+              <a class="deleteMember btn-danger btn btn-small" href="#"
+               data-original-title="Remove <%= member.email %> from project" data-toggle="tooltip"
+               data-method="delete" data-target="<%= project_permissions_path(permission.id) %>"
                <% if cannot? :manage, permission %>disabled="disabled"<% end %>>
                 <%= fa_icon "trash-o" %>
               </a>

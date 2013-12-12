@@ -31,15 +31,18 @@ class ProjectPermissionsController < ApplicationController
     email = project_permission_params[:user_attributes][:email]
     user = User.find_by(:email => email)
     project = Project.find(params[:project_id])
-    @project_permission = ProjectPermission.new(:user => user, :project => project,
-                                                :permission => project_permission_params[:permission])
+    if user
+      @project_permission = ProjectPermission.new(:user => user, :project => project,
+                                                  :permission => project_permission_params[:permission])
+    else
+    end
 
     respond_to do |format|
       if @project_permission.save
         format.html { redirect_to @project_permission, notice: 'Project permission was successfully created.' }
         format.json { render json: {
           :redirect => project_path(project.id),
-          :notice => "#{user.email} has been added to #{project.name}.",
+          :notice => "#{user.fullname} has been added to #{project.name}.",
         } }
       else
         format.html { render action: 'new' }
@@ -65,10 +68,15 @@ class ProjectPermissionsController < ApplicationController
   # DELETE /project_permissions/1
   # DELETE /project_permissions/1.json
   def destroy
+    project = @project_permission.project
+    user = @project_permission.user
     @project_permission.destroy
     respond_to do |format|
       format.html { redirect_to project_permissions_url }
-      format.json { head :no_content }
+      format.json { render json: {
+        :redirect => projects_path(project.id),
+        :notice => "#{user.fullname} has been removed from #{project.name}.",
+      } }
     end
   end
 

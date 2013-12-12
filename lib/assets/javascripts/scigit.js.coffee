@@ -84,3 +84,11 @@ $(document).on 'ready page:load', ->
     $(@).click (e) ->
       window.ajaxFormSubmit(container, form)
       e.preventDefault()
+  $('[data-method="delete"]').click (e) ->
+    self = $(@)
+    if confirm("Are you sure?")
+      $.ajax
+        url: self.data('target')
+        type: 'DELETE',
+        success: (data, response) ->
+          Turbolinks.visit(data.redirect) if data.redirect?

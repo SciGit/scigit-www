@@ -6,6 +6,7 @@
     </div>
     <div class="modal-body">
       <%= form_for @project_permission, :html => {:id => 'addMemberForm'} do |f| %>
+        <%= f.hidden_field :project_id, :value => @project.id %>
         <%= render :partial => 'shared/form_alerts' %>
         <div class="well">
           <h3>Find or Invite Member</h3>
