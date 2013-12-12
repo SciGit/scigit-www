@@ -7,8 +7,8 @@ $(document).on 'ready page:load', () ->
   $('[data-toggle*="popover"]').popover(container: 'body')
 
   $('.modal').on 'shown.bs.modal', (e) ->
-    $(@).find('[data-toggle*="tooltip"]').tooltip(container: 'body')
-    $(@).find('[data-toggle*="popover"]').popover(container: 'body')
+    $(@).find('[data-toggle*="tooltip"]').tooltip(container: '#' + $(@).attr('id') + ' .modal-content')
+    $(@).find('[data-toggle*="popover"]').popover(container: '#' + $(@).attr('id') + ' .modal-content')
 
   $('#label-projects').click (e) ->
     if e.target == this or e.target.tagName.toLowerCase == 'div'
@@ -24,7 +24,7 @@ $(document).on 'ready page:load', () ->
       project_id = $(this).data('proj_id')
       change_id = $(this).data('change_id')
       Turbolinks.visit("/projects/#{project_id}/changes/#{change_id}/" )
-  
+
   # Hack to scroll past the navbar.
   $(window).on 'hashchange', ->
     scrollBy(0, -50)

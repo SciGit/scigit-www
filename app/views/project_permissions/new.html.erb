@@ -51,17 +51,21 @@
               <%= link_to raw(f.radio_button(:permission, '2') + ' Select'), '',
                   :class => 'btn btn-default' %>
             </div>
-            <div class="col-md-3 permission">
+            <div class="col-md-3 permission <% if @project.public %>extra-faded<% end %>"
+             <% if @project.public %>
+             data-toggle="popover" data-content="You cannot add readers to public projects." data-original-title="Public Project"
+             data-placement="left" data-trigger="hover"
+             <% end %> >
               <h4><%= fa_icon "eye" %> Reader</h4>
               <ul>
                 <li>See private projects.</li>
                 <li>Member on project page.</li>
               </ul>
               <%= link_to raw(f.radio_button(:permission, '3') + ' Select'), '',
-                  :class => 'btn btn-default' %>
+                :class => 'btn btn-default', :disabled => @project.public %>
             </div>
-            <div class="col-md-3 permission <% if not @project.public %>extra-faded<% end %>"
-             <% if not @project.public %>
+            <div class="col-md-3 permission <% unless @project.public %>extra-faded<% end %>"
+             <% unless @project.public %>
              data-toggle="popover" data-content="You cannot add subscribers to private projects." data-original-title="Private Project"
              data-placement="left" data-trigger="hover"
              <% end %> >
