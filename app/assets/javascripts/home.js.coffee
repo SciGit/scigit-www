@@ -10,6 +10,7 @@ $(document).on 'ready page:load', () ->
     $(@).find('[data-toggle*="tooltip"], [rel="tooltip"]').tooltip(container: '#' + $(@).attr('id') + ' .modal-content')
     $(@).find('[data-toggle*="popover"]').popover(container: '#' + $(@).attr('id') + ' .modal-content')
 
+  # TODO: These should all be removed in favor of the data-url tag.
   $('#label-projects').click (e) ->
     if e.target == this or e.target.tagName.toLowerCase == 'div'
       Turbolinks.visit this.href
@@ -45,3 +46,9 @@ $(document).on 'ready page:load', () ->
     else
       target.load(target.data("remote"), -> target.modal("show"))
     e.preventDefault()
+
+  $('[data-url]').click (e) ->
+    tags = ["a", "i", "button", "p", "span"]
+    if e.target == @ || e.target.tagName.toLowerCase() not in tags
+      url = $(@).data('url')
+      Turbolinks.visit(url)

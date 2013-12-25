@@ -1,0 +1,7 @@
+@import 'include/mixins';
+
+body {
+  [data-url] {
+    cursor: pointer;
+  }
+}

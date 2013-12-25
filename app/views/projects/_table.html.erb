@@ -13,7 +13,7 @@
   </div>
   <% if !projects.empty? %>
     <% projects.each do |project| %>
-      <div class="well-list-item">
+      <div class="well-list-item" data-url="<%= project_path(project) %>">
         <div class="well-list-item-inner">
           <div class="well-list-item-grid">
             <div class="well-list-item-title">
