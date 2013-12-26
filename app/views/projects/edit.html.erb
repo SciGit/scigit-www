@@ -1,6 +1,62 @@
-<h1>Editing project</h1>
+<div id="settings-page">
+  <%= render :partial => 'shared/breadcrumbs',
+             :locals => { :paths => {
+               'Home' => root_path,
+               'Manage My Projects' => projects_path,
+               @project.name => project_path(@project),
+               'Settings' => edit_project_path(@project),
+             }}
+   %>
 
-<%= render 'form' %>
+  <div class="separator-xsmall"></div>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <div class="page-header">
+    <h1>User Settings</h1>
+  </div>
+
+  <div class="row">
+    <ul class="col-xs-3 nav nav-pills nav-stacked">
+      <li class="active"><a href="#general" data-toggle="tab">General Settings</a></li>
+      <li><a href="#members" data-toggle="tab">Members</a></li>
+      <li><a href="#delete" data-toggle="tab">Delete</a></li>
+    </ul>
+
+    <div class="col-xs-9 tab-content">
+      <div class="tab-pane active" id="general">
+        <%= render :partial => 'shared/form_alerts' %>
+        <h3>General Settings</h3>
+        <%= form_for @project do |f| %>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :public %> Make this project public (anyone can view it)
+            </label>
+          </div>
+          <label for="description" class="control-label">Description</label>
+          <div><%= f.text_area :description, :class => 'form-control' %></div>
+          <br>
+
+          <input ajax-submit="#general" class="btn btn-primary btnSubmit" type="submit" value="Save Settings" />
+        <% end %>
+      </div>
+      <div class="tab-pane" id="members">
+        <%= render :partial => 'shared/form_alerts' %>
+        <%= render :partial => 'project_permissions/list',
+             :locals => {
+               :project => @project,
+               :permissions => @permissions,
+             }
+         %>
+      </div>
+      <div class="tab-pane" id="delete">
+        <%= render :partial => 'shared/form_alerts' %>
+        <h3>Delete</h3>
+        <br />
+        <%= form_for @project, :html => {:class => 'form-horizontal'} do |f| %>
+          <p>Delete this project. This cannot be undone.</p>
+          <p>Be careful when doing this. All files, members and public records of this project existing will be destroyed.</p>
+          <%= button_to "Delete", @project, :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

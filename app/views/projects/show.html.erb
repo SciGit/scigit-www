@@ -14,10 +14,10 @@
   <h1>
     <div class="pull-right">
       <% if can? :manage, @project %>
-        <a class="btn btn-large btn-primary" href="{{ site_url("/projects/admin/#{project.id}") | raw }}">
+        <%= link_to edit_project_path(@project), :class => "btn btn-primary" do %>
           <i class="icon-wrench icon-white"></i>
           Settings
-        </a>
+        <% end %>
       <% elsif user_signed_in? %>
         <% if cannot? :read, @project %>
           <%= link_to 'Subscribe', subscribe_project_path, :class => 'btn btn-large btn-success' %>

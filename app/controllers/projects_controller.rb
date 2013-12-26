@@ -47,6 +47,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    project_permissions = ProjectPermission.where(:project => @project)
+    @permissions = project_permissions.select{ |pp| pp.user.can? :read, pp.project }
   end
 
   # GET /project_changes/project/1/doc/:doc_hash/path
