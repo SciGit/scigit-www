@@ -18,15 +18,11 @@ class ProjectPermissionsController < ApplicationController
     @project_permission = ProjectPermission.new
     @project_permission.build_user
     @project_permission.build_project
-    @project_permission_tuple = @project_permission
-    @project_permission_path = new_project_permission_path
     render :layout => nil
   end
 
   # GET /project_permissions/1/edit
   def edit
-    @project_permission_tuple = [@project, @project_permission]
-    @project_permission_path = project_permission_path
     render :action => :new, :layout => nil
   end
 
