@@ -134,7 +134,9 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: {
+          :notice => "#{@project.name} has been updated.",
+        } }
       else
         format.html { render action: 'edit' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
