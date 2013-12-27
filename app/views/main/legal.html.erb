@@ -1,0 +1,20 @@
+<%= render :partial => 'shared/breadcrumbs',
+           :locals => { :paths => {
+      'Home' => root_path,
+      'Legal' => legal_path,
+    }}
+ %>
+
+<div class="separator-xsmall"></div>
+
+<div class="page-header">
+  <h1>Legal</h1>
+</div>
+
+<p>This page has all the legal information for SciGit. Click a link below to read more.</p>
+
+<ul>
+  <li><%= link_to "Privacy Policy", legal_privacy_policy_path %></li>
+  <li><%= link_to "User Agreement", legal_user_agreement_path %></li>
+  <li><%= link_to "Terms and Conditions", legal_terms_and_conditions_path %></li>
+</ul>
