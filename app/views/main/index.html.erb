@@ -1,15 +1,14 @@
-<div class="slogan">
-  Collaboration Made <span class="easy">Easy</span>
-</div>
-<div class="sub-slogan">
-  version control without the terminal
-</div>
+<h1>Collaboration Made <strong>Easy</strong>
+
+<small>version control without the terminal</small></h1>
 
 <div class="sign-up">
-  <%= link_to 'Sign Up', new_user_registration_path %>
+  <%= link_to 'Sign Up', new_user_registration_path, :class => "btn btn-warning btn-lg" %>
 </div>
 
-<div class="row-fluid features">
+<br><br>
+
+<div class="row-fluid">
   <div class="col-md-4">
     <h4>Collaborate without mess</h4>
     <p></p>
@@ -31,10 +30,12 @@
   </div>
 </div>
 
-<div class="universities">
-  <p>Scientists from over a hundred universities use SciGit, including:</p>
-  <%= image_tag('universities.png') %>
-</div>
+<div class="clearfix"></div>
+
+<br><br>
+
+<p><span class="text-muted">Scientists from over a hundred universities use SciGit, including:</span></p>
+<%= image_tag('universities.png') %>
 
 <div class="explore">
   <i class="icon-bookmark-empty icon-2x pull-left"></i> Feel free to <%= link_to 'view public projects', public_projects_path %> people have created!
