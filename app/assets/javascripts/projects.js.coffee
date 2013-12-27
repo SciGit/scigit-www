@@ -64,3 +64,8 @@ $(document).on 'ready page:load', () ->
   if loadProjectId()
     initInfiniteScrollHelper() if project_id
     fetchAndAppendChanges 1 if project_id
+
+  $('#btnEditDescription').click (e) ->
+    $('#description').toggleClass('hide')
+    $('#editDescription').toggleClass('hide')
+    e.preventDefault()

@@ -37,7 +37,7 @@
         <div class="well-list-header-inner">
           <div class="well-list-header-buttons">
             <h3>Description</h3>
-            <a id="btnEditDescription" class="btn btn-primary btn-valign center" href="#" rel="tooltip" title="Edit description">
+            <a id="btnEditDescription" class="btn btn-primary" href="#" rel="tooltip" title="Edit description">
               <i class="icon-large icon-edit"></i> Edit
             </a>
           </div>
@@ -50,11 +50,13 @@
           </span>
 
           <% if can? :manage, @project %>
-            <%= form_tag('/projects/edit_description', :method => 'post', :class => 'hide') do %>
-              <%= label_tag(:description, 'Description') %>
-              <%= text_area_tag :description, @project.description, :size => '20x10' %>
-              <% # XXX: submit() call totally unnecessary, but I don't want to break bcompat yet. %>
-              <%= submit_tag 'Save', :class => 'btn btn-primary pull-right', :onclick => '$(\'#editDescription\').submit();' %>
+            <%= form_for(@project, :html => {:class => 'hide', :id => 'editDescription'}) do |f| %>
+              <%= render :partial => 'shared/form_alerts' %>
+              <div class="form-group">
+                <%= f.label(:description, 'Description') %>
+                <%= f.text_area :description, :size => '20x10', :class => "form-control" %>
+              </div>
+              <button ajax-submit="#editDescription" type="submit" class="btn btn-primary pull-right">Save</button>
             <% end %>
           <% end %>
         </div>
