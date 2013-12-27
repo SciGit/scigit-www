@@ -2,6 +2,9 @@ SciGit::Application.routes.draw do
   get 'main/index' => 'main#index', :as => 'index'
   get 'main/home' => 'main#home', :as => 'home'
   get 'main/contact' => 'main#contact', :as => 'contact'
+  get 'main/privacy_policy' => 'main#privacy_policy', :as => 'privacy_policy'
+  get 'main/user_agreement' => 'main#user_agreement', :as => 'user_agreement'
+  get 'main/terms_and_conditions' => 'main#terms_and_conditions', :as => 'terms_and_conditions'
 
   devise_for :users, :controllers => { :registrations => 'users/registrations', :sessions => 'users/sessions' }
 
