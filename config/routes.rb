@@ -1,6 +1,7 @@
 SciGit::Application.routes.draw do
-  get 'main/index' => 'main#index', :as => 'main_index'
-  get 'main/home' => 'main#home', :as => 'main_home'
+  get 'main/index' => 'main#index', :as => 'index'
+  get 'main/home' => 'main#home', :as => 'home'
+  get 'main/contact' => 'main#contact', :as => 'contact'
 
   devise_for :users, :controllers => { :registrations => 'users/registrations', :sessions => 'users/sessions' }
 

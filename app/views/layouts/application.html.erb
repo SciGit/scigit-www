@@ -110,7 +110,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">Contact Us</a>
+                <%= link_to "Contact Us", contact_path %>
               </li>
               <% if user_signed_in? %>
                 <li><a href="#feedbackModal" rel="tooltip" title="We love to hear your feedback! Tell us what you're thinking."
