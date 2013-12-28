@@ -21,7 +21,7 @@
             </div>
             <div class="well-list-item-buttons">
               <span data-toggle="tooltip" data-original-title="Subscribers" data-container="body">
-                <%= project.id %>
+                <%= project_subscribers(project).count %>
                 <i class="fa fa-star"></i>
               </span>
               <% if can? :manage, project %>

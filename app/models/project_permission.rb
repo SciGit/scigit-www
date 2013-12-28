@@ -16,6 +16,6 @@ class ProjectPermission < ActiveRecord::Base
   validates_uniqueness_of :user, :scope => :project, :message => "is already a member of this project"
 
   def self.get_user_permission(user, project)
-    where(:user_id => user[:id], :project_id => project[:id]).first
+    where(:user => user, :project => project).first
   end
 end

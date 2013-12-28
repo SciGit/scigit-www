@@ -33,9 +33,10 @@ class Ability
       permission.nil? && project.public
     end
 
+    cannot :subscribed, Project
     can :subscribed, Project, Project do |project|
       permission = ProjectPermission.get_user_permission(user, project)
-      permission == ProjectPermission::SUBSCRIBER && project.public
+      permission.permission == ProjectPermission::SUBSCRIBER && project.public
     end
 
     can :read, ProjectChange, ProjectChange do |change|

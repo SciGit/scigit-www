@@ -1,4 +1,9 @@
 module ProjectsHelper
+  def project_subscribers(project)
+    permissions = ProjectPermission.where(:project => project)
+    permissions.select{ |permission| permission.user.can? :subscribed, permission.project }
+  end
+
   def path_breadcrumb(path, project, change)
     result = ""
     if path.blank?
