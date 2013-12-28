@@ -27,9 +27,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     project_permissions = ProjectPermission.where(:project => @project)
-    @permissions = project_permissions.select{ |pp| pp.user.can? :read, pp.project }
-    @subscribers = project_permissions.select{ |pp| pp.user.can? :subscribed, pp.project }
-    @members = project_permissions.select{ |pp| pp.user.can? :update, pp.project }
     @changes = ProjectChange.all_project_updates(@project)
     @change = @changes.first
     @file_listing = @project.get_file_listing

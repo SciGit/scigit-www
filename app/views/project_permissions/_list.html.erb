@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <% permissions.each do |permission| %>
+  <% project_members(@project).each do |permission| %>
     <% member = permission.user %>
     <div class="well-list-item">
       <div class="well-list-item-inner">

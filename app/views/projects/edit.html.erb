@@ -40,12 +40,7 @@
       </div>
       <div class="tab-pane" id="members">
         <%= render :partial => 'shared/form_alerts' %>
-        <%= render :partial => 'project_permissions/list',
-             :locals => {
-               :project => @project,
-               :permissions => @permissions,
-             }
-         %>
+        <%= render :partial => 'project_permissions/list', :locals => { :project => @project } %>
       </div>
       <div class="tab-pane" id="delete">
         <%= render :partial => 'shared/form_alerts' %>
