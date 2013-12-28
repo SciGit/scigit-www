@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  include ProjectsHelper
+
   before_filter :authenticate_user!
   load_and_authorize_resource :only => [:show, :edit, :files, :update, :destroy]
 
@@ -11,9 +13,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    project_permissions = ProjectPermission.where(:user => current_user)
-    @my_projects = project_permissions.select{ |pp| pp.user.can? :manage, pp.project }.map(&:project)
-    @subscriptions = project_permissions.select{ |pp| pp.user.can?([:subscribed, :update], pp.project) }.map(&:project)
+    @projects = user_projects(current_user)
+    @subscriptions = user_subscriptions(current_user)
   end
 
   # GET /projects/public

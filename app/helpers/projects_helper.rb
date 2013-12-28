@@ -1,17 +1,12 @@
 module ProjectsHelper
-  def project_subscribers(project)
-    permissions = ProjectPermission.where(:project => project)
-    permissions.select{ |permission| permission.user.can? :subscribed, permission.project }
+  def user_projects(user)
+    project_permissions = ProjectPermission.where(:user => user)
+    project_permissions.select{ |pp| pp.user.can? :manage, pp.project }.map(&:project)
   end
 
-  def project_members(project)
-    permissions = ProjectPermission.where(:project => project)
-    permissions.select{ |permission| permission.user.can? :read, permission.project }
-  end
-
-  def project_coauthors(project)
-    permissions = ProjectPermission.where(:project => project)
-    permissions.select{ |permission| permission.user.can? :update, permission.project }
+  def user_subscriptions(user)
+    project_permissions = ProjectPermission.where(:user => user)
+    project_permissions.select{ |pp| pp.user.can?([:subscribed, :update], pp.project) }.map(&:project)
   end
 
   def path_breadcrumb(path, project, change)

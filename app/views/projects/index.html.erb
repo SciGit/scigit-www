@@ -13,13 +13,13 @@
 
 <div class="row-fluid">
   <div class="col-md-6">
-    <% @my_projects_button = capture do %>
+    <% @projects_button = capture do %>
       <%= link_to raw('<i class="fa fa-plus"></i> Create Project'), '',
           :data => {:toggle => 'modal', :target => '#createNewProjectModal'},
           :class => 'btn btn-success btn-large' %>
     <% end %>
 
-    <% @my_projects_empty_msg = capture do %>
+    <% @projects_empty_msg = capture do %>
       You are not a member of any projects. 
       <%= link_to 'Create a Project', '',
           :data => {:toggle => 'modal', :target => '#createNewProjectModal'}
@@ -29,9 +29,9 @@
     <%= render :partial => 'projects/table',
                :locals => {
           :project_type => 'My Projects',
-          :projects => @my_projects,
-          :button => @my_projects_button,
-          :empty_msg => @my_projects_empty_msg,
+          :projects => @projects,
+          :button => @projects_button,
+          :empty_msg => @projects_empty_msg,
         }
      %>
   </div>
